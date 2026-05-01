@@ -39,6 +39,7 @@ import Textarea from '../components/Textarea';
 import Toast from '../components/Toast';
 import Toggle from '../components/Toggle';
 import Tooltip from '../components/Tooltip';
+import FeatureToggleCard from '../components/FeatureToggleCard';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function Section({ eyebrow, title, description, children }) {
@@ -109,6 +110,9 @@ export default function App() {
   // Toggle states
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
+  // FeatureToggleCard
+  const [ftcStates, setFtcStates] = useState({ adobe: true, smtp: false, wl: true, cache: false });
+  const ftcToggle = (key) => setFtcStates((s) => ({ ...s, [key]: !s[key] }));
   // Checkbox
   const [checked1, setChecked1] = useState(true);
   const [checked2, setChecked2] = useState(false);
@@ -393,6 +397,57 @@ export default function App() {
               <Radio name="framework" value="svelte" checked={radio === 'svelte'} onChange={setRadio} label="Svelte" />
               <Radio name="framework" value="disabled" checked={false} disabled label="Disabled" />
             </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── FEATURE TOGGLE CARD ── */}
+      <Section eyebrow="Composite" title="Feature Toggle Card" description="Settings-dashboard card combining title, badge, tooltip, docs link, settings button, and toggle.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 520 }}>
+            <FeatureToggleCard
+              title="Adobe Fonts"
+              tooltip="Load fonts directly from Adobe Fonts CDN without hosting them locally."
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.adobe}
+              onToggle={() => ftcToggle('adobe')}
+              onSettingsClick={() => {}}
+            />
+            <FeatureToggleCard
+              title="SMTP Email"
+              tooltip="Send transactional emails via your own SMTP server."
+              showBadge
+              badgeText="BETA"
+              badgeVariant="beta"
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.smtp}
+              onToggle={() => ftcToggle('smtp')}
+              onSettingsClick={() => {}}
+            />
+            <FeatureToggleCard
+              title="White Label"
+              tooltip="Remove all Nexter branding from the admin interface."
+              showBadge
+              badgeText="PRO"
+              badgeVariant="pro"
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.wl}
+              onToggle={() => ftcToggle('wl')}
+              onSettingsClick={() => {}}
+            />
+            <FeatureToggleCard
+              title="Advanced Cache"
+              tooltip="Full-page caching requires server write permissions."
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.cache}
+              onToggle={() => ftcToggle('cache')}
+              onSettingsClick={() => {}}
+              disabled
+            />
           </div>
         </DemoBox>
       </Section>
