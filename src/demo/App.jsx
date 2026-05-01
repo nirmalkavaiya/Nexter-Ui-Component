@@ -41,7 +41,17 @@ import Toggle from '../components/Toggle';
 import Tooltip from '../components/Tooltip';
 import FeatureToggleCard from '../components/FeatureToggleCard';
 import ToggleGrid from '../components/ToggleGrid';
-import MultiSelect from '../components/MultiSelect';
+import MultiSelect      from '../components/MultiSelect';
+import CopyInput        from '../components/CopyInput';
+import Breadcrumb       from '../components/Breadcrumb';
+import ConfirmButton    from '../components/ConfirmButton';
+import NumberInput      from '../components/NumberInput';
+import OTPInput         from '../components/OTPInput';
+import SortableList     from '../components/SortableList';
+import FileUpload       from '../components/FileUpload';
+import ColorPicker      from '../components/ColorPicker';
+import DatePicker       from '../components/DatePicker';
+import DateRangePicker  from '../components/DateRangePicker';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function Section({ eyebrow, title, description, children }) {
@@ -125,6 +135,18 @@ export default function App() {
     { key: 'robots', label: 'Robots Meta', tooltip: 'Control per-page indexing directives.' },
     { key: 'indexnow', label: 'IndexNow', tooltip: 'Ping search engines instantly on publish.' },
   ];
+  // New components state
+  const [color, setColor]           = useState('#1E40AF');
+  const [date,  setDate]            = useState('');
+  const [range, setRange]           = useState({ start: '', end: '' });
+  const [numVal, setNumVal]         = useState(12);
+  const [otp,   setOtp]             = useState('');
+  const [files, setFiles]           = useState([]);
+  const [sortItems, setSortItems]   = useState([
+    { id: '1', label: '301 Redirect: /old-page → /new-page' },
+    { id: '2', label: '302 Redirect: /promo → /sale' },
+    { id: '3', label: '307 Redirect: /temp → /landing' },
+  ]);
   // MultiSelect
   const [msValue, setMsValue] = useState(['entire', 'singulars', 'archives']);
   const msOptions = [
@@ -966,6 +988,159 @@ export default function App() {
                 columns={1}
               />
             </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── BREADCRUMB ── */}
+      <Section eyebrow="Navigation" title="Breadcrumb" description="Contextual navigation trail for settings pages and deep views.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <Breadcrumb items={[{ label: 'Dashboard', onClick: () => {} }, { label: 'Settings', onClick: () => {} }, { label: 'SEO' }]} />
+            <Breadcrumb showHome items={[{ label: 'Home', href: '#' }, { label: 'Plugins', href: '#' }, { label: 'Nexter SEO', href: '#' }, { label: 'Schema Settings' }]} />
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── COPY INPUT ── */}
+      <Section eyebrow="Utilities" title="CopyInput" description="Read-only input with one-click clipboard copy — for API keys, license keys, shortcodes.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 480 }}>
+            <CopyInput label="License Key" value="NXTR-PRO-A1B2-C3D4-E5F6" hint="Renews annually. Do not share." />
+            <CopyInput label="Shortcode" value='[nexter_schema type="article"]' />
+            <CopyInput label="API Endpoint" value="https://api.nexterseo.com/v1/index" copyText="Copy URL" copiedText="URL Copied!" />
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── CONFIRM BUTTON ── */}
+      <Section eyebrow="Actions" title="ConfirmButton" description="Inline two-step confirmation pattern — prevents accidental destructive actions.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start' }}>
+            <ConfirmButton variant="error" message="Delete this redirect?" onConfirm={() => alert('Deleted!')} confirmText="Yes, delete" cancelText="Cancel">
+              Delete Redirect
+            </ConfirmButton>
+            <ConfirmButton variant="warning" message="Reset to defaults?" onConfirm={() => alert('Reset!')} confirmText="Reset" cancelText="Cancel">
+              Reset Settings
+            </ConfirmButton>
+            <ConfirmButton variant="primary" onConfirm={() => alert('Published!')} confirmText="Publish" cancelText="Cancel">
+              Publish Changes
+            </ConfirmButton>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── NUMBER INPUT ── */}
+      <Section eyebrow="Form Controls" title="NumberInput" description="Precise numeric entry with +/− step buttons, min/max clamping, prefix/suffix support.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end' }}>
+            <NumberInput label="Cache TTL" value={numVal} onChange={setNumVal} min={1} max={9999} step={1} suffix="s" />
+            <NumberInput label="Font Size" defaultValue={16} min={8} max={72} step={1} suffix="px" />
+            <NumberInput label="Line Height" defaultValue={1.5} min={1} max={3} step={0.1} precision={1} />
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── OTP INPUT ── */}
+      <Section eyebrow="Form Controls" title="OTPInput" description="Segmented input for license codes — auto-advances on type, handles paste, arrow-key navigation.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>6-digit OTP</p>
+              <OTPInput length={6} value={otp} onChange={setOtp} />
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11, color: 'var(--nxp-text-faint)', marginTop: 8 }}>Value: "{otp}"</p>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>License key — 4+4 with separator</p>
+              <OTPInput length={8} type="text" separator={4} separatorChar="–" />
+            </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── SORTABLE LIST ── */}
+      <Section eyebrow="Layout" title="SortableList" description="Drag-to-reorder list using HTML5 DnD — no external dependencies.">
+        <DemoBox>
+          <SortableList
+            items={sortItems}
+            onChange={setSortItems}
+            renderItem={(item) => (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: 'var(--nxp-font)', fontSize: 13 }}>{item.label}</span>
+                <Badge variant="primary" style={{ fontSize: 10 }}>Active</Badge>
+              </div>
+            )}
+          />
+        </DemoBox>
+      </Section>
+
+      {/* ── FILE UPLOAD ── */}
+      <Section eyebrow="Form Controls" title="FileUpload / Dropzone" description="Drag-and-drop file upload with preview. Supports WP Media Library when wpMedia={true}.">
+        <DemoBox>
+          <div style={{ maxWidth: 480 }}>
+            <FileUpload
+              value={files}
+              onChange={setFiles}
+              accept="image/*,.pdf"
+              multiple
+              maxSize={5 * 1024 * 1024}
+              maxSizeText="PNG, JPG, PDF up to 5 MB"
+            />
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── COLOR PICKER ── */}
+      <Section eyebrow="Form Controls" title="ColorPicker" description="HSV color picker with 2D gradient box, hue slider, hex input, and preset swatches.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-start' }}>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>Standard</p>
+              <ColorPicker value={color} onChange={setColor} />
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11, color: 'var(--nxp-text-faint)', marginTop: 8 }}>Value: {color}</p>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>With Alpha</p>
+              <ColorPicker defaultValue="#3B82F6" showAlpha onChange={(v) => console.log(v)} />
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>No swatches</p>
+              <ColorPicker defaultValue="#22C55E" swatches={[]} />
+            </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── DATE PICKER ── */}
+      <Section eyebrow="Form Controls" title="DatePicker" description="Calendar popover date selector with min/max support, Today shortcut, and clearable input.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-start' }}>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>Single Date (controlled)</p>
+              <DatePicker value={date} onChange={setDate} placeholder="Select expiry date" />
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11, color: 'var(--nxp-text-faint)', marginTop: 8 }}>Value: {date || '—'}</p>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginBottom: 10 }}>With min/max</p>
+              <DatePicker defaultValue="2026-05-01" minDate="2026-01-01" maxDate="2026-12-31" />
+            </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── DATE RANGE PICKER ── */}
+      <Section eyebrow="Form Controls" title="DateRangePicker" description="Two-calendar range picker for analytics filters — start/end date selection with range highlight.">
+        <DemoBox>
+          <div>
+            <DateRangePicker
+              value={range}
+              onChange={setRange}
+              startPlaceholder="From date"
+              endPlaceholder="To date"
+            />
+            <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11, color: 'var(--nxp-text-faint)', marginTop: 10 }}>
+              Range: {range.start || '—'} → {range.end || '—'}
+            </p>
           </div>
         </DemoBox>
       </Section>

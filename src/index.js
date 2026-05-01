@@ -41,6 +41,16 @@ export { default as Toggle } from './components/Toggle';
 export { default as Tooltip } from './components/Tooltip';
 export { default as FeatureToggleCard } from './components/FeatureToggleCard';
 export { default as ToggleGrid }   from './components/ToggleGrid';
-export { default as MultiSelect }  from './components/MultiSelect';
+export { default as MultiSelect }      from './components/MultiSelect';
+export { default as CopyInput }        from './components/CopyInput';
+export { default as Breadcrumb }       from './components/Breadcrumb';
+export { default as ConfirmButton }    from './components/ConfirmButton';
+export { default as NumberInput }      from './components/NumberInput';
+export { default as OTPInput }         from './components/OTPInput';
+export { default as SortableList }     from './components/SortableList';
+export { default as FileUpload }       from './components/FileUpload';
+export { default as ColorPicker }      from './components/ColorPicker';
+export { default as DatePicker }       from './components/DatePicker';
+export { default as DateRangePicker }  from './components/DateRangePicker';
 
 export const tokens = 'Import dist/style.css to apply Nexter UI design tokens and component styles.';
