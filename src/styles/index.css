@@ -2253,7 +2253,7 @@
 }
 
 /* ============================================================
-   UTILITIES
+   UTILITIES  (legacy helpers — kept for backward compat)
    ============================================================ */
 .nxp-u-stack {
   display: flex;
@@ -2272,6 +2272,220 @@
 }
 .nxp-u-row--sm {
   gap: 8px;
+}
+
+/* ============================================================
+   FLEX UTILITY SYSTEM
+   Utility-first flexbox helpers for dashboard layouts.
+   Compose freely — all classes are single-purpose and
+   side-effect free.
+   ============================================================ */
+
+/* ── Display ────────────────────────────────────────────────── */
+.nxp-flex        { display: flex; }
+.nxp-inline-flex { display: inline-flex; }
+
+/* ── Direction ──────────────────────────────────────────────── */
+.nxp-flex-row    { flex-direction: row; }
+.nxp-flex-col    { flex-direction: column; }
+.nxp-flex-row-reverse { flex-direction: row-reverse; }
+.nxp-flex-col-reverse { flex-direction: column-reverse; }
+
+/* ── Wrapping ────────────────────────────────────────────────── */
+.nxp-flex-wrap   { flex-wrap: wrap; }
+.nxp-flex-nowrap { flex-wrap: nowrap; }
+.nxp-flex-wrap-reverse { flex-wrap: wrap-reverse; }
+
+/* ── Align Items ─────────────────────────────────────────────── */
+.nxp-items-start    { align-items: flex-start; }
+.nxp-items-center   { align-items: center; }
+.nxp-items-end      { align-items: flex-end; }
+.nxp-items-stretch  { align-items: stretch; }
+.nxp-items-baseline { align-items: baseline; }
+
+/* ── Align Self ──────────────────────────────────────────────── */
+.nxp-self-start   { align-self: flex-start; }
+.nxp-self-center  { align-self: center; }
+.nxp-self-end     { align-self: flex-end; }
+.nxp-self-stretch { align-self: stretch; }
+.nxp-self-auto    { align-self: auto; }
+
+/* ── Align Content ───────────────────────────────────────────── */
+.nxp-content-start   { align-content: flex-start; }
+.nxp-content-center  { align-content: center; }
+.nxp-content-end     { align-content: flex-end; }
+.nxp-content-between { align-content: space-between; }
+.nxp-content-around  { align-content: space-around; }
+
+/* ── Justify Content ─────────────────────────────────────────── */
+.nxp-justify-start   { justify-content: flex-start; }
+.nxp-justify-center  { justify-content: center; }
+.nxp-justify-end     { justify-content: flex-end; }
+.nxp-justify-between { justify-content: space-between; }
+.nxp-justify-around  { justify-content: space-around; }
+.nxp-justify-evenly  { justify-content: space-evenly; }
+
+/* ── Gap ─────────────────────────────────────────────────────── */
+.nxp-gap-0  { gap: 0; }
+.nxp-gap-4  { gap: 4px; }
+.nxp-gap-6  { gap: 6px; }
+.nxp-gap-8  { gap: 8px; }
+.nxp-gap-10 { gap: 10px; }
+.nxp-gap-12 { gap: 12px; }
+.nxp-gap-16 { gap: 16px; }
+.nxp-gap-20 { gap: 20px; }
+.nxp-gap-24 { gap: 24px; }
+.nxp-gap-32 { gap: 32px; }
+
+/* Column / row axis gaps */
+.nxp-gap-x-4  { column-gap: 4px; }
+.nxp-gap-x-8  { column-gap: 8px; }
+.nxp-gap-x-12 { column-gap: 12px; }
+.nxp-gap-x-16 { column-gap: 16px; }
+.nxp-gap-x-24 { column-gap: 24px; }
+
+.nxp-gap-y-4  { row-gap: 4px; }
+.nxp-gap-y-8  { row-gap: 8px; }
+.nxp-gap-y-12 { row-gap: 12px; }
+.nxp-gap-y-16 { row-gap: 16px; }
+.nxp-gap-y-24 { row-gap: 24px; }
+
+/* ── Flex Sizing ─────────────────────────────────────────────── */
+.nxp-flex-1    { flex: 1 1 0%; }
+.nxp-flex-auto { flex: 1 1 auto; }
+.nxp-flex-none { flex: none; }
+.nxp-flex-init { flex: 0 1 auto; }  /* browser default */
+
+.nxp-grow      { flex-grow: 1; }
+.nxp-grow-0    { flex-grow: 0; }
+.nxp-shrink    { flex-shrink: 1; }
+.nxp-shrink-0  { flex-shrink: 0; }
+
+/* ── Order ───────────────────────────────────────────────────── */
+.nxp-order-first { order: -9999; }
+.nxp-order-last  { order:  9999; }
+.nxp-order-none  { order:  0; }
+.nxp-order-1     { order:  1; }
+.nxp-order-2     { order:  2; }
+.nxp-order-3     { order:  3; }
+.nxp-order-4     { order:  4; }
+.nxp-order-5     { order:  5; }
+
+/* ── Width & Height ──────────────────────────────────────────── */
+.nxp-w-full   { width: 100%; }
+.nxp-w-half   { width: 50%; }
+.nxp-w-auto   { width: auto; }
+.nxp-w-fit    { width: fit-content; }
+.nxp-w-max    { width: max-content; }
+.nxp-w-min    { width: min-content; }
+
+.nxp-h-full   { height: 100%; }
+.nxp-h-auto   { height: auto; }
+.nxp-h-screen { height: 100vh; }
+.nxp-h-fit    { height: fit-content; }
+
+.nxp-min-w-0  { min-width: 0; }       /* essential for truncation in flex */
+.nxp-max-w-full { max-width: 100%; }
+.nxp-min-h-0  { min-height: 0; }
+
+/* ── Overflow ────────────────────────────────────────────────── */
+.nxp-overflow-hidden   { overflow: hidden; }
+.nxp-overflow-auto     { overflow: auto; }
+.nxp-overflow-scroll   { overflow: scroll; }
+.nxp-overflow-x-auto   { overflow-x: auto; }
+.nxp-overflow-y-auto   { overflow-y: auto; }
+.nxp-overflow-x-hidden { overflow-x: hidden; }
+
+/* ── Common Dashboard Shorthand Helpers ──────────────────────── */
+
+/* Centered content (both axes) */
+.nxp-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal space-between row (most common dashboard header) */
+.nxp-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Vertical centered column */
+.nxp-flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical left-aligned column */
+.nxp-flex-col-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Inline pill / chip row */
+.nxp-flex-inline-center {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Sidebar + main content split */
+.nxp-flex-sidebar {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* Sticky footer inside a flex column (push footer to bottom) */
+.nxp-flex-push-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── Responsive Breakpoints ──────────────────────────────────── */
+
+/* sm  ≤ 640px  — stack everything */
+@media (max-width: 640px) {
+  .nxp-sm-flex-col      { flex-direction: column; }
+  .nxp-sm-flex-row      { flex-direction: row; }
+  .nxp-sm-flex-wrap     { flex-wrap: wrap; }
+  .nxp-sm-items-start   { align-items: flex-start; }
+  .nxp-sm-items-center  { align-items: center; }
+  .nxp-sm-justify-start { justify-content: flex-start; }
+  .nxp-sm-w-full        { width: 100%; }
+  .nxp-sm-flex-1        { flex: 1; }
+  .nxp-sm-order-first   { order: -9999; }
+  .nxp-sm-order-last    { order:  9999; }
+  .nxp-sm-hidden        { display: none; }
+}
+
+/* md  768px–1024px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .nxp-md-flex-row      { flex-direction: row; }
+  .nxp-md-flex-col      { flex-direction: column; }
+  .nxp-md-flex-wrap     { flex-wrap: wrap; }
+  .nxp-md-items-center  { align-items: center; }
+  .nxp-md-justify-between { justify-content: space-between; }
+  .nxp-md-w-full        { width: 100%; }
+  .nxp-md-w-half        { width: 50%; }
+  .nxp-md-flex-1        { flex: 1; }
+  .nxp-md-hidden        { display: none; }
+}
+
+/* lg  > 1024px */
+@media (min-width: 1025px) {
+  .nxp-lg-flex-row      { flex-direction: row; }
+  .nxp-lg-flex-col      { flex-direction: column; }
+  .nxp-lg-items-center  { align-items: center; }
+  .nxp-lg-justify-between { justify-content: space-between; }
+  .nxp-lg-flex-1        { flex: 1; }
+  .nxp-lg-w-full        { width: 100%; }
+  .nxp-lg-hidden        { display: none; }
 }
 
 /* ============================================================
