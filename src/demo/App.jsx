@@ -323,11 +323,18 @@ export default function App() {
             <Field label="Redirect target (disabled)">
               <Input placeholder="https://example.com" disabled />
             </Field>
-            <Field label="Notes" hint="Optional internal notes." style={{ gridColumn: '1 / -1' }}>
+            <Field
+              label="Exclude Images From Optimisation"
+              tooltip="Enter one image path per line to exclude those images from optimisation. Supports partial paths and wildcards."
+              hint="One path per line."
+              style={{ gridColumn: '1 / -1' }}
+            >
               <Textarea
-                placeholder="Add any internal notes here…"
+                placeholder="Enter one path per line"
                 value={textareaVal}
                 onChange={(e) => setTextareaVal(e.target.value)}
+                maxLength={500}
+                showCount
               />
             </Field>
           </div>
