@@ -1,8 +1,6 @@
-# Textarea
+﻿# Textarea
 
-> Multi-line text input with configurable rows and full native attribute pass-through.
-
----
+Resizable multi-line text area.
 
 ## Import
 
@@ -10,74 +8,55 @@
 import { Textarea } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | — | Controlled value. |
-| `onChange` | `func` | — | Native change event handler. |
-| `placeholder` | `string` | — | Placeholder text. |
-| `rows` | `number` | `4` | Number of visible text rows. |
-| `disabled` | `bool` | `false` | Disables the textarea. |
-| `className` | `string` | `''` | Additional CSS class(es). |
-| `...rest` | — | — | Any other native `<textarea>` attributes. |
-
----
+| `value` | `string` | `undefined` | Controlled value |
+| `defaultValue` | `string` | — | Initial value (uncontrolled) |
+| `onChange` | `(e: ChangeEvent) => void` | — | Change handler |
+| `placeholder` | `string` | — | Placeholder text |
+| `rows` | `number` | `4` | Initial visible rows |
+| `invalid` | `boolean` | `false` | Error state |
+| `disabled` | `boolean` | `false` | Disables the textarea |
+| `maxLength` | `number` | — | Maximum character count |
+| `showCount` | `boolean` | `false` | Show character counter |
+| `className` | `string` | `''` | Extra class on wrapper |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-<Textarea placeholder="Write your meta description here…" />
+<Textarea placeholder="Enter description…" rows={5} />
 ```
 
-### Controlled
+### Controlled with character count
 
 ```jsx
-const [desc, setDesc] = useState('');
+const [bio, setBio] = useState('')
 
 <Textarea
-  value={desc}
-  onChange={(e) => setDesc(e.target.value)}
-  placeholder="Describe this page in 120–160 characters."
-  rows={3}
+  value={bio}
+  onChange={e => setBio(e.target.value)}
+  maxLength={160}
+  showCount
+  placeholder="Write a short bio…"
 />
 ```
 
-### Inside a Field
+### Invalid state
 
 ```jsx
-<Field
-  label="Meta description"
-  hint={`${desc.length} / 160 characters`}
-  error={desc.length > 160 ? 'Too long — keep it under 160 characters.' : undefined}
->
-  <Textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={3} />
-</Field>
+<Textarea invalid value="bad input" />
 ```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(event: ChangeEvent) => void` | Standard React change handler. Access `event.target.value`. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-textarea` | Root `<textarea>` element |
-
----
-
-## Notes
-
-- Pair with `Field` for label, hint, and error layout.
-- All native `<textarea>` attributes (`maxLength`, `autoComplete`, `spellCheck`, etc.) can be passed via spread.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-textarea` | Wrapper div |
+| `.nxp-textarea__control` | The `<textarea>` element |
+| `.nxp-textarea__count` | Character counter |
+| `.nxp-textarea.is-invalid` | Error state |
+| `.nxp-textarea.is-disabled` | Disabled state |

@@ -1,6 +1,6 @@
-# Alert
+﻿# Alert
 
-> Inline status message that draws attention to information, success, warnings, or errors.
+> Inline contextual message with icon and rich content. Four severity variants.
 
 ---
 
@@ -16,39 +16,28 @@ import { Alert } from 'nexter-ui-component'
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"info" \| "success" \| "warning" \| "error"` | `"info"` | Controls color and default icon. |
-| `icon` | `node` | variant default | Custom icon node. Pass `null` to suppress the icon entirely. |
-| `children` | `node` | — | Alert body content. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Colour and default icon. |
+| `icon` | `ReactNode` | auto | Override the default icon. Pass `null` to hide. |
+| `children` | `ReactNode` | — | Alert body content. |
+| `className` | `string` | `''` | Extra class on root element. |
 
 ---
 
 ## Usage
 
-### Basic
-
 ```jsx
-<Alert variant="info">Your session will expire in 5 minutes.</Alert>
-```
-
-### Variants
-
-```jsx
-<Alert variant="success">Your profile has been saved successfully.</Alert>
-<Alert variant="warning">You are approaching your storage limit (90% used).</Alert>
-<Alert variant="error">Payment failed. Please check your card details and try again.</Alert>
+<Alert variant="info">A new template pack is ready to import.</Alert>
+<Alert variant="success"><strong>Saved.</strong> Your changes are live.</Alert>
+<Alert variant="warning">You are nearing the free-plan limit.</Alert>
+<Alert variant="error"><strong>Could not save.</strong> Check your network.</Alert>
 ```
 
 ### Custom icon
 
 ```jsx
-<Alert variant="info" icon="🔔">You have 3 new messages in your inbox.</Alert>
-```
-
-### No icon
-
-```jsx
-<Alert variant="warning" icon={null}>This action cannot be undone.</Alert>
+<Alert variant="info" icon="💡">
+  Pro tip: use keyboard shortcuts to speed up your workflow.
+</Alert>
 ```
 
 ---
@@ -58,17 +47,16 @@ import { Alert } from 'nexter-ui-component'
 | Class | Applied when |
 |-------|-------------|
 | `.nxp-alert` | Root element |
-| `.nxp-alert--info` | `variant="info"` |
-| `.nxp-alert--success` | `variant="success"` |
-| `.nxp-alert--warning` | `variant="warning"` |
-| `.nxp-alert--error` | `variant="error"` |
-| `.nxp-alert__icon` | Icon wrapper span |
-| `.nxp-alert__body` | Content wrapper div |
+| `.nxp-alert--info` | Info variant |
+| `.nxp-alert--success` | Success variant |
+| `.nxp-alert--warning` | Warning variant |
+| `.nxp-alert--error` | Error variant |
+| `.nxp-alert__icon` | Icon chip |
+| `.nxp-alert__body` | Text / content area |
 
 ---
 
 ## Notes
 
-- Root element has `role="alert"` so assistive technology announces it immediately.
-- The icon span is `aria-hidden="true"` — do not rely on it for semantic meaning.
-- Default icons per variant: `info → i`, `success → ✓`, `warning → !`, `error → ×`.
+- `role="alert"` — announced immediately by screen readers on mount.
+- Default icons: `info → i`, `success → ✓`, `warning → !`, `error → ×`.

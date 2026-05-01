@@ -1,8 +1,6 @@
-# Sheet
+﻿# Sheet
 
-> Structured card panel with a header (title + byline), body, and footer slot.
-
----
+Side-panel-style card layout for grouping related settings or content.
 
 ## Import
 
@@ -10,31 +8,27 @@
 import { Sheet } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | `string \| node` | — | Panel heading. |
-| `byline` | `string \| node` | — | Subtitle rendered below the title. |
-| `children` | `node` | — | Main body content. |
-| `footer` | `node` | — | Footer slot — typically action buttons. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `title` | `string` | — | Sheet heading |
+| `description` | `string` | — | Optional subtitle |
+| `children` | `ReactNode` | — | Sheet body content |
+| `footer` | `ReactNode` | — | Optional footer slot |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic
+### Settings panel
 
 ```jsx
-<Sheet title="SEO Settings" byline="Controls how your pages appear in search results.">
-  <Field label="Meta title">
-    <Input placeholder="Page title" />
+<Sheet title="General Settings" description="Configure your site basics.">
+  <Field label="Site name">
+    <Input value={name} onChange={setName} />
   </Field>
-  <Field label="Meta description">
-    <Textarea rows={3} placeholder="Page description" />
+  <Field label="Tagline">
+    <Input value={tagline} onChange={setTagline} />
   </Field>
 </Sheet>
 ```
@@ -43,35 +37,20 @@ import { Sheet } from 'nexter-ui-component'
 
 ```jsx
 <Sheet
-  title="Redirect Rule"
-  footer={
-    <>
-      <Button variant="primary">Save Rule</Button>
-      <Button variant="secondary">Cancel</Button>
-    </>
-  }
+  title="Danger Zone"
+  footer={<Button variant="destructive">Delete all data</Button>}
 >
-  <Field label="From URL"><Input placeholder="/old-path" /></Field>
-  <Field label="To URL"><Input placeholder="/new-path" /></Field>
+  <p>This action is irreversible.</p>
 </Sheet>
 ```
 
----
-
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-sheet` | Root wrapper div |
-| `.nxp-sheet__head` | Header area (rendered only when title or byline present) |
-| `.nxp-sheet__title` | Title div |
-| `.nxp-sheet__byline` | Byline div |
-| `.nxp-sheet__body` | Body content area |
-| `.nxp-sheet__foot` | Footer area |
-
----
-
-## Notes
-
-- Header is only rendered when at least one of `title` or `byline` is provided.
-- Sheet is a layout component — it does not include scroll behaviour, shadows, or z-index by default.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-sheet` | Root card |
+| `.nxp-sheet__header` | Title + description area |
+| `.nxp-sheet__title` | Heading text |
+| `.nxp-sheet__desc` | Description text |
+| `.nxp-sheet__body` | Content area |
+| `.nxp-sheet__footer` | Footer area |

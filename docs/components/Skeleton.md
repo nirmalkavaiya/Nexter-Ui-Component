@@ -1,8 +1,6 @@
-# Skeleton
+﻿# Skeleton
 
-> Animated loading placeholder that mimics content shapes while data is being fetched.
-
----
+Loading placeholder in line, circle, and title shapes.
 
 ## Import
 
@@ -10,66 +8,55 @@
 import { Skeleton } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"line" \| "circle" \| "title"` | `"line"` | Shape of the skeleton placeholder. |
-| `width` | `string \| number` | — | CSS width value (e.g. `"200px"`, `"60%"`). Overrides the default full-width. |
-| `style` | `object` | `{}` | Additional inline styles merged with the width. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `variant` | `'line' \| 'circle' \| 'title'` | `'line'` | Shape variant |
+| `width` | `string \| number` | — | Override width (CSS value or px number) |
+| `height` | `string \| number` | — | Override height |
+| `count` | `number` | `1` | Number of skeleton lines to render |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Line skeleton
+### Text lines
 
 ```jsx
-<Skeleton />
-<Skeleton width="80%" />
-<Skeleton width="60%" />
+<Skeleton count={3} />
 ```
 
-### Title skeleton
+### Title
 
 ```jsx
-<Skeleton variant="title" width="50%" />
+<Skeleton variant="title" width="60%" />
 ```
 
-### Circle (avatar) skeleton
+### Avatar placeholder
 
 ```jsx
-<Skeleton variant="circle" style={{ width: 40, height: 40 }} />
+<Skeleton variant="circle" width={40} height={40} />
 ```
 
-### Skeleton list
+### Card skeleton
 
 ```jsx
-<div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-  <Skeleton variant="title" width="40%" />
-  <Skeleton />
-  <Skeleton width="90%" />
-  <Skeleton width="70%" />
+<div>
+  <Skeleton variant="title" width="50%" />
+  <Skeleton count={4} />
+  <Skeleton width="30%" />
 </div>
 ```
 
----
-
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-skeleton` | Root `<span>` element |
-| `.nxp-skeleton--circle` | `variant="circle"` |
-| `.nxp-skeleton--title` | `variant="title"` |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-skeleton` | Base skeleton element |
+| `.nxp-skeleton--line` | Line variant |
+| `.nxp-skeleton--circle` | Circle variant |
+| `.nxp-skeleton--title` | Title variant (taller line) |
 
 ## Notes
 
-- Root element has `aria-hidden="true"` and `role="presentation"` — screen readers skip it entirely.
-- The shimmer animation is defined in the CSS design-token stylesheet.
-- `"line"` variant adds no modifier class — it is the default shape.
+Skeleton uses a shimmer animation. The animation is disabled when `prefers-reduced-motion: reduce` is active.

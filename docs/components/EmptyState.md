@@ -1,8 +1,6 @@
-# EmptyState
+﻿# EmptyState
 
-> Placeholder shown when a list or view has no content, with optional icon, title, description, and action.
-
----
+Empty screen placeholder with icon, title, description, and optional CTA.
 
 ## Import
 
@@ -10,19 +8,15 @@
 import { EmptyState } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `icon` | `node` | — | Illustration or emoji rendered above the title. |
-| `title` | `string \| node` | — | Primary heading. |
-| `description` | `string \| node` | — | Supporting text below the title. |
-| `action` | `node` | — | Call-to-action button or link. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `icon` | `ReactNode` | — | Icon or illustration |
+| `title` | `string` | — | Primary heading |
+| `description` | `string` | — | Supporting text |
+| `action` | `ReactNode` | — | CTA button or link slot |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
@@ -30,38 +24,30 @@ import { EmptyState } from 'nexter-ui-component'
 
 ```jsx
 <EmptyState
-  icon="📭"
-  title="No redirects yet"
-  description="Create your first redirect rule to start managing URLs."
-  action={<Button variant="primary">Add Redirect</Button>}
+  title="No results found"
+  description="Try adjusting your search or filters."
 />
 ```
 
-### Without action
+### With icon and action
 
 ```jsx
+import { EmptyState, Button } from 'nexter-ui-component'
+
 <EmptyState
-  icon="🔍"
-  title="No results found"
-  description="Try adjusting your search or filter to find what you're looking for."
+  icon={<span style={{ fontSize: 48 }}>📭</span>}
+  title="No posts yet"
+  description="Create your first post to get started."
+  action={<Button variant="primary">Create post</Button>}
 />
 ```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-empty` | Root wrapper div |
-| `.nxp-empty__icon` | Icon wrapper div |
-| `.nxp-empty__title` | Title div |
-| `.nxp-empty__desc` | Description paragraph |
-
----
-
-## Notes
-
-- Root element has `role="status"` to announce the empty state to assistive technology.
-- The icon wrapper is `aria-hidden="true"` — decorative icons are ignored by screen readers.
-- The `action` slot is rendered inside an unstyled `div` with `marginTop: 8px`. Apply your own spacing if needed.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-empty-state` | Root wrapper |
+| `.nxp-empty-state__icon` | Icon container |
+| `.nxp-empty-state__title` | Heading text |
+| `.nxp-empty-state__desc` | Description text |
+| `.nxp-empty-state__action` | Action slot |

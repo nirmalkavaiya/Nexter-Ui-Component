@@ -1,8 +1,6 @@
-# Carousel
+﻿# Carousel
 
-> Horizontally scrollable slide deck with dot navigation and prev/next controls.
-
----
+Snap-scroll carousel with previous/next navigation and dot indicators.
 
 ## Import
 
@@ -10,80 +8,53 @@
 import { Carousel } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `slides` | `array` | `[]` | Array of slide objects (see shape below). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
-### Slide object shape
-
-| Key | Type | Required | Description |
-|-----|------|----------|-------------|
-| `title` | `string \| node` | Yes | Primary heading of the slide. |
-| `eyebrow` | `string` | No | Small label rendered above the title. |
-| `description` | `string` | No | Body text paragraph. |
-| `cta` | `string` | No | Call-to-action link text. |
-| `ctaHref` | `string` | No | URL for the CTA link. Omit for a no-op anchor. |
-
----
+| `items` | `ReactNode[]` | `[]` | Array of slide content nodes |
+| `autoPlay` | `boolean` | `false` | Auto-advance slides |
+| `interval` | `number` | `3000` | Auto-play interval in ms |
+| `showDots` | `boolean` | `true` | Show dot indicators |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-const slides = [
-  {
-    eyebrow: 'What's new',
-    title: 'Introducing Nexter SEO v3',
-    description: 'Faster indexing, smarter schema, and a redesigned dashboard.',
-    cta: 'Read the release notes',
-    ctaHref: '/blog/nexter-seo-v3',
-  },
-  {
-    title: 'Smart Redirects',
-    description: 'Map old URLs to new ones in seconds with bulk import support.',
-    cta: 'Try it now',
-    ctaHref: '/features/redirects',
-  },
-  {
-    eyebrow: 'Coming soon',
-    title: 'AI Content Scorer',
-    description: 'Get real-time readability and keyword density feedback as you write.',
-  },
-];
-
-<Carousel slides={slides} />
+<Carousel items={[
+  <img src="slide1.jpg" alt="Slide 1" />,
+  <img src="slide2.jpg" alt="Slide 2" />,
+  <img src="slide3.jpg" alt="Slide 3" />,
+]} />
 ```
 
----
+### Auto-play
+
+```jsx
+<Carousel autoPlay interval={4000} items={slides} />
+```
+
+### Without dots
+
+```jsx
+<Carousel showDots={false} items={slides} />
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
+| Class | Purpose |
+|-------|---------|
 | `.nxp-carousel` | Root wrapper |
-| `.nxp-carousel__track` | Scrollable slides container |
+| `.nxp-carousel__track` | Scrollable slide track |
 | `.nxp-carousel__slide` | Individual slide |
-| `.nxp-carousel__eyebrow` | Eyebrow label span |
-| `.nxp-carousel__title` | Slide heading |
-| `.nxp-carousel__desc` | Slide description paragraph |
-| `.nxp-carousel__cta` | CTA anchor link |
-| `.nxp-carousel__nav` | Navigation bar (dots + buttons) |
-| `.nxp-carousel__btn` | Prev / Next arrow buttons |
-| `.nxp-carousel__dots` | Dots container |
-| `.nxp-carousel__dot` | Individual dot button |
-| `.nxp-carousel__dot.is-active` | Dot for the currently visible slide |
-
----
+| `.nxp-carousel__btn` | Prev/next buttons |
+| `.nxp-carousel__dots` | Dot indicator container |
+| `.nxp-carousel__dot` | Single dot |
+| `.nxp-carousel__dot.is-active` | Active dot |
 
 ## Notes
 
-- Scroll position is synced bidirectionally — dragging/swiping the track also updates the active dot.
-- Prev/Next buttons use `aria-label` attributes ("Previous slide" / "Next slide") for screen readers.
-- Each dot button announces "Go to slide N" via `aria-label`.
-- Uses native CSS scroll-snap via `scrollIntoView` — no JS animation library required.
+- Uses CSS scroll-snap for smooth native scrolling
+- Prev/next buttons are hidden when at first/last slide respectively

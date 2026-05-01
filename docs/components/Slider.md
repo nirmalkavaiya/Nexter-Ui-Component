@@ -1,8 +1,6 @@
-# Slider
+﻿# Slider
 
-> Range input slider with live value display, unit label, and CSS custom property for track fill.
-
----
+Range input with a live value chip showing the current value.
 
 ## Import
 
@@ -10,83 +8,50 @@
 import { Slider } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `min` | `number` | `0` | Minimum value. |
-| `max` | `number` | `100` | Maximum value. |
-| `step` | `number` | `1` | Increment per step. |
-| `value` | `number` | — | Controlled value. Omit for uncontrolled (defaults internally to `50`). |
-| `onChange` | `func` | — | Called with the numeric value on change. |
-| `unit` | `string` | `''` | Unit label appended to the displayed value (e.g. `%`, `px`). |
-| `disabled` | `bool` | `false` | Disables the slider. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `value` | `number` | `undefined` | Controlled value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `onChange` | `(value: number) => void` | — | Change handler |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `step` | `number` | `1` | Step increment |
+| `disabled` | `boolean` | `false` | Disables the slider |
+| `showValue` | `boolean` | `true` | Show the live value chip |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-<Slider unit="%" />
+<Slider defaultValue={50} onChange={console.log} />
 ```
 
 ### Controlled
 
 ```jsx
-const [quality, setQuality] = useState(75);
-
-<Slider
-  min={0}
-  max={100}
-  step={5}
-  value={quality}
-  onChange={setQuality}
-  unit="%"
-/>
+const [opacity, setOpacity] = useState(80)
+<Slider value={opacity} onChange={setOpacity} min={0} max={100} step={5} />
 ```
 
-### Custom range with step
+### Without value chip
 
 ```jsx
-const [timeout, setTimeout] = useState(30);
-
-<Slider
-  min={5}
-  max={120}
-  step={5}
-  value={timeout}
-  onChange={setTimeout}
-  unit=" sec"
-/>
+<Slider showValue={false} />
 ```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(value: number) => void` | Fired with the parsed numeric value on every change. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-slider` | Root wrapper div |
-| `.nxp-slider__range` | Native `<input type="range">` |
-| `.nxp-slider__value` | Current value display span |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-slider` | Root wrapper |
+| `.nxp-slider__input` | The `<input type="range">` |
+| `.nxp-slider__value` | Live value chip |
+| `.nxp-slider.is-disabled` | Disabled state |
 
 ## Notes
 
-- Track fill is driven by a CSS custom property `--val` (0–100 percentage) set via a `ref` on the input element.
-- ARIA attributes `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` are applied to the native input.
-- Uncontrolled mode defaults to `50`; to start at a specific value use the controlled pattern.
+The filled track uses a CSS `--val` custom property (0–100) set inline on the input element to drive the gradient background.

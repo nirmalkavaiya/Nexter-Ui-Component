@@ -1,6 +1,6 @@
-# Avatar
+﻿# Avatar
 
-> Circular user representation — displays an image or text initials fallback.
+> Circular user-identity element — shows an image or falls back to initials.
 
 ---
 
@@ -16,34 +16,22 @@ import { Avatar } from 'nexter-ui-component'
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `node` | — | Content shown when no `src` is provided (e.g. initials). |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls the avatar diameter. |
-| `src` | `string` | — | Image URL. When provided, renders an `<img>` instead of children. |
-| `alt` | `string` | `''` | Alt text for the image (or aria-label when using initials). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
+| `children` | `string` | — | Initials shown when no `src` provided (e.g. `"NK"`). |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Avatar diameter. |
+| `src` | `string` | — | Image URL. Renders `<img>` when provided. |
+| `alt` | `string` | `''` | Alt text for the image; also used as `aria-label`. |
+| `className` | `string` | `''` | Extra class on root element. |
 
 ---
 
 ## Usage
 
-### Image avatar
-
 ```jsx
-<Avatar src="https://i.pravatar.cc/80" alt="Nirmal Kavaiya" size="md" />
-```
+<Avatar size="sm">A</Avatar>
+<Avatar>NK</Avatar>
+<Avatar size="lg">NX</Avatar>
 
-### Initials fallback
-
-```jsx
-<Avatar size="lg" alt="Nirmal Kavaiya">NK</Avatar>
-```
-
-### Sizes
-
-```jsx
-<Avatar size="sm" alt="Small">NK</Avatar>
-<Avatar size="md" alt="Medium">NK</Avatar>
-<Avatar size="lg" alt="Large">NK</Avatar>
+<Avatar src="/avatars/nirmal.jpg" alt="Nirmal Kavaiya" size="lg" />
 ```
 
 ---
@@ -52,13 +40,6 @@ import { Avatar } from 'nexter-ui-component'
 
 | Class | Applied when |
 |-------|-------------|
-| `.nxp-avatar` | Root `<span>` element |
-| `.nxp-avatar--sm` | `size="sm"` |
-| `.nxp-avatar--lg` | `size="lg"` |
-
----
-
-## Notes
-
-- `"md"` size adds no extra modifier class — it is the base style.
-- The `alt` prop doubles as `aria-label` when rendering initials, ensuring screen readers announce the user name.
+| `.nxp-avatar` | Base element |
+| `.nxp-avatar--sm` | Small (28 px) |
+| `.nxp-avatar--lg` | Large (48 px) |

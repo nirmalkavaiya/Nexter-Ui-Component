@@ -1,6 +1,6 @@
-# Accordion
+﻿# Accordion
 
-> Collapsible content panels — supports single-open and multi-open modes.
+> Vertically stacked collapsible panels. Supports single-open or multi-open modes.
 
 ---
 
@@ -16,10 +16,10 @@ import { Accordion } from 'nexter-ui-component'
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `array` | `[]` | Array of `{ id, title, content }` objects to render as panels. |
-| `defaultOpen` | `array` | `[]` | Array of `id` values that should be open on first render. |
-| `multi` | `bool` | `false` | When `true`, multiple panels can be open simultaneously. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
+| `items` | `{ id, title, content }[]` | `[]` | Panels to render. |
+| `defaultOpen` | `string[]` | `[]` | IDs of panels open on first render. |
+| `multi` | `boolean` | `false` | Allow multiple panels open simultaneously. |
+| `className` | `string` | `''` | Extra class on the root element. |
 
 ---
 
@@ -28,25 +28,24 @@ import { Accordion } from 'nexter-ui-component'
 ### Basic
 
 ```jsx
-const faqItems = [
-  { id: 'shipping', title: 'How long does shipping take?', content: 'Orders ship within 2–5 business days.' },
-  { id: 'returns',  title: 'What is the return policy?',  content: 'Returns accepted within 30 days of purchase.' },
-  { id: 'support',  title: 'How do I contact support?',   content: 'Email us at support@example.com.' },
-];
-
-<Accordion items={faqItems} />
+const items = [
+  { id: 'general', title: 'General settings', content: <p>Manage your site defaults.</p> },
+  { id: 'seo',     title: 'SEO options',      content: <p>Title, meta and schema.</p> },
+  { id: 'perf',    title: 'Performance',      content: <p>Caching and minification.</p> },
+]
+<Accordion items={items} />
 ```
 
 ### Pre-opened panel
 
 ```jsx
-<Accordion items={faqItems} defaultOpen={['shipping']} />
+<Accordion items={items} defaultOpen={['seo']} />
 ```
 
-### Multi-open mode
+### Multi-open
 
 ```jsx
-<Accordion items={faqItems} multi />
+<Accordion items={items} multi />
 ```
 
 ---
@@ -55,17 +54,16 @@ const faqItems = [
 
 | Class | Applied when |
 |-------|-------------|
-| `.nxp-accordion` | Root wrapper element |
-| `.nxp-accordion__item` | Each panel wrapper |
+| `.nxp-accordion` | Root wrapper |
+| `.nxp-accordion__item` | Each panel |
 | `.nxp-accordion__item.is-open` | Panel is expanded |
-| `.nxp-accordion__head` | Toggle button |
-| `.nxp-accordion__chevron` | SVG chevron icon inside head |
+| `.nxp-accordion__head` | Clickable trigger button |
+| `.nxp-accordion__chevron` | Chevron SVG icon |
 | `.nxp-accordion__body` | Collapsible content region |
 
 ---
 
 ## Notes
 
-- Each `item` object requires a unique `id` (string or number), a `title` (string or node), and `content` (string or node).
-- The toggle button uses `aria-expanded` and `aria-controls` pointing to the body element for full a11y compliance.
-- The body element has `role="region"` so screen readers announce it as a landmark.
+- `aria-expanded` on trigger, `role="region"` on body — fully keyboard accessible.
+- Each item `id` must be unique; used for `aria-controls` wiring.

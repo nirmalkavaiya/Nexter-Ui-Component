@@ -1,8 +1,6 @@
-# Combobox
+﻿# Combobox
 
-> Searchable select — type-to-filter dropdown with full keyboard navigation and ARIA combobox pattern.
-
----
+Filterable searchable list with keyboard navigation.
 
 ## Import
 
@@ -10,73 +8,57 @@
 import { Combobox } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `options` | `array` | `[]` | Array of `{ value, label }` objects. |
-| `value` | `string \| number` | — | Controlled selected value. Omit for uncontrolled. |
-| `onChange` | `func` | — | Called with the selected option's `value` on selection. |
-| `placeholder` | `string` | `"Type to search…"` | Input placeholder text. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `options` | `{ value: string; label: string }[]` | `[]` | Selectable options |
+| `value` | `string` | `undefined` | Controlled selected value |
+| `defaultValue` | `string` | `''` | Initial value (uncontrolled) |
+| `onChange` | `(value: string) => void` | — | Selection change handler |
+| `placeholder` | `string` | `'Search…'` | Input placeholder |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic uncontrolled
+### Basic
 
 ```jsx
-const countries = [
-  { value: 'in', label: 'India' },
-  { value: 'us', label: 'United States' },
-  { value: 'gb', label: 'United Kingdom' },
-  { value: 'de', label: 'Germany' },
-];
+const options = [
+  { value: 'react', label: 'React' },
+  { value: 'vue', label: 'Vue' },
+  { value: 'angular', label: 'Angular' },
+]
 
-<Combobox options={countries} placeholder="Search country…" />
+<Combobox options={options} placeholder="Search framework…" onChange={console.log} />
 ```
 
 ### Controlled
 
 ```jsx
-const [country, setCountry] = useState('in');
+const [selected, setSelected] = useState('react')
 
 <Combobox
-  options={countries}
-  value={country}
-  onChange={setCountry}
-  placeholder="Search country…"
+  options={options}
+  value={selected}
+  onChange={setSelected}
 />
 ```
 
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(value: string \| number) => void` | Fired with the chosen option's `value`. |
-
----
-
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-combobox` | Root wrapper div |
-| `.nxp-combobox__input` | Text input element |
-| `.nxp-combobox__list` | Dropdown options list |
-| `.nxp-combobox__item` | Individual option |
-| `.nxp-combobox__item.is-focused` | Keyboard-focused or hovered option |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-combobox` | Root wrapper |
+| `.nxp-combobox__input` | Text input |
+| `.nxp-combobox__list` | Dropdown option list |
+| `.nxp-combobox__option` | Individual option |
+| `.nxp-combobox__option.is-active` | Keyboard-focused option |
+| `.nxp-combobox__option.is-selected` | Currently selected option |
+| `.nxp-combobox__empty` | No results message |
 
 ## Notes
 
-- Keyboard shortcuts: `ArrowDown/Up` navigate, `Home/End` jump to first/last, `Enter` selects, `Escape` closes.
-- The input has `role="combobox"`, `aria-autocomplete="list"`, and `aria-expanded` for full ARIA compliance.
-- Clicking outside the component closes the dropdown.
-- The query field is kept in sync with the controlled `value`'s label on external updates.
+- Keyboard: Arrow keys navigate, Enter selects, Escape closes
+- Filters options live as the user types

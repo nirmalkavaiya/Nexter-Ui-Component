@@ -1,8 +1,6 @@
-# Kbd
+﻿# Kbd
 
-> Keyboard key indicator styled as a physical keycap.
-
----
+Keyboard shortcut chip for displaying hotkeys inline.
 
 ## Import
 
@@ -10,51 +8,39 @@
 import { Kbd } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `node` | — | Key label (e.g. `⌘`, `K`, `Ctrl`). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `children` | `ReactNode` | — | Key label text |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic
+### Single key
 
 ```jsx
-<Kbd>⌘</Kbd>
-<Kbd>K</Kbd>
+<Kbd>Enter</Kbd>
+<Kbd>Esc</Kbd>
+<Kbd>Tab</Kbd>
 ```
 
-### Key combination
+### Combination
 
 ```jsx
-<span>Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save.</span>
+<span>Save with <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd></span>
 ```
 
-### Shortcut hint in a tooltip
+### In a help text
 
 ```jsx
-<Tooltip content={<>Save <Kbd>⌘S</Kbd></>}>
-  <Button variant="primary">Save</Button>
-</Tooltip>
+<p>
+  Press <Kbd>⌘</Kbd> <Kbd>K</Kbd> to open the command palette.
+</p>
 ```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-kbd` | Root `<kbd>` element |
-
----
-
-## Notes
-
-- Renders a semantic `<kbd>` HTML element — screen readers announce keyboard shortcuts correctly.
-- No variants or sizes — style overrides can be applied via `className` or CSS tokens.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-kbd` | The `<kbd>` chip element |

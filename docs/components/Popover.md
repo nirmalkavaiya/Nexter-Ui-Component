@@ -1,8 +1,6 @@
-# Popover
+﻿# Popover
 
-> Floating content panel with a title, description, and optional footer — positioning is managed by the parent.
-
----
+Floating card for contextual content, anchored to a trigger element.
 
 ## Import
 
@@ -10,55 +8,57 @@
 import { Popover } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | `string \| node` | — | Popover heading. |
-| `description` | `string \| node` | — | Body text or content. |
-| `footer` | `node` | — | Footer slot (links, actions, etc.). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `trigger` | `ReactNode` | — | The element that opens the popover |
+| `children` | `ReactNode` | — | Popover panel content |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Preferred placement |
+| `open` | `boolean` | `undefined` | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Open state change handler |
+| `className` | `string` | `''` | Extra class on popover panel |
 
 ## Usage
 
-### Basic
+### Uncontrolled (click to open)
 
 ```jsx
-<Popover
-  title="Focus keyword"
-  description="The primary keyword you want this page to rank for in search results."
-/>
+<Popover trigger={<Button variant="ghost">Info</Button>}>
+  <p>This is contextual help text.</p>
+</Popover>
 ```
 
-### With footer action
+### Controlled
 
 ```jsx
-<Popover
-  title="Canonical URL"
-  description="The preferred version of this URL that search engines should index."
-  footer={<a href="/docs/canonical">Learn more →</a>}
-/>
-```
+const [open, setOpen] = useState(false)
 
----
+<Popover
+  open={open}
+  onOpenChange={setOpen}
+  trigger={<Button onClick={() => setOpen(o => !o)}>Options</Button>}
+>
+  <ul>
+    <li>Edit</li>
+    <li>Duplicate</li>
+    <li>Delete</li>
+  </ul>
+</Popover>
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-popover` | Root wrapper div |
-| `.nxp-popover__title` | Title div |
-| `.nxp-popover__desc` | Description paragraph |
-| `.nxp-popover__footer` | Footer div |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-popover` | Popover panel |
+| `.nxp-popover--top` | Placement modifier |
+| `.nxp-popover--bottom` | Placement modifier |
+| `.nxp-popover--left` | Placement modifier |
+| `.nxp-popover--right` | Placement modifier |
+| `.nxp-popover.is-open` | Visible state |
 
 ## Notes
 
-- `Popover` is a **presentational** component — it does not manage open/close state or positioning.
-- Wrap it in a parent component or use alongside `Tooltip` for trigger + positioning logic.
-- Root element has `role="tooltip"` — ensure the anchor element references it via `aria-describedby` if used as a tooltip.
+- Clicking outside the popover closes it
+- Escape key closes the popover

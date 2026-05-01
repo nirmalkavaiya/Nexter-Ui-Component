@@ -1,6 +1,6 @@
-# Button
+﻿# Button
 
-> Clickable action trigger with multiple variants, sizes, loading state, and icon-only mode.
+> Primary interactive element. Five variants, three sizes, loading state, and icon mode.
 
 ---
 
@@ -16,68 +16,49 @@ import { Button } from 'nexter-ui-component'
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"primary" \| "secondary" \| "ghost" \| "danger"` | `"secondary"` | Visual style of the button. |
-| `size` | `"sm" \| "md" \| "lg"` | — | Size override. `"md"` adds no modifier class. |
-| `icon` | `bool` | `false` | When `true`, applies icon-only square padding. |
-| `loading` | `bool` | `false` | Shows a spinner and disables the button. |
-| `disabled` | `bool` | `false` | Disables the button and sets `aria-disabled`. |
-| `onClick` | `func` | — | Click handler. |
-| `children` | `node` | — | Button label or content. |
-| `className` | `string` | `''` | Additional CSS class(es). |
-| `...rest` | — | — | Any other native `<button>` attributes (e.g. `type`, `form`). |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'destructive' \| 'link'` | `'secondary'` | Visual style. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Height and padding. |
+| `icon` | `boolean` | `false` | Square icon-only button (equal width/height). |
+| `loading` | `boolean` | `false` | Shows spinner; disables interaction. |
+| `disabled` | `boolean` | `false` | Prevents clicks and dims the button. |
+| `onClick` | `() => void` | — | Click handler. |
+| `children` | `ReactNode` | — | Button label. |
+| `className` | `string` | `''` | Extra class on root element. |
 
 ---
 
 ## Usage
 
-### Basic
-
-```jsx
-<Button variant="primary" onClick={() => alert('Saved!')}>Save Changes</Button>
-```
-
 ### Variants
 
 ```jsx
-<Button variant="primary">Publish</Button>
+<Button variant="primary">Save changes</Button>
 <Button variant="secondary">Cancel</Button>
-<Button variant="ghost">Learn More</Button>
-<Button variant="danger">Delete Account</Button>
+<Button variant="ghost">More options</Button>
+<Button variant="destructive">Delete site</Button>
+<Button variant="link">View docs</Button>
 ```
 
 ### Sizes
 
 ```jsx
 <Button variant="primary" size="sm">Small</Button>
-<Button variant="primary">Default</Button>
+<Button variant="primary">Medium</Button>
 <Button variant="primary" size="lg">Large</Button>
-```
-
-### Loading state
-
-```jsx
-<Button variant="primary" loading>Saving…</Button>
-```
-
-### Icon-only
-
-```jsx
-<Button variant="ghost" icon aria-label="Close">×</Button>
 ```
 
 ### States
 
 ```jsx
-<Button variant="primary" disabled>Unavailable</Button>
+<Button variant="primary" loading>Saving…</Button>
+<Button variant="primary" disabled>Disabled</Button>
 ```
 
----
+### Icon button
 
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onClick` | `(event: MouseEvent) => void` | Fired on button click when not disabled or loading. |
+```jsx
+<Button variant="secondary" icon aria-label="Open settings">⚙</Button>
+```
 
 ---
 
@@ -85,21 +66,21 @@ import { Button } from 'nexter-ui-component'
 
 | Class | Applied when |
 |-------|-------------|
-| `.nxp-btn` | Base class (always present) |
-| `.nxp-btn--primary` | `variant="primary"` |
-| `.nxp-btn--secondary` | `variant="secondary"` |
-| `.nxp-btn--ghost` | `variant="ghost"` |
-| `.nxp-btn--danger` | `variant="danger"` |
-| `.nxp-btn--sm` | `size="sm"` |
-| `.nxp-btn--lg` | `size="lg"` |
-| `.nxp-btn--icon` | `icon={true}` |
-| `.nxp-btn--loading` | `loading={true}` |
-| `.nxp-btn__spinner` | Inner spinner span (rendered during loading) |
+| `.nxp-btn` | Base element |
+| `.nxp-btn--primary` | Primary (indigo) |
+| `.nxp-btn--secondary` | Secondary (white + border) |
+| `.nxp-btn--ghost` | Ghost (transparent) |
+| `.nxp-btn--destructive` | Destructive (red) |
+| `.nxp-btn--link` | Link style |
+| `.nxp-btn--sm` | Small size |
+| `.nxp-btn--lg` | Large size |
+| `.nxp-btn--icon` | Square icon button |
+| `.nxp-btn--loading` | Loading state |
+| `.nxp-btn__spinner` | Spinner inside loading button |
 
 ---
 
 ## Notes
 
-- When `loading` is `true`, the native `disabled` attribute is also set on the `<button>`, preventing double-submit.
-- `aria-disabled` mirrors the computed disabled state for assistive technology.
-- Spread `...rest` lets you pass `type="submit"`, `form`, data attributes, etc.
+- `loading` automatically sets `disabled` on the `<button>`.
+- Override primary colour globally: `--nxp-brand: #7C3AED;`

@@ -1,8 +1,6 @@
-# Select
+﻿# Select
 
-> Native `<select>` element styled with Nexter design tokens, with optional placeholder and full attribute pass-through.
-
----
+Native `<select>` element styled with design tokens.
 
 ## Import
 
@@ -10,76 +8,51 @@
 import { Select } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `options` | `array` | `[]` | Array of `{ value, label }` objects. |
-| `value` | `string \| number` | — | Controlled selected value. |
-| `onChange` | `func` | — | Native change event handler. |
-| `disabled` | `bool` | `false` | Disables the select element. |
-| `placeholder` | `string` | — | Disabled placeholder option shown at the top when provided. |
-| `className` | `string` | `''` | Additional CSS class(es). |
-| `...rest` | — | — | Any other native `<select>` attributes. |
-
----
+| `options` | `{ value: string; label: string }[]` | `[]` | Select options |
+| `value` | `string` | `undefined` | Controlled value |
+| `defaultValue` | `string` | — | Initial value (uncontrolled) |
+| `onChange` | `(value: string) => void` | — | Change handler |
+| `placeholder` | `string` | — | Disabled placeholder option |
+| `disabled` | `boolean` | `false` | Disables the select |
+| `invalid` | `boolean` | `false` | Error state |
+| `className` | `string` | `''` | Extra class on wrapper |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-const roleOptions = [
-  { value: 'admin',  label: 'Administrator' },
-  { value: 'editor', label: 'Editor' },
-  { value: 'viewer', label: 'Viewer' },
-];
-
-<Select options={roleOptions} placeholder="Choose a role" />
+<Select
+  options={[
+    { value: 'en', label: 'English' },
+    { value: 'fr', label: 'French' },
+    { value: 'de', label: 'German' },
+  ]}
+  placeholder="Choose language"
+  onChange={setLang}
+/>
 ```
 
 ### Controlled
 
 ```jsx
-const [role, setRole] = useState('editor');
-
-<Select
-  options={roleOptions}
-  value={role}
-  onChange={(e) => setRole(e.target.value)}
-/>
+<Select value={lang} onChange={setLang} options={langOptions} />
 ```
-
-### Inside a Field
-
-```jsx
-<Field label="User role" hint="Determines what the user can edit.">
-  <Select options={roleOptions} value={role} onChange={(e) => setRole(e.target.value)} />
-</Field>
-```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(event: ChangeEvent) => void` | Standard React change handler. Access `event.target.value`. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-select` | Root `<select>` element |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-select` | Wrapper div |
+| `.nxp-select__control` | The `<select>` element |
+| `.nxp-select__chevron` | Dropdown arrow icon |
+| `.nxp-select.is-invalid` | Error state |
+| `.nxp-select.is-disabled` | Disabled state |
 
 ## Notes
 
-- Uses the native browser `<select>` — accessible and functional on all devices including mobile.
-- The placeholder option has `value=""` and `disabled` to prevent it being re-selected.
-- Pair with `Field` for label and error layout.
+Uses native `<select>` for maximum OS/browser compatibility. For fully custom styling with sub-labels and dividers, use [`Dropdown`](./Dropdown.md).

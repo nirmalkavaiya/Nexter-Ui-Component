@@ -1,8 +1,6 @@
-# Modal
+﻿# Modal
 
-> Accessible overlay dialog with scroll lock, Escape-to-close, backdrop-click-to-close, and portal rendering.
-
----
+Portal modal dialog — multiple sizes, Escape + backdrop close.
 
 ## Import
 
@@ -10,91 +8,71 @@
 import { Modal } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `bool` | `false` | Controls visibility. Modal is fully unmounted when `false`. |
-| `onClose` | `func` | — | Called when the user clicks the backdrop or presses Escape. |
-| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Sets the modal panel width. |
-| `title` | `string \| node` | — | Heading displayed in the modal header. |
-| `byline` | `string \| node` | — | Supporting subtitle below the title. |
-| `children` | `node` | — | Modal body content. |
-| `footer` | `node` | — | Footer slot — typically action buttons. |
-| `className` | `string` | `''` | Additional CSS class(es) on the inner panel. |
-
----
+| `open` | `boolean` | `false` | Controls modal visibility |
+| `onClose` | `() => void` | — | Called when modal is dismissed |
+| `title` | `string` | — | Modal header title |
+| `byline` | `string` | — | Subtitle text below title |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Modal width |
+| `footer` | `ReactNode` | — | Footer slot (typically buttons) |
+| `children` | `ReactNode` | — | Modal body content |
+| `className` | `string` | `''` | Extra class on modal panel |
 
 ## Usage
 
-### Basic
+### Basic confirm modal
 
 ```jsx
-const [open, setOpen] = useState(false);
+const [open, setOpen] = useState(false)
 
-<>
-  <Button variant="primary" onClick={() => setOpen(true)}>Open Settings</Button>
+<Button onClick={() => setOpen(true)}>Open modal</Button>
 
-  <Modal
-    open={open}
-    onClose={() => setOpen(false)}
-    title="Site Settings"
-    byline="Changes apply immediately after saving."
-    footer={
-      <>
-        <Button variant="primary" onClick={handleSave}>Save</Button>
-        <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-      </>
-    }
-  >
-    <Field label="Site title">
-      <Input placeholder="My Website" />
-    </Field>
-  </Modal>
-</>
+<Modal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm action"
+  byline="This cannot be undone."
+  footer={
+    <>
+      <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button variant="destructive" onClick={handleDelete}>Delete</Button>
+    </>
+  }
+>
+  <p>Are you sure you want to delete this item?</p>
+</Modal>
 ```
 
 ### Large modal
 
 ```jsx
-<Modal open={open} onClose={() => setOpen(false)} size="lg" title="Import CSV">
-  {/* file picker, preview table… */}
+<Modal open={open} onClose={onClose} title="Import settings" size="lg">
+  <ImportForm />
 </Modal>
 ```
 
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onClose` | `() => void` | Fired on backdrop click or `Escape` key. |
-
----
-
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-modal-backdrop` | Full-screen backdrop overlay |
-| `.nxp-modal` | Inner panel container |
-| `.nxp-modal--sm` | `size="sm"` |
-| `.nxp-modal--lg` | `size="lg"` |
-| `.nxp-modal--xl` | `size="xl"` |
-| `.nxp-modal__head` | Header row |
+| Class | Purpose |
+|-------|---------|
+| `.nxp-modal-backdrop` | Full-screen backdrop |
+| `.nxp-modal` | Modal panel |
+| `.nxp-modal--sm` | Small width variant |
+| `.nxp-modal--md` | Medium width variant (default) |
+| `.nxp-modal--lg` | Large width variant |
+| `.nxp-modal--xl` | Extra-large width variant |
+| `.nxp-modal__header` | Title + byline area |
 | `.nxp-modal__title` | Title text |
 | `.nxp-modal__byline` | Subtitle text |
-| `.nxp-modal__close` | Close (×) button |
-| `.nxp-modal__body` | Scrollable body area |
-| `.nxp-modal__foot` | Footer area |
-
----
+| `.nxp-modal__close` | Close button (×) |
+| `.nxp-modal__body` | Content area |
+| `.nxp-modal__footer` | Footer button row |
 
 ## Notes
 
-- Renders into `document.body` via `createPortal` — z-index stacking is isolated from the component tree.
-- `document.body` scroll is locked (`overflow: hidden`) while the modal is open and restored on unmount.
-- `"md"` size adds no modifier class — it is the default panel width.
-- The backdrop element has `role="dialog"` and `aria-modal="true"` pointing at the title for screen readers.
+- Renders into `document.body` via `createPortal`
+- Locks body scroll (`overflow: hidden`) while open
+- Escape key and backdrop click both call `onClose`

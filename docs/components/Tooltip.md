@@ -1,8 +1,6 @@
-# Tooltip
+﻿# Tooltip
 
-> Hover/focus-triggered floating label that positions itself above the anchor and renders via a portal.
-
----
+Portal tooltip that positions above an anchor element with viewport clamping.
 
 ## Import
 
@@ -10,17 +8,16 @@
 import { Tooltip } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `content` | `string \| node` | — | Tooltip text or content to display. |
-| `children` | `node` | — | The element that triggers the tooltip on hover/focus. |
-| `className` | `string` | `''` | Additional CSS class(es) on the anchor wrapper span. |
-
----
+| `content` | `ReactNode` | — | Tooltip text or content |
+| `children` | `ReactElement` | — | The anchor element |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Preferred placement |
+| `delay` | `number` | `300` | Show delay in ms |
+| `disabled` | `boolean` | `false` | Prevents tooltip from showing |
+| `className` | `string` | `''` | Extra class on tooltip panel |
 
 ## Usage
 
@@ -28,42 +25,47 @@ import { Tooltip } from 'nexter-ui-component'
 
 ```jsx
 <Tooltip content="Copy to clipboard">
-  <Button variant="ghost" icon aria-label="Copy">⎘</Button>
+  <Button variant="ghost" icon aria-label="Copy">📋</Button>
 </Tooltip>
 ```
 
-### With Kbd hint
+### Bottom placement
 
 ```jsx
-<Tooltip content={<>Open search <Kbd>⌘K</Kbd></>}>
-  <Button variant="secondary">Search</Button>
+<Tooltip content="Requires Pro plan" placement="bottom">
+  <span>PRO feature</span>
 </Tooltip>
 ```
 
-### On an icon
+### Long content
 
 ```jsx
-<Tooltip content="This page is excluded from the sitemap.">
-  <span style={{ cursor: 'help' }}>ⓘ</span>
+<Tooltip content="This will permanently delete all redirects and cannot be undone.">
+  <Button variant="destructive">Delete all</Button>
 </Tooltip>
 ```
 
----
+### Disabled
+
+```jsx
+<Tooltip content="Save first" disabled={!isDirty}>
+  <Button>Publish</Button>
+</Tooltip>
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-tooltip-wrap` | Anchor wrapper `<span>` (always present around children) |
-| `.nxp-tooltip` | Floating tooltip bubble (portaled to body) |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-tooltip` | Tooltip panel |
+| `.nxp-tooltip.is-visible` | Visible state |
+| `.nxp-tooltip--top` | Above anchor (default) |
+| `.nxp-tooltip--bottom` | Below anchor |
+| `.nxp-tooltip--left` | Left of anchor |
+| `.nxp-tooltip--right` | Right of anchor |
 
 ## Notes
 
-- Renders into `document.body` via `createPortal` to avoid clipping by `overflow: hidden` parents.
-- Position is computed above the anchor; if it would overflow the top of the viewport it flips below.
-- Repositions automatically on window scroll and resize while visible.
-- Tooltip responds to both `mouseenter`/`mouseleave` (mouse) and `focus`/`blur` (keyboard).
-- Tooltip bubble has `role="tooltip"` — wire `aria-describedby` on the trigger if strict ARIA is required.
-- `content` being falsy prevents the portal from being created even if the anchor is hovered.
+- Renders into `document.body` via `createPortal`
+- Repositions on scroll and resize while visible
+- Flips to opposite side automatically if there is not enough space in the preferred direction

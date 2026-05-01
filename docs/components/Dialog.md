@@ -1,8 +1,6 @@
-# Dialog
+﻿# Dialog
 
-> Confirmation or alert dialog panel with an icon, title, description, and action slot.
-
----
+Small centered confirmation dialog with title, message, and action buttons.
 
 ## Import
 
@@ -10,79 +8,62 @@
 import { Dialog } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `bool` | `true` | When `false`, the dialog is not rendered. |
-| `onClose` | `func` | — | Callback fired when the dialog requests closing. |
-| `icon` | `node` | — | Icon rendered at the top of the dialog. |
-| `iconVariant` | `"warning" \| "error" \| "success" \| "info"` | `"warning"` | Color theme for the icon container. |
-| `title` | `string \| node` | — | Dialog heading text. |
-| `description` | `string \| node` | — | Supporting body text. |
-| `actions` | `node` | — | Slot for action buttons (confirm, cancel, etc.). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `open` | `boolean` | `false` | Controls dialog visibility |
+| `onClose` | `() => void` | — | Called when dialog is dismissed |
+| `title` | `string` | — | Dialog heading text |
+| `message` | `string` | — | Body message text |
+| `confirmLabel` | `string` | `'Confirm'` | Confirm button label |
+| `cancelLabel` | `string` | `'Cancel'` | Cancel button label |
+| `onConfirm` | `() => void` | — | Called when confirm is clicked |
+| `variant` | `'default' \| 'destructive'` | `'default'` | Confirm button style |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic confirmation dialog
+### Basic confirm dialog
 
 ```jsx
-const [open, setOpen] = useState(false);
+const [open, setOpen] = useState(false)
 
 <Dialog
   open={open}
   onClose={() => setOpen(false)}
-  icon="🗑️"
-  iconVariant="error"
-  title="Delete this post?"
-  description="This action is permanent and cannot be reversed. All comments will also be removed."
-  actions={
-    <>
-      <Button variant="danger" onClick={handleDelete}>Yes, delete</Button>
-      <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-    </>
-  }
+  title="Delete item?"
+  message="This action cannot be undone."
+  variant="destructive"
+  confirmLabel="Delete"
+  onConfirm={handleDelete}
 />
 ```
 
-### Success dialog
+### Informational dialog
 
 ```jsx
 <Dialog
   open={open}
-  icon="✓"
-  iconVariant="success"
-  title="Payment successful"
-  description="Your subscription has been activated. You now have access to all Pro features."
-  actions={<Button variant="primary" onClick={() => setOpen(false)}>Continue</Button>}
+  onClose={() => setOpen(false)}
+  title="Update available"
+  message="Version 2.0 is ready to install."
+  confirmLabel="Install now"
+  onConfirm={handleInstall}
 />
 ```
 
----
-
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-dialog` | Root element |
-| `.nxp-dialog__icon` | Icon wrapper |
-| `.nxp-dialog__icon--warning` | `iconVariant="warning"` |
-| `.nxp-dialog__icon--error` | `iconVariant="error"` |
-| `.nxp-dialog__icon--success` | `iconVariant="success"` |
-| `.nxp-dialog__icon--info` | `iconVariant="info"` |
-| `.nxp-dialog__title` | Title div |
-| `.nxp-dialog__desc` | Description paragraph |
-| `.nxp-dialog__actions` | Actions slot div |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-dialog-backdrop` | Full-screen dimmed backdrop |
+| `.nxp-dialog` | Dialog card |
+| `.nxp-dialog__title` | Heading text |
+| `.nxp-dialog__message` | Body text |
+| `.nxp-dialog__actions` | Button row |
 
 ## Notes
 
-- Root element uses `role="alertdialog"` and `aria-modal="true"` — wrap in a backdrop/overlay when using inline.
-- Dialog does **not** include its own backdrop or focus trap — pair with a `Modal` if you need a full overlay experience.
-- `open={false}` returns `null` — the Dialog is completely unmounted, not just hidden.
+- Backdrop click and Escape key both trigger `onClose`
+- Uses `createPortal` to render into `document.body`

@@ -1,8 +1,6 @@
-# Input
+﻿# Input
 
-> Single-line text input with optional invalid state and full native attribute pass-through.
-
----
+Text input with normal, invalid, and disabled states.
 
 ## Import
 
@@ -10,82 +8,65 @@
 import { Input } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `type` | `string` | `"text"` | Native input type (`text`, `email`, `password`, `url`, `number`, etc.). |
-| `placeholder` | `string` | — | Placeholder text. |
-| `value` | `string \| number` | — | Controlled value. |
-| `onChange` | `func` | — | Change handler receiving the native event. |
-| `disabled` | `bool` | `false` | Disables the input. |
-| `invalid` | `bool` | `false` | Applies error styling and sets `aria-invalid="true"`. |
-| `className` | `string` | `''` | Additional CSS class(es). |
-| `...rest` | — | — | Any other native `<input>` attributes. |
-
----
+| `type` | `string` | `'text'` | HTML input type |
+| `value` | `string` | `undefined` | Controlled value |
+| `defaultValue` | `string` | — | Initial value (uncontrolled) |
+| `onChange` | `(e: ChangeEvent) => void` | — | Change handler |
+| `placeholder` | `string` | — | Placeholder text |
+| `invalid` | `boolean` | `false` | Shows error/red border state |
+| `disabled` | `boolean` | `false` | Disables the input |
+| `prefix` | `ReactNode` | — | Icon or text shown inside left edge |
+| `suffix` | `ReactNode` | — | Icon or text shown inside right edge |
+| `className` | `string` | `''` | Extra class on wrapper element |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-<Input placeholder="Enter your website URL" type="url" />
+<Input placeholder="Enter site name…" />
 ```
 
 ### Controlled
 
 ```jsx
-const [email, setEmail] = useState('');
-
-<Input
-  type="email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  placeholder="you@example.com"
-/>
+const [name, setName] = useState('')
+<Input value={name} onChange={e => setName(e.target.value)} />
 ```
 
-### Invalid / error state
+### Invalid state
 
 ```jsx
-<Input
-  type="email"
-  value="not-valid"
-  invalid
-  placeholder="you@example.com"
-/>
+<Input type="email" invalid value="bad-email" />
+```
+
+### With prefix icon
+
+```jsx
+<Input prefix={<span>🔍</span>} placeholder="Search…" />
 ```
 
 ### Disabled
 
 ```jsx
-<Input value="read-only-value" disabled />
+<Input disabled value="read-only value" />
 ```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(event: ChangeEvent) => void` | Standard React change handler. Access `event.target.value`. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-input` | Base class (always present) |
-| `.nxp-input--invalid` | `invalid={true}` |
+| Class | Purpose |
+|-------|---------|
+| `.nxp-input` | Wrapper div |
+| `.nxp-input__control` | The `<input>` element |
+| `.nxp-input__prefix` | Left slot content |
+| `.nxp-input__suffix` | Right slot content |
+| `.nxp-input.is-invalid` | Error/red state |
+| `.nxp-input.is-disabled` | Disabled state |
 
----
+## Dependencies
 
-## Notes
-
-- Pair with `Field` for label, hint, and error message layout.
-- `aria-invalid="true"` is set automatically when `invalid` is `true`.
-- All native `<input>` attributes (`maxLength`, `pattern`, `autoComplete`, etc.) can be passed via spread.
+Typically wrapped in [`Field`](./Field.md) for label + error display.

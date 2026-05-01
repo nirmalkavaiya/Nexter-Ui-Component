@@ -1,8 +1,6 @@
-# Notice
+﻿# Notice
 
-> Dismissible notification strip with variant styles, animated exit, and an optional icon.
-
----
+Dismissible inline notice in four semantic variants.
 
 ## Import
 
@@ -10,76 +8,69 @@
 import { Notice } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"default" \| "info" \| "success" \| "warning" \| "error"` | `"default"` | Controls color theme and default icon. |
-| `icon` | `node` | variant default | Custom icon. Pass `null` to suppress the icon. |
-| `children` | `node` | — | Notice message content. |
-| `onDismiss` | `func` | — | Called after the dismiss animation completes (~220 ms). |
-| `dismissible` | `bool` | `true` | When `false`, hides the dismiss (×) button. |
-| `className` | `string` | `''` | Additional CSS class(es). |
-
----
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Color and icon variant |
+| `title` | `string` | — | Bold notice heading |
+| `children` | `ReactNode` | — | Notice body content |
+| `dismissible` | `boolean` | `true` | Show dismiss (×) button |
+| `onDismiss` | `() => void` | — | Called when dismissed |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic
+### Info notice
 
 ```jsx
-<Notice variant="success">
-  Your sitemap has been submitted to Google Search Console.
+<Notice title="Heads up">
+  Your sitemap will regenerate in a few minutes.
+</Notice>
+```
+
+### Success notice
+
+```jsx
+<Notice variant="success" title="Settings saved">
+  All changes have been applied.
+</Notice>
+```
+
+### Warning notice
+
+```jsx
+<Notice variant="warning" title="Action required">
+  Your SSL certificate expires in 7 days.
+</Notice>
+```
+
+### Error notice
+
+```jsx
+<Notice variant="error" title="Save failed">
+  Could not connect to the database.
 </Notice>
 ```
 
 ### Non-dismissible
 
 ```jsx
-<Notice variant="warning" dismissible={false}>
-  Maintenance window scheduled for Saturday 02:00–04:00 UTC.
+<Notice variant="info" dismissible={false}>
+  Read-only mode is active.
 </Notice>
 ```
-
-### With dismiss callback
-
-```jsx
-<Notice variant="info" onDismiss={() => markSeen('update-notice')}>
-  Nexter SEO v3.2 is available. <a href="/update">Update now</a>
-</Notice>
-```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onDismiss` | `() => void` | Called ~220 ms after the user clicks the dismiss button (after exit animation). |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-notice` | Root element |
-| `.nxp-notice--info` | `variant="info"` |
-| `.nxp-notice--success` | `variant="success"` |
-| `.nxp-notice--warning` | `variant="warning"` |
-| `.nxp-notice--error` | `variant="error"` |
-| `.nxp-notice.is-dismissing` | During 220 ms exit animation |
-| `.nxp-notice__icon` | Icon span |
-| `.nxp-notice__body` | Content wrapper |
-| `.nxp-notice__close` | Dismiss button |
-
----
-
-## Notes
-
-- After dismissal the component returns `null` — it disappears from the DOM.
-- Default icons: `default/info → ℹ`, `success → ✓`, `warning → ⚠`, `error → ✕`.
-- `"default"` variant does not add a modifier class.
-- Root has `role="status"` for polite screen reader announcements.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-notice` | Root wrapper |
+| `.nxp-notice--info` | Info variant |
+| `.nxp-notice--success` | Success variant |
+| `.nxp-notice--warning` | Warning variant |
+| `.nxp-notice--error` | Error variant |
+| `.nxp-notice__icon` | Variant icon |
+| `.nxp-notice__title` | Bold title |
+| `.nxp-notice__body` | Body content |
+| `.nxp-notice__dismiss` | Dismiss button |

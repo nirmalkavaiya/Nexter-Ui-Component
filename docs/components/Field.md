@@ -1,8 +1,6 @@
-# Field
+﻿# Field
 
-> Form field wrapper that pairs a label, input, hint text, and error message into a consistent layout.
-
----
+Form field wrapper that provides a label, hint text, and error message around any input control.
 
 ## Import
 
@@ -10,66 +8,61 @@
 import { Field } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `string \| node` | — | Label text rendered above the input. |
-| `hint` | `string \| node` | — | Helper text rendered below the input when there is no error. |
-| `error` | `string \| node` | — | Error message rendered below the input. When present, `hint` is suppressed. |
-| `children` | `node` | — | The form control (Input, Select, Textarea, etc.). |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `label` | `string` | — | Field label text |
+| `hint` | `string` | — | Helper text shown below the control |
+| `error` | `string` | — | Error message (replaces hint, styles red) |
+| `required` | `boolean` | `false` | Appends asterisk to label |
+| `htmlFor` | `string` | — | `for` attribute on the `<label>` element |
+| `children` | `ReactNode` | — | The input control to wrap |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic
+### With hint
 
 ```jsx
-<Field label="Site title" hint="Shown in browser tabs and search results.">
-  <Input placeholder="My Awesome Website" />
+import { Field, Input } from 'nexter-ui-component'
+
+<Field label="Email address" hint="We'll never share this.">
+  <Input type="email" placeholder="you@example.com" />
 </Field>
 ```
 
-### With error
+### With validation error
 
 ```jsx
-<Field label="Email address" error="Please enter a valid email address.">
-  <Input type="email" value="not-an-email" invalid />
+<Field label="Email address" error="That email looks wrong.">
+  <Input type="email" invalid value="not-an-email" />
 </Field>
 ```
 
-### Hint vs error priority
+### Required field
 
 ```jsx
-// hint is hidden when error is present
-<Field
-  label="Meta description"
-  hint="Aim for 120–160 characters."
-  error={descTooLong ? 'Description exceeds 160 characters.' : undefined}
->
-  <Textarea rows={3} />
+<Field label="Site name" required>
+  <Input placeholder="My awesome site" />
 </Field>
 ```
 
----
+### Wrapping any control
+
+```jsx
+<Field label="Plan" hint="You can upgrade later.">
+  <Dropdown options={planOptions} />
+</Field>
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-field` | Root wrapper div |
-| `.nxp-field__label` | `<label>` element |
-| `.nxp-field__hint` | Hint span (visible only when no error) |
-| `.nxp-field__error` | Error span |
-
----
-
-## Notes
-
-- The error span has `role="alert"` so screen readers announce it immediately on appearance.
-- `hint` and `error` are mutually exclusive — `error` always wins.
-- The `<label>` is not automatically associated with the child input. Pass a matching `id` / `htmlFor` through the child control if strict association is needed.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-field` | Root wrapper |
+| `.nxp-field__label` | Label element |
+| `.nxp-field__required` | Asterisk span |
+| `.nxp-field__hint` | Hint text |
+| `.nxp-field__error` | Error message (visible when `error` prop set) |
+| `.nxp-field.has-error` | Error state modifier on root |

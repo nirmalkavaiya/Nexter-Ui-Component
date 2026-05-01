@@ -1,8 +1,6 @@
-# Spinner
+﻿# Spinner
 
-> Animated loading indicator in three sizes.
-
----
+Loading spinner in three sizes.
 
 ## Import
 
@@ -10,53 +8,48 @@
 import { Spinner } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls the spinner diameter. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Spinner size |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Basic
+### Inline
 
 ```jsx
 <Spinner />
-```
-
-### Sizes
-
-```jsx
 <Spinner size="sm" />
-<Spinner size="md" />
 <Spinner size="lg" />
 ```
 
-### Inline loading state
+### Inside a button
 
 ```jsx
-{isLoading ? <Spinner size="sm" /> : <span>Data loaded</span>}
+<Button variant="primary" loading>
+  <Spinner size="sm" /> Saving…
+</Button>
 ```
 
----
+### Full-page loader
+
+```jsx
+<div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
+  <Spinner size="lg" />
+</div>
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-spinner` | Root `<span>` element |
-| `.nxp-spinner--sm` | `size="sm"` |
-| `.nxp-spinner--lg` | `size="lg"` |
-
----
+| Class | Purpose |
+|-------|---------|
+| `.nxp-spinner` | Root element |
+| `.nxp-spinner--sm` | 16px size |
+| `.nxp-spinner--md` | 24px size (default) |
+| `.nxp-spinner--lg` | 32px size |
 
 ## Notes
 
-- Root has `role="status"` and `aria-label="Loading"` for screen readers.
-- `"md"` size applies no modifier class — it is the default.
-- The spinner animation is CSS-only (no JS timer).
+The spin animation is paused when `prefers-reduced-motion: reduce` is active.

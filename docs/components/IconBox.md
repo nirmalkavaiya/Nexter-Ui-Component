@@ -1,8 +1,6 @@
-# IconBox
+﻿# IconBox
 
-> Feature card combining a topline label, icon (or step number), title, description, and CTA link.
-
----
+Feature card with icon, title, description, and an optional CTA link.
 
 ## Import
 
@@ -10,78 +8,55 @@
 import { IconBox } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `topline` | `string \| node` | — | Small eyebrow text above the icon/step. |
-| `icon` | `node` | — | Icon element. Hidden when `step` is provided. |
-| `title` | `string \| node` | — | Card heading. |
-| `description` | `string \| node` | — | Supporting body text. |
-| `cta` | `string` | — | Call-to-action link label. |
-| `href` | `string` | — | URL for the CTA link. Omit for a no-op anchor. |
-| `step` | `number \| string` | — | Step number. When provided, renders a step bubble instead of the icon. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `icon` | `ReactNode` | — | Icon element or emoji |
+| `title` | `string` | — | Card heading |
+| `description` | `string` | — | Supporting text |
+| `cta` | `ReactNode` | — | Optional action link or button |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Feature card with icon
+### Basic
 
 ```jsx
 <IconBox
-  icon="⚡"
-  title="Instant Indexing"
-  description="Submit URLs to search engines in real time using the IndexNow protocol."
-  cta="Learn more"
-  href="/features/indexnow"
+  icon={<span>🚀</span>}
+  title="Fast indexing"
+  description="Submit URLs to search engines instantly via IndexNow."
 />
 ```
 
-### Numbered step card
+### With CTA
 
 ```jsx
 <IconBox
-  step={1}
-  title="Connect your site"
-  description="Install the plugin and verify your domain in under 2 minutes."
+  icon={<span>🔐</span>}
+  title="Secure redirects"
+  description="Manage 301, 302, 307, and 308 redirects."
+  cta={<a href="/redirects">Manage redirects →</a>}
 />
 ```
 
-### With topline
+### Grid layout
 
 ```jsx
-<IconBox
-  topline="Step 2 of 3"
-  icon="🔒"
-  title="Set up redirects"
-  description="Map old URLs to new destinations to preserve SEO equity."
-  cta="Configure redirects"
-  href="/settings/redirects"
-/>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+  <IconBox icon="🔍" title="SEO Analysis" description="Focus keyword scoring." />
+  <IconBox icon="📊" title="Analytics" description="Track traffic trends." />
+  <IconBox icon="🗺️" title="Sitemaps" description="Auto-generated XML sitemaps." />
+</div>
 ```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-iconbox` | Root wrapper div |
-| `.nxp-iconbox__topline` | Topline eyebrow div |
-| `.nxp-iconbox__step` | Step number bubble |
-| `.nxp-iconbox__icon` | Icon wrapper (hidden when `step` is set) |
-| `.nxp-iconbox__title` | Title div |
-| `.nxp-iconbox__desc` | Description paragraph |
-| `.nxp-iconbox__cta` | CTA anchor |
-
----
-
-## Notes
-
-- When `step` is provided, the `icon` is not rendered — they are mutually exclusive.
-- CTA links with no `href` call `e.preventDefault()` to avoid navigating to `#`.
-- The icon wrapper has `aria-hidden="true"` — it is decorative.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-icon-box` | Root card |
+| `.nxp-icon-box__icon` | Icon container |
+| `.nxp-icon-box__title` | Heading text |
+| `.nxp-icon-box__desc` | Description text |
+| `.nxp-icon-box__cta` | CTA slot |

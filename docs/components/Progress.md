@@ -1,8 +1,6 @@
-# Progress
+﻿# Progress
 
-> Horizontal progress bar with semantic ARIA attributes.
-
----
+Progress bar in default, success, and warning variants.
 
 ## Import
 
@@ -10,17 +8,16 @@
 import { Progress } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `number` | `0` | Progress percentage (0–100). Values are clamped to this range. |
-| `variant` | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Color theme of the filled bar. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `value` | `number` | `0` | Current value (0–100) |
+| `max` | `number` | `100` | Maximum value |
+| `variant` | `'default' \| 'success' \| 'warning'` | `'default'` | Color variant |
+| `label` | `string` | — | Accessible label (screen readers) |
+| `showValue` | `boolean` | `false` | Show percentage text |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
@@ -30,43 +27,25 @@ import { Progress } from 'nexter-ui-component'
 <Progress value={65} />
 ```
 
+### With label and value
+
+```jsx
+<Progress value={40} showValue label="Upload progress" />
+```
+
 ### Variants
 
 ```jsx
 <Progress value={100} variant="success" />
-<Progress value={72}  variant="warning" />
-<Progress value={35}  variant="error" />
+<Progress value={30} variant="warning" />
 ```
-
-### Dynamic progress
-
-```jsx
-const [progress, setProgress] = useState(0);
-
-useEffect(() => {
-  const id = setInterval(() => setProgress((p) => Math.min(p + 10, 100)), 500);
-  return () => clearInterval(id);
-}, []);
-
-<Progress value={progress} variant={progress === 100 ? 'success' : 'default'} />
-```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
+| Class | Purpose |
+|-------|---------|
 | `.nxp-progress` | Root track element |
-| `.nxp-progress--success` | `variant="success"` |
-| `.nxp-progress--warning` | `variant="warning"` |
-| `.nxp-progress--error` | `variant="error"` |
-| `.nxp-progress__bar` | Filled inner bar (width set via inline style) |
-
----
-
-## Notes
-
-- Root element has `role="progressbar"` with `aria-valuenow`, `aria-valuemin={0}`, and `aria-valuemax={100}`.
-- `"default"` variant adds no modifier class.
-- Values outside 0–100 are clamped automatically.
+| `.nxp-progress__bar` | Filled portion |
+| `.nxp-progress--success` | Green variant |
+| `.nxp-progress--warning` | Amber variant |
+| `.nxp-progress__value` | Percentage text |

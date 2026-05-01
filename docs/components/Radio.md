@@ -1,8 +1,6 @@
-# Radio
+﻿# Radio
 
-> Single radio button — compose multiple instances with a shared `name` to create a radio group.
-
----
+Accessible custom radio button — controlled and uncontrolled.
 
 ## Import
 
@@ -10,66 +8,50 @@
 import { Radio } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `checked` | `bool` | `false` | Whether this radio is selected. |
-| `onChange` | `func` | — | Called with `value` when the radio is selected. |
-| `disabled` | `bool` | `false` | Prevents interaction. |
-| `name` | `string` | — | Group name — shared across all radios in the same group. |
-| `value` | `string \| number` | — | Value passed to `onChange` on selection. |
-| `label` | `string \| node` | — | Label text rendered beside the radio. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root `<label>`. |
-
----
+| `value` | `string` | — | This radio's value |
+| `checked` | `boolean` | `undefined` | Controlled checked state |
+| `defaultChecked` | `boolean` | `false` | Initial state (uncontrolled) |
+| `onChange` | `(value: string) => void` | — | Change handler (receives this radio's `value`) |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `label` | `string` | — | Visible label text |
+| `name` | `string` | — | Group name (ties radios together) |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
-### Radio group (controlled)
+### Radio group
 
 ```jsx
-const [plan, setPlan] = useState('monthly');
+const [plan, setPlan] = useState('monthly')
 
-<>
-  <Radio name="billing" value="monthly" checked={plan === 'monthly'} onChange={setPlan} label="Monthly" />
-  <Radio name="billing" value="annual"  checked={plan === 'annual'}  onChange={setPlan} label="Annual (save 20%)" />
-  <Radio name="billing" value="lifetime" checked={plan === 'lifetime'} onChange={setPlan} label="Lifetime" />
-</>
+{['monthly', 'yearly', 'lifetime'].map(v => (
+  <Radio
+    key={v}
+    name="plan"
+    value={v}
+    checked={plan === v}
+    onChange={setPlan}
+    label={v.charAt(0).toUpperCase() + v.slice(1)}
+  />
+))}
 ```
 
 ### Disabled option
 
 ```jsx
-<Radio name="billing" value="enterprise" checked={false} disabled label="Enterprise (coming soon)" />
+<Radio value="enterprise" disabled label="Enterprise (contact sales)" />
 ```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(value: string \| number) => void` | Called with the radio's `value` when selected. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-radio` | Root `<label>` element |
-| `.nxp-radio.is-checked` | `checked={true}` |
-| `.nxp-radio.is-disabled` | `disabled={true}` |
-| `.nxp-radio__dot` | Custom visual radio circle |
-| `.nxp-radio__inner` | Inner fill dot (shown when checked) |
-
----
-
-## Notes
-
-- The native `<input type="radio">` is visually hidden. The visible dot uses `role="radio"` and `aria-checked`.
-- Keyboard: `Space` selects the focused radio.
-- Group radios using the same `name` prop so native browser behaviour (deselect siblings) works correctly.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-radio` | Root wrapper |
+| `.nxp-radio__dot` | Visual radio circle |
+| `.nxp-radio__label` | Label text |
+| `.nxp-radio.is-checked` | Checked state |
+| `.nxp-radio.is-disabled` | Disabled state |

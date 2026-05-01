@@ -1,8 +1,6 @@
-# Table
+﻿# Table
 
-> Responsive data table with column definitions, optional striping, and a per-row actions slot.
-
----
+Data table with striped rows, numeric column alignment, and an actions slot.
 
 ## Import
 
@@ -10,27 +8,27 @@
 import { Table } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `columns` | `array` | `[]` | Column definition objects (see shape below). |
-| `rows` | `array` | `[]` | Row data objects. Keys should match column `key` values. |
-| `striped` | `bool` | `false` | Adds alternating row background colors. |
-| `actions` | `func` | — | Render function `(row) => node` for a trailing "Actions" column. |
-| `className` | `string` | `''` | Additional CSS class(es) on the `<table>` element. |
+| `columns` | `Column[]` | `[]` | Column definitions (see below) |
+| `rows` | `Record<string, ReactNode>[]` | `[]` | Row data objects |
+| `striped` | `boolean` | `false` | Alternate row background |
+| `loading` | `boolean` | `false` | Show skeleton rows |
+| `emptyMessage` | `string` | `'No data'` | Message when rows is empty |
+| `className` | `string` | `''` | Extra class on root element |
 
-### Column object shape
+### Column shape
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `key` | `string` | Maps to the property name in each row object. |
-| `label` | `string` | Column header text. |
-| `numeric` | `bool` | When `true`, applies right-aligned numeric styling. |
-
----
+```ts
+type Column = {
+  key: string       // maps to row object key
+  label: string     // header text
+  numeric?: boolean // right-align values
+  width?: string    // CSS width
+}
+```
 
 ## Usage
 
@@ -38,51 +36,46 @@ import { Table } from 'nexter-ui-component'
 
 ```jsx
 const columns = [
-  { key: 'url',    label: 'URL' },
-  { key: 'target', label: 'Redirect to' },
-  { key: 'code',   label: 'Code', numeric: true },
-];
+  { key: 'name',  label: 'Name' },
+  { key: 'plan',  label: 'Plan' },
+  { key: 'usage', label: 'Usage', numeric: true },
+]
 
 const rows = [
-  { url: '/old-home', target: '/', code: 301 },
-  { url: '/blog-v1',  target: '/blog', code: 301 },
-  { url: '/product',  target: '/shop/product-1', code: 302 },
-];
+  { name: 'nexterwp.com',  plan: 'Pro',  usage: '128,420' },
+  { name: 'uichemy.com',   plan: 'Free', usage: '12,031' },
+]
 
-<Table columns={columns} rows={rows} />
+<Table columns={columns} rows={rows} striped />
 ```
 
-### Striped with actions
+### With JSX cells
 
 ```jsx
-<Table
-  columns={columns}
-  rows={rows}
-  striped
-  actions={(row) => (
-    <>
-      <Button variant="ghost" size="sm" onClick={() => handleEdit(row)}>Edit</Button>
-      <Button variant="danger" size="sm" onClick={() => handleDelete(row)}>Delete</Button>
-    </>
-  )}
-/>
+const rows = [
+  {
+    name: 'nexterwp.com',
+    status: <Status variant="active">Live</Status>,
+    actions: <Button variant="ghost" size="sm">Edit</Button>,
+  },
+]
 ```
 
----
+### Loading state
+
+```jsx
+<Table columns={columns} rows={[]} loading />
+```
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-table` | Root `<table>` element |
-| `.nxp-table--striped` | `striped={true}` |
-| `.nxp-table__num` | Column/cell with `numeric: true` |
-| `.nxp-table__actions` | Actions cell wrapper div |
-
----
-
-## Notes
-
-- The table is wrapped in `<div style={{ overflowX: 'auto' }}>` for horizontal scroll on small screens.
-- `actions` receives the full row object — use it to build edit/delete buttons with access to row data.
-- The "Actions" column header is always right-aligned.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-table` | Root wrapper |
+| `.nxp-table__table` | `<table>` element |
+| `.nxp-table__th` | Header cell |
+| `.nxp-table__th--numeric` | Right-aligned header |
+| `.nxp-table__td` | Body cell |
+| `.nxp-table__td--numeric` | Right-aligned body cell |
+| `.nxp-table__row--striped` | Alternate row shade |
+| `.nxp-table__empty` | Empty state row |

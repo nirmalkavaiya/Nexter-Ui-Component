@@ -1,8 +1,6 @@
-# Dropdown
+﻿# Dropdown
 
-> Custom select menu with keyboard navigation, optional dividers, and sub-labels.
-
----
+Custom listbox with full keyboard navigation.
 
 ## Import
 
@@ -10,90 +8,69 @@
 import { Dropdown } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `options` | `array` | `[]` | Array of option objects (see shape below). |
-| `value` | `string \| number` | — | Controlled selected value. Omit for uncontrolled. |
-| `onChange` | `func` | — | Called with the chosen option's `value`. |
-| `placeholder` | `string` | `"Select…"` | Placeholder text shown when nothing is selected. |
-| `disabled` | `bool` | `false` | Prevents opening the menu. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
+| `options` | `Option[]` | `[]` | Array of option objects (see below) |
+| `value` | `string` | `undefined` | Controlled selected value |
+| `defaultValue` | `string` | `''` | Initial value (uncontrolled) |
+| `onChange` | `(value: string) => void` | — | Selection change handler |
+| `placeholder` | `string` | `'Select…'` | Placeholder when nothing selected |
+| `disabled` | `boolean` | `false` | Disables the control |
+| `className` | `string` | `''` | Extra class on root element |
 
-### Option object shape
+### Option shape
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `value` | `string \| number` | Unique value passed to `onChange`. |
-| `label` | `string` | Display label. |
-| `sub` | `string` | Optional secondary label shown on the right. |
-| `divider` | `bool` | When `true`, renders a horizontal divider line instead of an option. |
-
----
+```ts
+type Option =
+  | { value: string; label: string; sub?: string }
+  | { divider: true }
+```
 
 ## Usage
 
 ### Basic
 
 ```jsx
-const timezones = [
-  { value: 'utc',    label: 'UTC',                sub: '+00:00' },
-  { value: 'ist',    label: 'India Standard Time', sub: '+05:30' },
-  { value: 'est',    label: 'Eastern Time',        sub: '-05:00' },
+const options = [
+  { value: 'draft',     label: 'Draft' },
+  { value: 'published', label: 'Published' },
+  { value: 'archived',  label: 'Archived' },
+]
+
+<Dropdown options={options} placeholder="Select status…" onChange={console.log} />
+```
+
+### With sub-labels and divider
+
+```jsx
+const plans = [
+  { value: 'free',     label: 'Free',     sub: 'Up to 3 sites' },
+  { value: 'pro',      label: 'Pro',      sub: 'Unlimited sites' },
   { divider: true },
-  { value: 'custom', label: 'Custom offset…' },
-];
+  { value: 'lifetime', label: 'Lifetime', sub: 'One-time purchase' },
+]
 
-<Dropdown options={timezones} placeholder="Select timezone" />
+const [plan, setPlan] = useState('free')
+<Dropdown options={plans} value={plan} onChange={setPlan} />
 ```
-
-### Controlled
-
-```jsx
-const [tz, setTz] = useState('ist');
-
-<Dropdown options={timezones} value={tz} onChange={setTz} />
-```
-
-### Disabled
-
-```jsx
-<Dropdown options={timezones} disabled />
-```
-
----
-
-## Events / Callbacks
-
-| Event | Signature | Description |
-|-------|-----------|-------------|
-| `onChange` | `(value: string \| number) => void` | Fired with the selected option's `value`. |
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
+| Class | Purpose |
+|-------|---------|
 | `.nxp-dropdown` | Root wrapper |
-| `.nxp-dropdown.is-open` | Menu is open |
-| `.nxp-dropdown__trigger` | Trigger button |
-| `.nxp-dropdown__chevron` | SVG chevron icon |
-| `.nxp-dropdown__menu` | Options list panel |
-| `.nxp-dropdown__item` | Option row |
-| `.nxp-dropdown__item.is-selected` | Currently selected option |
-| `.nxp-dropdown__item.is-focused` | Keyboard-highlighted option |
-| `.nxp-dropdown__sub` | Secondary label span |
-| `.nxp-dropdown__check` | Checkmark SVG on selected item |
-| `.nxp-dropdown__divider` | Horizontal rule divider |
-
----
+| `.nxp-dropdown__trigger` | Clickable button trigger |
+| `.nxp-dropdown__list` | Options list |
+| `.nxp-dropdown__option` | Individual option row |
+| `.nxp-dropdown__option.is-selected` | Currently selected option |
+| `.nxp-dropdown__option.is-active` | Keyboard-highlighted option |
+| `.nxp-dropdown__sub` | Secondary label text |
+| `.nxp-dropdown__divider` | Visual separator line |
+| `.nxp-dropdown.is-open` | Open state modifier |
 
 ## Notes
 
-- Keyboard shortcuts: `Enter/Space/ArrowDown` opens; `ArrowDown/Up`, `Home`, `End` navigate; `Enter` selects; `Escape` closes.
-- Clicking outside the component closes the menu via a `mousedown` document listener.
-- Divider objects (`{ divider: true }`) are skipped in keyboard navigation.
+- Keyboard: Arrow keys navigate list, Home/End jump to edges, Enter selects, Escape closes
+- Click outside closes the dropdown automatically

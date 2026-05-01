@@ -1,8 +1,6 @@
-# Status
+﻿# Status
 
-> Inline status indicator badge with semantic variant colors.
-
----
+Status pill with a colored dot indicator — active, inactive, pending, or info.
 
 ## Import
 
@@ -10,60 +8,42 @@
 import { Status } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"default" \| "success" \| "warning" \| "error" \| "info"` | `"default"` | Color theme of the status badge. |
-| `children` | `node` | — | Status label text. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `variant` | `'active' \| 'inactive' \| 'pending' \| 'info' \| 'default'` | `'default'` | Color and label variant |
+| `children` | `ReactNode` | — | Label text |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
 
 ### Basic
 
 ```jsx
-<Status variant="success">Active</Status>
-<Status variant="warning">Pending</Status>
-<Status variant="error">Failed</Status>
-<Status variant="info">Indexing</Status>
-<Status>Unknown</Status>
+<Status variant="active">Active</Status>
+<Status variant="inactive">Inactive</Status>
+<Status variant="pending">Pending</Status>
+<Status variant="info">Info</Status>
 ```
 
-### In a table row
+### In a table
 
 ```jsx
-<Table
-  columns={[
-    { key: 'url',    label: 'URL' },
-    { key: 'status', label: 'Status' },
-  ]}
-  rows={[
-    { url: '/about', status: <Status variant="success">Indexed</Status> },
-    { url: '/blog',  status: <Status variant="warning">Pending</Status> },
-  ]}
-/>
+const columns = [{ key: 'status', label: 'Status' }]
+const rows = [
+  { status: <Status variant="active">Live</Status> },
+  { status: <Status variant="inactive">Disabled</Status> },
+]
+<Table columns={columns} rows={rows} />
 ```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-status` | Root `<span>` element |
-| `.nxp-status--success` | `variant="success"` |
-| `.nxp-status--warning` | `variant="warning"` |
-| `.nxp-status--error` | `variant="error"` |
-| `.nxp-status--info` | `variant="info"` |
-
----
-
-## Notes
-
-- `"default"` variant adds no modifier class.
-- Root element has `aria-label="Status: {variant}"` for screen readers.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-status` | Root pill span |
+| `.nxp-status--active` | Green dot |
+| `.nxp-status--inactive` | Grey dot |
+| `.nxp-status--pending` | Amber dot |
+| `.nxp-status--info` | Blue dot |

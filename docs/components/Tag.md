@@ -1,8 +1,6 @@
-# Tag
+﻿# Tag
 
-> Compact inline label for categories, topics, or metadata.
-
----
+Tag/chip in default, primary, success, warning, and error variants.
 
 ## Import
 
@@ -10,60 +8,50 @@
 import { Tag } from 'nexter-ui-component'
 ```
 
----
-
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"default" \| "primary" \| "success" \| "warning" \| "error"` | `"default"` | Color theme of the tag. |
-| `children` | `node` | — | Tag label text. |
-| `className` | `string` | `''` | Additional CSS class(es) on the root element. |
-
----
+| `variant` | `'default' \| 'primary' \| 'success' \| 'warning' \| 'error'` | `'default'` | Color variant |
+| `children` | `ReactNode` | — | Tag label |
+| `onRemove` | `() => void` | — | Shows remove (×) button when provided |
+| `className` | `string` | `''` | Extra class on root element |
 
 ## Usage
-
-### Basic
-
-```jsx
-<Tag>WordPress</Tag>
-```
 
 ### Variants
 
 ```jsx
-<Tag variant="primary">Featured</Tag>
-<Tag variant="success">Published</Tag>
-<Tag variant="warning">Draft</Tag>
-<Tag variant="error">Broken</Tag>
+<Tag>Default</Tag>
+<Tag variant="primary">Primary</Tag>
+<Tag variant="success">Active</Tag>
+<Tag variant="warning">Trial</Tag>
+<Tag variant="error">Expired</Tag>
+```
+
+### Removable tag
+
+```jsx
+<Tag variant="primary" onRemove={() => removeTag('react')}>
+  React
+</Tag>
 ```
 
 ### Tag list
 
 ```jsx
-<div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-  {post.categories.map((cat) => (
-    <Tag key={cat}>{cat}</Tag>
-  ))}
-</div>
+{tags.map(t => (
+  <Tag key={t} onRemove={() => remove(t)}>{t}</Tag>
+))}
 ```
-
----
 
 ## CSS Classes
 
-| Class | Applied when |
-|-------|-------------|
-| `.nxp-tag` | Root `<span>` element |
-| `.nxp-tag--primary` | `variant="primary"` |
-| `.nxp-tag--success` | `variant="success"` |
-| `.nxp-tag--warning` | `variant="warning"` |
-| `.nxp-tag--error` | `variant="error"` |
-
----
-
-## Notes
-
-- `"default"` variant adds no modifier class.
-- Unlike `Badge`, `Tag` is intended for categorical labels rather than status or counts. The two share similar token-based styles but different semantic intent.
+| Class | Purpose |
+|-------|---------|
+| `.nxp-tag` | Root span |
+| `.nxp-tag--primary` | Blue variant |
+| `.nxp-tag--success` | Green variant |
+| `.nxp-tag--warning` | Amber variant |
+| `.nxp-tag--error` | Red variant |
+| `.nxp-tag__remove` | Remove button |
