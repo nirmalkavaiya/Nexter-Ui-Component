@@ -40,6 +40,7 @@ import Toast from '../components/Toast';
 import Toggle from '../components/Toggle';
 import Tooltip from '../components/Tooltip';
 import FeatureToggleCard from '../components/FeatureToggleCard';
+import ToggleGrid from '../components/ToggleGrid';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function Section({ eyebrow, title, description, children }) {
@@ -113,6 +114,16 @@ export default function App() {
   // FeatureToggleCard
   const [ftcStates, setFtcStates] = useState({ adobe: true, smtp: false, cache: false, wl: false, ai: false });
   const ftcToggle = (key) => setFtcStates((s) => ({ ...s, [key]: !s[key] }));
+  // ToggleGrid
+  const [tgValues, setTgValues] = useState({ canonical: true, og: false, schema: true, sitemap: false, robots: true, indexnow: false });
+  const tgItems = [
+    { key: 'canonical', label: 'Canonical URL', tooltip: 'Output canonical link tags to avoid duplicate content.' },
+    { key: 'og', label: 'Open Graph', tooltip: 'Emit og:title, og:description, og:image meta tags.' },
+    { key: 'schema', label: 'JSON-LD Schema', tooltip: 'Inject structured data for rich search results.' },
+    { key: 'sitemap', label: 'XML Sitemap', tooltip: 'Auto-generate and update your sitemap.xml.' },
+    { key: 'robots', label: 'Robots Meta', tooltip: 'Control per-page indexing directives.' },
+    { key: 'indexnow', label: 'IndexNow', tooltip: 'Ping search engines instantly on publish.' },
+  ];
   // Checkbox
   const [checked1, setChecked1] = useState(true);
   const [checked2, setChecked2] = useState(false);
@@ -867,6 +878,37 @@ export default function App() {
             description="No redirect rules match your current search. Try adjusting your filters or add a new redirect."
             action={<Button variant="primary" size="sm">Add redirect</Button>}
           />
+        </DemoBox>
+      </Section>
+
+      {/* ── TOGGLE GRID ── */}
+      <Section eyebrow="Controls" title="Toggle Grid" description="Compact grid of labeled toggles — controlled via valueMap or uncontrolled with internal state.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>2 Columns (Controlled)</p>
+              <ToggleGrid
+                items={tgItems}
+                columns={2}
+                valueMap={tgValues}
+                onChange={(key, newValue, updatedItems) => setTgValues((v) => ({ ...v, [key]: newValue }))}
+              />
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>3 Columns (Uncontrolled)</p>
+              <ToggleGrid
+                items={tgItems.map((it) => ({ ...it, value: false }))}
+                columns={3}
+              />
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>1 Column</p>
+              <ToggleGrid
+                items={tgItems.slice(0, 3)}
+                columns={1}
+              />
+            </div>
+          </div>
         </DemoBox>
       </Section>
 

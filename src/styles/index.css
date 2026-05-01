@@ -2452,6 +2452,91 @@
 }
 
 /* ============================================================
+   TOGGLE GRID
+   ============================================================ */
+
+.nxp-tg {
+  display: grid;
+  gap: 8px;
+}
+
+.nxp-tg--cols-1 { grid-template-columns: 1fr; }
+.nxp-tg--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.nxp-tg--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.nxp-tg--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 640px) {
+  .nxp-tg--cols-3,
+  .nxp-tg--cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .nxp-tg--cols-2,
+  .nxp-tg--cols-3,
+  .nxp-tg--cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Item */
+.nxp-tg__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--nxp-bg);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  box-shadow: var(--nxp-shadow-sm);
+  min-width: 0;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.nxp-tg__item:hover {
+  border-color: var(--nxp-border-strong);
+}
+
+/* Label row */
+.nxp-tg__item-label-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.nxp-tg__item-label {
+  font-family: var(--nxp-font);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nxp-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Info icon */
+.nxp-tg__item-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nxp-text-faint);
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 1px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.nxp-tg__item-info:hover,
+.nxp-tg__item-info:focus-visible {
+  color: var(--nxp-text-muted);
+  outline: none;
+}
+
+.nxp-tg__item-info:focus-visible {
+  box-shadow: 0 0 0 2px var(--nxp-brand-soft);
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
