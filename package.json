@@ -1,0 +1,53 @@
+{
+  "name": "nexter-ui-component",
+  "version": "1.0.0",
+  "description": "Nexter Design System — React component library. 40+ accessible, token-driven components.",
+  "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/nirmalkavaiya/nexter-ui-component#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirmalkavaiya/nexter-ui-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nirmalkavaiya/nexter-ui-component/issues"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "design-system",
+    "nexter",
+    "wordpress",
+    "admin",
+    "button",
+    "modal",
+    "dropdown"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^5.0.0"
+  }
+}
