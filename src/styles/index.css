@@ -2185,7 +2185,46 @@
    FEATURE TOGGLE CARD
    ============================================================ */
 
-/* Root card */
+/* ── Outer wrapper (holds plan badge + card) ─────────────────────────── */
+.nxp-ftc-outer {
+  position: relative;
+}
+.nxp-ftc-outer--has-plan {
+  padding-top: 10px; /* makes room so plan badge can overlap card top */
+}
+
+/* ── Plan badge (PRO / FREEMIUM) — sits on top-left card edge ─────────── */
+.nxp-ftc-plan {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-family: var(--nxp-font);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+/* PRO — outlined blue */
+.nxp-ftc-plan--pro {
+  background: var(--nxp-bg);
+  border: 1.5px solid var(--nxp-brand);
+  color: var(--nxp-brand);
+}
+/* FREEMIUM — soft blue-gray fill */
+.nxp-ftc-plan--freemium {
+  background: #f0f4ff;
+  border: 1.5px solid #c7d4f5;
+  color: #4a6fa5;
+}
+
+/* ── Root card ───────────────────────────────────────────────────────── */
 .nxp-ftc {
   background: var(--nxp-bg);
   border: 1px solid var(--nxp-border);
@@ -2200,12 +2239,20 @@
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   border-color: var(--nxp-border-strong);
 }
+/* Locked state */
+.nxp-ftc--locked {
+  background: var(--nxp-bg-alt, #f8fafc);
+}
+.nxp-ftc--locked .nxp-ftc__title {
+  color: var(--nxp-text-muted);
+}
+/* Disabled state */
 .nxp-ftc--disabled {
   opacity: 0.55;
   pointer-events: none;
 }
 
-/* Layout */
+/* ── Layout ──────────────────────────────────────────────────────────── */
 .nxp-ftc__body {
   display: flex;
   align-items: center;
@@ -2225,7 +2272,7 @@
   flex-shrink: 0;
 }
 
-/* Title row */
+/* ── Title row ───────────────────────────────────────────────────────── */
 .nxp-ftc__title-row {
   display: flex;
   align-items: center;
@@ -2237,9 +2284,10 @@
   font-weight: 500;
   color: var(--nxp-text);
   line-height: 1.4;
+  transition: color 0.15s;
 }
 
-/* Badge */
+/* ── Inline feature badges (BETA / PRO / NEW) ────────────────────────── */
 .nxp-ftc__badge {
   display: inline-flex;
   align-items: center;
@@ -2252,6 +2300,11 @@
   line-height: 1.6;
   background: var(--nxp-bg-alt);
   color: var(--nxp-text-muted);
+}
+.nxp-ftc__badge--new {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
 }
 .nxp-ftc__badge--beta {
   background: var(--nxp-brand);
@@ -2278,7 +2331,7 @@
   color: #dc2626;
 }
 
-/* Info icon */
+/* ── Info icon ───────────────────────────────────────────────────────── */
 .nxp-ftc__info-icon {
   display: inline-flex;
   align-items: center;
@@ -2296,9 +2349,23 @@
   color: var(--nxp-brand);
 }
 
-/* Docs link */
+/* ── Links row (docs + upgrade) ──────────────────────────────────────── */
+.nxp-ftc__links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.nxp-ftc__links-sep {
+  color: var(--nxp-text-muted);
+  font-size: 11px;
+  line-height: 1;
+  user-select: none;
+}
 .nxp-ftc__link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   font-size: 12px;
   font-weight: 500;
   color: var(--nxp-brand);
@@ -2320,9 +2387,24 @@
   cursor: not-allowed;
   opacity: 0.5;
 }
+.nxp-ftc__upgrade-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7C3AED;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.nxp-ftc__upgrade-link:hover {
+  text-decoration: underline;
+}
 
-/* Settings button */
-.nxp-ftc__settings-btn {
+/* ── Circle icon buttons (settings + lock) ───────────────────────────── */
+.nxp-ftc__settings-btn,
+.nxp-ftc__lock-btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -2352,6 +2434,21 @@
 .nxp-ftc__settings-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+/* Lock button — amber/purple accent */
+.nxp-ftc__lock-btn {
+  border-color: #ddd6fe;
+  color: #7C3AED;
+  background: #faf5ff;
+}
+.nxp-ftc__lock-btn:hover {
+  border-color: #7C3AED;
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.nxp-ftc__lock-btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+  border-color: #7C3AED;
 }
 
 /* ============================================================

@@ -111,7 +111,7 @@ export default function App() {
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
   // FeatureToggleCard
-  const [ftcStates, setFtcStates] = useState({ adobe: true, smtp: false, wl: true, cache: false });
+  const [ftcStates, setFtcStates] = useState({ adobe: true, smtp: false, cache: false, wl: false, ai: false });
   const ftcToggle = (key) => setFtcStates((s) => ({ ...s, [key]: !s[key] }));
   // Checkbox
   const [checked1, setChecked1] = useState(true);
@@ -402,21 +402,25 @@ export default function App() {
       </Section>
 
       {/* ── FEATURE TOGGLE CARD ── */}
-      <Section eyebrow="Composite" title="Feature Toggle Card" description="Settings-dashboard card combining title, badge, tooltip, docs link, settings button, and toggle.">
+      <Section eyebrow="Composite" title="Feature Toggle Card" description="Settings-dashboard card with plan badge (PRO/FREEMIUM), NEW badge, tooltip, locked state with upgrade CTA, and controlled toggle.">
         <DemoBox>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 520 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 540 }}>
+            {/* free — plain toggle */}
             <FeatureToggleCard
               title="Adobe Fonts"
               tooltip="Load fonts directly from Adobe Fonts CDN without hosting them locally."
+              planType="free"
               docsLabel="Read Docs"
               onDocsClick={() => {}}
               isEnabled={ftcStates.adobe}
               onToggle={() => ftcToggle('adobe')}
               onSettingsClick={() => {}}
             />
+            {/* freemium — plan badge + BETA inline badge */}
             <FeatureToggleCard
               title="SMTP Email"
               tooltip="Send transactional emails via your own SMTP server."
+              planType="freemium"
               showBadge
               badgeText="BETA"
               badgeVariant="beta"
@@ -426,27 +430,42 @@ export default function App() {
               onToggle={() => ftcToggle('smtp')}
               onSettingsClick={() => {}}
             />
-            <FeatureToggleCard
-              title="White Label"
-              tooltip="Remove all Nexter branding from the admin interface."
-              showBadge
-              badgeText="PRO"
-              badgeVariant="pro"
-              docsLabel="Read Docs"
-              onDocsClick={() => {}}
-              isEnabled={ftcStates.wl}
-              onToggle={() => ftcToggle('wl')}
-              onSettingsClick={() => {}}
-            />
+            {/* free — NEW badge */}
             <FeatureToggleCard
               title="Advanced Cache"
-              tooltip="Full-page caching requires server write permissions."
+              tooltip="Full-page caching layer for faster page loads."
+              planType="free"
+              isNew
               docsLabel="Read Docs"
               onDocsClick={() => {}}
               isEnabled={ftcStates.cache}
               onToggle={() => ftcToggle('cache')}
               onSettingsClick={() => {}}
-              disabled
+            />
+            {/* pro — locked with upgrade link */}
+            <FeatureToggleCard
+              title="White Label"
+              tooltip="Remove all Nexter branding from the admin interface."
+              planType="pro"
+              isLocked
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.wl}
+              onToggle={() => ftcToggle('wl')}
+              onUpgradeClick={() => {}}
+            />
+            {/* pro — locked + NEW */}
+            <FeatureToggleCard
+              title="AI Content Assistant"
+              tooltip="Generate SEO-optimised meta descriptions using AI."
+              planType="pro"
+              isNew
+              isLocked
+              docsLabel="Read Docs"
+              onDocsClick={() => {}}
+              isEnabled={ftcStates.ai}
+              onToggle={() => ftcToggle('ai')}
+              onUpgradeClick={() => {}}
             />
           </div>
         </DemoBox>
