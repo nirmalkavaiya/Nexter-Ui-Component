@@ -88,6 +88,7 @@ function FeatureToggleCard({
   /* interaction */
   isEnabled,
   onToggle,
+  onChange,
   onSettingsClick,
   disabled = false,
 
@@ -95,6 +96,11 @@ function FeatureToggleCard({
 }) {
   const hasPlanBadge = planType && planType !== 'free';
   const isInteractionLocked = isLocked || disabled;
+
+  function handleToggle(newValue) {
+    onChange?.(newValue);
+    onToggle?.(newValue);
+  }
 
   /* root classes */
   const outerClass = [
@@ -232,7 +238,7 @@ function FeatureToggleCard({
             ) : (
               <Toggle
                 checked={isEnabled}
-                onChange={onToggle}
+                onChange={handleToggle}
                 disabled={disabled}
                 aria-label={`Enable ${title}`}
               />
