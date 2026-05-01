@@ -4,10 +4,30 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+
   server: {
     port: 5174,
     strictPort: true,
   },
+
+  /* ── Vitest ─────────────────────────────────────────────── */
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    /* vmThreads avoids ESM-in-CJS issues from transitive jsdom 27 deps */
+    pool: 'vmThreads',
+    setupFiles: ['./tests/setup.js'],
+    include: ['tests/**/*.{test,spec}.{js,jsx}', 'src/**/*.{test,spec}.{js,jsx}'],
+    css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      include: ['src/components/**/*.{js,jsx}'],
+      exclude: ['src/demo/**', '**/*.stories.{js,jsx}'],
+    },
+  },
+
+  /* ── Library build ───────────────────────────────────────── */
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),

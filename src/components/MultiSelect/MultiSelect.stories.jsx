@@ -1,149 +1,108 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MultiSelect from './MultiSelect';
+
+const FRAMEWORKS = [
+  { value: 'react',   label: 'React' },
+  { value: 'vue',     label: 'Vue' },
+  { value: 'angular', label: 'Angular' },
+  { value: 'svelte',  label: 'Svelte' },
+  { value: 'solid',   label: 'SolidJS' },
+];
+
+const GROUPED = [
+  {
+    label: 'Frontend',
+    options: [
+      { value: 'react',   label: 'React' },
+      { value: 'vue',     label: 'Vue' },
+      { value: 'angular', label: 'Angular' },
+    ],
+  },
+  {
+    label: 'Backend',
+    options: [
+      { value: 'node',   label: 'Node.js' },
+      { value: 'django', label: 'Django' },
+      { value: 'rails',  label: 'Ruby on Rails' },
+    ],
+  },
+  {
+    label: 'Database',
+    options: [
+      { value: 'postgres', label: 'PostgreSQL' },
+      { value: 'mysql',    label: 'MySQL' },
+      { value: 'mongo',    label: 'MongoDB' },
+    ],
+  },
+];
 
 export default {
   title: 'Components/MultiSelect',
   component: MultiSelect,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component:
-          'Div-based multi-select dropdown with tag chips, group support, live search, keyboard navigation, and full controlled/uncontrolled API.',
-      },
-    },
-  },
+  tags: ['autodocs'],
   argTypes: {
-    searchable: { control: 'boolean' },
-    disabled:   { control: 'boolean' },
-    onChange:   { action: 'changed' },
+    placeholder:   { control: 'text' },
+    searchable:    { control: 'boolean' },
+    clearable:     { control: 'boolean' },
+    disabled:      { control: 'boolean' },
+    maxSelected:   { control: { type: 'number' } },
   },
 };
 
-/* ── Grouped options ── */
-const groupedOptions = [
-  {
-    label: 'Basic',
-    options: [
-      { label: 'Entire Website', value: 'entire' },
-      { label: 'All Singulars',  value: 'singulars' },
-      { label: 'All Archives',   value: 'archives' },
-    ],
-  },
-  {
-    label: 'Special Pages',
-    options: [
-      { label: 'Front Page',   value: 'front' },
-      { label: 'Blog / Posts', value: 'blog' },
-      { label: '404 Page',     value: '404' },
-      { label: 'Search Page',  value: 'search' },
-    ],
-  },
-  {
-    label: 'Post Types',
-    options: [
-      { label: 'Posts',     value: 'posts' },
-      { label: 'Pages',     value: 'pages' },
-      { label: 'Products',  value: 'products' },
-    ],
-  },
-];
-
-/* ── Flat options ── */
-const flatOptions = [
-  { label: 'Canonical URL',  value: 'canonical' },
-  { label: 'Open Graph',     value: 'og' },
-  { label: 'JSON-LD Schema', value: 'schema' },
-  { label: 'XML Sitemap',    value: 'sitemap' },
-  { label: 'IndexNow',       value: 'indexnow' },
-];
-
-/* ── Stateful wrapper ── */
-function Controlled({ initialValue = [], ...args }) {
-  const [val, setVal] = useState(initialValue);
-  return (
-    <div style={{ maxWidth: 520 }}>
-      <MultiSelect {...args} value={val} onChange={setVal} />
-      <p style={{ marginTop: 12, fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)' }}>
-        Selected: {val.length ? val.join(', ') : '—'}
-      </p>
-    </div>
-  );
-}
-
-/* ────────────────────────────────────────────── */
-
-/** Default — grouped options, pre-selected tags */
-export const GroupedDefault = {
-  name: 'Grouped — Pre-selected',
-  render: (args) => (
-    <Controlled
-      {...args}
-      options={groupedOptions}
-      initialValue={['entire', 'singulars', 'archives']}
-    />
-  ),
-  args: { searchable: true },
-};
-
-/** Flat options, no groups */
-export const FlatOptions = {
-  name: 'Flat Options',
-  render: (args) => (
-    <Controlled {...args} options={flatOptions} initialValue={['og', 'schema']} />
-  ),
-  args: { searchable: true, placeholder: 'Select SEO modules…' },
-};
-
-/** Searchable — filtering demo */
-export const SearchDemo = {
-  name: 'Searchable (type to filter)',
-  render: (args) => (
-    <Controlled {...args} options={groupedOptions} initialValue={[]} />
-  ),
+export const Default = {
   args: {
-    searchable: true,
-    placeholder: 'Search and select pages…',
-    searchPlaceholder: 'Filter pages…',
+    options: FRAMEWORKS,
+    placeholder: 'Select frameworks…',
   },
 };
 
-/** Without search */
-export const NoSearch = {
-  name: 'No Search Input',
-  render: (args) => (
-    <Controlled {...args} options={groupedOptions} initialValue={['front']} />
-  ),
-  args: { searchable: false },
+export const WithGroups = {
+  args: {
+    options: GROUPED,
+    placeholder: 'Select technologies…',
+  },
 };
 
-/** Disabled state */
+export const Controlled = {
+  render: () => {
+    const [value, setValue] = React.useState(['react', 'vue']);
+    return (
+      <div style={{ width: 340 }}>
+        <MultiSelect
+          options={FRAMEWORKS}
+          value={value}
+          onChange={setValue}
+          placeholder="Pick frameworks…"
+        />
+        <p style={{ marginTop: 12, fontSize: 13, color: '#64748B' }}>
+          Selected: <strong>{value.join(', ') || '—'}</strong>
+        </p>
+      </div>
+    );
+  },
+};
+
+export const MaxSelected = {
+  args: {
+    options: FRAMEWORKS,
+    placeholder: 'Up to 2 frameworks',
+    maxSelected: 2,
+  },
+};
+
+export const NotSearchable = {
+  args: {
+    options: FRAMEWORKS,
+    placeholder: 'Not searchable',
+    searchable: false,
+  },
+};
+
 export const Disabled = {
-  name: 'Disabled',
-  render: (args) => (
-    <Controlled {...args} options={groupedOptions} initialValue={['entire', 'front']} />
-  ),
-  args: { disabled: true },
-};
-
-/** Empty options */
-export const EmptyOptions = {
-  name: 'Empty Options',
-  render: (args) => <Controlled {...args} options={[]} initialValue={[]} />,
-  args: { searchable: true },
-};
-
-/** Custom text (i18n / translation ready) */
-export const CustomText = {
-  name: 'Custom Strings (i18n)',
-  render: (args) => (
-    <Controlled {...args} options={groupedOptions} initialValue={['singulars']} />
-  ),
   args: {
-    placeholder:       'विकल्प चुनें',
-    searchPlaceholder: 'खोजें…',
-    noResultsText:     'कोई परिणाम नहीं मिला',
-    clearAllLabel:     'सब हटाएं',
-    removeLabel:       'हटाएं',
+    options: FRAMEWORKS,
+    placeholder: 'Disabled state',
+    disabled: true,
+    value: ['react'],
   },
 };

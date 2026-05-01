@@ -1,0 +1,31 @@
+import '../src/styles/index.css';
+
+/** @type { import('@storybook/react').Preview } */
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },   // auto-detect event handlers
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+    backgrounds: {
+      default: 'light',
+      values: [
+        { name: 'light',   value: '#FFFFFF' },
+        { name: 'alt',     value: '#F8FAFC' },
+        { name: 'dark',    value: '#0F172A' },
+      ],
+    },
+    viewport: {
+      viewports: {
+        mobile:  { name: 'Mobile',  styles: { width: '375px',  height: '812px' } },
+        tablet:  { name: 'Tablet',  styles: { width: '768px',  height: '1024px' } },
+        desktop: { name: 'Desktop', styles: { width: '1280px', height: '900px' } },
+      },
+    },
+  },
+};
+
+export default preview;
