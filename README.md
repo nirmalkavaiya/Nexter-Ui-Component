@@ -4,6 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/nexter-ui-component)](https://www.npmjs.com/package/nexter-ui-component)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-nirmalkavaiya%2FNexter--Ui--Component-181717?logo=github)](https://github.com/nirmalkavaiya/Nexter-Ui-Component)
 
 ---
 
@@ -255,8 +256,8 @@ Key tokens:
 ## Dev / run demo
 
 ```bash
-git clone https://github.com/nirmalkavaiya/nexter-ui-component.git
-cd nexter-ui-component
+git clone https://github.com/nirmalkavaiya/Nexter-Ui-Component.git
+cd Nexter-Ui-Component
 npm install
 npm run dev      # http://localhost:5173 — live component gallery
 npm run build    # build dist/

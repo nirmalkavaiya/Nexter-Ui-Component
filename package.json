@@ -4,13 +4,13 @@
   "description": "Nexter Design System — React component library. 40+ accessible, token-driven components.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
-  "homepage": "https://github.com/nirmalkavaiya/nexter-ui-component#readme",
+  "homepage": "https://github.com/nirmalkavaiya/Nexter-Ui-Component#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nirmalkavaiya/nexter-ui-component.git"
+    "url": "git+https://github.com/nirmalkavaiya/Nexter-Ui-Component.git"
   },
   "bugs": {
-    "url": "https://github.com/nirmalkavaiya/nexter-ui-component/issues"
+    "url": "https://github.com/nirmalkavaiya/Nexter-Ui-Component/issues"
   },
   "keywords": [
     "react",
