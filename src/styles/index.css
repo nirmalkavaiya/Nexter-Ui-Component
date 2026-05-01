@@ -2844,6 +2844,263 @@
 }
 
 /* ============================================================
+   MULTI-SELECT
+   ============================================================ */
+
+/* ── Root ── */
+.nxp-ms {
+  position: relative;
+  font-family: var(--nxp-font);
+  width: 100%;
+  outline: none;
+}
+.nxp-ms--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ── Trigger (tag container + actions) ── */
+.nxp-ms__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 4px 8px 4px 10px;
+  border: 1.5px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  background: var(--nxp-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  user-select: none;
+}
+.nxp-ms--open .nxp-ms__trigger,
+.nxp-ms__trigger:hover {
+  border-color: var(--nxp-brand);
+}
+.nxp-ms:focus-visible .nxp-ms__trigger {
+  border-color: var(--nxp-brand);
+  box-shadow: 0 0 0 3px var(--nxp-brand-soft);
+}
+
+/* Tags scroll area */
+.nxp-ms__tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Placeholder */
+.nxp-ms__placeholder {
+  font-size: 13px;
+  color: var(--nxp-text-faint);
+}
+
+/* Tag chip */
+.nxp-ms__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px 2px 8px;
+  background: var(--nxp-bg-alt);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--nxp-text);
+  max-width: 160px;
+  white-space: nowrap;
+}
+.nxp-ms__tag-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nxp-ms__tag-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: none;
+  background: transparent;
+  color: var(--nxp-text-muted);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: background 0.12s, color 0.12s;
+}
+.nxp-ms__tag-remove:hover {
+  background: var(--nxp-border-strong);
+  color: var(--nxp-text);
+}
+
+/* Right side — clear all + chevron */
+.nxp-ms__trigger-end {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.nxp-ms__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent;
+  color: var(--nxp-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: background 0.12s, color 0.12s;
+}
+.nxp-ms__clear:hover {
+  background: var(--nxp-border);
+  color: var(--nxp-text);
+}
+.nxp-ms__chevron {
+  display: inline-flex;
+  align-items: center;
+  color: var(--nxp-text-muted);
+  transition: transform 0.18s var(--nxp-ease);
+}
+.nxp-ms__chevron--up {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown panel ── */
+.nxp-ms__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--nxp-bg);
+  border: 1.5px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  box-shadow: var(--nxp-shadow-md);
+  overflow: hidden;
+  animation: nxp-ms-in 0.12s var(--nxp-ease);
+}
+@keyframes nxp-ms-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Search input ── */
+.nxp-ms__search-wrap {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--nxp-border);
+}
+.nxp-ms__search {
+  width: 100%;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-sm);
+  background: var(--nxp-bg-alt);
+  font-family: var(--nxp-font);
+  font-size: 12.5px;
+  color: var(--nxp-text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+.nxp-ms__search::placeholder { color: var(--nxp-text-faint); }
+.nxp-ms__search:focus {
+  border-color: var(--nxp-brand);
+  box-shadow: 0 0 0 2px var(--nxp-brand-soft);
+}
+
+/* ── Options list ── */
+.nxp-ms__list {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 4px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--nxp-border) transparent;
+}
+.nxp-ms__list::-webkit-scrollbar { width: 5px; }
+.nxp-ms__list::-webkit-scrollbar-thumb {
+  background: var(--nxp-border-strong);
+  border-radius: 99px;
+}
+
+/* Group */
+.nxp-ms__group { padding: 0; }
+.nxp-ms__group + .nxp-ms__group {
+  border-top: 1px solid var(--nxp-border);
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+/* Group label */
+.nxp-ms__group-label {
+  padding: 5px 14px 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nxp-text-muted);
+}
+
+/* Option row */
+.nxp-ms__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: var(--nxp-text);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  gap: 8px;
+}
+.nxp-ms__option--focused {
+  background: var(--nxp-wash-hover);
+}
+.nxp-ms__option--selected {
+  background: var(--nxp-brand);
+  color: #fff;
+}
+.nxp-ms__option--selected.nxp-ms__option--focused {
+  background: #1a389e; /* slightly darker brand on hover */
+}
+.nxp-ms__option--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.nxp-ms__option-label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nxp-ms__option-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* Empty state */
+.nxp-ms__empty {
+  padding: 16px 14px;
+  font-size: 13px;
+  color: var(--nxp-text-muted);
+  text-align: center;
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {

@@ -40,6 +40,7 @@ export { default as Toast } from './components/Toast';
 export { default as Toggle } from './components/Toggle';
 export { default as Tooltip } from './components/Tooltip';
 export { default as FeatureToggleCard } from './components/FeatureToggleCard';
-export { default as ToggleGrid } from './components/ToggleGrid';
+export { default as ToggleGrid }   from './components/ToggleGrid';
+export { default as MultiSelect }  from './components/MultiSelect';
 
 export const tokens = 'Import dist/style.css to apply Nexter UI design tokens and component styles.';

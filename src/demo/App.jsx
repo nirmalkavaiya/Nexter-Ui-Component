@@ -41,6 +41,7 @@ import Toggle from '../components/Toggle';
 import Tooltip from '../components/Tooltip';
 import FeatureToggleCard from '../components/FeatureToggleCard';
 import ToggleGrid from '../components/ToggleGrid';
+import MultiSelect from '../components/MultiSelect';
 
 /* ── Helpers ─────────────────────────────────────────────── */
 function Section({ eyebrow, title, description, children }) {
@@ -123,6 +124,35 @@ export default function App() {
     { key: 'sitemap', label: 'XML Sitemap', tooltip: 'Auto-generate and update your sitemap.xml.' },
     { key: 'robots', label: 'Robots Meta', tooltip: 'Control per-page indexing directives.' },
     { key: 'indexnow', label: 'IndexNow', tooltip: 'Ping search engines instantly on publish.' },
+  ];
+  // MultiSelect
+  const [msValue, setMsValue] = useState(['entire', 'singulars', 'archives']);
+  const msOptions = [
+    {
+      label: 'Basic',
+      options: [
+        { label: 'Entire Website', value: 'entire' },
+        { label: 'All Singulars',  value: 'singulars' },
+        { label: 'All Archives',   value: 'archives' },
+      ],
+    },
+    {
+      label: 'Special Pages',
+      options: [
+        { label: 'Front Page',   value: 'front' },
+        { label: 'Blog / Posts', value: 'blog' },
+        { label: '404 Page',     value: '404' },
+        { label: 'Search Page',  value: 'search' },
+      ],
+    },
+    {
+      label: 'Post Types',
+      options: [
+        { label: 'Posts',    value: 'posts' },
+        { label: 'Pages',    value: 'pages' },
+        { label: 'Products', value: 'products' },
+      ],
+    },
   ];
   // Checkbox
   const [checked1, setChecked1] = useState(true);
@@ -934,6 +964,46 @@ export default function App() {
               <ToggleGrid
                 items={tgItems.slice(0, 3)}
                 columns={1}
+              />
+            </div>
+          </div>
+        </DemoBox>
+      </Section>
+
+      {/* ── MULTI-SELECT ── */}
+      <Section eyebrow="Input Controls" title="MultiSelect" description="Div-based multi-select with tag chips, grouped options, live search, and full keyboard navigation.">
+        <DemoBox>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 540 }}>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>Grouped — searchable (controlled)</p>
+              <MultiSelect
+                options={msOptions}
+                value={msValue}
+                onChange={setMsValue}
+                placeholder="Select pages…"
+                searchPlaceholder="Search pages…"
+              />
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11.5, color: 'var(--nxp-text-muted)', marginTop: 8 }}>
+                Selected: {msValue.length ? msValue.join(', ') : '—'}
+              </p>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>No search input</p>
+              <MultiSelect
+                options={msOptions}
+                value={[]}
+                onChange={() => {}}
+                searchable={false}
+                placeholder="Select pages…"
+              />
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>Disabled</p>
+              <MultiSelect
+                options={msOptions}
+                value={['entire', 'front']}
+                onChange={() => {}}
+                disabled
               />
             </div>
           </div>
