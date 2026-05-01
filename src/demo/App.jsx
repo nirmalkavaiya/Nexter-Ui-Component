@@ -136,7 +136,9 @@ export default function App() {
   const [tabUnder, setTabUnder] = useState('overview');
   const [tabVert, setTabVert] = useState('account');
   // Slider
-  const [sliderVal, setSliderVal] = useState(42);
+  const [sliderVal, setSliderVal]       = useState(280);
+  const [sliderUnit, setSliderUnit]     = useState('px');
+  const [sliderOpacity, setSliderOpacity] = useState(75);
   // Stepper
   const [stepVal, setStepVal] = useState(3);
   // Segmented
@@ -723,9 +725,35 @@ export default function App() {
       <Section eyebrow="Input Controls" title="Slider, Stepper & Segmented" description="Numeric input patterns for ranges, counts, and option groups.">
         <DemoBox>
           <div className="nxp-u-stack">
-            <div>
-              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Slider</p>
-              <Slider value={sliderVal} onChange={setSliderVal} unit="%" min={0} max={100} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <Slider
+                label="Menu Width"
+                value={sliderVal}
+                onChange={setSliderVal}
+                unit={sliderUnit}
+                units={['px', '%', 'rem', 'em']}
+                onUnitChange={setSliderUnit}
+                min={0}
+                max={600}
+                step={1}
+              />
+              <Slider
+                label="Border Radius"
+                defaultValue={8}
+                unit="px"
+                min={0}
+                max={48}
+                step={1}
+              />
+              <Slider
+                label="Opacity"
+                value={sliderOpacity}
+                onChange={setSliderOpacity}
+                unit={false}
+                min={0}
+                max={100}
+                step={1}
+              />
             </div>
             <div>
               <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--nxp-text-muted)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Stepper</p>
