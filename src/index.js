@@ -52,5 +52,7 @@ export { default as FileUpload }       from './components/FileUpload';
 export { default as ColorPicker }      from './components/ColorPicker';
 export { default as DatePicker }       from './components/DatePicker';
 export { default as DateRangePicker }  from './components/DateRangePicker';
+export { default as Drawer }           from './components/Drawer';
+export { default as Sidebar }          from './components/Sidebar';
 
 export const tokens = 'Import dist/style.css to apply Nexter UI design tokens and component styles.';

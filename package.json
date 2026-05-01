@@ -12,6 +12,9 @@
   "bugs": {
     "url": "https://github.com/nirmalkavaiya/Nexter-Ui-Component/issues"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "keywords": [
     "react",
     "ui",
@@ -20,9 +23,13 @@
     "nexter",
     "wordpress",
     "admin",
+    "dashboard",
     "button",
     "modal",
-    "dropdown"
+    "dropdown",
+    "datepicker",
+    "colorpicker",
+    "accessible"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
