@@ -11,7 +11,10 @@
 ## Install
 
 ```bash
-# npm
+# From GitHub (works today, no npm publish needed)
+npm install github:nirmalkavaiya/Nexter-Ui-Component
+
+# From npm (after you run: npm login && npm publish)
 npm install nexter-ui-component
 
 # yarn
