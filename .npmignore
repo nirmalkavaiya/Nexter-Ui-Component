@@ -1,0 +1,31 @@
+# Source — consumers use pre-built dist/, not raw source
+src/
+style-dictionary.config.mjs
+
+# Dev tooling configs
+vite.config.js
+vitest.config.js
+playwright.config.js
+.storybook/
+.eslintrc*
+.eslintignore
+.prettierrc*
+babel.config.*
+tsconfig*.json
+
+# Tests
+tests/
+e2e/
+playwright-report/
+test-results/
+coverage/
+
+# Build artefacts that are NOT the library itself
+*.tgz
+*.log
+
+# Editor / OS
+.DS_Store
+*.local
+.vscode/
+.idea/

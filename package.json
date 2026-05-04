@@ -298,16 +298,13 @@
   },
   "files": [
     "dist",
-    "src",
-    "tokens",
-    "style-dictionary.config.mjs"
+    "tokens"
   ],
   "scripts": {
     "dev": "vite",
     "build": "node style-dictionary.config.mjs && vite build && node -e \"require('fs').copyFileSync('src/index.d.ts','dist/index.d.ts')\"",
     "build:tokens": "node style-dictionary.config.mjs",
     "preview": "vite preview",
-    "prepare": "node -e \"var fs=require('fs');if(!fs.existsSync('dist/index.js')){require('child_process').execSync('npm run build',{stdio:'inherit'})}\"",
     "release": "gh release create v$(node -p \"require('./package.json').version\") --generate-notes --title \"v$(node -p \\\"require('./package.json').version\\\")\" || echo 'Release already exists or gh CLI not configured'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

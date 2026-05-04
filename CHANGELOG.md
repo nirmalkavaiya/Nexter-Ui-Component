@@ -5,6 +5,29 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.5.1] — 2026-05-04 *(patch 2)*
+
+### Performance — `npm install github:…` now fast
+
+**Before:** `npm install github:nirmalkavaiya/Nexter-Ui-Component` could take 2–5 minutes.
+**After:** Completes in 3–8 seconds.
+
+**Root cause of slowness:** npm v7+ always installs a git dependency's devDependencies before running any lifecycle script, including our conditional `prepare`. That meant installing `@storybook` (6 packages + hundreds of transitive deps), `@playwright/test`, `chromatic`, `vite`, `style-dictionary`, etc. — on every consumer install, for no benefit since `dist/` is already committed.
+
+**Changes:**
+
+| | Before | After |
+|---|---|---|
+| `prepare` script | Conditional node check (still triggered devDep install) | **Removed** — `dist/` is committed, no build needed at install time |
+| `files` field | `["dist","src","tokens","style-dictionary.config.mjs"]` | `["dist","tokens"]` — src is never needed by consumers |
+| `.npmignore` | Not present | Added — excludes `src/`, `vite.config.js`, test dirs, storybook, etc. |
+| Pack size | 207 files / 182 kB / 911 kB unpacked | **72 files / 98 kB / 485 kB unpacked (−47%)** |
+| devDeps installed on `npm install github:…` | ~300+ transitive packages | **0** |
+
+**For library developers:** `dist/` is still committed so you get it from git. To rebuild after source changes run `npm run build` explicitly.
+
+---
+
 ## [1.5.1] — 2026-05-04
 
 ### Fixed — CSS not loading in webpack / @wordpress/scripts consumers
