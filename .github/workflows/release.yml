@@ -23,25 +23,34 @@ jobs:
         id: pkg
         run: echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
 
-      - name: Check if tag already exists
-        id: tag_check
+      - name: Check if GitHub Release already exists
+        id: release_check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/v${{ steps.pkg.outputs.version }}")
+          if [ "$STATUS" = "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Release v${{ steps.pkg.outputs.version }} already exists — skipping."
           else
             echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Release v${{ steps.pkg.outputs.version }} not found — will create."
           fi
 
-      - name: Create tag
-        if: steps.tag_check.outputs.exists == 'false'
+      - name: Ensure tag exists
+        if: steps.release_check.outputs.exists == 'false'
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "v${{ steps.pkg.outputs.version }}"
-          git push origin "v${{ steps.pkg.outputs.version }}"
+          if ! git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag "v${{ steps.pkg.outputs.version }}"
+            git push origin "v${{ steps.pkg.outputs.version }}"
+          fi
 
       - name: Generate release notes and publish
-        if: steps.tag_check.outputs.exists == 'false'
+        if: steps.release_check.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.pkg.outputs.version }}
@@ -55,8 +64,7 @@ jobs:
             npm install nexter-ui-component@${{ steps.pkg.outputs.version }}
             ```
 
-            ### What's included
-            See commits below for the full change list (auto-generated).
+            > Full change list is auto-generated from commits below.
 
           draft: false
           prerelease: false
