@@ -21,7 +21,10 @@ jobs:
 
       - name: Read package version
         id: pkg
-        run: echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
+        run: |
+          VERSION=$(node -e "process.stdout.write(require('./package.json').version)")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
 
       - name: Check if GitHub Release already exists
         id: release_check
@@ -31,6 +34,7 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/releases/tags/v${{ steps.pkg.outputs.version }}")
+          echo "API status code: $STATUS"
           if [ "$STATUS" = "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "Release v${{ steps.pkg.outputs.version }} already exists — skipping."
@@ -39,33 +43,36 @@ jobs:
             echo "Release v${{ steps.pkg.outputs.version }} not found — will create."
           fi
 
-      - name: Ensure tag exists
+      - name: Ensure git tag exists
         if: steps.release_check.outputs.exists == 'false'
         run: |
-          if ! git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+          VERSION="v${{ steps.pkg.outputs.version }}"
+          if git ls-remote --tags origin | grep -q "refs/tags/$VERSION$"; then
+            echo "Tag $VERSION already on remote — skipping tag creation."
+          else
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git tag "v${{ steps.pkg.outputs.version }}"
-            git push origin "v${{ steps.pkg.outputs.version }}"
+            git tag "$VERSION"
+            git push origin "$VERSION"
+            echo "Tag $VERSION created and pushed."
           fi
 
-      - name: Generate release notes and publish
+      - name: Publish GitHub Release
         if: steps.release_check.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.pkg.outputs.version }}
-          name: "v${{ steps.pkg.outputs.version }}"
+          name: v${{ steps.pkg.outputs.version }}
           generate_release_notes: true
           body: |
             ## nexter-ui-component v${{ steps.pkg.outputs.version }}
 
-            Install / upgrade:
+            **Install / upgrade:**
             ```bash
             npm install nexter-ui-component@${{ steps.pkg.outputs.version }}
             ```
 
-            > Full change list is auto-generated from commits below.
-
+            > Commit-by-commit change list is auto-generated below.
           draft: false
           prerelease: false
         env:
