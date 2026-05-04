@@ -67,3 +67,4 @@ export { default as Typography }       from './components/Typography';
 export { ThemeProvider, useTheme }     from './components/ThemeProvider';
 
 export const tokens = 'CSS tokens and component styles are auto-injected into the JS bundle.';
+export const rtlSupport = 'CSS-driven — add dir="rtl" to any ancestor element';

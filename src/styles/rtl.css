@@ -1,0 +1,455 @@
+/* ============================================================
+   Nexter UI — RTL (Right-to-Left) Support
+   Strategy: additive [dir="rtl"] overrides — LTR styles untouched,
+   fully backward-compatible.
+
+   Usage:
+     Add dir="rtl" to <html> or any ancestor element.
+     All Nexter components inside will auto-adapt.
+
+   Scope: every component that uses a physical directional
+   property (margin-left/right, padding-left/right, border-left/right,
+   left:/right: positioning, transform: translateX, text-align: left/right).
+   ============================================================ */
+
+/* ── RESET — inherit text direction ──────────────────────────── */
+[dir="rtl"] .nxp-btn,
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  direction: rtl;
+}
+
+/* ============================================================
+   TOGGLE  (knob slides right → left in RTL)
+   ============================================================ */
+[dir="rtl"] .nxp-toggle__knob {
+  left: auto;
+  right: 2px;
+}
+[dir="rtl"] .nxp-toggle input:checked ~ .nxp-toggle__track .nxp-toggle__knob {
+  transform: translateX(-16px);
+}
+
+/* ============================================================
+   FORM ELEMENTS — number align
+   ============================================================ */
+/* LTR has text-align:right on a numeric display; flip to left in RTL */
+[dir="rtl"] .nxp-input--number { text-align: left; }
+
+/* ============================================================
+   DROPDOWN
+   ============================================================ */
+[dir="rtl"] .nxp-dropdown__menu {
+  left: auto;
+  right: 0;
+}
+/* margin-left: auto chevrons in flex — swap to margin-right */
+[dir="rtl"] .nxp-dropdown__item-end {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ============================================================
+   TABS — panel text & indicator
+   ============================================================ */
+[dir="rtl"] .nxp-tabs__panel {
+  text-align: right;
+}
+[dir="rtl"] .nxp-tabs__panel--padded {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+/* ============================================================
+   NOTICE — accent bar flips side
+   ============================================================ */
+[dir="rtl"] .nxp-notice {
+  border-left: none;
+  border-right: 3px solid var(--nxp-border-strong);
+}
+[dir="rtl"] .nxp-notice--success { border-right-color: var(--nxp-success); border-left: none; }
+[dir="rtl"] .nxp-notice--warning { border-right-color: var(--nxp-warning); border-left: none; }
+[dir="rtl"] .nxp-notice--error   { border-right-color: var(--nxp-error);   border-left: none; }
+[dir="rtl"] .nxp-notice--info    { border-right-color: var(--nxp-info);    border-left: none; }
+
+/* ============================================================
+   SEARCH — icon on right, padding flips
+   ============================================================ */
+[dir="rtl"] .nxp-search__icon {
+  left: auto;
+  right: 10px;
+}
+[dir="rtl"] .nxp-search__input {
+  padding: 0 32px 0 10px;
+}
+
+/* ============================================================
+   CAROUSEL — prev/next arrow icons mirror
+   ============================================================ */
+[dir="rtl"] .nxp-carousel__btn--prev svg,
+[dir="rtl"] .nxp-carousel__btn--next svg {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   ACCORDION — text direction + chevron unchanged (up/down)
+   ============================================================ */
+[dir="rtl"] .nxp-accordion__trigger {
+  text-align: right;
+}
+
+/* ============================================================
+   COMBOBOX — dropdown opens from right edge
+   ============================================================ */
+[dir="rtl"] .nxp-combobox__menu {
+  left: auto;
+  right: 0;
+}
+
+/* ============================================================
+   PAGINATION — prev/next arrows mirror
+   ============================================================ */
+[dir="rtl"] .nxp-pagination__item--prev svg,
+[dir="rtl"] .nxp-pagination__item--next svg {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   TABLE — text alignment swap
+   ============================================================ */
+[dir="rtl"] .nxp-table th,
+[dir="rtl"] .nxp-table td {
+  text-align: right;
+}
+/* numeric / end-aligned cells flip back to left */
+[dir="rtl"] .nxp-table th[data-align="end"],
+[dir="rtl"] .nxp-table td[data-align="end"] {
+  text-align: left;
+}
+
+/* ============================================================
+   COPY INPUT — copy button border side flips
+   ============================================================ */
+[dir="rtl"] .nxp-copy__btn {
+  border-left: none;
+  border-right: 1.5px solid var(--nxp-border);
+}
+
+/* ============================================================
+   BREADCRUMB — separator icon mirrors
+   ============================================================ */
+[dir="rtl"] .nxp-bc__sep svg,
+[dir="rtl"] .nxp-bc__sep { transform: scaleX(-1); }
+
+/* ============================================================
+   NUMBER INPUT — dec/inc button borders flip, order swaps
+   ============================================================ */
+[dir="rtl"] .nxp-num__step--dec {
+  border-right: none;
+  border-left: 1.5px solid var(--nxp-border);
+  order: 1; /* moves to right side */
+}
+[dir="rtl"] .nxp-num__step--inc {
+  border-left: none;
+  border-right: 1.5px solid var(--nxp-border);
+  order: -1; /* moves to left side */
+}
+[dir="rtl"] .nxp-num__input {
+  order: 0;
+}
+
+/* ============================================================
+   COLOR PICKER — panel opens from right edge
+   ============================================================ */
+[dir="rtl"] .nxp-cpicker__panel {
+  left: auto;
+  right: 0;
+}
+[dir="rtl"] .nxp-cpicker__alpha-val {
+  text-align: left;
+}
+
+/* ============================================================
+   DATE PICKER — popover opens from right edge
+   ============================================================ */
+[dir="rtl"] .nxp-date__popover {
+  left: auto;
+  right: 0;
+}
+[dir="rtl"] .nxp-date__clear {
+  margin-left: 0;
+  margin-right: 2px;
+}
+/* Calendar nav arrows */
+[dir="rtl"] .nxp-date__nav-prev svg,
+[dir="rtl"] .nxp-date__nav-next svg {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   DATE RANGE PICKER — popover opens from right edge
+   ============================================================ */
+[dir="rtl"] .nxp-drp__popover {
+  left: auto;
+  right: 0;
+}
+[dir="rtl"] .nxp-drp__arrow svg {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   MULTI-SELECT — dropdown opens from right edge
+   ============================================================ */
+[dir="rtl"] .nxp-ms__menu {
+  left: auto;
+  right: 0;
+}
+
+/* ============================================================
+   STEPPER — connector border sides
+   ============================================================ */
+[dir="rtl"] .nxp-stepper__connector {
+  border-left: none;
+  border-right: 1px solid var(--nxp-border);
+}
+
+/* ============================================================
+   DRAWER — swap left ↔ right slide animations in RTL
+   Left panel logically becomes start, right becomes end.
+   Both positioning and animation keyframes are swapped.
+   ============================================================ */
+@keyframes nxp-drawer-slide-right-rtl { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes nxp-drawer-slide-left-rtl  { from { transform: translateX(100%);  } to { transform: translateX(0); } }
+
+[dir="rtl"] .nxp-drawer__panel--right {
+  right: auto;
+  left: 0;
+  animation-name: nxp-drawer-slide-right-rtl;
+}
+[dir="rtl"] .nxp-drawer__panel--left {
+  left: auto;
+  right: 0;
+  animation-name: nxp-drawer-slide-left-rtl;
+}
+
+/* ============================================================
+   SIDEBAR — border side + child indent + collapse toggle
+   ============================================================ */
+[dir="rtl"] .nxp-sb {
+  border-right: none;
+  border-left: 1px solid var(--nxp-border);
+}
+/* Child items indent flips */
+[dir="rtl"] .nxp-sb__item--child {
+  margin-left: 0;
+  margin-right: 24px;
+}
+/* Chevron: margin-left: auto → margin-right: auto */
+[dir="rtl"] .nxp-sb__chevron {
+  margin-left: 0;
+  margin-right: auto;
+}
+/* Collapse toggle button position */
+[dir="rtl"] .nxp-sb__toggle {
+  right: auto;
+  left: 10px;
+}
+/* Collapsed state: center the toggle */
+[dir="rtl"] .nxp-sb--collapsed .nxp-sb__toggle {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+/* Collapse arrow icon mirrors */
+[dir="rtl"] .nxp-sb__toggle svg {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   COLLAPSIBLE — trigger text direction
+   ============================================================ */
+[dir="rtl"] .nxp-collapsible__trigger {
+  text-align: right;
+}
+/* Chevron mirrors for open/close in RTL context */
+[dir="rtl"] .nxp-collapsible__chevron svg {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .nxp-collapsible__chevron--open svg {
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* ============================================================
+   TYPOGRAPHY & PROSE — blockquote border + list indent
+   ============================================================ */
+[dir="rtl"] .nxp-typo--blockquote {
+  border-left: none;
+  border-right: 3px solid var(--nxp-brand);
+  padding-left: 0;
+  padding-right: 1.5em;
+}
+[dir="rtl"] .nxp-prose blockquote {
+  border-left: none;
+  border-right: 3px solid var(--nxp-brand);
+  padding-left: 0;
+  padding-right: 1.5em;
+}
+[dir="rtl"] .nxp-prose ul,
+[dir="rtl"] .nxp-prose ol {
+  padding-left: 0;
+  padding-right: 1.5em;
+}
+[dir="rtl"] .nxp-prose table th,
+[dir="rtl"] .nxp-prose table td {
+  text-align: right;
+}
+
+/* ============================================================
+   FEATURE TOGGLE CARD — icon placement
+   ============================================================ */
+[dir="rtl"] .nxp-ftc__icon {
+  left: auto;
+  right: 14px;
+}
+
+/* ============================================================
+   SORTABLE LIST — drag handle on correct side
+   ============================================================ */
+[dir="rtl"] .nxp-sortable__handle {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* ============================================================
+   SLIDER — fill direction
+   ============================================================ */
+[dir="rtl"] .nxp-slider__fill {
+  left: auto;
+  right: 0;
+}
+[dir="rtl"] .nxp-slider__thumb-value {
+  /* tooltip above thumb: no change needed */
+}
+
+/* ============================================================
+   MODAL / SHEET — close button side
+   ============================================================ */
+[dir="rtl"] .nxp-modal__close {
+  right: auto;
+  left: 0;
+}
+[dir="rtl"] .nxp-sheet__close {
+  right: auto;
+  left: 0;
+}
+
+/* ============================================================
+   POPOVER — align to right edge of trigger by default
+   ============================================================ */
+[dir="rtl"] .nxp-popover {
+  left: auto;
+  right: 0;
+}
+
+/* ============================================================
+   FIELD — helper / error text direction
+   ============================================================ */
+[dir="rtl"] .nxp-field__helper,
+[dir="rtl"] .nxp-field__error {
+  text-align: right;
+}
+
+/* ============================================================
+   STAT CARD — trend icon / label direction
+   ============================================================ */
+[dir="rtl"] .nxp-stat {
+  text-align: right;
+}
+
+/* ============================================================
+   EMPTY STATE — centered, no change needed
+   ============================================================ */
+
+/* ============================================================
+   BANNER — close button side
+   ============================================================ */
+[dir="rtl"] .nxp-banner__close {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ============================================================
+   ALERT — icon + text direction
+   ============================================================ */
+[dir="rtl"] .nxp-alert {
+  text-align: right;
+}
+[dir="rtl"] .nxp-alert__close {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ============================================================
+   TAG / BADGE — remove icon on correct side
+   ============================================================ */
+[dir="rtl"] .nxp-tag__remove {
+  margin-left: 0;
+  margin-right: auto;
+  order: -1;
+}
+
+/* ============================================================
+   SELECT — chevron on left in RTL
+   ============================================================ */
+[dir="rtl"] .nxp-select__chevron {
+  left: 10px;
+  right: auto;
+}
+[dir="rtl"] .nxp-select select {
+  padding-left: 10px;
+  padding-right: 36px;
+}
+
+/* ============================================================
+   TOAST — container stacking direction in RTL
+   ============================================================ */
+[dir="rtl"] .nxp-toast {
+  text-align: right;
+}
+[dir="rtl"] .nxp-toast__close {
+  margin-left: 0;
+  margin-right: auto;
+  order: -1;
+}
+
+/* ============================================================
+   LABEL — text direction
+   ============================================================ */
+[dir="rtl"] .nxp-label {
+  text-align: right;
+}
+[dir="rtl"] .nxp-label__required {
+  margin-left: 0;
+  margin-right: 2px;
+}
+
+/* ============================================================
+   SEPARATOR — label separator text
+   ============================================================ */
+[dir="rtl"] .nxp-sep--label {
+  text-align: right;
+}
+
+/* ============================================================
+   SCROLL AREA — scrollbar on left in RTL
+   ============================================================ */
+[dir="rtl"] .nxp-scroll-area {
+  direction: rtl;
+}
+[dir="rtl"] .nxp-scroll-area > * {
+  direction: ltr; /* content inside keeps LTR unless explicitly RTL */
+}
+[dir="rtl"] .nxp-scroll-area--rtl > * {
+  direction: rtl;
+}

@@ -1,7 +1,7 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.4.0",
-  "description": "Nexter Design System — React component library. 61 accessible, token-driven components with Figma-compatible design tokens and built-in ThemeProvider.",
+  "version": "1.5.0",
+  "description": "Nexter Design System — React component library. 61 accessible, RTL-ready, token-driven components with Figma-compatible design tokens and built-in ThemeProvider.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
   "homepage": "https://github.com/nirmalkavaiya/Nexter-Ui-Component#readme",
@@ -36,7 +36,12 @@
     "figma",
     "tokens-studio",
     "theme-switching",
-    "style-dictionary"
+    "style-dictionary",
+    "rtl",
+    "bidi",
+    "right-to-left",
+    "arabic",
+    "hebrew"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -303,6 +308,7 @@
     "build:tokens": "node style-dictionary.config.mjs",
     "preview": "vite preview",
     "prepare": "npm run build",
+    "release": "gh release create v$(node -p \"require('./package.json').version\") --generate-notes --title \"v$(node -p \\\"require('./package.json').version\\\")\" || echo 'Release already exists or gh CLI not configured'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest run",

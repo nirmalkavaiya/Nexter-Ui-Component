@@ -1,6 +1,6 @@
 /**
  * Nexter UI Component — TypeScript Declarations
- * v1.4.0 — Covers all 61 exported components + ThemeProvider
+ * v1.5.0 — Covers all 61 exported components + ThemeProvider + RTL support
  *
  * Usage (TypeScript / TSX):
  *   import { Button, Modal, FeatureToggleCard } from 'nexter-ui-component';
@@ -1044,6 +1044,29 @@ export declare const ThemeProvider: React.FC<ThemeProviderProps>;
  * ```
  */
 export declare function useTheme(): NxpThemeContext;
+
+// ─── RTL helpers (v1.5.0) ────────────────────────────────────────────────────
+
+/**
+ * RTL support is CSS-driven — add `dir="rtl"` to any ancestor element
+ * (typically `<html>` or a wrapper `<div>`).
+ *
+ * All Nexter components inside will automatically mirror:
+ * - Border sides (notice accent bar, sidebar border)
+ * - Toggle knob direction
+ * - Dropdown / popover opening edge
+ * - Breadcrumb / pagination arrow icons
+ * - Drawer slide animations
+ * - Sidebar child indent & collapse button position
+ * - Typography blockquote border & list indent
+ * - Search icon position & input padding
+ * - NumberInput button order & borders
+ * - CopyInput button border side
+ * - ColorPicker / DatePicker popover opening edge
+ *
+ * No JS changes are required. RTL styles are bundled in the package.
+ */
+export declare const rtlSupport: 'CSS-driven — add dir="rtl" to any ancestor element';
 
 // ─── tokens (informational export) ───────────────────────────────────────────
 
