@@ -5,6 +5,49 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.5.3] — 2026-05-04
+
+### Fixed — Full CSS design-token audit: 45 hardcoded values replaced with `--nxp-*` variables
+
+Every property in every class audited for hardcoded values that should use the token system. All issues found and resolved.
+
+**border-radius** (6 locations tokenised)
+| Component | Before | After |
+|---|---|---|
+| `.nxp-ftc` (FeatureToggleCard) | `10px` | `var(--nxp-radius-lg)` |
+| `.nxp-ftc-plan` | `20px` | `var(--nxp-radius-pill)` |
+| `.nxp-ftc__badge` | `4px` | `var(--nxp-radius-sm)` |
+| `.nxp-sortable__handle`, `.nxp-cpicker__trigger-swatch`, `.nxp-cpicker__swatch` | `3px` | `var(--nxp-radius-sm)` |
+| `.nxp-ms__list` scrollbar-thumb | `99px` | `var(--nxp-radius-pill)` |
+| `.nxp-scroll-area` scrollbar track + thumb | `999px` | `var(--nxp-radius-pill)` |
+
+**box-shadow** (2 locations tokenised)
+| Component | Before | After |
+|---|---|---|
+| `.nxp-ftc` | `0 1px 3px 0 rgba(0,0,0,.05)` | `var(--nxp-shadow-sm)` |
+| `.nxp-ftc:hover` | `0 2px 8px 0 rgba(0,0,0,.08)` | `var(--nxp-shadow-md)` |
+
+**transition** (35+ locations tokenised across 15 components)
+All hardcoded durations (`.15s`, `.12s`, `.1s`, `0.15s`, `0.12s`, `0.1s`, `0.18s`) in `transition:` properties replaced with `var(--nxp-dur-hover) var(--nxp-ease)`. Components affected: Field, Slider, FeatureToggleCard, ToggleGrid, CopyInput, NumberInput, Breadcrumb, ConfirmButton, SortableList, FileUpload, ColorPicker, DatePicker/DateRangePicker, MultiSelect, OTPInput, Sortable.
+
+**border-color** (1 location)
+| Component | Before | After |
+|---|---|---|
+| `.nxp-textarea__control:hover` | `#cbd5e1` (hardcoded light hex) | `var(--nxp-border-strong)` |
+
+This fix is especially important: `#cbd5e1` was a light-mode only color that would not switch in dark mode.
+
+**Intentionally kept as hardcoded** (non-tokenisable by design):
+- ColorPicker thumb/slider `box-shadow: rgba(0,0,0,...)` — overlay shadows must work on any hue background
+- Sidebar chevron `200ms` — intentionally slower than standard hover
+- `border-radius: 50%` — percentage radii for circles
+- `border-radius: 2px` (btn–link focus) — sub-token micro radius
+
+### Changed
+- Version: `1.5.2` → `1.5.3`
+
+---
+
 ## [1.5.2] — 2026-05-04
 
 ### Added — CSS Utility Classes
