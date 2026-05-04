@@ -5,6 +5,46 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.5.2] — 2026-05-04
+
+### Added — CSS Utility Classes
+
+5 global utility classes added to `src/styles/index.css`. All properties use existing `--nxp-*` design tokens — fully dark-mode-aware and theme-switchable.
+
+**Typography**
+
+| Class | Size | Weight | Color |
+|---|---|---|---|
+| `.nxp-heading` | `--nxp-font-size-3xl` (24px) | `bold` (700) | `--nxp-color-text-strong` |
+| `.nxp-subheading` | `--nxp-font-size-lg` (16px) | `semibold` (600) | `--nxp-color-text-default` |
+| `.nxp-body` | `--nxp-font-size-base` (13.5px) | `regular` (400) | `--nxp-color-text-muted` |
+
+All three: `font-family: var(--nxp-font-family-sans)`, `margin: 0`, correct `line-height` token per optical role.
+
+**Cards**
+
+| Class | Background | Shadow | Use |
+|---|---|---|---|
+| `.nxp-card` | `--nxp-color-surface-card` (white / dark: #1E293B) | `--nxp-shadow-sm` | Primary content card |
+| `.nxp-card--alt` | `--nxp-color-bg-alt` (#F8FAFC / dark: #0F172A) | none | Tinted / secondary surface |
+
+Both cards: `border: 1px solid --nxp-color-border-default`, `border-radius: --nxp-radius-lg` (12px), `padding: --nxp-spacing-lg` (24px), `box-sizing: border-box`, smooth `transition` on background + border-color via `--nxp-motion-duration-hover` + `--nxp-motion-ease-standard`.
+
+**Usage**
+```html
+<h1 class="nxp-heading">Page title</h1>
+<h2 class="nxp-subheading">Section title</h2>
+<p class="nxp-body">Body copy or description text.</p>
+
+<div class="nxp-card">Primary card content</div>
+<div class="nxp-card--alt">Tinted alternate card</div>
+```
+
+### Changed
+- Version: `1.5.1` → `1.5.2`
+
+---
+
 ## [1.5.1] — 2026-05-04 *(patch 2)*
 
 ### Performance — `npm install github:…` now fast
