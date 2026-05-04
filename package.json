@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Nexter Design System — React component library. 61 accessible, RTL-ready, token-driven components with Figma-compatible design tokens and built-in ThemeProvider.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/nirmalkavaiya/Nexter-Ui-Component/issues"
   },
-  "sideEffects": false,
+  "sideEffects": ["./dist/index.js", "./dist/index.cjs.js"],
   "types": "dist/index.d.ts",
   "keywords": [
     "react",
@@ -307,7 +307,7 @@
     "build": "node style-dictionary.config.mjs && vite build && node -e \"require('fs').copyFileSync('src/index.d.ts','dist/index.d.ts')\"",
     "build:tokens": "node style-dictionary.config.mjs",
     "preview": "vite preview",
-    "prepare": "npm run build",
+    "prepare": "node -e \"var fs=require('fs');if(!fs.existsSync('dist/index.js')){require('child_process').execSync('npm run build',{stdio:'inherit'})}\"",
     "release": "gh release create v$(node -p \"require('./package.json').version\") --generate-notes --title \"v$(node -p \\\"require('./package.json').version\\\")\" || echo 'Release already exists or gh CLI not configured'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

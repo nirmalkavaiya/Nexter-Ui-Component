@@ -4,26 +4,35 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: process.env.CI ? 1 : 0,
+  workers: process.env.CI ? 2 : undefined,
 
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ['list'],
+    ...(process.env.CI ? [['github']] : []),
   ],
 
   use: {
-    /* Local dev server — matches vite.config.js port */
     baseURL: process.env.E2E_BASE_URL || 'http://localhost:5174',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    viewport: { width: 1280, height: 900 },
+    actionTimeout: 10_000,
+    navigationTimeout: 30_000,
   },
 
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        /* Disable GPU to prevent ContextResult::kTransientFailure on headless Windows */
+        launchOptions: {
+          args: ['--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+        },
+      },
     },
     {
       name: 'firefox',
@@ -33,18 +42,29 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    /* Mobile viewports */
     {
       name: 'mobile-chrome',
-      use: { ...devices['Pixel 5'] },
+      use: {
+        ...devices['Pixel 5'],
+        launchOptions: { args: ['--disable-gpu', '--no-sandbox'] },
+      },
+    },
+    {
+      name: 'mobile-safari',
+      use: { ...devices['iPhone 14'] },
+    },
+    {
+      name: 'tablet',
+      use: { ...devices['iPad (gen 7)'] },
     },
   ],
 
-  /* Auto-start the Vite dev server before running tests */
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:5174',
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });

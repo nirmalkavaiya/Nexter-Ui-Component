@@ -4,7 +4,19 @@ import { resolve } from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
-  plugins: [react(), cssInjectedByJsPlugin()],
+  plugins: [
+    react(),
+    // Inject all CSS into a single IIFE inside dist/index.js only.
+    // styleId makes the injected <style> tag identifiable and prevents
+    // duplicate injection if the bundle is accidentally loaded twice.
+    // relativeCSSInjection: false ensures CSS is NOT split into per-component
+    // files (which would be stripped by webpack's sideEffects optimisation).
+    cssInjectedByJsPlugin({
+      styleId: 'nexter-ui-component',
+      relativeCSSInjection: false,
+      topExecutionPriority: true,
+    }),
+  ],
 
   server: {
     port: 5174,

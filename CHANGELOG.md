@@ -5,6 +5,35 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.5.1] — 2026-05-04
+
+### Fixed — CSS not loading in webpack / @wordpress/scripts consumers
+
+**Root cause:** `"sideEffects": false` in `package.json` told webpack that every file in the package was pure. `vite-plugin-css-injected-by-js` places all styles inside an IIFE at the top of `dist/index.js`. Because webpack's production tree-shaking honoured `sideEffects: false`, it eliminated that IIFE as dead code — zero styles loaded.
+
+**Three-layer fix:**
+
+1. **`package.json` `sideEffects`** changed from `false` to an allowlist:
+   ```json
+   "sideEffects": ["./dist/index.js", "./dist/index.cjs.js"]
+   ```
+   Per-component files remain fully tree-shakeable; only the two entry bundles are marked as having side effects so the CSS IIFE survives.
+
+2. **`vite.config.js`** — explicit options added to `cssInjectedByJsPlugin`:
+   - `relativeCSSInjection: false` — all CSS stays in the entry bundle, not split into per-component files (webpack would silently drop those)
+   - `topExecutionPriority: true` — CSS IIFE runs before any component code, styles available before first render
+   - `styleId: 'nexter-ui-component'` — prevents duplicate `<style>` if bundle is loaded twice
+
+3. **Consumer webpack guard** — for `@wordpress/scripts` projects add to `webpack.config.js`:
+   ```js
+   { test: /node_modules[\\/]nexter-ui-component[\\/]dist[\\/]index/, sideEffects: true }
+   ```
+
+### Changed
+- Version: `1.5.0` → `1.5.1`
+
+---
+
 ## [1.5.0] — 2026-05-04
 
 ### Added — RTL Support
