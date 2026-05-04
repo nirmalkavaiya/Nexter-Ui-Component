@@ -889,7 +889,102 @@ export interface TooltipProps {
 
 export declare const Tooltip: React.FC<TooltipProps>;
 
+// ─── Separator ───────────────────────────────────────────────────────────────
+
+export interface SeparatorProps {
+  orientation?: 'horizontal' | 'vertical';
+  /** Optional text label rendered between the two lines (horizontal only) */
+  label?: ReactNode;
+  /** When true renders aria-hidden (default: true) */
+  decorative?: boolean;
+  className?: string;
+}
+
+export declare const Separator: React.FC<SeparatorProps>;
+
+// ─── Label ───────────────────────────────────────────────────────────────────
+
+export interface LabelProps {
+  htmlFor?: string;
+  required?: boolean;
+  disabled?: boolean;
+  children?: ReactNode;
+  className?: string;
+}
+
+export declare const Label: React.FC<LabelProps>;
+
+// ─── AspectRatio ─────────────────────────────────────────────────────────────
+
+export interface AspectRatioProps {
+  /** width / height ratio, e.g. 16/9 (default), 4/3, 1 */
+  ratio?: number;
+  children?: ReactNode;
+  className?: string;
+}
+
+export declare const AspectRatio: React.FC<AspectRatioProps>;
+
+// ─── Collapsible ─────────────────────────────────────────────────────────────
+
+export interface CollapsibleProps {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Trigger content — string or ReactNode */
+  trigger?: ReactNode;
+  /** Show animated chevron (default: true) */
+  showChevron?: boolean;
+  disabled?: boolean;
+  children?: ReactNode;
+  className?: string;
+}
+
+export declare const Collapsible: React.FC<CollapsibleProps>;
+
+// ─── ScrollArea ──────────────────────────────────────────────────────────────
+
+export interface ScrollAreaProps {
+  /** Fixed height, e.g. '320px' or 320 */
+  height?: string | number;
+  /** Max-height — use for dynamic content */
+  maxHeight?: string | number;
+  /** Enable horizontal scroll (default: false) */
+  horizontal?: boolean;
+  children?: ReactNode;
+  className?: string;
+}
+
+export declare const ScrollArea: React.FC<ScrollAreaProps>;
+
+// ─── Typography ──────────────────────────────────────────────────────────────
+
+export type TypographyVariant =
+  | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  | 'p' | 'lead' | 'large' | 'small' | 'muted'
+  | 'code' | 'blockquote';
+
+export interface TypographyProps {
+  /**
+   * Single-element variant — renders the appropriate HTML tag
+   * with pre-styled Nexter typography class.
+   */
+  variant?: TypographyVariant;
+  /**
+   * Prose wrapper mode — auto-styles all child elements
+   * (h1–h6, p, ul, ol, blockquote, code, pre, a…).
+   * When true, `variant` is ignored.
+   */
+  prose?: boolean;
+  /** Override the rendered HTML tag */
+  as?: React.ElementType;
+  children?: ReactNode;
+  className?: string;
+}
+
+export declare const Typography: React.FC<TypographyProps>;
+
 // ─── tokens (informational export) ───────────────────────────────────────────
 
-/** Informational string — CSS tokens are auto-injected via JS */
+/** CSS tokens and component styles are auto-injected into the JS bundle. */
 export declare const tokens: string;

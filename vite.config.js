@@ -15,7 +15,6 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    /* vmThreads avoids ESM-in-CJS issues from transitive jsdom 27 deps */
     pool: 'vmThreads',
     setupFiles: ['./tests/setup.js'],
     include: ['tests/**/*.{test,spec}.{js,jsx}', 'src/**/*.{test,spec}.{js,jsx}'],
@@ -33,22 +32,42 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
       name: 'NexterUI',
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'es' : 'cjs'}.js`,
     },
+
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'ReactJSXRuntime',
+
+      output: [
+        /* ── ESM — preserveModules: each component gets its own file
+              Enables true per-component tree-shaking in any bundler.
+              Import path: nexter-ui-component → dist/index.js
+              Per-component: nexter-ui-component/Button → dist/components/Button/index.js
+        ── */
+        {
+          format: 'es',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].js',
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'react/jsx-runtime': 'ReactJSXRuntime',
+          },
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
-          return assetInfo.name;
+
+        /* ── CJS — single bundle for Node / CommonJS consumers ── */
+        {
+          format: 'cjs',
+          entryFileNames: 'index.cjs.js',
+          chunkFileNames: '[name].cjs.js',
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'react/jsx-runtime': 'ReactJSXRuntime',
+          },
         },
-      },
+      ],
     },
   },
 });

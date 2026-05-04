@@ -55,4 +55,12 @@ export { default as DateRangePicker }  from './components/DateRangePicker';
 export { default as Drawer }           from './components/Drawer';
 export { default as Sidebar }          from './components/Sidebar';
 
-export const tokens = 'Import dist/style.css to apply Nexter UI design tokens and component styles.';
+// v1.3.0 additions
+export { default as Separator }        from './components/Separator';
+export { default as Label }            from './components/Label';
+export { default as AspectRatio }      from './components/AspectRatio';
+export { default as Collapsible }      from './components/Collapsible';
+export { default as ScrollArea }       from './components/ScrollArea';
+export { default as Typography }       from './components/Typography';
+
+export const tokens = 'CSS tokens and component styles are auto-injected into the JS bundle.';

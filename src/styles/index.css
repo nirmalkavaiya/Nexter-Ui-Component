@@ -3659,6 +3659,439 @@
 }
 
 /* ============================================================
+   SEPARATOR
+   ============================================================ */
+.nxp-sep--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: var(--nxp-border);
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.nxp-sep--vertical {
+  display: inline-block;
+  width: 1px;
+  height: auto;
+  align-self: stretch;
+  background: var(--nxp-border);
+  flex-shrink: 0;
+}
+
+/* Labeled separator — centered text between two lines */
+.nxp-sep--label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-family: var(--nxp-font);
+  font-weight: 500;
+  color: var(--nxp-text-faint);
+  white-space: nowrap;
+  user-select: none;
+}
+.nxp-sep--label::before,
+.nxp-sep--label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--nxp-border);
+}
+
+/* ============================================================
+   LABEL (standalone)
+   ============================================================ */
+.nxp-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--nxp-font);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--nxp-text);
+  cursor: default;
+  user-select: none;
+}
+.nxp-label--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.nxp-label__required {
+  color: var(--nxp-error);
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+/* ============================================================
+   ASPECT RATIO
+   ============================================================ */
+.nxp-aspect {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+/* padding-bottom trick — uses CSS custom property set inline */
+.nxp-aspect::before {
+  content: '';
+  display: block;
+  padding-bottom: calc(100% / var(--nxp-aspect-ratio, 1.7778)); /* default 16/9 */
+}
+.nxp-aspect__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.nxp-aspect__inner > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* good default for img/video */
+}
+
+/* ============================================================
+   COLLAPSIBLE
+   ============================================================ */
+.nxp-collapsible {
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  background: var(--nxp-bg);
+  overflow: hidden;
+}
+
+/* Trigger button */
+.nxp-collapsible__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--nxp-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--nxp-text);
+  text-align: left;
+  transition: background var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-collapsible__trigger:hover {
+  background: var(--nxp-wash-hover);
+}
+.nxp-collapsible__trigger:focus-visible {
+  outline: none;
+  box-shadow: inset var(--nxp-ring);
+}
+.nxp-collapsible__trigger:disabled,
+.nxp-collapsible--disabled .nxp-collapsible__trigger {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.nxp-collapsible__trigger-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Chevron icon rotation */
+.nxp-collapsible__chevron {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--nxp-text-muted);
+  transition: transform var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-collapsible__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Content panel — CSS-only collapse animation via max-height */
+.nxp-collapsible__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--nxp-dur-motion) var(--nxp-ease);
+}
+.nxp-collapsible--open .nxp-collapsible__content {
+  /* Large enough for any content. Animates from 0 → this value. */
+  max-height: 9999px;
+  transition: max-height 600ms var(--nxp-ease);
+}
+.nxp-collapsible__content[aria-hidden='true'] {
+  visibility: hidden;
+}
+.nxp-collapsible--open .nxp-collapsible__content[aria-hidden='false'] {
+  visibility: visible;
+}
+.nxp-collapsible__inner {
+  padding: 0 16px 16px;
+}
+
+/* Divider between trigger and content */
+.nxp-collapsible--open .nxp-collapsible__trigger {
+  border-bottom: 1px solid var(--nxp-border);
+}
+
+/* ============================================================
+   SCROLL AREA
+   ============================================================ */
+.nxp-scroll-area {
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  /* Focus ring when scrolled via keyboard */
+  outline: none;
+  border-radius: var(--nxp-radius);
+}
+.nxp-scroll-area:focus-visible {
+  box-shadow: var(--nxp-ring);
+}
+
+/* Custom scrollbar — webkit */
+.nxp-scroll-area::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.nxp-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+.nxp-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--nxp-border-strong);
+  border-radius: 999px;
+  transition: background var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--nxp-text-faint);
+}
+.nxp-scroll-area::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox */
+.nxp-scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nxp-border-strong) transparent;
+}
+
+/* Horizontal scroll variant */
+.nxp-scroll-area--x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+/* ── Single variant classes ── */
+.nxp-typo {
+  font-family: var(--nxp-font);
+  color: var(--nxp-text);
+  margin: 0;
+}
+.nxp-typo--h1 {
+  font-size: 2rem;       /* 32px */
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--h2 {
+  font-size: 1.5rem;     /* 24px */
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--h3 {
+  font-size: 1.25rem;    /* 20px */
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--h4 {
+  font-size: 1.0625rem;  /* 17px */
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--h5 {
+  font-size: 0.9375rem;  /* 15px */
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--h6 {
+  font-size: 0.8125rem;  /* 13px */
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--nxp-text-muted);
+}
+.nxp-typo--p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--nxp-text);
+}
+.nxp-typo--lead {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--nxp-text-muted);
+  font-weight: 400;
+}
+.nxp-typo--large {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--small {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nxp-text);
+}
+.nxp-typo--muted {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--nxp-text-muted);
+}
+.nxp-typo--code {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.875em;
+  background: var(--nxp-bg-alt);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-sm);
+  padding: 0.15em 0.4em;
+  color: var(--nxp-text-strong);
+}
+.nxp-typo--blockquote {
+  border-left: 3px solid var(--nxp-brand);
+  padding: 4px 0 4px 16px;
+  margin: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--nxp-text-muted);
+  line-height: 1.65;
+}
+
+/* ── Prose wrapper — auto-styles child elements ── */
+.nxp-prose {
+  font-family: var(--nxp-font);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nxp-text);
+  max-width: 65ch;
+}
+.nxp-prose h1,
+.nxp-prose h2,
+.nxp-prose h3,
+.nxp-prose h4,
+.nxp-prose h5,
+.nxp-prose h6 {
+  color: var(--nxp-text-strong);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.nxp-prose h1 { font-size: 1.875rem; letter-spacing: -0.025em; }
+.nxp-prose h2 { font-size: 1.375rem; letter-spacing: -0.015em; }
+.nxp-prose h3 { font-size: 1.125rem; font-weight: 600; }
+.nxp-prose h4 { font-size: 1rem;     font-weight: 600; }
+.nxp-prose h5 { font-size: 0.9rem;   font-weight: 600; }
+.nxp-prose h6 { font-size: 0.8rem;   font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--nxp-text-muted); }
+.nxp-prose p  { margin: 0 0 1em; }
+.nxp-prose a  {
+  color: var(--nxp-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.nxp-prose a:hover { color: var(--nxp-brand-2); }
+.nxp-prose strong { font-weight: 600; color: var(--nxp-text-strong); }
+.nxp-prose em     { font-style: italic; }
+.nxp-prose ul,
+.nxp-prose ol {
+  padding-left: 1.5em;
+  margin: 0 0 1em;
+}
+.nxp-prose li { margin-bottom: 0.3em; }
+.nxp-prose ul > li { list-style: disc; }
+.nxp-prose ol > li { list-style: decimal; }
+.nxp-prose blockquote {
+  border-left: 3px solid var(--nxp-brand);
+  padding: 4px 0 4px 16px;
+  margin: 0 0 1em;
+  font-style: italic;
+  color: var(--nxp-text-muted);
+}
+.nxp-prose code {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.875em;
+  background: var(--nxp-bg-alt);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-sm);
+  padding: 0.15em 0.4em;
+  color: var(--nxp-text-strong);
+}
+.nxp-prose pre {
+  background: var(--nxp-bg-alt);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  padding: 16px;
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+.nxp-prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.nxp-prose hr {
+  border: none;
+  border-top: 1px solid var(--nxp-border);
+  margin: 1.5em 0;
+}
+.nxp-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--nxp-radius);
+}
+.nxp-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  font-size: 13.5px;
+}
+.nxp-prose th,
+.nxp-prose td {
+  padding: 8px 12px;
+  border: 1px solid var(--nxp-border);
+  text-align: left;
+}
+.nxp-prose th {
+  font-weight: 600;
+  background: var(--nxp-bg-alt);
+  color: var(--nxp-text-strong);
+}
+/* first child: no top margin */
+.nxp-prose > :first-child { margin-top: 0; }
+.nxp-prose > :last-child  { margin-bottom: 0; }
+
+/* ── Prose max-width variants ── */
+.nxp-prose--full { max-width: none; }
+.nxp-prose--sm   { max-width: 45ch; }
+.nxp-prose--lg   { max-width: 80ch; }
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
