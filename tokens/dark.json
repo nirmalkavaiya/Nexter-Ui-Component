@@ -1,0 +1,47 @@
+{
+  "nxp": {
+    "color": {
+      "bg": {
+        "default": { "value": "#0F172A", "type": "color", "description": "Dark page background" },
+        "alt": { "value": "#1E293B", "type": "color", "description": "Dark alternate surface" },
+        "wash": { "value": "#1E293B", "type": "color" },
+        "wash-active": { "value": "#1e254a", "type": "color" },
+        "overlay": { "value": "rgba(0, 0, 0, 0.6)", "type": "color" }
+      },
+      "primary": {
+        "default": { "value": "#3B82F6", "type": "color", "description": "Primary action in dark mode (lighter for contrast)" },
+        "hover": { "value": "#60A5FA", "type": "color" },
+        "active": { "value": "#93C5FD", "type": "color" },
+        "foreground": { "value": "#0F172A", "type": "color" }
+      },
+      "text": {
+        "default": { "value": "#F1F5F9", "type": "color" },
+        "strong": { "value": "#F8FAFC", "type": "color" },
+        "muted": { "value": "#94A3B8", "type": "color" },
+        "faint": { "value": "#475569", "type": "color" },
+        "inverse": { "value": "#0F172A", "type": "color" },
+        "link": { "value": "#60A5FA", "type": "color" },
+        "link-hover": { "value": "#93C5FD", "type": "color" }
+      },
+      "border": {
+        "default": { "value": "#334155", "type": "color" },
+        "strong": { "value": "#475569", "type": "color" },
+        "focus": { "value": "#3B82F6", "type": "color" }
+      },
+      "surface": {
+        "input": { "value": "#1E293B", "type": "color" },
+        "card": { "value": "#1E293B", "type": "color" },
+        "popover": { "value": "#1E293B", "type": "color" },
+        "tooltip": { "value": "#F8FAFC", "type": "color" },
+        "tooltip-text": { "value": "#1E293B", "type": "color" }
+      }
+    },
+    "shadow": {
+      "sm": { "value": "0 1px 3px rgba(0,0,0,0.4)", "type": "boxShadow" },
+      "md": { "value": "0 2px 4px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)", "type": "boxShadow" },
+      "lg": { "value": "0 4px 16px -4px rgba(0,0,0,0.6)", "type": "boxShadow" },
+      "xl": { "value": "0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3)", "type": "boxShadow" },
+      "ring": { "value": "0 0 0 2px rgba(59, 130, 246, 0.35)", "type": "boxShadow" }
+    }
+  }
+}

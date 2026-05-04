@@ -63,4 +63,7 @@ export { default as Collapsible }      from './components/Collapsible';
 export { default as ScrollArea }       from './components/ScrollArea';
 export { default as Typography }       from './components/Typography';
 
+// v1.4.0 additions
+export { ThemeProvider, useTheme }     from './components/ThemeProvider';
+
 export const tokens = 'CSS tokens and component styles are auto-injected into the JS bundle.';

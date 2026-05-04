@@ -1,0 +1,47 @@
+{
+  "nxp": {
+    "color": {
+      "bg": {
+        "default": { "value": "#ffffff", "type": "color", "description": "Page / panel background" },
+        "alt": { "value": "#F8FAFC", "type": "color", "description": "Alternate surface (sidebar, card)" },
+        "wash": { "value": "#F1F5F9", "type": "color", "description": "Hover wash" },
+        "wash-active": { "value": "#EEF2FF", "type": "color", "description": "Active / selected wash" },
+        "overlay": { "value": "rgba(15, 23, 42, 0.4)", "type": "color", "description": "Modal overlay" }
+      },
+      "primary": {
+        "default": { "value": "#1E40AF", "type": "color", "description": "Primary action color" },
+        "hover": { "value": "#1D4ED8", "type": "color" },
+        "active": { "value": "#1e3a8a", "type": "color" },
+        "foreground": { "value": "#ffffff", "type": "color", "description": "Text on primary bg" }
+      },
+      "text": {
+        "default": { "value": "#0F172A", "type": "color", "description": "Default body text" },
+        "strong": { "value": "#0B1220", "type": "color", "description": "High-contrast headings" },
+        "muted": { "value": "#64748B", "type": "color", "description": "Secondary / helper text" },
+        "faint": { "value": "#94A3B8", "type": "color", "description": "Placeholder / disabled" },
+        "inverse": { "value": "#ffffff", "type": "color", "description": "Text on dark surfaces" },
+        "link": { "value": "#2563EB", "type": "color" },
+        "link-hover": { "value": "#1D4ED8", "type": "color" }
+      },
+      "border": {
+        "default": { "value": "#E2E8F0", "type": "color", "description": "Subtle border" },
+        "strong": { "value": "#CBD5E1", "type": "color", "description": "Emphasized border" },
+        "focus": { "value": "#1E40AF", "type": "color", "description": "Focus ring color" }
+      },
+      "surface": {
+        "input": { "value": "#ffffff", "type": "color" },
+        "card": { "value": "#ffffff", "type": "color" },
+        "popover": { "value": "#ffffff", "type": "color" },
+        "tooltip": { "value": "#0F172A", "type": "color" },
+        "tooltip-text": { "value": "#F8FAFC", "type": "color" }
+      }
+    },
+    "shadow": {
+      "sm": { "value": "0 1px 2px rgba(15, 23, 42, 0.06)", "type": "boxShadow" },
+      "md": { "value": "0 1px 2px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06)", "type": "boxShadow" },
+      "lg": { "value": "0 4px 12px -4px rgba(15, 23, 42, 0.10)", "type": "boxShadow" },
+      "xl": { "value": "0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06)", "type": "boxShadow" },
+      "ring": { "value": "0 0 0 2px rgba(30, 64, 175, 0.18)", "type": "boxShadow" }
+    }
+  }
+}

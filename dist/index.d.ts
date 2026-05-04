@@ -1,6 +1,6 @@
 /**
  * Nexter UI Component — TypeScript Declarations
- * v1.1.2 — Covers all 54 exported components
+ * v1.4.0 — Covers all 61 exported components + ThemeProvider
  *
  * Usage (TypeScript / TSX):
  *   import { Button, Modal, FeatureToggleCard } from 'nexter-ui-component';
@@ -983,6 +983,67 @@ export interface TypographyProps {
 }
 
 export declare const Typography: React.FC<TypographyProps>;
+
+// ─── ThemeProvider (v1.4.0) ──────────────────────────────────────────────────
+
+/** Supported theme values. `'system'` defers to the OS preference. */
+export type NxpTheme = 'light' | 'dark' | 'system';
+
+/** Return value of {@link useTheme}. */
+export interface NxpThemeContext {
+  /** Current theme setting (`'light'`, `'dark'`, or `'system'`). */
+  theme: NxpTheme;
+  /**
+   * Resolved theme — always `'light'` or `'dark'`.
+   * When `theme === 'system'` this reflects the OS preference.
+   */
+  resolvedTheme: 'light' | 'dark';
+  /** Set the theme to a new value. */
+  setTheme: (theme: NxpTheme | ((prev: NxpTheme) => NxpTheme)) => void;
+  /** Toggle between light and dark (system → resolved opposite). */
+  toggle: () => void;
+}
+
+export interface ThemeProviderProps {
+  /**
+   * Initial theme — `'light'`, `'dark'`, or `'system'` (default).
+   * If `storageSync` is true and a stored value exists, the stored value wins.
+   */
+  defaultTheme?: NxpTheme;
+  /**
+   * DOM element to receive the `.nxp-dark` / `.nxp-light` class.
+   * Defaults to `document.documentElement`.
+   */
+  target?: HTMLElement;
+  /**
+   * Persist the chosen theme in `localStorage` under key `nxp-theme`.
+   * @default true
+   */
+  storageSync?: boolean;
+  children?: ReactNode;
+}
+
+/**
+ * Wrap your app (or any sub-tree) with this provider to enable
+ * Nexter's built-in light/dark theme switching.
+ *
+ * ```tsx
+ * <ThemeProvider defaultTheme="system">
+ *   <App />
+ * </ThemeProvider>
+ * ```
+ */
+export declare const ThemeProvider: React.FC<ThemeProviderProps>;
+
+/**
+ * Access the current theme and controls.
+ * Must be used inside {@link ThemeProvider}.
+ *
+ * ```tsx
+ * const { theme, toggle } = useTheme();
+ * ```
+ */
+export declare function useTheme(): NxpThemeContext;
 
 // ─── tokens (informational export) ───────────────────────────────────────────
 
