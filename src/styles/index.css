@@ -3667,3 +3667,283 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   DARK MODE
+   Strategy:
+     1. Auto — respects OS preference unless .nxp-light is set
+     2. Explicit — add .nxp-dark or data-theme="dark" to any
+        ancestor (html, body, or a scoped wrapper)
+   ============================================================ */
+
+/* ── Dark token overrides ── */
+.nxp-dark,
+[data-theme="dark"],
+:root:not(.nxp-light) {
+  --_nxp-dark: 1; /* sentinel — used by JS toggle helpers */
+}
+
+/* ── Core dark tokens (explicit class) ── */
+.nxp-dark,
+[data-theme="dark"] {
+  /* Backgrounds */
+  --nxp-bg:           #0F172A;
+  --nxp-bg-alt:       #1E293B;
+  --nxp-wash-hover:   rgba(255, 255, 255, 0.05);
+  --nxp-wash-active:  rgba(99, 130, 224, 0.15);
+
+  /* Text */
+  --nxp-text:         #E2E8F0;
+  --nxp-text-strong:  #F8FAFC;
+  --nxp-text-muted:   #94A3B8;
+  --nxp-text-faint:   #475569;
+
+  /* Borders */
+  --nxp-border:        #1E293B;
+  --nxp-border-strong: #334155;
+
+  /* Brand (stays vibrant on dark) */
+  --nxp-brand:        #3B82F6;
+  --nxp-brand-2:      #818CF8;
+  --nxp-brand-soft:   rgba(59, 130, 246, 0.15);
+  --nxp-brand-grad:   linear-gradient(180deg, #3B82F6 0%, #818CF8 100%);
+
+  /* Semantic */
+  --nxp-success:      #22C55E;
+  --nxp-warning:      #F59E0B;
+  --nxp-error:        #F87171;
+  --nxp-info:         #60A5FA;
+
+  /* Shadows — subtler on dark, use glow instead of drop */
+  --nxp-shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.35);
+  --nxp-shadow:     0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --nxp-shadow-md:  0 4px 16px -4px rgba(0, 0, 0, 0.5);
+  --nxp-shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --nxp-ring:       0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+/* ── Auto dark mode (OS preference, overrideable with .nxp-light) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.nxp-light) {
+    /* Backgrounds */
+    --nxp-bg:           #0F172A;
+    --nxp-bg-alt:       #1E293B;
+    --nxp-wash-hover:   rgba(255, 255, 255, 0.05);
+    --nxp-wash-active:  rgba(99, 130, 224, 0.15);
+
+    /* Text */
+    --nxp-text:         #E2E8F0;
+    --nxp-text-strong:  #F8FAFC;
+    --nxp-text-muted:   #94A3B8;
+    --nxp-text-faint:   #475569;
+
+    /* Borders */
+    --nxp-border:        #1E293B;
+    --nxp-border-strong: #334155;
+
+    /* Brand */
+    --nxp-brand:        #3B82F6;
+    --nxp-brand-2:      #818CF8;
+    --nxp-brand-soft:   rgba(59, 130, 246, 0.15);
+    --nxp-brand-grad:   linear-gradient(180deg, #3B82F6 0%, #818CF8 100%);
+
+    /* Semantic */
+    --nxp-success:      #22C55E;
+    --nxp-warning:      #F59E0B;
+    --nxp-error:        #F87171;
+    --nxp-info:         #60A5FA;
+
+    /* Shadows */
+    --nxp-shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.35);
+    --nxp-shadow:     0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --nxp-shadow-md:  0 4px 16px -4px rgba(0, 0, 0, 0.5);
+    --nxp-shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --nxp-ring:       0 0 0 2px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* ── Component-level dark fixes ── */
+
+/* Inputs, selects, textarea — ensure dark bg */
+.nxp-dark .nxp-input,
+.nxp-dark .nxp-select,
+.nxp-dark .nxp-textarea,
+.nxp-dark .nxp-combobox__input,
+.nxp-dark .nxp-ms__search,
+.nxp-dark .nxp-num__input,
+.nxp-dark .nxp-slider__input,
+.nxp-dark .nxp-cpicker__hex-input,
+[data-theme="dark"] .nxp-input,
+[data-theme="dark"] .nxp-select,
+[data-theme="dark"] .nxp-textarea,
+[data-theme="dark"] .nxp-combobox__input,
+[data-theme="dark"] .nxp-ms__search,
+[data-theme="dark"] .nxp-num__input,
+[data-theme="dark"] .nxp-slider__input,
+[data-theme="dark"] .nxp-cpicker__hex-input {
+  background: var(--nxp-bg-alt);
+  color: var(--nxp-text);
+  border-color: var(--nxp-border-strong);
+}
+
+/* Dropdowns, popovers, menus */
+.nxp-dark .nxp-dropdown__menu,
+.nxp-dark .nxp-combobox__list,
+.nxp-dark .nxp-ms__dropdown,
+.nxp-dark .nxp-date__popover,
+.nxp-dark .nxp-cpicker__panel,
+[data-theme="dark"] .nxp-dropdown__menu,
+[data-theme="dark"] .nxp-combobox__list,
+[data-theme="dark"] .nxp-ms__dropdown,
+[data-theme="dark"] .nxp-date__popover,
+[data-theme="dark"] .nxp-cpicker__panel {
+  background: var(--nxp-bg-alt);
+  border-color: var(--nxp-border-strong);
+  box-shadow: var(--nxp-shadow-lg);
+}
+
+/* Sheet / Card */
+.nxp-dark .nxp-sheet,
+[data-theme="dark"] .nxp-sheet {
+  background: var(--nxp-bg-alt);
+  border-color: var(--nxp-border);
+}
+
+/* Modal + Drawer panels */
+.nxp-dark .nxp-modal,
+.nxp-dark .nxp-drawer__panel,
+[data-theme="dark"] .nxp-modal,
+[data-theme="dark"] .nxp-drawer__panel {
+  background: var(--nxp-bg-alt);
+  border-color: var(--nxp-border-strong);
+}
+
+/* Backdrop — darker overlay */
+.nxp-dark .nxp-modal-backdrop,
+.nxp-dark .nxp-drawer__backdrop,
+[data-theme="dark"] .nxp-modal-backdrop,
+[data-theme="dark"] .nxp-drawer__backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* Sidebar */
+.nxp-dark .nxp-sb,
+[data-theme="dark"] .nxp-sb {
+  background: var(--nxp-bg-alt);
+  border-right-color: var(--nxp-border);
+}
+
+/* Toast */
+.nxp-dark .nxp-toast,
+[data-theme="dark"] .nxp-toast {
+  background: #1E293B;
+  border-color: var(--nxp-border-strong);
+  color: var(--nxp-text);
+}
+
+/* Tooltip */
+.nxp-dark .nxp-tooltip,
+[data-theme="dark"] .nxp-tooltip {
+  background: #334155;
+  color: var(--nxp-text-strong);
+}
+
+/* Table */
+.nxp-dark .nxp-table,
+[data-theme="dark"] .nxp-table {
+  border-color: var(--nxp-border);
+}
+.nxp-dark .nxp-table th,
+.nxp-dark .nxp-table td,
+[data-theme="dark"] .nxp-table th,
+[data-theme="dark"] .nxp-table td {
+  border-color: var(--nxp-border);
+  color: var(--nxp-text);
+}
+.nxp-dark .nxp-table thead th,
+[data-theme="dark"] .nxp-table thead th {
+  background: var(--nxp-bg-alt);
+}
+.nxp-dark .nxp-table--striped tbody tr:nth-child(odd),
+[data-theme="dark"] .nxp-table--striped tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Accordion */
+.nxp-dark .nxp-accordion__item,
+[data-theme="dark"] .nxp-accordion__item {
+  border-color: var(--nxp-border);
+}
+
+/* Stepper / NumberInput controls */
+.nxp-dark .nxp-stepper__btn,
+.nxp-dark .nxp-num__step,
+[data-theme="dark"] .nxp-stepper__btn,
+[data-theme="dark"] .nxp-num__step {
+  background: var(--nxp-bg-alt);
+  border-color: var(--nxp-border-strong);
+  color: var(--nxp-text-muted);
+}
+
+/* ── Auto dark: same component fixes ── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.nxp-light) .nxp-input,
+  :root:not(.nxp-light) .nxp-select,
+  :root:not(.nxp-light) .nxp-textarea,
+  :root:not(.nxp-light) .nxp-combobox__input,
+  :root:not(.nxp-light) .nxp-ms__search,
+  :root:not(.nxp-light) .nxp-num__input,
+  :root:not(.nxp-light) .nxp-slider__input,
+  :root:not(.nxp-light) .nxp-cpicker__hex-input {
+    background: var(--nxp-bg-alt);
+    color: var(--nxp-text);
+    border-color: var(--nxp-border-strong);
+  }
+  :root:not(.nxp-light) .nxp-dropdown__menu,
+  :root:not(.nxp-light) .nxp-combobox__list,
+  :root:not(.nxp-light) .nxp-ms__dropdown,
+  :root:not(.nxp-light) .nxp-date__popover,
+  :root:not(.nxp-light) .nxp-cpicker__panel {
+    background: var(--nxp-bg-alt);
+    border-color: var(--nxp-border-strong);
+    box-shadow: var(--nxp-shadow-lg);
+  }
+  :root:not(.nxp-light) .nxp-sheet {
+    background: var(--nxp-bg-alt);
+    border-color: var(--nxp-border);
+  }
+  :root:not(.nxp-light) .nxp-modal,
+  :root:not(.nxp-light) .nxp-drawer__panel {
+    background: var(--nxp-bg-alt);
+    border-color: var(--nxp-border-strong);
+  }
+  :root:not(.nxp-light) .nxp-modal-backdrop,
+  :root:not(.nxp-light) .nxp-drawer__backdrop {
+    background: rgba(0, 0, 0, 0.65);
+  }
+  :root:not(.nxp-light) .nxp-sb {
+    background: var(--nxp-bg-alt);
+    border-right-color: var(--nxp-border);
+  }
+  :root:not(.nxp-light) .nxp-toast {
+    background: #1E293B;
+    border-color: var(--nxp-border-strong);
+    color: var(--nxp-text);
+  }
+  :root:not(.nxp-light) .nxp-tooltip {
+    background: #334155;
+    color: var(--nxp-text-strong);
+  }
+  :root:not(.nxp-light) .nxp-table { border-color: var(--nxp-border); }
+  :root:not(.nxp-light) .nxp-table th,
+  :root:not(.nxp-light) .nxp-table td { border-color: var(--nxp-border); color: var(--nxp-text); }
+  :root:not(.nxp-light) .nxp-table thead th { background: var(--nxp-bg-alt); }
+  :root:not(.nxp-light) .nxp-table--striped tbody tr:nth-child(odd) { background: rgba(255,255,255,0.03); }
+  :root:not(.nxp-light) .nxp-accordion__item { border-color: var(--nxp-border); }
+  :root:not(.nxp-light) .nxp-stepper__btn,
+  :root:not(.nxp-light) .nxp-num__step {
+    background: var(--nxp-bg-alt);
+    border-color: var(--nxp-border-strong);
+    color: var(--nxp-text-muted);
+  }
+}
