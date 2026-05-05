@@ -298,6 +298,10 @@
       "import": "./dist/components/ThemeProvider/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./VerticalNavigationMenu": {
+      "import": "./dist/components/VerticalNavigationMenu/index.js",
+      "types": "./dist/index.d.ts"
+    },
     "./lib/utils": {
       "import": "./dist/lib/utils.js",
       "types": "./dist/index.d.ts"
