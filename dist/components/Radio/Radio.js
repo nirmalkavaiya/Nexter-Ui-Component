@@ -1,44 +1,44 @@
-import { jsxs as f, jsx as i } from "react/jsx-runtime";
-import { useId as h } from "react";
+import { jsxs as f, jsx as n } from "react/jsx-runtime";
+import { useId as m } from "react";
 function x({
-  checked: n = !1,
-  onChange: t,
+  checked: i = !1,
+  onChange: r,
   disabled: a = !1,
   name: d,
-  value: r,
-  label: s,
-  className: p = ""
+  value: s,
+  label: t,
+  className: c = ""
 }) {
-  const l = h(), c = [
+  const l = m(), p = [
     "nxp-radio",
-    n ? "is-checked" : "",
+    i ? "is-checked" : "",
     a ? "is-disabled" : "",
-    p
+    c
   ].filter(Boolean).join(" "), o = () => {
-    a || t && t(r);
+    a || r && r(s);
   };
-  return /* @__PURE__ */ f("label", { className: c, htmlFor: l, children: [
-    /* @__PURE__ */ i(
+  return /* @__PURE__ */ f("label", { className: p, htmlFor: l, children: [
+    /* @__PURE__ */ n(
       "input",
       {
         id: l,
         type: "radio",
         name: d,
-        value: r,
-        checked: n,
+        value: s,
+        checked: i,
         onChange: o,
         disabled: a,
-        style: { position: "absolute", opacity: 0, width: 0, height: 0 },
+        className: "absolute opacity-0 w-0 h-0",
         "aria-hidden": "true",
         tabIndex: -1
       }
     ),
-    /* @__PURE__ */ i(
+    /* @__PURE__ */ n(
       "div",
       {
         className: "nxp-radio__dot",
         role: "radio",
-        "aria-checked": n,
+        "aria-checked": i,
         "aria-disabled": a,
         tabIndex: a ? -1 : 0,
         onKeyDown: (e) => {
@@ -47,10 +47,10 @@ function x({
         onClick: (e) => {
           e.preventDefault(), o();
         },
-        children: /* @__PURE__ */ i("span", { className: "nxp-radio__inner" })
+        children: /* @__PURE__ */ n("span", { className: "nxp-radio__inner" })
       }
     ),
-    s && /* @__PURE__ */ i("span", { children: s })
+    t && /* @__PURE__ */ n("span", { children: t })
   ] });
 }
 export {

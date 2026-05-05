@@ -46,7 +46,7 @@ function Modal({
     >
       <div className={`nxp-modal${sizeClass} ${className}`}>
         <div className="nxp-modal__head">
-          <div style={{ flex: 1 }}>
+          <div className="flex-1">
             {title && <div className="nxp-modal__title">{title}</div>}
             {byline && <div className="nxp-modal__byline">{byline}</div>}
           </div>

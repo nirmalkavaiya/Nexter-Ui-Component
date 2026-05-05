@@ -1,31 +1,31 @@
-import { jsx as c } from "react/jsx-runtime";
+import { jsx as p } from "react/jsx-runtime";
 import "react";
-function d({
+function f({
   height: o,
-  maxHeight: e,
-  horizontal: r = !1,
-  children: l,
+  maxHeight: r,
+  horizontal: l = !1,
+  children: e,
   className: n = ""
 }) {
   const s = {
     ...o !== void 0 ? { height: typeof o == "number" ? `${o}px` : o } : {},
-    ...e !== void 0 ? { maxHeight: typeof e == "number" ? `${e}px` : e } : {}
-  }, t = r ? "auto" : "hidden", a = [
+    ...r !== void 0 ? { maxHeight: typeof r == "number" ? `${r}px` : r } : {}
+  }, a = [
     "nxp-scroll-area",
-    r ? "nxp-scroll-area--x" : "",
+    l ? "nxp-scroll-area--x" : "",
     n
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ c(
+  return /* @__PURE__ */ p(
     "div",
     {
       className: a,
-      style: { ...s, overflowX: t, overflowY: "auto" },
+      style: s,
       tabIndex: 0,
-      children: l
+      children: e
     }
   );
 }
 export {
-  d as ScrollArea,
-  d as default
+  f as ScrollArea,
+  f as default
 };

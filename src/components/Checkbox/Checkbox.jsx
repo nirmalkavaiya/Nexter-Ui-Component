@@ -38,7 +38,7 @@ function Checkbox({
         checked={isChecked}
         onChange={handleChange}
         disabled={disabled}
-        style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
+        className="absolute opacity-0 w-0 h-0"
         aria-hidden="true"
         tabIndex={-1}
       />

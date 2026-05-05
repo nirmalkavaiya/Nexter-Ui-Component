@@ -97,7 +97,7 @@ function Dropdown({
         onClick={() => { if (!disabled) setOpen((o) => !o); }}
         onKeyDown={handleKeyDown}
       >
-        <span style={{ color: selected ? 'var(--nxp-text)' : 'var(--nxp-text-faint)' }}>
+        <span className={selected ? 'text-nxp-text' : 'text-nxp-text-faint'}>
           {selectedLabel || placeholder}
         </span>
         <svg className="nxp-dropdown__chevron" viewBox="0 0 14 14" fill="none">
@@ -129,7 +129,7 @@ function Dropdown({
                 onClick={() => select(opt)}
                 onMouseEnter={() => setFocused(vIdx)}
               >
-                <span style={{ flex: 1 }}>{opt.label}</span>
+                <span className="flex-1">{opt.label}</span>
                 {opt.sub && <span className="nxp-dropdown__sub">{opt.sub}</span>}
                 {isSelected && (
                   <svg className="nxp-dropdown__check" viewBox="0 0 14 14" fill="none">

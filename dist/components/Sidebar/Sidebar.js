@@ -1,6 +1,6 @@
 import { jsxs as v, jsx as e } from "react/jsx-runtime";
 import { useState as f, useEffect as B } from "react";
-const E = () => /* @__PURE__ */ e("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 4l4 4 4-4", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
+const $ = () => /* @__PURE__ */ e("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 4l4 4 4-4", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
 function N({
   item: n,
   active: d,
@@ -38,7 +38,7 @@ function N({
           n.icon && /* @__PURE__ */ e("span", { className: "nxp-sb__icon", "aria-hidden": "true", children: n.icon }),
           !a && /* @__PURE__ */ e("span", { className: "nxp-sb__label", children: n.label }),
           !a && n.badge != null && /* @__PURE__ */ e("span", { className: `nxp-sb__badge${n.badgeVariant ? ` nxp-sb__badge--${n.badgeVariant}` : ""}`, children: n.badge }),
-          !a && o && /* @__PURE__ */ e("span", { className: `nxp-sb__chevron${p ? " nxp-sb__chevron--open" : ""}`, children: /* @__PURE__ */ e(E, {}) })
+          !a && o && /* @__PURE__ */ e("span", { className: `nxp-sb__chevron${p ? " nxp-sb__chevron--open" : ""}`, children: /* @__PURE__ */ e($, {}) })
         ]
       }
     ),
@@ -70,7 +70,7 @@ function V({
   collapsedWidth: x = "56px",
   className: r = ""
 }) {
-  const u = d !== void 0, [k, C] = f(t ?? null), y = u ? d : k, g = c !== void 0, [w, A] = f(o), l = g ? c : w;
+  const u = d !== void 0, [k, C] = f(t ?? null), w = u ? d : k, g = c !== void 0, [y, A] = f(o), l = g ? c : y;
   function j(s, L) {
     u || C(s), a == null || a(s, L);
   }
@@ -93,7 +93,7 @@ function V({
       N,
       {
         item: s,
-        active: y,
+        active: w,
         onSelect: j,
         collapsed: l
       },
@@ -115,7 +115,7 @@ function V({
             viewBox: "0 0 14 14",
             fill: "none",
             "aria-hidden": "true",
-            style: { transform: l ? "rotate(180deg)" : "none", transition: "transform 200ms ease" },
+            className: `transition-transform duration-200 ease-in-out${l ? " rotate-180" : ""}`,
             children: /* @__PURE__ */ e("path", { d: "M9 2L5 7l4 5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" })
           }
         )

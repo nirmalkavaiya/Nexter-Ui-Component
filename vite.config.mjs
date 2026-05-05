@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     react(),
     // Inject all CSS into a single IIFE inside dist/index.js only.
     // styleId makes the injected <style> tag identifiable and prevents
