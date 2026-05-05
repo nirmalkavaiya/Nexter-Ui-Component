@@ -6,7 +6,7 @@ function EmptyState({ icon, title, description, action, className = '' }) {
       {icon && <div className="nxp-empty__icon" aria-hidden="true">{icon}</div>}
       {title && <div className="nxp-empty__title">{title}</div>}
       {description && <p className="nxp-empty__desc">{description}</p>}
-      {action && <div style={{ marginTop: 8 }}>{action}</div>}
+      {action && <div className="mt-2">{action}</div>}
     </div>
   );
 }

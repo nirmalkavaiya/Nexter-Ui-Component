@@ -205,7 +205,7 @@ function FileUpload({
           type="file"
           accept={accept}
           multiple={multiple}
-          style={{ display: 'none' }}
+          className="hidden"
           onChange={onFileInput}
           disabled={disabled}
         />

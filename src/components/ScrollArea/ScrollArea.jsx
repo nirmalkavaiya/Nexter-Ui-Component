@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 /**
  * ScrollArea
@@ -31,8 +31,6 @@ function ScrollArea({
     ...(maxHeight !== undefined ? { maxHeight : typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight } : {}),
   };
 
-  const overflowX = horizontal ? 'auto' : 'hidden';
-
   const cls = [
     'nxp-scroll-area',
     horizontal ? 'nxp-scroll-area--x' : '',
@@ -42,7 +40,7 @@ function ScrollArea({
   return (
     <div
       className={cls}
-      style={{ ...style, overflowX, overflowY: 'auto' }}
+      style={style}
       tabIndex={0}
     >
       {children}

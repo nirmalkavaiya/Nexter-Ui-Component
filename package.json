@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Nexter Design System — React component library. 61 accessible, RTL-ready, token-driven components with Figma-compatible design tokens and built-in ThemeProvider.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
@@ -331,6 +331,7 @@
     "@storybook/blocks": "^8.6.14",
     "@storybook/react": "^8.6.18",
     "@storybook/react-vite": "^8.6.18",
+    "@tailwindcss/vite": "^4.2.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -342,6 +343,7 @@
     "react-dom": "^18.2.0",
     "storybook": "^8.6.18",
     "style-dictionary": "^4.4.0",
+    "tailwindcss": "^4.2.4",
     "vite": "^5.0.0",
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vitest": "^4.1.5"

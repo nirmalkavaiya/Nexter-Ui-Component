@@ -1,0 +1,414 @@
+@import "tailwindcss";
+
+/* ── Dark mode: wire .nxp-dark / [data-theme="dark"] into Tailwind's dark: prefix ── */
+@custom-variant dark (&:where(.nxp-dark, .nxp-dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* ============================================================
+   @theme — Light (default) design tokens
+   Tailwind-namespaced names generate utility classes:
+     --color-*    → bg-*, text-*, border-*, ring-*, fill-*, stroke-*
+     --radius-*   → rounded-*
+     --shadow-*   → shadow-*
+     --spacing-*  → p-*, m-*, gap-*, w-*, h-* …
+     --font-*     → font-*  (family)
+     --text-*     → text-*  (size)
+     --font-weight-* → font-*  (weight)
+     --leading-*  → leading-*
+     --ease-*     → ease-*
+     --duration-* → duration-*
+   ============================================================ */
+
+@theme {
+  /* ── Brand palette ───────────────────────────────────────── */
+  --color-nxp-brand-100: #DBEAFE;
+  --color-nxp-brand-200: #BFDBFE;
+  --color-nxp-brand-300: #93C5FD;
+  --color-nxp-brand-400: #60A5FA;
+  --color-nxp-brand-500: #3B82F6;
+  --color-nxp-brand-600: #2563EB;
+  --color-nxp-brand-700: #1D4ED8;
+  --color-nxp-brand-800: #1E40AF;
+  --color-nxp-brand-900: #1E3A8A;
+  --color-nxp-brand-accent: #4F46E5;
+  --color-nxp-brand-soft: #EEF2FF;
+
+  /* ── Semantic status colors ──────────────────────────────── */
+  --color-nxp-success: #16A34A;
+  --color-nxp-success-soft: #DCFCE7;
+  --color-nxp-success-dark: #15803D;
+  --color-nxp-warning: #D97706;
+  --color-nxp-warning-soft: #FEF3C7;
+  --color-nxp-warning-dark: #B45309;
+  --color-nxp-error: #DC2626;
+  --color-nxp-error-soft: #FEE2E2;
+  --color-nxp-error-dark: #B91C1C;
+  --color-nxp-info: #2563EB;
+  --color-nxp-info-soft: #DBEAFE;
+  --color-nxp-info-dark: #1D4ED8;
+
+  /* ── Background ──────────────────────────────────────────── */
+  --color-nxp-bg: #ffffff;
+  --color-nxp-bg-alt: #F8FAFC;
+  --color-nxp-bg-wash: #F1F5F9;
+  --color-nxp-bg-wash-active: #EEF2FF;
+  --color-nxp-bg-overlay: rgba(15, 23, 42, 0.4);
+
+  /* ── Primary interactive ─────────────────────────────────── */
+  --color-nxp-primary: #1E40AF;
+  --color-nxp-primary-hover: #1D4ED8;
+  --color-nxp-primary-active: #1e3a8a;
+  --color-nxp-primary-fg: #ffffff;
+
+  /* ── Text ────────────────────────────────────────────────── */
+  --color-nxp-text: #0F172A;
+  --color-nxp-text-strong: #0B1220;
+  --color-nxp-text-muted: #64748B;
+  --color-nxp-text-faint: #94A3B8;
+  --color-nxp-text-inverse: #ffffff;
+  --color-nxp-text-link: #2563EB;
+  --color-nxp-text-link-hover: #1D4ED8;
+
+  /* ── Border ──────────────────────────────────────────────── */
+  --color-nxp-border: #E2E8F0;
+  --color-nxp-border-strong: #CBD5E1;
+  --color-nxp-border-focus: #1E40AF;
+
+  /* ── Surface ─────────────────────────────────────────────── */
+  --color-nxp-surface-input: #ffffff;
+  --color-nxp-surface-card: #ffffff;
+  --color-nxp-surface-popover: #ffffff;
+  --color-nxp-surface-tooltip: #0F172A;
+  --color-nxp-surface-tooltip-text: #F8FAFC;
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --spacing-nxp-0:  0px;
+  --spacing-nxp-1:  4px;
+  --spacing-nxp-2:  8px;
+  --spacing-nxp-3:  12px;
+  --spacing-nxp-4:  16px;
+  --spacing-nxp-5:  20px;
+  --spacing-nxp-6:  24px;
+  --spacing-nxp-8:  32px;
+  --spacing-nxp-10: 40px;
+  --spacing-nxp-12: 48px;
+  --spacing-nxp-16: 64px;
+
+  /* ── Border radius ───────────────────────────────────────── */
+  --radius-nxp-none: 0px;
+  --radius-nxp-sm:   4px;
+  --radius-nxp-md:   6px;
+  --radius-nxp-lg:   12px;
+  --radius-nxp-xl:   16px;
+  --radius-nxp-2xl:  24px;
+  --radius-nxp-full: 9999px;
+
+  /* ── Component heights ───────────────────────────────────── */
+  --spacing-nxp-h-sm: 28px;
+  --spacing-nxp-h-md: 36px;
+  --spacing-nxp-h-lg: 40px;
+
+  /* ── Font families ───────────────────────────────────────── */
+  --font-nxp-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-nxp-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+
+  /* ── Font sizes ──────────────────────────────────────────── */
+  --text-nxp-xs:   11px;
+  --text-nxp-sm:   12px;
+  --text-nxp-base: 13.5px;
+  --text-nxp-md:   14px;
+  --text-nxp-lg:   16px;
+  --text-nxp-xl:   18px;
+  --text-nxp-2xl:  20px;
+  --text-nxp-3xl:  24px;
+  --text-nxp-4xl:  30px;
+  --text-nxp-5xl:  36px;
+
+  /* ── Font weights ────────────────────────────────────────── */
+  --font-weight-nxp-regular:  400;
+  --font-weight-nxp-medium:   500;
+  --font-weight-nxp-semibold: 600;
+  --font-weight-nxp-bold:     700;
+
+  /* ── Line heights ────────────────────────────────────────── */
+  --leading-nxp-none:    1;
+  --leading-nxp-tight:   1.25;
+  --leading-nxp-snug:    1.375;
+  --leading-nxp-normal:  1.5;
+  --leading-nxp-relaxed: 1.625;
+  --leading-nxp-loose:   2;
+
+  /* ── Easing ──────────────────────────────────────────────── */
+  --ease-nxp-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-nxp-in:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-nxp-out:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-nxp-linear:   linear;
+
+  /* ── Durations ───────────────────────────────────────────── */
+  --duration-nxp-instant: 80ms;
+  --duration-nxp-fast:    120ms;
+  --duration-nxp-hover:   180ms;
+  --duration-nxp-active:  220ms;
+  --duration-nxp-motion:  240ms;
+  --duration-nxp-slow:    400ms;
+
+  /* ── Shadows (light) ─────────────────────────────────────── */
+  --shadow-nxp-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-nxp-md:   0 1px 2px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
+  --shadow-nxp-lg:   0 4px 12px -4px rgba(15, 23, 42, 0.10);
+  --shadow-nxp-xl:   0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
+  --shadow-nxp-ring: 0 0 0 2px rgba(30, 64, 175, 0.18);
+}
+
+/* ============================================================
+   @layer base
+   1. --nxp-* aliases  → component styles keep working unchanged
+   2. Gradient token   → not a color, lives outside @theme
+   3. Dark overrides   → only values that change in dark mode
+   ============================================================ */
+
+@layer base {
+
+  /* ── Light: --nxp-* aliases pointing at @theme vars ─────── */
+  :root {
+    /* colors */
+    --nxp-color-brand-100:          var(--color-nxp-brand-100);
+    --nxp-color-brand-200:          var(--color-nxp-brand-200);
+    --nxp-color-brand-300:          var(--color-nxp-brand-300);
+    --nxp-color-brand-400:          var(--color-nxp-brand-400);
+    --nxp-color-brand-500:          var(--color-nxp-brand-500);
+    --nxp-color-brand-600:          var(--color-nxp-brand-600);
+    --nxp-color-brand-700:          var(--color-nxp-brand-700);
+    --nxp-color-brand-800:          var(--color-nxp-brand-800);
+    --nxp-color-brand-900:          var(--color-nxp-brand-900);
+    --nxp-color-brand-accent:       var(--color-nxp-brand-accent);
+    --nxp-color-brand-soft:         var(--color-nxp-brand-soft);
+    --nxp-color-success-default:    var(--color-nxp-success);
+    --nxp-color-success-soft:       var(--color-nxp-success-soft);
+    --nxp-color-success-dark:       var(--color-nxp-success-dark);
+    --nxp-color-warning-default:    var(--color-nxp-warning);
+    --nxp-color-warning-soft:       var(--color-nxp-warning-soft);
+    --nxp-color-warning-dark:       var(--color-nxp-warning-dark);
+    --nxp-color-error-default:      var(--color-nxp-error);
+    --nxp-color-error-soft:         var(--color-nxp-error-soft);
+    --nxp-color-error-dark:         var(--color-nxp-error-dark);
+    --nxp-color-info-default:       var(--color-nxp-info);
+    --nxp-color-info-soft:          var(--color-nxp-info-soft);
+    --nxp-color-info-dark:          var(--color-nxp-info-dark);
+    --nxp-color-bg-default:         var(--color-nxp-bg);
+    --nxp-color-bg-alt:             var(--color-nxp-bg-alt);
+    --nxp-color-bg-wash:            var(--color-nxp-bg-wash);
+    --nxp-color-bg-wash-active:     var(--color-nxp-bg-wash-active);
+    --nxp-color-bg-overlay:         var(--color-nxp-bg-overlay);
+    --nxp-color-primary-default:    var(--color-nxp-primary);
+    --nxp-color-primary-hover:      var(--color-nxp-primary-hover);
+    --nxp-color-primary-active:     var(--color-nxp-primary-active);
+    --nxp-color-primary-foreground: var(--color-nxp-primary-fg);
+    --nxp-color-text-default:       var(--color-nxp-text);
+    --nxp-color-text-strong:        var(--color-nxp-text-strong);
+    --nxp-color-text-muted:         var(--color-nxp-text-muted);
+    --nxp-color-text-faint:         var(--color-nxp-text-faint);
+    --nxp-color-text-inverse:       var(--color-nxp-text-inverse);
+    --nxp-color-text-link:          var(--color-nxp-text-link);
+    --nxp-color-text-link-hover:    var(--color-nxp-text-link-hover);
+    --nxp-color-border-default:     var(--color-nxp-border);
+    --nxp-color-border-strong:      var(--color-nxp-border-strong);
+    --nxp-color-border-focus:       var(--color-nxp-border-focus);
+    --nxp-color-surface-input:      var(--color-nxp-surface-input);
+    --nxp-color-surface-card:       var(--color-nxp-surface-card);
+    --nxp-color-surface-popover:    var(--color-nxp-surface-popover);
+    --nxp-color-surface-tooltip:    var(--color-nxp-surface-tooltip);
+    --nxp-color-surface-tooltip-text: var(--color-nxp-surface-tooltip-text);
+
+    /* gradient (not a plain color — lives outside @theme) */
+    --nxp-color-brand-grad:         linear-gradient(180deg, #1E40AF 0%, #4F46E5 100%);
+
+    /* spacing */
+    --nxp-spacing-0:   var(--spacing-nxp-0);
+    --nxp-spacing-1:   var(--spacing-nxp-1);
+    --nxp-spacing-2:   var(--spacing-nxp-2);
+    --nxp-spacing-3:   var(--spacing-nxp-3);
+    --nxp-spacing-4:   var(--spacing-nxp-4);
+    --nxp-spacing-5:   var(--spacing-nxp-5);
+    --nxp-spacing-6:   var(--spacing-nxp-6);
+    --nxp-spacing-8:   var(--spacing-nxp-8);
+    --nxp-spacing-10:  var(--spacing-nxp-10);
+    --nxp-spacing-12:  var(--spacing-nxp-12);
+    --nxp-spacing-16:  var(--spacing-nxp-16);
+    --nxp-spacing-xs:  var(--spacing-nxp-1);
+    --nxp-spacing-sm:  var(--spacing-nxp-2);
+    --nxp-spacing-md:  var(--spacing-nxp-4);
+    --nxp-spacing-lg:  var(--spacing-nxp-6);
+    --nxp-spacing-xl:  var(--spacing-nxp-8);
+    --nxp-spacing-2xl: var(--spacing-nxp-12);
+    --nxp-spacing-3xl: var(--spacing-nxp-16);
+
+    /* radius */
+    --nxp-radius-none: var(--radius-nxp-none);
+    --nxp-radius-sm:   var(--radius-nxp-sm);
+    --nxp-radius-md:   var(--radius-nxp-md);
+    --nxp-radius-lg:   var(--radius-nxp-lg);
+    --nxp-radius-xl:   var(--radius-nxp-xl);
+    --nxp-radius-2xl:  var(--radius-nxp-2xl);
+    --nxp-radius-full: var(--radius-nxp-full);
+
+    /* component heights */
+    --nxp-size-h-sm: var(--spacing-nxp-h-sm);
+    --nxp-size-h-md: var(--spacing-nxp-h-md);
+    --nxp-size-h-lg: var(--spacing-nxp-h-lg);
+
+    /* font */
+    --nxp-font-family-sans:        var(--font-nxp-sans);
+    --nxp-font-family-mono:        var(--font-nxp-mono);
+    --nxp-font-size-xs:            var(--text-nxp-xs);
+    --nxp-font-size-sm:            var(--text-nxp-sm);
+    --nxp-font-size-base:          var(--text-nxp-base);
+    --nxp-font-size-md:            var(--text-nxp-md);
+    --nxp-font-size-lg:            var(--text-nxp-lg);
+    --nxp-font-size-xl:            var(--text-nxp-xl);
+    --nxp-font-size-2xl:           var(--text-nxp-2xl);
+    --nxp-font-size-3xl:           var(--text-nxp-3xl);
+    --nxp-font-size-4xl:           var(--text-nxp-4xl);
+    --nxp-font-size-5xl:           var(--text-nxp-5xl);
+    --nxp-font-weight-regular:     var(--font-weight-nxp-regular);
+    --nxp-font-weight-medium:      var(--font-weight-nxp-medium);
+    --nxp-font-weight-semibold:    var(--font-weight-nxp-semibold);
+    --nxp-font-weight-bold:        var(--font-weight-nxp-bold);
+    --nxp-font-lineHeight-none:    var(--leading-nxp-none);
+    --nxp-font-lineHeight-tight:   var(--leading-nxp-tight);
+    --nxp-font-lineHeight-snug:    var(--leading-nxp-snug);
+    --nxp-font-lineHeight-normal:  var(--leading-nxp-normal);
+    --nxp-font-lineHeight-relaxed: var(--leading-nxp-relaxed);
+    --nxp-font-lineHeight-loose:   var(--leading-nxp-loose);
+
+    /* motion */
+    --nxp-motion-ease-standard:       var(--ease-nxp-standard);
+    --nxp-motion-ease-in:             var(--ease-nxp-in);
+    --nxp-motion-ease-out:            var(--ease-nxp-out);
+    --nxp-motion-ease-linear:         var(--ease-nxp-linear);
+    --nxp-motion-duration-instant:    var(--duration-nxp-instant);
+    --nxp-motion-duration-fast:       var(--duration-nxp-fast);
+    --nxp-motion-duration-hover:      var(--duration-nxp-hover);
+    --nxp-motion-duration-active:     var(--duration-nxp-active);
+    --nxp-motion-duration-motion:     var(--duration-nxp-motion);
+    --nxp-motion-duration-slow:       var(--duration-nxp-slow);
+
+    /* shadows */
+    --nxp-shadow-sm:   var(--shadow-nxp-sm);
+    --nxp-shadow-md:   var(--shadow-nxp-md);
+    --nxp-shadow-lg:   var(--shadow-nxp-lg);
+    --nxp-shadow-xl:   var(--shadow-nxp-xl);
+    --nxp-shadow-ring: var(--shadow-nxp-ring);
+
+    /* backward-compat short aliases (used directly in component styles) */
+    --nxp-brand:        var(--color-nxp-primary);
+    --nxp-brand-2:      var(--color-nxp-brand-accent);
+    --nxp-brand-soft:   var(--color-nxp-brand-soft);
+    --nxp-brand-grad:   var(--nxp-color-brand-grad);
+    --nxp-bg:           var(--color-nxp-bg);
+    --nxp-bg-alt:       var(--color-nxp-bg-alt);
+    --nxp-wash-hover:   var(--color-nxp-bg-wash);
+    --nxp-wash-active:  var(--color-nxp-bg-wash-active);
+    --nxp-text:         var(--color-nxp-text);
+    --nxp-text-strong:  var(--color-nxp-text-strong);
+    --nxp-text-muted:   var(--color-nxp-text-muted);
+    --nxp-text-faint:   var(--color-nxp-text-faint);
+    --nxp-border:       var(--color-nxp-border);
+    --nxp-border-strong: var(--color-nxp-border-strong);
+    --nxp-success:      var(--color-nxp-success);
+    --nxp-warning:      var(--color-nxp-warning);
+    --nxp-error:        var(--color-nxp-error);
+    --nxp-info:         var(--color-nxp-info);
+    --nxp-shadow:       var(--shadow-nxp-md);
+    --nxp-ring:         var(--shadow-nxp-ring);
+    --nxp-ease:         var(--ease-nxp-standard);
+    --nxp-dur-hover:    var(--duration-nxp-hover);
+    --nxp-dur-active:   var(--duration-nxp-active);
+    --nxp-dur-motion:   var(--duration-nxp-motion);
+    --nxp-font:         var(--font-nxp-sans);
+    --nxp-radius:       var(--radius-nxp-md);
+    --nxp-radius-pill:  var(--radius-nxp-full);
+    --nxp-h:            var(--spacing-nxp-h-md);
+    --nxp-h-sm:         var(--spacing-nxp-h-sm);
+    --nxp-h-lg:         var(--spacing-nxp-h-lg);
+  }
+
+  /* ── Dark: override only the values that differ ──────────── */
+  .nxp-dark,
+  [data-theme="dark"] {
+    /* background */
+    --color-nxp-bg:            #0F172A;
+    --color-nxp-bg-alt:        #1E293B;
+    --color-nxp-bg-wash:       #1E293B;
+    --color-nxp-bg-wash-active: #1e254a;
+    --color-nxp-bg-overlay:    rgba(0, 0, 0, 0.6);
+
+    /* primary */
+    --color-nxp-primary:       #3B82F6;
+    --color-nxp-primary-hover: #60A5FA;
+    --color-nxp-primary-active: #93C5FD;
+    --color-nxp-primary-fg:    #0F172A;
+
+    /* text */
+    --color-nxp-text:           #F1F5F9;
+    --color-nxp-text-strong:    #F8FAFC;
+    --color-nxp-text-muted:     #94A3B8;
+    --color-nxp-text-faint:     #475569;
+    --color-nxp-text-inverse:   #0F172A;
+    --color-nxp-text-link:      #60A5FA;
+    --color-nxp-text-link-hover: #93C5FD;
+
+    /* border */
+    --color-nxp-border:        #334155;
+    --color-nxp-border-strong: #475569;
+    --color-nxp-border-focus:  #3B82F6;
+
+    /* surface */
+    --color-nxp-surface-input:        #1E293B;
+    --color-nxp-surface-card:         #1E293B;
+    --color-nxp-surface-popover:      #1E293B;
+    --color-nxp-surface-tooltip:      #F8FAFC;
+    --color-nxp-surface-tooltip-text: #1E293B;
+
+    /* shadows */
+    --shadow-nxp-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-nxp-md:   0 2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --shadow-nxp-lg:   0 4px 16px -4px rgba(0, 0, 0, 0.6);
+    --shadow-nxp-xl:   0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-nxp-ring: 0 0 0 2px rgba(59, 130, 246, 0.35);
+  }
+
+  /* ── Dark: system preference (overridable with .nxp-light) ── */
+  @media (prefers-color-scheme: dark) {
+    :root:not(.nxp-light) {
+      --color-nxp-bg:            #0F172A;
+      --color-nxp-bg-alt:        #1E293B;
+      --color-nxp-bg-wash:       #1E293B;
+      --color-nxp-bg-wash-active: #1e254a;
+      --color-nxp-bg-overlay:    rgba(0, 0, 0, 0.6);
+      --color-nxp-primary:       #3B82F6;
+      --color-nxp-primary-hover: #60A5FA;
+      --color-nxp-primary-active: #93C5FD;
+      --color-nxp-primary-fg:    #0F172A;
+      --color-nxp-text:           #F1F5F9;
+      --color-nxp-text-strong:    #F8FAFC;
+      --color-nxp-text-muted:     #94A3B8;
+      --color-nxp-text-faint:     #475569;
+      --color-nxp-text-inverse:   #0F172A;
+      --color-nxp-text-link:      #60A5FA;
+      --color-nxp-text-link-hover: #93C5FD;
+      --color-nxp-border:        #334155;
+      --color-nxp-border-strong: #475569;
+      --color-nxp-border-focus:  #3B82F6;
+      --color-nxp-surface-input:        #1E293B;
+      --color-nxp-surface-card:         #1E293B;
+      --color-nxp-surface-popover:      #1E293B;
+      --color-nxp-surface-tooltip:      #F8FAFC;
+      --color-nxp-surface-tooltip-text: #1E293B;
+      --shadow-nxp-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-nxp-md:   0 2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      --shadow-nxp-lg:   0 4px 16px -4px rgba(0, 0, 0, 0.6);
+      --shadow-nxp-xl:   0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-nxp-ring: 0 0 0 2px rgba(59, 130, 246, 0.35);
+    }
+  }
+}

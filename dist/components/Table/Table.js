@@ -1,15 +1,15 @@
-import { jsx as e, jsxs as n } from "react/jsx-runtime";
+import { jsx as e, jsxs as r } from "react/jsx-runtime";
 import "react";
-function p({ columns: r = [], rows: i = [], striped: d = !1, actions: l, className: h = "" }) {
-  return /* @__PURE__ */ e("div", { style: { overflowX: "auto" }, children: /* @__PURE__ */ n("table", { className: `nxp-table${d ? " nxp-table--striped" : ""} ${h}`, children: [
-    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ n("tr", { children: [
-      r.map((t) => /* @__PURE__ */ e("th", { className: t.numeric ? "nxp-table__num" : "", children: t.label }, t.key)),
-      l && /* @__PURE__ */ e("th", { style: { textAlign: "right" }, children: "Actions" })
+function p({ columns: n = [], rows: i = [], striped: d = !1, actions: t, className: s = "" }) {
+  return /* @__PURE__ */ e("div", { className: "overflow-x-auto", children: /* @__PURE__ */ r("table", { className: `nxp-table${d ? " nxp-table--striped" : ""} ${s}`, children: [
+    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ r("tr", { children: [
+      n.map((a) => /* @__PURE__ */ e("th", { className: a.numeric ? "nxp-table__num" : "", children: a.label }, a.key)),
+      t && /* @__PURE__ */ e("th", { className: "text-right", children: "Actions" })
     ] }) }),
-    /* @__PURE__ */ e("tbody", { children: i.map((t, s) => /* @__PURE__ */ n("tr", { children: [
-      r.map((a) => /* @__PURE__ */ e("td", { className: a.numeric ? "nxp-table__num" : "", children: t[a.key] }, a.key)),
-      l && /* @__PURE__ */ e("td", { children: /* @__PURE__ */ e("div", { className: "nxp-table__actions", children: l(t) }) })
-    ] }, s)) })
+    /* @__PURE__ */ e("tbody", { children: i.map((a, c) => /* @__PURE__ */ r("tr", { children: [
+      n.map((l) => /* @__PURE__ */ e("td", { className: l.numeric ? "nxp-table__num" : "", children: a[l.key] }, l.key)),
+      t && /* @__PURE__ */ e("td", { children: /* @__PURE__ */ e("div", { className: "nxp-table__actions", children: t(a) }) })
+    ] }, c)) })
   ] }) });
 }
 export {

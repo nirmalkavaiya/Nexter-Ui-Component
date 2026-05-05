@@ -2,7 +2,7 @@ import React from 'react';
 
 function Table({ columns = [], rows = [], striped = false, actions, className = '' }) {
   return (
-    <div style={{ overflowX: 'auto' }}>
+    <div className="overflow-x-auto">
       <table className={`nxp-table${striped ? ' nxp-table--striped' : ''} ${className}`}>
         <thead>
           <tr>
@@ -11,7 +11,7 @@ function Table({ columns = [], rows = [], striped = false, actions, className = 
                 {col.label}
               </th>
             ))}
-            {actions && <th style={{ textAlign: 'right' }}>Actions</th>}
+            {actions && <th className="text-right">Actions</th>}
           </tr>
         </thead>
         <tbody>
