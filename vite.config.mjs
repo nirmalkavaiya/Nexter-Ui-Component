@@ -49,7 +49,11 @@ export default defineConfig({
     },
 
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      // clsx + tailwind-merge are peer-installed dependencies (in package.json
+      // "dependencies"), so they must be external — Rollup will emit
+      // `import { clsx } from 'clsx'` (package name), not a relative path into
+      // dist/node_modules, which breaks webpack in consuming projects.
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'clsx', 'tailwind-merge'],
 
       output: [
         /* ── ESM — preserveModules: each component gets its own file
@@ -67,6 +71,8 @@ export default defineConfig({
             react: 'React',
             'react-dom': 'ReactDOM',
             'react/jsx-runtime': 'ReactJSXRuntime',
+            'clsx': 'clsx',
+            'tailwind-merge': 'tailwindMerge',
           },
         },
 
@@ -79,6 +85,8 @@ export default defineConfig({
             react: 'React',
             'react-dom': 'ReactDOM',
             'react/jsx-runtime': 'ReactJSXRuntime',
+            'clsx': 'clsx',
+            'tailwind-merge': 'tailwindMerge',
           },
         },
       ],
