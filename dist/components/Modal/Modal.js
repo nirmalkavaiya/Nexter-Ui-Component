@@ -1,56 +1,85 @@
-import { jsx as d, jsxs as n } from "react/jsx-runtime";
-import { useEffect as s, useCallback as v } from "react";
-import { createPortal as p } from "react-dom";
-function b({
-  open: l = !1,
-  onClose: e,
-  size: t = "md",
+import { jsx as e, jsxs as c } from "react/jsx-runtime";
+import { useEffect as i, useCallback as x } from "react";
+import { createPortal as y } from "react-dom";
+const w = () => /* @__PURE__ */ e(
+  "svg",
+  {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 16 16",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg",
+    "aria-hidden": "true",
+    children: /* @__PURE__ */ e(
+      "path",
+      {
+        d: "M12 4L4 12M4 4L12 12",
+        stroke: "currentColor",
+        strokeWidth: "1.75",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }
+    )
+  }
+);
+function g({
+  open: o = !1,
+  onClose: a,
+  size: l = "md",
+  align: m = "left",
   title: r,
-  byline: c,
-  children: i,
-  footer: m,
-  className: u = ""
+  byline: n,
+  children: u,
+  footer: s,
+  className: f = ""
 }) {
-  s(() => {
-    if (l) {
-      const a = document.body.style.overflow;
+  i(() => {
+    if (o) {
+      const d = document.body.style.overflow;
       return document.body.style.overflow = "hidden", () => {
-        document.body.style.overflow = a;
+        document.body.style.overflow = d;
       };
     }
-  }, [l]);
-  const o = v(
-    (a) => {
-      a.key === "Escape" && e && e();
+  }, [o]);
+  const t = x(
+    (d) => {
+      d.key === "Escape" && a && a();
     },
-    [e]
+    [a]
   );
-  if (s(() => {
-    if (l)
-      return document.addEventListener("keydown", o), () => document.removeEventListener("keydown", o);
-  }, [l, o]), !l) return null;
-  const f = t !== "md" ? ` nxp-modal--${t}` : "";
-  return p(
-    /* @__PURE__ */ d(
+  if (i(() => {
+    if (o)
+      return document.addEventListener("keydown", t), () => document.removeEventListener("keydown", t);
+  }, [o, t]), !o) return null;
+  const h = l !== "md" ? ` nxp-modal--${l}` : "", p = m === "center" ? " nxp-modal--center" : "", v = r || n || a;
+  return y(
+    /* @__PURE__ */ e(
       "div",
       {
         className: "nxp-modal-backdrop",
-        onMouseDown: (a) => {
-          a.target === a.currentTarget && e && e();
+        onMouseDown: (d) => {
+          d.target === d.currentTarget && a && a();
         },
         role: "dialog",
         "aria-modal": "true",
-        "aria-label": r,
-        children: /* @__PURE__ */ n("div", { className: `nxp-modal${f} ${u}`, children: [
-          /* @__PURE__ */ n("div", { className: "nxp-modal__head", children: [
-            /* @__PURE__ */ n("div", { className: "flex-1", children: [
-              r && /* @__PURE__ */ d("div", { className: "nxp-modal__title", children: r }),
-              c && /* @__PURE__ */ d("div", { className: "nxp-modal__byline", children: c })
-            ] }),
-            e && /* @__PURE__ */ d("button", { type: "button", className: "nxp-modal__close", "aria-label": "Close modal", onClick: e, children: "×" })
+        "aria-label": typeof r == "string" ? r : void 0,
+        children: /* @__PURE__ */ c("div", { className: `nxp-modal${h}${p} ${f}`.trim(), children: [
+          a && /* @__PURE__ */ e(
+            "button",
+            {
+              type: "button",
+              className: "nxp-modal__close",
+              "aria-label": "Close modal",
+              onClick: a,
+              children: /* @__PURE__ */ e(w, {})
+            }
+          ),
+          v && /* @__PURE__ */ c("div", { className: "nxp-modal__head", children: [
+            r && /* @__PURE__ */ e("div", { className: "nxp-modal__title", children: r }),
+            n && /* @__PURE__ */ e("div", { className: "nxp-modal__byline", children: n })
           ] }),
-          /* @__PURE__ */ d("div", { className: "nxp-modal__body", children: i }),
-          m && /* @__PURE__ */ d("div", { className: "nxp-modal__foot", children: m })
+          /* @__PURE__ */ e("div", { className: "nxp-modal__body", children: u }),
+          s && /* @__PURE__ */ e("div", { className: "nxp-modal__foot", children: s })
         ] })
       }
     ),
@@ -58,6 +87,6 @@ function b({
   );
 }
 export {
-  b as Modal,
-  b as default
+  g as Modal,
+  g as default
 };

@@ -1127,102 +1127,151 @@
 .nxp-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(2px);
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(3px);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
 }
+
+/* ── Shell ─────────────────────────────────────────────────── */
 .nxp-modal {
-  background: var(--nxp-bg);
+  background: var(--nxp-color-surface-card, #fff);
   border-radius: var(--nxp-radius-lg);
-  box-shadow: var(--nxp-shadow-lg);
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.08);
   width: 100%;
   max-width: 520px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: nxp-modal-in var(--nxp-dur-motion) var(--nxp-ease);
+  animation: nxp-modal-in var(--nxp-dur-motion, 180ms) var(--nxp-ease, ease);
   position: relative;
 }
+
+/* Top accent bar */
 .nxp-modal::before {
   content: '';
   display: block;
   height: 3px;
-  background: var(--nxp-brand-grad);
+  background: var(--nxp-brand-grad, linear-gradient(90deg, #1E40AF 0%, #4F46E5 100%));
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1;
 }
+
+/* ── Size modifiers ─────────────────────────────────────────── */
 .nxp-modal--sm { max-width: 380px; }
 .nxp-modal--lg { max-width: 680px; }
 .nxp-modal--xl { max-width: 860px; }
-.nxp-modal__head {
+
+/* ── Close button — absolute top-right ─────────────────────── */
+.nxp-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--nxp-color-text-muted, #64748B);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--nxp-radius-sm);
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 20px 20px 16px;
-  border-bottom: 1px solid var(--nxp-border);
-  padding-top: 24px;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--nxp-dur-hover, 120ms) ease,
+              color     var(--nxp-dur-hover, 120ms) ease;
+  flex-shrink: 0;
+  padding: 0;
+}
+.nxp-modal__close:hover {
+  background: var(--nxp-color-bg-wash, #F1F5F9);
+  color: var(--nxp-color-text-default, #0F172A);
+}
+.nxp-modal__close:focus-visible {
+  outline: 2px solid var(--nxp-color-border-focus, #1E40AF);
+  outline-offset: 1px;
+}
+
+/* ── Header — LEFT align (default) ─────────────────────────── */
+.nxp-modal__head {
+  padding: 24px 48px 18px 24px; /* right padding leaves room for close btn */
+  border-bottom: 1px solid var(--nxp-color-border-default, #E2E8F0);
 }
 .nxp-modal__title {
   font-family: var(--nxp-font);
   font-size: 15px;
   font-weight: 600;
-  color: var(--nxp-text-strong);
-  flex: 1;
+  color: var(--nxp-color-text-strong, #0B1220);
+  line-height: 1.4;
+  margin: 0;
 }
 .nxp-modal__byline {
   font-family: var(--nxp-font);
   font-size: 12.5px;
-  color: var(--nxp-text-muted);
-  margin-top: 3px;
+  color: var(--nxp-color-text-muted, #64748B);
+  margin-top: 5px;
+  line-height: 1.55;
 }
+
+/* ── Header — CENTER align variant ─────────────────────────── */
+.nxp-modal--center .nxp-modal__head {
+  padding: 36px 48px 20px;
+  text-align: center;
+  border-bottom: none;
+}
+.nxp-modal--center .nxp-modal__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.nxp-modal--center .nxp-modal__byline {
+  font-size: 13px;
+  color: var(--nxp-color-text-link, #2563EB);
+  margin-top: 6px;
+}
+
+/* ── Body ───────────────────────────────────────────────────── */
 .nxp-modal__body {
-  padding: 20px;
+  padding: 20px 24px 24px;
   overflow-y: auto;
   flex: 1;
   font-family: var(--nxp-font);
   font-size: 13.5px;
-  color: var(--nxp-text);
+  color: var(--nxp-color-text-default, #0F172A);
   line-height: 1.6;
 }
+.nxp-modal--center .nxp-modal__body {
+  padding-top: 0;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
 .nxp-modal__foot {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  padding: 14px 20px;
-  border-top: 1px solid var(--nxp-border);
-  background: var(--nxp-bg-alt);
+  padding: 14px 24px;
+  border-top: 1px solid var(--nxp-color-border-default, #E2E8F0);
+  background: var(--nxp-color-bg-alt, #F8FAFC);
 }
-.nxp-modal__close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--nxp-text-muted);
-  padding: 4px;
-  border-radius: var(--nxp-radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  line-height: 1;
-  transition: background var(--nxp-dur-hover) var(--nxp-ease), color var(--nxp-dur-hover) var(--nxp-ease);
-  flex-shrink: 0;
-}
-.nxp-modal__close:hover {
-  background: var(--nxp-wash-hover);
-  color: var(--nxp-text);
+/* Center modal: footer is space-between (link left, action right) */
+.nxp-modal--center .nxp-modal__foot {
+  justify-content: space-between;
+  background: transparent;
+  border-top: 1px solid var(--nxp-color-border-default, #E2E8F0);
+  padding: 14px 24px 20px;
 }
 
+/* ── Enter animation ────────────────────────────────────────── */
 @keyframes nxp-modal-in {
-  from { opacity: 0; transform: scale(0.95) translateY(8px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
 
 /* ============================================================
