@@ -66,5 +66,17 @@ export { default as Typography }       from './components/Typography';
 // v1.4.0 additions
 export { ThemeProvider, useTheme }     from './components/ThemeProvider';
 
+// v1.7.0 theming utilities
+export { cn }                          from './lib/utils';
+export {
+  setToken,
+  setTheme,
+  applyPreset,
+  setColorMode,
+  toggleDark,
+  initTheme,
+  PRESETS,
+}                                      from './lib/theme';
+
 export const tokens = 'CSS tokens and component styles are auto-injected into the JS bundle.';
 export const rtlSupport = 'CSS-driven — add dir="rtl" to any ancestor element';
