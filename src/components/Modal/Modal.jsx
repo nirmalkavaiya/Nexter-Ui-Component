@@ -97,7 +97,7 @@ function Modal({
 
         {/* ── Header ── */}
         {hasHead && (
-          <div className="nxp-modal__head">
+          <div className="nxp-flex nxp-flex-col-center nxp-justify-center nxp-modal__head">
             {title  && <div className="nxp-modal__title">{title}</div>}
             {byline && <div className="nxp-modal__byline">{byline}</div>}
           </div>

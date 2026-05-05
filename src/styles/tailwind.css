@@ -309,7 +309,6 @@
     --nxp-font-family-mono:        var(--font-nxp-mono);
     --nxp-font-size-xs:            var(--text-nxp-xs);
     --nxp-font-size-sm:            var(--text-nxp-sm);
-    --nxp-font-size-base:          var(--text-nxp-base);
     --nxp-font-size-md:            var(--text-nxp-md);
     --nxp-font-size-lg:            var(--text-nxp-lg);
     --nxp-font-size-xl:            var(--text-nxp-xl);
