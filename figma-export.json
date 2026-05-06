@@ -1,0 +1,507 @@
+{
+  "collections": {
+    "Colors": {
+      "id": "VariableCollectionId:1:9823",
+      "modes": [
+        {
+          "id": "1:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [
+          {
+            "name": "Primary Colors/--nexter-color-primary",
+            "token": "primary-colors-nexter-color-primary",
+            "type": "color",
+            "value": "#1717cc"
+          },
+          {
+            "name": "Secondary Colors/--nexter-color-secondary",
+            "token": "secondary-colors-nexter-color-secondary",
+            "type": "color",
+            "value": "#f12d2d"
+          },
+          {
+            "name": "Text Colors/--nexter-color-text-default",
+            "token": "text-colors-nexter-color-text-default",
+            "type": "color",
+            "value": "#1a1a1a"
+          },
+          {
+            "name": "Text Colors/--nexter-color-text-weaker",
+            "token": "text-colors-nexter-color-text-weaker",
+            "type": "color",
+            "value": "#666666"
+          },
+          {
+            "name": "Background Colors/--nexter-color-background-default",
+            "token": "background-colors-nexter-color-background-default",
+            "type": "color",
+            "value": "#f0f0f1"
+          },
+          {
+            "name": "Background Colors/--nexter-color-background-weaker",
+            "token": "background-colors-nexter-color-background-weaker",
+            "type": "color",
+            "value": "#ffffff"
+          },
+          {
+            "name": "Border Colors/--nexter-color-border-default",
+            "token": "border-colors-nexter-color-border-default",
+            "type": "color",
+            "value": "#d1d1d6"
+          },
+          {
+            "name": "Success Colors/--nexter-color-success",
+            "token": "success-colors-nexter-color-success",
+            "type": "color",
+            "value": "#2ea343"
+          },
+          {
+            "name": "Border Colors/--nexter-color-border-weak",
+            "token": "border-colors-nexter-color-border-weak",
+            "type": "color",
+            "value": "#f0f0f0"
+          },
+          {
+            "name": "Primary Colors/--nexter-color-primary-lightest",
+            "token": "primary-colors-nexter-color-primary-lightest",
+            "type": "color",
+            "value": "#f5f7fe"
+          },
+          {
+            "name": "Primary Colors/--nexter-color-primary-lighter",
+            "token": "primary-colors-nexter-color-primary-lighter",
+            "type": "color",
+            "value": "#b1b1f6"
+          },
+          {
+            "name": "Primary Colors/--nexter-color-primary-darker",
+            "token": "primary-colors-nexter-color-primary-darker",
+            "type": "color",
+            "value": "#111193"
+          },
+          {
+            "name": "Secondary Colors/--nexter-color-secondary-lightest",
+            "token": "secondary-colors-nexter-color-secondary-lightest",
+            "type": "color",
+            "value": "#fef1f1"
+          },
+          {
+            "name": "Secondary Colors/--nexter-color-secondary-lighter",
+            "token": "secondary-colors-nexter-color-secondary-lighter",
+            "type": "color",
+            "value": "#fbc6c6"
+          },
+          {
+            "name": "Secondary Colors/-nexter-color-secondary-darker",
+            "token": "secondary-colors-nexter-color-secondary-darker",
+            "type": "color",
+            "value": "#bf0d0d"
+          },
+          {
+            "name": "Text Colors/--nexter-color-text-disabled",
+            "token": "text-colors-nexter-color-text-disabled",
+            "type": "color",
+            "value": "#b3b3b3"
+          },
+          {
+            "name": "Background Colors/--nexter-color-background-stronger",
+            "token": "background-colors-nexter-color-background-stronger",
+            "type": "color",
+            "value": "#dfdfe1"
+          },
+          {
+            "name": "Background Colors/--nexter-color-background-strongest",
+            "token": "background-colors-nexter-color-background-strongest",
+            "type": "color",
+            "value": "#c5c5c9"
+          },
+          {
+            "name": "Success Colors/--nexter-color-success-lightest",
+            "token": "success-colors-nexter-color-success-lightest",
+            "type": "color",
+            "value": "#e7ffe7"
+          },
+          {
+            "name": "Success Colors/--nexter-color-success-lighter",
+            "token": "success-colors-nexter-color-success-lighter",
+            "type": "color",
+            "value": "#a7eaaa"
+          },
+          {
+            "name": "Success Colors/--nexter-color-success-darker",
+            "token": "success-colors-nexter-color-success-darker",
+            "type": "color",
+            "value": "#0a842a"
+          },
+          {
+            "name": "Warning Colors/--nexter-color-warning-lightest",
+            "token": "warning-colors-nexter-color-warning-lightest",
+            "type": "color",
+            "value": "#fff8d9"
+          },
+          {
+            "name": "Warning Colors/--nexter-color-warning-lighter",
+            "token": "warning-colors-nexter-color-warning-lighter",
+            "type": "color",
+            "value": "#f4db6f"
+          },
+          {
+            "name": "Warning Colors/--nexter-color-warning",
+            "token": "warning-colors-nexter-color-warning",
+            "type": "color",
+            "value": "#aa8d10"
+          },
+          {
+            "name": "Warning Colors/--nexter-color-warning-darker",
+            "token": "warning-colors-nexter-color-warning-darker",
+            "type": "color",
+            "value": "#86700b"
+          },
+          {
+            "name": "Error Colors/--nexter-color-error-lightest",
+            "token": "error-colors-nexter-color-error-lightest",
+            "type": "color",
+            "value": "#fff2ef"
+          },
+          {
+            "name": "Error Colors/--nexter-color-error-lighter",
+            "token": "error-colors-nexter-color-error-lighter",
+            "type": "color",
+            "value": "#fdc9c6"
+          },
+          {
+            "name": "Error Colors/--nexter-color-error",
+            "token": "error-colors-nexter-color-error",
+            "type": "color",
+            "value": "#f65258"
+          },
+          {
+            "name": "Error Colors/--nexter-color-error-darker",
+            "token": "error-colors-nexter-color-error-darker",
+            "type": "color",
+            "value": "#d12d37"
+          },
+          {
+            "name": "Text Colors/--nexter-color-text-white",
+            "token": "text-colors-nexter-color-text-white",
+            "type": "color",
+            "value": "#ffffff"
+          }
+        ],
+        "numbers": [],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Radius": {
+      "id": "VariableCollectionId:1377:2045",
+      "modes": [
+        {
+          "id": "1377:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [],
+        "numbers": [
+          {
+            "name": "Radius - 1",
+            "token": "radius-1",
+            "type": "float",
+            "value": 4
+          },
+          {
+            "name": "Radius - 2",
+            "token": "radius-2",
+            "type": "float",
+            "value": 5
+          },
+          {
+            "name": "Radius - 3",
+            "token": "radius-3",
+            "type": "float",
+            "value": 8
+          },
+          {
+            "name": "Radius - 4",
+            "token": "radius-4",
+            "type": "float",
+            "value": 12
+          },
+          {
+            "name": "Radius - 5",
+            "token": "radius-5",
+            "type": "float",
+            "value": 16
+          },
+          {
+            "name": "Radius - 6",
+            "token": "radius-6",
+            "type": "float",
+            "value": 20
+          },
+          {
+            "name": "Radius - 7",
+            "token": "radius-7",
+            "type": "float",
+            "value": 40
+          },
+          {
+            "name": "Radius - 8",
+            "token": "radius-8",
+            "type": "float",
+            "value": 9999
+          },
+          {
+            "name": "Radius - 0",
+            "token": "radius-0",
+            "type": "float",
+            "value": 0
+          }
+        ],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Spacing": {
+      "id": "VariableCollectionId:4178:7967",
+      "modes": [
+        {
+          "id": "4178:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [],
+        "numbers": [
+          {
+            "name": "Spacing - none",
+            "token": "spacing-none",
+            "type": "float",
+            "value": 0
+          },
+          {
+            "name": "Spacing - xxs",
+            "token": "spacing-xxs",
+            "type": "float",
+            "value": 2
+          },
+          {
+            "name": "Spacing - xs",
+            "token": "spacing-xs",
+            "type": "float",
+            "value": 4
+          },
+          {
+            "name": "Spacing - sm",
+            "token": "spacing-sm",
+            "type": "float",
+            "value": 6
+          },
+          {
+            "name": "Spacing - md",
+            "token": "spacing-md",
+            "type": "float",
+            "value": 8
+          },
+          {
+            "name": "Spacing - lg",
+            "token": "spacing-lg",
+            "type": "float",
+            "value": 10
+          },
+          {
+            "name": "Spacing - xl",
+            "token": "spacing-xl",
+            "type": "float",
+            "value": 12
+          },
+          {
+            "name": "Spacing - 2xl",
+            "token": "spacing-2xl",
+            "type": "float",
+            "value": 15
+          },
+          {
+            "name": "Spacing - 3xl",
+            "token": "spacing-3xl",
+            "type": "float",
+            "value": 16
+          },
+          {
+            "name": "Spacing - 4xl",
+            "token": "spacing-4xl",
+            "type": "float",
+            "value": 20
+          },
+          {
+            "name": "Spacing - 5xl",
+            "token": "spacing-5xl",
+            "type": "float",
+            "value": 24
+          },
+          {
+            "name": "Spacing - 6xl",
+            "token": "spacing-6xl",
+            "type": "float",
+            "value": 32
+          },
+          {
+            "name": "Spacing - 7xl",
+            "token": "spacing-7xl",
+            "type": "float",
+            "value": 40
+          },
+          {
+            "name": "Spacing - 8xl",
+            "token": "spacing-8xl",
+            "type": "float",
+            "value": 48
+          },
+          {
+            "name": "Spacing - 9xl",
+            "token": "spacing-9xl",
+            "type": "float",
+            "value": 64
+          },
+          {
+            "name": "Spacing - 10xl",
+            "token": "spacing-10xl",
+            "type": "float",
+            "value": 96
+          },
+          {
+            "name": "Spacing - 11xl",
+            "token": "spacing-11xl",
+            "type": "float",
+            "value": 100
+          },
+          {
+            "name": "Spacing - 12xl",
+            "token": "spacing-12xl",
+            "type": "float",
+            "value": 145
+          },
+          {
+            "name": "Spacing - 13xl",
+            "token": "spacing-13xl",
+            "type": "float",
+            "value": 160
+          },
+          {
+            "name": "Spacing - 14xl",
+            "token": "spacing-14xl",
+            "type": "float",
+            "value": 200
+          }
+        ],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Typography": {
+      "id": "VariableCollectionId:4839:3203",
+      "modes": [
+        {
+          "id": "4839:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [],
+        "numbers": [
+          {
+            "name": "Line-Height/xs-10px",
+            "token": "line-height-xs-10px",
+            "type": "float",
+            "value": 15
+          },
+          {
+            "name": "Font-Size/xs",
+            "token": "font-size-xs",
+            "type": "float",
+            "value": 10
+          },
+          {
+            "name": "Font-Size/sm",
+            "token": "font-size-sm",
+            "type": "float",
+            "value": 12
+          },
+          {
+            "name": "Font-Size/md",
+            "token": "font-size-md",
+            "type": "float",
+            "value": 14
+          },
+          {
+            "name": "Font-Size/lg",
+            "token": "font-size-lg",
+            "type": "float",
+            "value": 16
+          },
+          {
+            "name": "Font-Size/xl",
+            "token": "font-size-xl",
+            "type": "float",
+            "value": 20
+          },
+          {
+            "name": "Line-Height/sm-12px",
+            "token": "line-height-sm-12px",
+            "type": "float",
+            "value": 18
+          },
+          {
+            "name": "Line-Height/md-14px",
+            "token": "line-height-md-14px",
+            "type": "float",
+            "value": 17
+          },
+          {
+            "name": "Line-Height/lg-16px",
+            "token": "line-height-lg-16px",
+            "type": "float",
+            "value": 24
+          },
+          {
+            "name": "Line-Height/xl-20px",
+            "token": "line-height-xl-20px",
+            "type": "float",
+            "value": 28
+          }
+        ],
+        "strings": [
+          {
+            "name": "Font-Style/Body",
+            "token": "font-style-body",
+            "type": "string",
+            "value": "Helvetica Neue"
+          },
+          {
+            "name": "Font-Weight/Regular",
+            "token": "font-weight-regular",
+            "type": "string",
+            "value": "Regular"
+          },
+          {
+            "name": "Font-Weight/Medium",
+            "token": "font-weight-medium",
+            "type": "string",
+            "value": "Medium"
+          },
+          {
+            "name": "Font-Weight/Bold",
+            "token": "font-weight-bold",
+            "type": "string",
+            "value": "Bold"
+          }
+        ],
+        "booleans": []
+      }
+    }
+  }
+}

@@ -1,395 +1,266 @@
 /* ============================================================
-   Nexter UI — Generated Design Tokens (theme.css)
-   DO NOT EDIT — run `npm run build:tokens` to regenerate.
-   Source: tokens/global.json, tokens/light.json, tokens/dark.json
+   Nexter UI — Design Tokens  (theme.css)
+   Source: figma-export.json  (Figma Variables)
+   Regenerate: npm run build:tokens
    ============================================================ */
 
-/* ── Light theme (default / :root) ─────────────────────────── */
+/* ── Figma Design Tokens ────────────────────────────────────── */
 :root {
-  --nxp-color-brand-100: #DBEAFE;
-  --nxp-color-brand-200: #BFDBFE;
-  --nxp-color-brand-300: #93C5FD;
-  --nxp-color-brand-400: #60A5FA;
-  --nxp-color-brand-500: #3B82F6;
-  --nxp-color-brand-600: #2563EB;
-  --nxp-color-brand-700: #1D4ED8;
-  --nxp-color-brand-800: #1E40AF;
-  --nxp-color-brand-900: #1E3A8A;
-  --nxp-color-brand-accent: #4F46E5;
-  --nxp-color-brand-soft: #EEF2FF;
-  --nxp-color-brand-grad: linear-gradient(180deg, #1E40AF 0%, #4F46E5 100%);
-  --nxp-color-success-default: #16A34A;
-  --nxp-color-success-soft: #DCFCE7;
-  --nxp-color-success-dark: #15803D;
-  --nxp-color-warning-default: #D97706;
-  --nxp-color-warning-soft: #FEF3C7;
-  --nxp-color-warning-dark: #B45309;
-  --nxp-color-error-default: #DC2626;
-  --nxp-color-error-soft: #FEE2E2;
-  --nxp-color-error-dark: #B91C1C;
-  --nxp-color-info-default: #2563EB;
-  --nxp-color-info-soft: #DBEAFE;
-  --nxp-color-info-dark: #1D4ED8;
-  --nxp-color-bg-default: #ffffff;
-  --nxp-color-bg-alt: #F8FAFC;
-  --nxp-color-bg-wash: #F1F5F9;
-  --nxp-color-bg-wash-active: #EEF2FF;
-  --nxp-color-bg-overlay: rgba(15, 23, 42, 0.4);
-  --nxp-color-primary-default: #1E40AF;
-  --nxp-color-primary-hover: #1D4ED8;
-  --nxp-color-primary-active: #1e3a8a;
-  --nxp-color-primary-foreground: #ffffff;
-  --nxp-color-text-default: #0F172A;
-  --nxp-color-text-strong: #0B1220;
-  --nxp-color-text-muted: #64748B;
-  --nxp-color-text-faint: #94A3B8;
-  --nxp-color-text-inverse: #ffffff;
-  --nxp-color-text-link: #2563EB;
-  --nxp-color-text-link-hover: #1D4ED8;
-  --nxp-color-border-default: #E2E8F0;
-  --nxp-color-border-strong: #CBD5E1;
-  --nxp-color-border-focus: #1E40AF;
-  --nxp-color-surface-input: #ffffff;
-  --nxp-color-surface-card: #ffffff;
-  --nxp-color-surface-popover: #ffffff;
-  --nxp-color-surface-tooltip: #0F172A;
-  --nxp-color-surface-tooltip-text: #F8FAFC;
-  --nxp-spacing-0: 0px;
-  --nxp-spacing-1: 4px;
-  --nxp-spacing-2: 8px;
-  --nxp-spacing-3: 12px;
-  --nxp-spacing-4: 16px;
-  --nxp-spacing-5: 20px;
-  --nxp-spacing-6: 24px;
-  --nxp-spacing-8: 32px;
-  --nxp-spacing-10: 40px;
-  --nxp-spacing-12: 48px;
-  --nxp-spacing-16: 64px;
-  --nxp-spacing-xs: 4px;
-  --nxp-spacing-sm: 8px;
-  --nxp-spacing-md: 16px;
-  --nxp-spacing-lg: 24px;
-  --nxp-spacing-xl: 32px;
-  --nxp-spacing-2xl: 48px;
-  --nxp-spacing-3xl: 64px;
-  --nxp-radius-none: 0px;
-  --nxp-radius-sm: 4px;
-  --nxp-radius-md: 6px;
-  --nxp-radius-lg: 12px;
-  --nxp-radius-xl: 16px;
-  --nxp-radius-2xl: 24px;
-  --nxp-radius-full: 9999px;
+
+  /* ── Colors ───────────────────────────────────────────────── */
+  --nexter-color-background-default: #f0f0f1;
+  --nexter-color-background-stronger: #dfdfe1;
+  --nexter-color-background-strongest: #c5c5c9;
+  --nexter-color-background-weaker: #ffffff;
+  --nexter-color-border-default: #d1d1d6;
+  --nexter-color-border-weak: #f0f0f0;
+  --nexter-color-error: #f65258;
+  --nexter-color-error-darker: #d12d37;
+  --nexter-color-error-lighter: #fdc9c6;
+  --nexter-color-error-lightest: #fff2ef;
+  --nexter-color-primary: #1717cc;
+  --nexter-color-primary-darker: #111193;
+  --nexter-color-primary-lighter: #b1b1f6;
+  --nexter-color-primary-lightest: #f5f7fe;
+  --nexter-color-secondary: #f12d2d;
+  --nexter-color-secondary-darker: #bf0d0d;
+  --nexter-color-secondary-lighter: #fbc6c6;
+  --nexter-color-secondary-lightest: #fef1f1;
+  --nexter-color-success: #2ea343;
+  --nexter-color-success-darker: #0a842a;
+  --nexter-color-success-lighter: #a7eaaa;
+  --nexter-color-success-lightest: #e7ffe7;
+  --nexter-color-text-default: #1a1a1a;
+  --nexter-color-text-disabled: #b3b3b3;
+  --nexter-color-text-weaker: #666666;
+  --nexter-color-text-white: #ffffff;
+  --nexter-color-warning: #aa8d10;
+  --nexter-color-warning-darker: #86700b;
+  --nexter-color-warning-lighter: #f4db6f;
+  --nexter-color-warning-lightest: #fff8d9;
+
+  /* ── Spacing ──────────────────────────────────────────────── */
+  --nexter-spacing-none: 0px;
+  --nexter-spacing-xxs: 2px;
+  --nexter-spacing-xs: 4px;
+  --nexter-spacing-sm: 6px;
+  --nexter-spacing-md: 8px;
+  --nexter-spacing-lg: 10px;
+  --nexter-spacing-xl: 12px;
+  --nexter-spacing-2xl: 15px;
+  --nexter-spacing-3xl: 16px;
+  --nexter-spacing-4xl: 20px;
+  --nexter-spacing-5xl: 24px;
+  --nexter-spacing-6xl: 32px;
+  --nexter-spacing-7xl: 40px;
+  --nexter-spacing-8xl: 48px;
+  --nexter-spacing-9xl: 64px;
+  --nexter-spacing-10xl: 96px;
+  --nexter-spacing-11xl: 100px;
+  --nexter-spacing-12xl: 145px;
+  --nexter-spacing-13xl: 160px;
+  --nexter-spacing-14xl: 200px;
+
+  /* ── Radius ───────────────────────────────────────────────── */
+  --nexter-radius-0: 0px;
+  --nexter-radius-1: 4px;
+  --nexter-radius-2: 5px;
+  --nexter-radius-3: 8px;
+  --nexter-radius-4: 12px;
+  --nexter-radius-5: 16px;
+  --nexter-radius-6: 20px;
+  --nexter-radius-7: 40px;
+  --nexter-radius-8: 9999px;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --nexter-font-family-body: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --nexter-font-size-xs: 10px;
+  --nexter-font-size-sm: 12px;
+  --nexter-font-size-md: 14px;
+  --nexter-font-size-lg: 16px;
+  --nexter-font-size-xl: 20px;
+  --nexter-font-weight-regular: 400;
+  --nexter-font-weight-medium: 500;
+  --nexter-font-weight-bold: 700;
+  --nexter-line-height-xs: 15px;
+  --nexter-line-height-sm: 18px;
+  --nexter-line-height-md: 17px;
+  --nexter-line-height-lg: 24px;
+  --nexter-line-height-xl: 28px;
+
+  /* ── Component height tokens (not in Figma) ──────────────── */
   --nxp-size-h-sm: 28px;
   --nxp-size-h-md: 36px;
   --nxp-size-h-lg: 40px;
-  --nxp-font-family-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --nxp-font-family-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
-  --nxp-font-size-xs: 11px;
-  --nxp-font-size-sm: 12px;
-  --nxp-font-size-md: 14px;
-  --nxp-font-size-lg: 16px;
-  --nxp-font-size-xl: 18px;
-  --nxp-font-size-2xl: 20px;
-  --nxp-font-size-3xl: 24px;
-  --nxp-font-size-4xl: 30px;
-  --nxp-font-size-5xl: 36px;
-  --nxp-font-weight-regular: 400;
-  --nxp-font-weight-medium: 500;
-  --nxp-font-weight-semibold: 600;
-  --nxp-font-weight-bold: 700;
-  --nxp-font-lineHeight-none: 1;
-  --nxp-font-lineHeight-tight: 1.25;
-  --nxp-font-lineHeight-snug: 1.375;
-  --nxp-font-lineHeight-normal: 1.5;
-  --nxp-font-lineHeight-relaxed: 1.625;
-  --nxp-font-lineHeight-loose: 2;
-  --nxp-motion-ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-  --nxp-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --nxp-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --nxp-motion-ease-linear: linear;
-  --nxp-motion-duration-instant: 80ms;
-  --nxp-motion-duration-fast: 120ms;
-  --nxp-motion-duration-hover: 180ms;
-  --nxp-motion-duration-active: 220ms;
-  --nxp-motion-duration-motion: 240ms;
-  --nxp-motion-duration-slow: 400ms;
-  --nxp-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --nxp-shadow-md: 0 1px 2px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
-  --nxp-shadow-lg: 0 4px 12px -4px rgba(15, 23, 42, 0.10);
-  --nxp-shadow-xl: 0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
-  --nxp-shadow-ring: 0 0 0 2px rgba(30, 64, 175, 0.18);
 
-  /* ── Backward-compat aliases (legacy → semantic token) ── */
-  --nxp-brand: var(--nxp-color-primary-default);
-  --nxp-brand-2: var(--nxp-color-brand-accent);
-  --nxp-brand-soft: var(--nxp-color-brand-soft);
-  --nxp-brand-grad: var(--nxp-color-brand-grad);
-  --nxp-bg: var(--nxp-color-bg-default);
-  --nxp-bg-alt: var(--nxp-color-bg-alt);
-  --nxp-wash-hover: var(--nxp-color-bg-wash);
-  --nxp-wash-active: var(--nxp-color-bg-wash-active);
-  --nxp-text: var(--nxp-color-text-default);
-  --nxp-text-strong: var(--nxp-color-text-strong);
-  --nxp-text-muted: var(--nxp-color-text-muted);
-  --nxp-text-faint: var(--nxp-color-text-faint);
-  --nxp-border: var(--nxp-color-border-default);
-  --nxp-border-strong: var(--nxp-color-border-strong);
-  --nxp-success: var(--nxp-color-success-default);
-  --nxp-warning: var(--nxp-color-warning-default);
-  --nxp-error: var(--nxp-color-error-default);
-  --nxp-info: var(--nxp-color-info-default);
-  --nxp-shadow-sm: var(--nxp-shadow-sm);
-  --nxp-shadow: var(--nxp-shadow-md);
-  --nxp-shadow-md: var(--nxp-shadow-lg);
-  --nxp-shadow-lg: var(--nxp-shadow-xl);
-  --nxp-ring: var(--nxp-shadow-ring);
-  --nxp-ease: var(--nxp-motion-ease-standard);
-  --nxp-dur-hover: var(--nxp-motion-duration-hover);
-  --nxp-dur-active: var(--nxp-motion-duration-active);
-  --nxp-dur-motion: var(--nxp-motion-duration-motion);
-  --nxp-font: var(--nxp-font-family-sans);
-  --nxp-radius: var(--nxp-radius-md);
-  --nxp-radius-sm: var(--nxp-radius-sm);
-  --nxp-radius-lg: var(--nxp-radius-lg);
-  --nxp-radius-pill: var(--nxp-radius-full);
-  --nxp-h: var(--nxp-size-h-md);
-  --nxp-h-sm: var(--nxp-size-h-sm);
-  --nxp-h-lg: var(--nxp-size-h-lg);
+  /* ── Motion tokens (not in Figma) ────────────────────────── */
+  --nxp-motion-ease-standard:    cubic-bezier(0.16, 1, 0.3, 1);
+  --nxp-motion-ease-in:          cubic-bezier(0.4, 0, 1, 1);
+  --nxp-motion-ease-out:         cubic-bezier(0, 0, 0.2, 1);
+  --nxp-motion-ease-linear:      linear;
+  --nxp-motion-duration-instant: 80ms;
+  --nxp-motion-duration-fast:    120ms;
+  --nxp-motion-duration-hover:   180ms;
+  --nxp-motion-duration-active:  220ms;
+  --nxp-motion-duration-motion:  240ms;
+  --nxp-motion-duration-slow:    400ms;
+
+  /* ── Shadow tokens (not in Figma) ────────────────────────── */
+  --nxp-shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+  --nxp-shadow-md:   0 1px 2px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
+  --nxp-shadow-lg:   0 4px 12px -4px rgba(15, 23, 42, 0.10);
+  --nxp-shadow-xl:   0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
+  --nxp-shadow-ring: 0 0 0 2px rgba(23, 23, 204, 0.25);
+
+  /* ══════════════════════════════════════════════════════════
+     --nxp-* semantic aliases → var(--nexter-*)
+     Components reference these names; all resolve to Figma tokens.
+     ══════════════════════════════════════════════════════════ */
+
+  /* Primary interactive */
+  --nxp-color-primary-default:    var(--nexter-color-primary);
+  --nxp-color-primary-hover:      var(--nexter-color-primary-darker);
+  --nxp-color-primary-active:     var(--nexter-color-primary-darker);
+  --nxp-color-primary-foreground: var(--nexter-color-text-white);
+
+  /* Brand compat */
+  --nxp-color-brand-soft:  var(--nexter-color-primary-lightest);
+  --nxp-color-brand-accent: var(--nexter-color-secondary);
+  --nxp-color-brand-grad:  linear-gradient(180deg, var(--nexter-color-primary-darker) 0%, var(--nexter-color-primary) 100%);
+
+  /* Status */
+  --nxp-color-success-default: var(--nexter-color-success);
+  --nxp-color-success-soft:    var(--nexter-color-success-lightest);
+  --nxp-color-success-dark:    var(--nexter-color-success-darker);
+  --nxp-color-warning-default: var(--nexter-color-warning);
+  --nxp-color-warning-soft:    var(--nexter-color-warning-lightest);
+  --nxp-color-warning-dark:    var(--nexter-color-warning-darker);
+  --nxp-color-error-default:   var(--nexter-color-error);
+  --nxp-color-error-soft:      var(--nexter-color-error-lightest);
+  --nxp-color-error-dark:      var(--nexter-color-error-darker);
+  --nxp-color-info-default:    var(--nexter-color-primary);
+  --nxp-color-info-soft:       var(--nexter-color-primary-lightest);
+  --nxp-color-info-dark:       var(--nexter-color-primary-darker);
+
+  /* Background */
+  --nxp-color-bg-default:     var(--nexter-color-background-weaker);
+  --nxp-color-bg-alt:         var(--nexter-color-background-default);
+  --nxp-color-bg-wash:        var(--nexter-color-background-default);
+  --nxp-color-bg-wash-active: var(--nexter-color-primary-lightest);
+  --nxp-color-bg-overlay:     rgba(26, 26, 26, 0.4);
+
+  /* Text */
+  --nxp-color-text-default:    var(--nexter-color-text-default);
+  --nxp-color-text-strong:     var(--nexter-color-text-default);
+  --nxp-color-text-muted:      var(--nexter-color-text-weaker);
+  --nxp-color-text-faint:      var(--nexter-color-text-disabled);
+  --nxp-color-text-inverse:    var(--nexter-color-text-white);
+  --nxp-color-text-link:       var(--nexter-color-primary);
+  --nxp-color-text-link-hover: var(--nexter-color-primary-darker);
+
+  /* Border */
+  --nxp-color-border-default: var(--nexter-color-border-default);
+  --nxp-color-border-strong:  var(--nexter-color-background-strongest);
+  --nxp-color-border-focus:   var(--nexter-color-primary);
+
+  /* Surface */
+  --nxp-color-surface-input:        var(--nexter-color-background-weaker);
+  --nxp-color-surface-card:         var(--nexter-color-background-weaker);
+  --nxp-color-surface-popover:      var(--nexter-color-background-weaker);
+  --nxp-color-surface-tooltip:      var(--nexter-color-text-default);
+  --nxp-color-surface-tooltip-text: var(--nexter-color-text-white);
+
+  /* Spacing aliases */
+  --nxp-spacing-0:   var(--nexter-spacing-none);
+  --nxp-spacing-1:   var(--nexter-spacing-xs);
+  --nxp-spacing-2:   var(--nexter-spacing-md);
+  --nxp-spacing-3:   var(--nexter-spacing-xl);
+  --nxp-spacing-4:   var(--nexter-spacing-3xl);
+  --nxp-spacing-5:   var(--nexter-spacing-4xl);
+  --nxp-spacing-6:   var(--nexter-spacing-5xl);
+  --nxp-spacing-8:   var(--nexter-spacing-6xl);
+  --nxp-spacing-10:  var(--nexter-spacing-7xl);
+  --nxp-spacing-12:  var(--nexter-spacing-8xl);
+  --nxp-spacing-16:  var(--nexter-spacing-9xl);
+  --nxp-spacing-xs:  var(--nexter-spacing-xs);
+  --nxp-spacing-sm:  var(--nexter-spacing-md);
+  --nxp-spacing-md:  var(--nexter-spacing-3xl);
+  --nxp-spacing-lg:  var(--nexter-spacing-5xl);
+  --nxp-spacing-xl:  var(--nexter-spacing-6xl);
+  --nxp-spacing-2xl: var(--nexter-spacing-8xl);
+  --nxp-spacing-3xl: var(--nexter-spacing-9xl);
+
+  /* Radius aliases */
+  --nxp-radius-none: var(--nexter-radius-0);
+  --nxp-radius-sm:   var(--nexter-radius-2);
+  --nxp-radius-md:   var(--nexter-radius-3);
+  --nxp-radius-lg:   var(--nexter-radius-4);
+  --nxp-radius-xl:   var(--nexter-radius-5);
+  --nxp-radius-2xl:  var(--nexter-radius-6);
+  --nxp-radius-full: var(--nexter-radius-8);
+
+  /* Typography aliases */
+  --nxp-font-family-sans:        var(--nexter-font-family-body);
+  --nxp-font-size-xs:            var(--nexter-font-size-xs);
+  --nxp-font-size-sm:            var(--nexter-font-size-sm);
+  --nxp-font-size-md:            var(--nexter-font-size-md);
+  --nxp-font-size-lg:            var(--nexter-font-size-lg);
+  --nxp-font-size-xl:            18px;
+  --nxp-font-size-2xl:           var(--nexter-font-size-xl);
+  --nxp-font-size-3xl:           24px;
+  --nxp-font-size-4xl:           30px;
+  --nxp-font-size-5xl:           36px;
+  --nxp-font-weight-regular:     var(--nexter-font-weight-regular);
+  --nxp-font-weight-medium:      var(--nexter-font-weight-medium);
+  --nxp-font-weight-semibold:    600;
+  --nxp-font-weight-bold:        var(--nexter-font-weight-bold);
+  --nxp-font-lineHeight-none:    1;
+  --nxp-font-lineHeight-tight:   1.25;
+  --nxp-font-lineHeight-snug:    1.375;
+  --nxp-font-lineHeight-normal:  1.5;
+  --nxp-font-lineHeight-relaxed: 1.625;
+  --nxp-font-lineHeight-loose:   2;
+
+  /* ── Short backward-compat aliases ───────────────────────── */
+  --nxp-brand:           var(--nexter-color-primary);
+  --nxp-brand-secondary: var(--nexter-color-secondary);
+  --nxp-brand-soft:      var(--nexter-color-primary-lightest);
+  --nxp-brand-grad:      var(--nxp-color-brand-grad);
+  --nxp-bg:              var(--nxp-color-bg-default);
+  --nxp-bg-alt:          var(--nxp-color-bg-alt);
+  --nxp-wash-hover:      var(--nxp-color-bg-wash);
+  --nxp-wash-active:     var(--nxp-color-bg-wash-active);
+  --nxp-text:            var(--nxp-color-text-default);
+  --nxp-text-strong:     var(--nxp-color-text-strong);
+  --nxp-text-muted:      var(--nxp-color-text-muted);
+  --nxp-text-faint:      var(--nxp-color-text-faint);
+  --nxp-border:          var(--nxp-color-border-default);
+  --nxp-border-strong:   var(--nxp-color-border-strong);
+  --nxp-success:         var(--nxp-color-success-default);
+  --nxp-warning:         var(--nxp-color-warning-default);
+  --nxp-error:           var(--nxp-color-error-default);
+  --nxp-info:            var(--nxp-color-info-default);
+  --nxp-shadow:          var(--nxp-shadow-md);
+  --nxp-ring:            var(--nxp-shadow-ring);
+  --nxp-ease:            var(--nxp-motion-ease-standard);
+  --nxp-dur-hover:       var(--nxp-motion-duration-hover);
+  --nxp-dur-active:      var(--nxp-motion-duration-active);
+  --nxp-dur-motion:      var(--nxp-motion-duration-motion);
+  --nxp-font:            var(--nxp-font-family-sans);
+  --nxp-radius:          var(--nxp-radius-md);
+  --nxp-radius-pill:     var(--nxp-radius-full);
+  --nxp-h:               var(--nxp-size-h-md);
+  --nxp-h-sm:            var(--nxp-size-h-sm);
+  --nxp-h-lg:            var(--nxp-size-h-lg);
 }
 
-/* ── Dark theme (explicit class / data attribute) ───────────── */
+/* ── Dark theme ──────────────────────────────────────────────── */
 .nxp-dark,
 [data-theme="dark"] {
-  --nxp-color-brand-100: #DBEAFE;
-  --nxp-color-brand-200: #BFDBFE;
-  --nxp-color-brand-300: #93C5FD;
-  --nxp-color-brand-400: #60A5FA;
-  --nxp-color-brand-500: #3B82F6;
-  --nxp-color-brand-600: #2563EB;
-  --nxp-color-brand-700: #1D4ED8;
-  --nxp-color-brand-800: #1E40AF;
-  --nxp-color-brand-900: #1E3A8A;
-  --nxp-color-brand-accent: #4F46E5;
-  --nxp-color-brand-soft: #EEF2FF;
-  --nxp-color-brand-grad: linear-gradient(180deg, #1E40AF 0%, #4F46E5 100%);
-  --nxp-color-success-default: #16A34A;
-  --nxp-color-success-soft: #DCFCE7;
-  --nxp-color-success-dark: #15803D;
-  --nxp-color-warning-default: #D97706;
-  --nxp-color-warning-soft: #FEF3C7;
-  --nxp-color-warning-dark: #B45309;
-  --nxp-color-error-default: #DC2626;
-  --nxp-color-error-soft: #FEE2E2;
-  --nxp-color-error-dark: #B91C1C;
-  --nxp-color-info-default: #2563EB;
-  --nxp-color-info-soft: #DBEAFE;
-  --nxp-color-info-dark: #1D4ED8;
-  --nxp-color-bg-default: #0F172A;
-  --nxp-color-bg-alt: #1E293B;
-  --nxp-color-bg-wash: #1E293B;
-  --nxp-color-bg-wash-active: #1e254a;
-  --nxp-color-bg-overlay: rgba(0, 0, 0, 0.6);
-  --nxp-color-primary-default: #3B82F6;
-  --nxp-color-primary-hover: #60A5FA;
-  --nxp-color-primary-active: #93C5FD;
-  --nxp-color-primary-foreground: #0F172A;
-  --nxp-color-text-default: #F1F5F9;
-  --nxp-color-text-strong: #F8FAFC;
-  --nxp-color-text-muted: #94A3B8;
-  --nxp-color-text-faint: #475569;
-  --nxp-color-text-inverse: #0F172A;
-  --nxp-color-text-link: #60A5FA;
-  --nxp-color-text-link-hover: #93C5FD;
-  --nxp-color-border-default: #334155;
-  --nxp-color-border-strong: #475569;
-  --nxp-color-border-focus: #3B82F6;
-  --nxp-color-surface-input: #1E293B;
-  --nxp-color-surface-card: #1E293B;
-  --nxp-color-surface-popover: #1E293B;
-  --nxp-color-surface-tooltip: #F8FAFC;
-  --nxp-color-surface-tooltip-text: #1E293B;
-  --nxp-spacing-0: 0px;
-  --nxp-spacing-1: 4px;
-  --nxp-spacing-2: 8px;
-  --nxp-spacing-3: 12px;
-  --nxp-spacing-4: 16px;
-  --nxp-spacing-5: 20px;
-  --nxp-spacing-6: 24px;
-  --nxp-spacing-8: 32px;
-  --nxp-spacing-10: 40px;
-  --nxp-spacing-12: 48px;
-  --nxp-spacing-16: 64px;
-  --nxp-spacing-xs: 4px;
-  --nxp-spacing-sm: 8px;
-  --nxp-spacing-md: 16px;
-  --nxp-spacing-lg: 24px;
-  --nxp-spacing-xl: 32px;
-  --nxp-spacing-2xl: 48px;
-  --nxp-spacing-3xl: 64px;
-  --nxp-radius-none: 0px;
-  --nxp-radius-sm: 4px;
-  --nxp-radius-md: 6px;
-  --nxp-radius-lg: 12px;
-  --nxp-radius-xl: 16px;
-  --nxp-radius-2xl: 24px;
-  --nxp-radius-full: 9999px;
-  --nxp-size-h-sm: 28px;
-  --nxp-size-h-md: 36px;
-  --nxp-size-h-lg: 40px;
-  --nxp-font-family-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --nxp-font-family-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
-  --nxp-font-size-xs: 11px;
-  --nxp-font-size-sm: 12px;
-  --nxp-font-size-base: 13.5px;
-  --nxp-font-size-md: 14px;
-  --nxp-font-size-lg: 16px;
-  --nxp-font-size-xl: 18px;
-  --nxp-font-size-2xl: 20px;
-  --nxp-font-size-3xl: 24px;
-  --nxp-font-size-4xl: 30px;
-  --nxp-font-size-5xl: 36px;
-  --nxp-font-weight-regular: 400;
-  --nxp-font-weight-medium: 500;
-  --nxp-font-weight-semibold: 600;
-  --nxp-font-weight-bold: 700;
-  --nxp-font-lineHeight-none: 1;
-  --nxp-font-lineHeight-tight: 1.25;
-  --nxp-font-lineHeight-snug: 1.375;
-  --nxp-font-lineHeight-normal: 1.5;
-  --nxp-font-lineHeight-relaxed: 1.625;
-  --nxp-font-lineHeight-loose: 2;
-  --nxp-motion-ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-  --nxp-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --nxp-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --nxp-motion-ease-linear: linear;
-  --nxp-motion-duration-instant: 80ms;
-  --nxp-motion-duration-fast: 120ms;
-  --nxp-motion-duration-hover: 180ms;
-  --nxp-motion-duration-active: 220ms;
-  --nxp-motion-duration-motion: 240ms;
-  --nxp-motion-duration-slow: 400ms;
-  --nxp-shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --nxp-shadow-md: 0 2px 4px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
-  --nxp-shadow-lg: 0 4px 16px -4px rgba(0,0,0,0.6);
-  --nxp-shadow-xl: 0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
-  --nxp-shadow-ring: 0 0 0 2px rgba(59, 130, 246, 0.35);
 }
 
-/* ── Dark theme (system preference, overridable with .nxp-light) */
+/* ── Dark theme (system preference) ─────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not(.nxp-light) {
-  --nxp-color-brand-100: #DBEAFE;
-  --nxp-color-brand-200: #BFDBFE;
-  --nxp-color-brand-300: #93C5FD;
-  --nxp-color-brand-400: #60A5FA;
-  --nxp-color-brand-500: #3B82F6;
-  --nxp-color-brand-600: #2563EB;
-  --nxp-color-brand-700: #1D4ED8;
-  --nxp-color-brand-800: #1E40AF;
-  --nxp-color-brand-900: #1E3A8A;
-  --nxp-color-brand-accent: #4F46E5;
-  --nxp-color-brand-soft: #EEF2FF;
-  --nxp-color-brand-grad: linear-gradient(180deg, #1E40AF 0%, #4F46E5 100%);
-  --nxp-color-success-default: #16A34A;
-  --nxp-color-success-soft: #DCFCE7;
-  --nxp-color-success-dark: #15803D;
-  --nxp-color-warning-default: #D97706;
-  --nxp-color-warning-soft: #FEF3C7;
-  --nxp-color-warning-dark: #B45309;
-  --nxp-color-error-default: #DC2626;
-  --nxp-color-error-soft: #FEE2E2;
-  --nxp-color-error-dark: #B91C1C;
-  --nxp-color-info-default: #2563EB;
-  --nxp-color-info-soft: #DBEAFE;
-  --nxp-color-info-dark: #1D4ED8;
-  --nxp-color-bg-default: #0F172A;
-  --nxp-color-bg-alt: #1E293B;
-  --nxp-color-bg-wash: #1E293B;
-  --nxp-color-bg-wash-active: #1e254a;
-  --nxp-color-bg-overlay: rgba(0, 0, 0, 0.6);
-  --nxp-color-primary-default: #3B82F6;
-  --nxp-color-primary-hover: #60A5FA;
-  --nxp-color-primary-active: #93C5FD;
-  --nxp-color-primary-foreground: #0F172A;
-  --nxp-color-text-default: #F1F5F9;
-  --nxp-color-text-strong: #F8FAFC;
-  --nxp-color-text-muted: #94A3B8;
-  --nxp-color-text-faint: #475569;
-  --nxp-color-text-inverse: #0F172A;
-  --nxp-color-text-link: #60A5FA;
-  --nxp-color-text-link-hover: #93C5FD;
-  --nxp-color-border-default: #334155;
-  --nxp-color-border-strong: #475569;
-  --nxp-color-border-focus: #3B82F6;
-  --nxp-color-surface-input: #1E293B;
-  --nxp-color-surface-card: #1E293B;
-  --nxp-color-surface-popover: #1E293B;
-  --nxp-color-surface-tooltip: #F8FAFC;
-  --nxp-color-surface-tooltip-text: #1E293B;
-  --nxp-spacing-0: 0px;
-  --nxp-spacing-1: 4px;
-  --nxp-spacing-2: 8px;
-  --nxp-spacing-3: 12px;
-  --nxp-spacing-4: 16px;
-  --nxp-spacing-5: 20px;
-  --nxp-spacing-6: 24px;
-  --nxp-spacing-8: 32px;
-  --nxp-spacing-10: 40px;
-  --nxp-spacing-12: 48px;
-  --nxp-spacing-16: 64px;
-  --nxp-spacing-xs: 4px;
-  --nxp-spacing-sm: 8px;
-  --nxp-spacing-md: 16px;
-  --nxp-spacing-lg: 24px;
-  --nxp-spacing-xl: 32px;
-  --nxp-spacing-2xl: 48px;
-  --nxp-spacing-3xl: 64px;
-  --nxp-radius-none: 0px;
-  --nxp-radius-sm: 4px;
-  --nxp-radius-md: 6px;
-  --nxp-radius-lg: 12px;
-  --nxp-radius-xl: 16px;
-  --nxp-radius-2xl: 24px;
-  --nxp-radius-full: 9999px;
-  --nxp-size-h-sm: 28px;
-  --nxp-size-h-md: 36px;
-  --nxp-size-h-lg: 40px;
-  --nxp-font-family-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --nxp-font-family-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
-  --nxp-font-size-xs: 11px;
-  --nxp-font-size-sm: 12px;
-  --nxp-font-size-base: 13.5px;
-  --nxp-font-size-md: 14px;
-  --nxp-font-size-lg: 16px;
-  --nxp-font-size-xl: 18px;
-  --nxp-font-size-2xl: 20px;
-  --nxp-font-size-3xl: 24px;
-  --nxp-font-size-4xl: 30px;
-  --nxp-font-size-5xl: 36px;
-  --nxp-font-weight-regular: 400;
-  --nxp-font-weight-medium: 500;
-  --nxp-font-weight-semibold: 600;
-  --nxp-font-weight-bold: 700;
-  --nxp-font-lineHeight-none: 1;
-  --nxp-font-lineHeight-tight: 1.25;
-  --nxp-font-lineHeight-snug: 1.375;
-  --nxp-font-lineHeight-normal: 1.5;
-  --nxp-font-lineHeight-relaxed: 1.625;
-  --nxp-font-lineHeight-loose: 2;
-  --nxp-motion-ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-  --nxp-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --nxp-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --nxp-motion-ease-linear: linear;
-  --nxp-motion-duration-instant: 80ms;
-  --nxp-motion-duration-fast: 120ms;
-  --nxp-motion-duration-hover: 180ms;
-  --nxp-motion-duration-active: 220ms;
-  --nxp-motion-duration-motion: 240ms;
-  --nxp-motion-duration-slow: 400ms;
-  --nxp-shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --nxp-shadow-md: 0 2px 4px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
-  --nxp-shadow-lg: 0 4px 16px -4px rgba(0,0,0,0.6);
-  --nxp-shadow-xl: 0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
-  --nxp-shadow-ring: 0 0 0 2px rgba(59, 130, 246, 0.35);
   }
 }

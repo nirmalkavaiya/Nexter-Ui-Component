@@ -20,18 +20,9 @@
    ============================================================ */
 
 @theme {
-  /* ── Brand palette ───────────────────────────────────────── */
-  --color-nxp-brand-100: #DBEAFE;
-  --color-nxp-brand-200: #BFDBFE;
-  --color-nxp-brand-300: #93C5FD;
-  --color-nxp-brand-400: #60A5FA;
-  --color-nxp-brand-500: var(--nexter-color-primary);
-  --color-nxp-brand-600: #2563EB;
-  --color-nxp-brand-700: #1D4ED8;
-  --color-nxp-brand-800: #1E40AF;
-  --color-nxp-brand-900: #1E3A8A;
+  /* ── Brand ───────────────────────────────────────────────── */
   --color-nxp-brand-accent: var(--nexter-color-secondary);
-  --color-nxp-brand-soft: var(--nexter-color-primary-lightest);
+  --color-nxp-brand-soft:   var(--nexter-color-primary-lightest);
 
   /* ── Semantic status colors ──────────────────────────────── */
   --color-nxp-success: var(--nexter-color-success);
@@ -81,54 +72,53 @@
   --color-nxp-surface-tooltip: var(--nexter-color-text-default);
   --color-nxp-surface-tooltip-text: #F8FAFC;
 
-  /* ── Spacing ─────────────────────────────────────────────── */
-  --spacing-nxp-0:  0px;
-  --spacing-nxp-1:  4px;
-  --spacing-nxp-2:  8px;
-  --spacing-nxp-3:  12px;
-  --spacing-nxp-4:  16px;
-  --spacing-nxp-5:  20px;
-  --spacing-nxp-6:  24px;
-  --spacing-nxp-8:  32px;
-  --spacing-nxp-10: 40px;
-  --spacing-nxp-12: 48px;
-  --spacing-nxp-16: 64px;
+  /* ── Spacing → Figma tokens ─────────────────────────────── */
+  --spacing-nxp-0:  var(--nexter-spacing-none);
+  --spacing-nxp-1:  var(--nexter-spacing-xs);
+  --spacing-nxp-2:  var(--nexter-spacing-md);
+  --spacing-nxp-3:  var(--nexter-spacing-xl);
+  --spacing-nxp-4:  var(--nexter-spacing-3xl);
+  --spacing-nxp-5:  var(--nexter-spacing-4xl);
+  --spacing-nxp-6:  var(--nexter-spacing-5xl);
+  --spacing-nxp-8:  var(--nexter-spacing-6xl);
+  --spacing-nxp-10: var(--nexter-spacing-7xl);
+  --spacing-nxp-12: var(--nexter-spacing-8xl);
+  --spacing-nxp-16: var(--nexter-spacing-9xl);
 
-  /* ── Border radius ───────────────────────────────────────── */
-  --radius-nxp-none: 0px;
-  --radius-nxp-sm:   4px;
-  --radius-nxp-md:   6px;
-  --radius-nxp-lg:   12px;
-  --radius-nxp-xl:   16px;
-  --radius-nxp-2xl:  24px;
-  --radius-nxp-full: 9999px;
+  /* ── Border radius → Figma tokens ───────────────────────── */
+  --radius-nxp-none: var(--nexter-radius-0);
+  --radius-nxp-sm:   var(--nexter-radius-2);
+  --radius-nxp-md:   var(--nexter-radius-3);
+  --radius-nxp-lg:   var(--nexter-radius-4);
+  --radius-nxp-xl:   var(--nexter-radius-5);
+  --radius-nxp-2xl:  var(--nexter-radius-6);
+  --radius-nxp-full: var(--nexter-radius-8);
 
   /* ── Component heights ───────────────────────────────────── */
   --spacing-nxp-h-sm: 28px;
   --spacing-nxp-h-md: 36px;
   --spacing-nxp-h-lg: 40px;
 
-  /* ── Font families ───────────────────────────────────────── */
-  --font-nxp-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  /* ── Font family → Figma token ───────────────────────────── */
+  --font-nxp-sans: var(--nexter-font-family-body);
   --font-nxp-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
 
-  /* ── Font sizes ──────────────────────────────────────────── */
-  --text-nxp-xs:   11px;
-  --text-nxp-sm:   12px;
-  --text-nxp-base: 13.5px;
-  --text-nxp-md:   14px;
-  --text-nxp-lg:   16px;
-  --text-nxp-xl:   18px;
-  --text-nxp-2xl:  20px;
-  --text-nxp-3xl:  24px;
-  --text-nxp-4xl:  30px;
-  --text-nxp-5xl:  36px;
+  /* ── Font sizes → Figma tokens ───────────────────────────── */
+  --text-nxp-xs:  var(--nexter-font-size-xs);
+  --text-nxp-sm:  var(--nexter-font-size-sm);
+  --text-nxp-md:  var(--nexter-font-size-md);
+  --text-nxp-lg:  var(--nexter-font-size-lg);
+  --text-nxp-xl:  18px;
+  --text-nxp-2xl: var(--nexter-font-size-xl);
+  --text-nxp-3xl: 24px;
+  --text-nxp-4xl: 30px;
+  --text-nxp-5xl: 36px;
 
-  /* ── Font weights ────────────────────────────────────────── */
-  --font-weight-nxp-regular:  400;
-  --font-weight-nxp-medium:   500;
+  /* ── Font weights → Figma tokens ────────────────────────── */
+  --font-weight-nxp-regular:  var(--nexter-font-weight-regular);
+  --font-weight-nxp-medium:   var(--nexter-font-weight-medium);
   --font-weight-nxp-semibold: 600;
-  --font-weight-nxp-bold:     700;
+  --font-weight-nxp-bold:     var(--nexter-font-weight-bold);
 
   /* ── Line heights ────────────────────────────────────────── */
   --leading-nxp-none:    1;
@@ -216,196 +206,10 @@
 
 @layer base {
 
-  /* ── Light: --nxp-* aliases pointing at @theme vars ─────── */
+  /* ── Token aliases: theme.css owns --nexter-* and --nxp-*. ───
+     This block only defines what Tailwind @theme references need
+     at CSS build time, plus dark-mode overrides.               ── */
   :root {
-    /* Figma exported dynamic color tokens */
-    --nexter-color-primary: #1717cc;
-    --nexter-color-primary-lightest: #f5f7fe;
-    --nexter-color-primary-lighter: #b1b1f6;
-    --nexter-color-primary-darker: #111193;
-    --nexter-color-secondary: #f12d2d;
-    --nexter-color-secondary-lightest: #fef1f1;
-    --nexter-color-secondary-lighter: #fbc6c6;
-    --nexter-color-secondary-darker: #bf0d0d;
-    --nexter-color-text-default: #1a1a1a;
-    --nexter-color-text-weaker: #666666;
-    --nexter-color-text-disabled: #b3b3b3;
-    --nexter-color-text-white: #ffffff;
-    --nexter-color-background-default: #f0f0f1;
-    --nexter-color-background-weaker: #ffffff;
-    --nexter-color-background-stronger: #dfdfe1;
-    --nexter-color-background-strongest: #c5c5c9;
-    --nexter-color-border-default: #d1d1d6;
-    --nexter-color-border-weak: #f0f0f0;
-    --nexter-color-success: #2ea343;
-    --nexter-color-success-lightest: #e7ffe7;
-    --nexter-color-success-lighter: #a7eaaa;
-    --nexter-color-success-darker: #0a842a;
-    --nexter-color-warning: #aa8d10;
-    --nexter-color-warning-lightest: #fff8d9;
-    --nexter-color-warning-lighter: #f4db6f;
-    --nexter-color-warning-darker: #86700b;
-    --nexter-color-error: #f65258;
-    --nexter-color-error-lightest: #fff2ef;
-    --nexter-color-error-lighter: #fdc9c6;
-    --nexter-color-error-darker: #d12d37;
-
-    /* colors */
-    --nxp-color-brand-100:          var(--color-nxp-brand-100);
-    --nxp-color-brand-200:          var(--color-nxp-brand-200);
-    --nxp-color-brand-300:          var(--color-nxp-brand-300);
-    --nxp-color-brand-400:          var(--color-nxp-brand-400);
-    --nxp-color-brand-500:          var(--color-nxp-brand-500);
-    --nxp-color-brand-600:          var(--color-nxp-brand-600);
-    --nxp-color-brand-700:          var(--color-nxp-brand-700);
-    --nxp-color-brand-800:          var(--color-nxp-brand-800);
-    --nxp-color-brand-900:          var(--color-nxp-brand-900);
-    --nxp-color-brand-accent:       var(--color-nxp-brand-accent);
-    --nxp-color-brand-soft:         var(--color-nxp-brand-soft);
-    --nxp-color-success-default:    var(--color-nxp-success);
-    --nxp-color-success-soft:       var(--color-nxp-success-soft);
-    --nxp-color-success-dark:       var(--color-nxp-success-dark);
-    --nxp-color-warning-default:    var(--color-nxp-warning);
-    --nxp-color-warning-soft:       var(--color-nxp-warning-soft);
-    --nxp-color-warning-dark:       var(--color-nxp-warning-dark);
-    --nxp-color-error-default:      var(--color-nxp-error);
-    --nxp-color-error-soft:         var(--color-nxp-error-soft);
-    --nxp-color-error-dark:         var(--color-nxp-error-dark);
-    --nxp-color-info-default:       var(--color-nxp-info);
-    --nxp-color-info-soft:          var(--color-nxp-info-soft);
-    --nxp-color-info-dark:          var(--color-nxp-info-dark);
-    --nxp-color-bg-default:         var(--color-nxp-bg);
-    --nxp-color-bg-alt:             var(--color-nxp-bg-alt);
-    --nxp-color-bg-wash:            var(--color-nxp-bg-wash);
-    --nxp-color-bg-wash-active:     var(--color-nxp-bg-wash-active);
-    --nxp-color-bg-overlay:         var(--color-nxp-bg-overlay);
-    --nxp-color-primary-default:    var(--color-nxp-primary);
-    --nxp-color-primary-foreground: var(--color-nxp-primary-fg);
-    --nxp-color-text-default:       var(--color-nxp-text);
-    --nxp-color-text-strong:        var(--color-nxp-text-strong);
-    --nxp-color-text-muted:         var(--color-nxp-text-muted);
-    --nxp-color-text-faint:         var(--color-nxp-text-faint);
-    --nxp-color-text-inverse:       var(--color-nxp-text-inverse);
-    --nxp-color-text-link:          var(--color-nxp-text-link);
-    --nxp-color-text-link-hover:    var(--color-nxp-text-link-hover);
-    --nxp-color-border-default:     var(--color-nxp-border);
-    --nxp-color-border-strong:      var(--color-nxp-border-strong);
-    --nxp-color-border-focus:       var(--color-nxp-border-focus);
-    --nxp-color-surface-input:      var(--color-nxp-surface-input);
-    --nxp-color-surface-card:       var(--color-nxp-surface-card);
-    --nxp-color-surface-popover:    var(--color-nxp-surface-popover);
-    --nxp-color-surface-tooltip:    var(--color-nxp-surface-tooltip);
-    --nxp-color-surface-tooltip-text: var(--color-nxp-surface-tooltip-text);
-
-    /* gradient (not a plain color — lives outside @theme) */
-    --nxp-color-brand-grad:         linear-gradient(180deg, #1E40AF 0%, #4F46E5 100%);
-
-    /* spacing */
-    --nxp-spacing-0:   var(--spacing-nxp-0);
-    --nxp-spacing-1:   var(--spacing-nxp-1);
-    --nxp-spacing-2:   var(--spacing-nxp-2);
-    --nxp-spacing-3:   var(--spacing-nxp-3);
-    --nxp-spacing-4:   var(--spacing-nxp-4);
-    --nxp-spacing-5:   var(--spacing-nxp-5);
-    --nxp-spacing-6:   var(--spacing-nxp-6);
-    --nxp-spacing-8:   var(--spacing-nxp-8);
-    --nxp-spacing-10:  var(--spacing-nxp-10);
-    --nxp-spacing-12:  var(--spacing-nxp-12);
-    --nxp-spacing-16:  var(--spacing-nxp-16);
-    --nxp-spacing-xs:  var(--spacing-nxp-1);
-    --nxp-spacing-sm:  var(--spacing-nxp-2);
-    --nxp-spacing-md:  var(--spacing-nxp-4);
-    --nxp-spacing-lg:  var(--spacing-nxp-6);
-    --nxp-spacing-xl:  var(--spacing-nxp-8);
-    --nxp-spacing-2xl: var(--spacing-nxp-12);
-    --nxp-spacing-3xl: var(--spacing-nxp-16);
-
-    /* radius */
-    --nxp-radius-none: var(--radius-nxp-none);
-    --nxp-radius-sm:   var(--radius-nxp-sm);
-    --nxp-radius-md:   var(--radius-nxp-md);
-    --nxp-radius-lg:   var(--radius-nxp-lg);
-    --nxp-radius-xl:   var(--radius-nxp-xl);
-    --nxp-radius-2xl:  var(--radius-nxp-2xl);
-    --nxp-radius-full: var(--radius-nxp-full);
-
-    /* component heights */
-    --nxp-size-h-sm: var(--spacing-nxp-h-sm);
-    --nxp-size-h-md: var(--spacing-nxp-h-md);
-    --nxp-size-h-lg: var(--spacing-nxp-h-lg);
-
-    /* font */
-    --nxp-font-family-sans:        var(--font-nxp-sans);
-    --nxp-font-family-mono:        var(--font-nxp-mono);
-    --nxp-font-size-xs:            var(--text-nxp-xs);
-    --nxp-font-size-sm:            var(--text-nxp-sm);
-    --nxp-font-size-md:            var(--text-nxp-md);
-    --nxp-font-size-lg:            var(--text-nxp-lg);
-    --nxp-font-size-xl:            var(--text-nxp-xl);
-    --nxp-font-size-2xl:           var(--text-nxp-2xl);
-    --nxp-font-size-3xl:           var(--text-nxp-3xl);
-    --nxp-font-weight-regular:     var(--font-weight-nxp-regular);
-    --nxp-font-weight-medium:      var(--font-weight-nxp-medium);
-    --nxp-font-weight-semibold:    var(--font-weight-nxp-semibold);
-    --nxp-font-weight-bold:        var(--font-weight-nxp-bold);
-    --nxp-font-lineHeight-none:    var(--leading-nxp-none);
-    --nxp-font-lineHeight-tight:   var(--leading-nxp-tight);
-    --nxp-font-lineHeight-snug:    var(--leading-nxp-snug);
-    --nxp-font-lineHeight-normal:  var(--leading-nxp-normal);
-    --nxp-font-lineHeight-relaxed: var(--leading-nxp-relaxed);
-    --nxp-font-lineHeight-loose:   var(--leading-nxp-loose);
-
-    /* motion */
-    --nxp-motion-ease-standard:       var(--ease-nxp-standard);
-    --nxp-motion-ease-in:             var(--ease-nxp-in);
-    --nxp-motion-ease-out:            var(--ease-nxp-out);
-    --nxp-motion-ease-linear:         var(--ease-nxp-linear);
-    --nxp-motion-duration-instant:    var(--duration-nxp-instant);
-    --nxp-motion-duration-fast:       var(--duration-nxp-fast);
-    --nxp-motion-duration-hover:      var(--duration-nxp-hover);
-    --nxp-motion-duration-active:     var(--duration-nxp-active);
-    --nxp-motion-duration-motion:     var(--duration-nxp-motion);
-    --nxp-motion-duration-slow:       var(--duration-nxp-slow);
-
-    /* shadows */
-    --nxp-shadow-sm:   var(--shadow-nxp-sm);
-    --nxp-shadow-md:   var(--shadow-nxp-md);
-    --nxp-shadow-lg:   var(--shadow-nxp-lg);
-    --nxp-shadow-xl:   var(--shadow-nxp-xl);
-    --nxp-shadow-ring: var(--shadow-nxp-ring);
-
-    /* backward-compat short aliases (used directly in component styles) */
-    --nxp-brand:        #1717cc;
-    --nxp-brand-secondary:      #f12d2d;
-    --nxp-brand-soft:   var(--color-nxp-brand-soft);
-    --nxp-brand-grad:   var(--nxp-color-brand-grad);
-    --nxp-bg:           var(--color-nxp-bg);
-    --nxp-bg-alt:       var(--color-nxp-bg-alt);
-    --nxp-wash-hover:   var(--color-nxp-bg-wash);
-    --nxp-wash-active:  var(--color-nxp-bg-wash-active);
-    --nxp-text:         var(--color-nxp-text);
-    --nxp-text-strong:  var(--color-nxp-text-strong);
-    --nxp-text-muted:   var(--color-nxp-text-muted);
-    --nxp-text-faint:   var(--color-nxp-text-faint);
-    --nxp-border:       var(--color-nxp-border);
-    --nxp-border-strong: var(--color-nxp-border-strong);
-    --nxp-success:      var(--color-nxp-success);
-    --nxp-warning:      var(--color-nxp-warning);
-    --nxp-error:        var(--color-nxp-error);
-    --nxp-info:         var(--color-nxp-info);
-    --nxp-shadow:       var(--shadow-nxp-md);
-    --nxp-ring:         var(--shadow-nxp-ring);
-    --nxp-ease:         var(--ease-nxp-standard);
-    --nxp-dur-hover:    var(--duration-nxp-hover);
-    --nxp-dur-active:   var(--duration-nxp-active);
-    --nxp-dur-motion:   var(--duration-nxp-motion);
-    --nxp-font:         var(--font-nxp-sans);
-    --nxp-radius:       var(--radius-nxp-md);
-    --nxp-radius-pill:  var(--radius-nxp-full);
-    --nxp-h:            var(--spacing-nxp-h-md);
-    --nxp-h-sm:         var(--spacing-nxp-h-sm);
-    --nxp-h-lg:         var(--spacing-nxp-h-lg);
-  }
 
   /* ── Dark: override only the values that differ ──────────── */
   .nxp-dark,
