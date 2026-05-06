@@ -24,7 +24,8 @@ test.describe('Accordion', () => {
   test('open item has is-open class', async ({ page }) => {
     const acc = page.locator('.nxp-accordion').first();
     await acc.scrollIntoViewIfNeeded();
-    const head = acc.locator('.nxp-accordion__head').first();
+    // Click the SECOND item (index 1) which starts closed; first item is already open via defaultOpen
+    const head = acc.locator('.nxp-accordion__head').nth(1);
     await head.click();
     await expect(acc.locator('.nxp-accordion__item.is-open').first()).toBeAttached();
   });

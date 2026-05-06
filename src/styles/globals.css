@@ -1,6 +1,5 @@
 /* ============================================================
    Nexter UI — Semantic Design Tokens  (globals.css)
-   shadcn/ui-style HSL variables.
    Values are raw "H S% L%" — wrap with hsl() when using in CSS.
    Tailwind @theme consumes them via: hsl(var(--nxp-<token>))
    ============================================================ */

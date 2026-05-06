@@ -16,7 +16,8 @@ test.describe('Textarea', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
   test('textarea accepts typed value', async ({ page }) => {
-    const ta = page.locator('textarea.nxp-textarea, .nxp-textarea').first();
+    // Textarea component wraps actual <textarea> in .nxp-textarea; inner element is .nxp-textarea__control
+    const ta = page.locator('.nxp-textarea__control').first();
     await ta.scrollIntoViewIfNeeded();
     await ta.fill('Line one\nLine two');
     await expect(ta).toHaveValue('Line one\nLine two');
@@ -75,12 +76,13 @@ test.describe('Toggle', () => {
   });
 
   test('clicking toggle label changes state', async ({ page }) => {
-    const toggle = page.locator('label.nxp-toggle').first();
+    // Toggle renders as div[role="switch"] — not a <label>; state tracked via aria-checked
+    const toggle = page.locator('.nxp-toggle[role="switch"]').first();
     await toggle.scrollIntoViewIfNeeded();
-    const hadChecked = await toggle.evaluate(el => el.classList.contains('is-checked'));
+    const before = await toggle.getAttribute('aria-checked');
     await toggle.click();
-    const hasChecked = await toggle.evaluate(el => el.classList.contains('is-checked'));
-    expect(hasChecked).not.toBe(hadChecked);
+    const after = await toggle.getAttribute('aria-checked');
+    expect(after).not.toBe(before);
   });
 });
 

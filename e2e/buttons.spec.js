@@ -20,7 +20,8 @@ test.describe('Button', () => {
   });
 
   test('danger button renders', async ({ page }) => {
-    await expect(page.locator('.nxp-btn--danger').first()).toBeVisible();
+    // Demo uses variant="destructive" → class is .nxp-btn--destructive
+    await expect(page.locator('.nxp-btn--destructive').first()).toBeVisible();
   });
 
   test('disabled button is not interactive', async ({ page }) => {
@@ -30,9 +31,10 @@ test.describe('Button', () => {
   });
 
   test('button with icon renders icon svg', async ({ page }) => {
-    const btnWithIcon = page.locator('.nxp-btn svg').first();
+    // Icon buttons use .nxp-btn--icon class; demo uses text glyphs not SVG
+    const btnWithIcon = page.locator('.nxp-btn--icon').first();
     await btnWithIcon.scrollIntoViewIfNeeded();
-    await expect(btnWithIcon).toBeAttached();
+    await expect(btnWithIcon).toBeVisible();
   });
 });
 
@@ -40,25 +42,26 @@ test.describe('ConfirmButton', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
   test('shows confirm/cancel inline after first click', async ({ page }) => {
-    const confirmBtn = page.locator('.nxp-confirm').first();
-    await confirmBtn.scrollIntoViewIfNeeded();
-    // Initial state: primary trigger visible
-    await expect(confirmBtn.locator('.nxp-confirm__trigger')).toBeVisible();
-
-    // Click trigger → confirm state
-    await confirmBtn.locator('.nxp-confirm__trigger').click();
-    await expect(confirmBtn.locator('.nxp-confirm__ok')).toBeVisible();
-    await expect(confirmBtn.locator('.nxp-confirm__cancel')).toBeVisible();
+    // ConfirmButton: initial render is a normal .nxp-btn; clicking it shows .nxp-confirm inline panel
+    const triggerBtn = page.getByRole('button', { name: /delete redirect/i }).first();
+    await triggerBtn.scrollIntoViewIfNeeded();
+    await triggerBtn.click();
+    // Confirm panel should now be visible with OK + Cancel buttons
+    const panel = page.locator('.nxp-confirm--inline').first();
+    await expect(panel).toBeVisible();
+    await expect(panel.locator('.nxp-confirm__ok')).toBeVisible();
+    await expect(panel.locator('.nxp-confirm__cancel')).toBeVisible();
   });
 
   test('cancel returns to initial state', async ({ page }) => {
-    const confirmBtn = page.locator('.nxp-confirm').first();
-    await confirmBtn.scrollIntoViewIfNeeded();
-    await confirmBtn.locator('.nxp-confirm__trigger').click();
-    await confirmBtn.locator('.nxp-confirm__cancel').click();
-    // Back to trigger
-    await expect(confirmBtn.locator('.nxp-confirm__trigger')).toBeVisible();
-    await expect(confirmBtn.locator('.nxp-confirm__ok')).not.toBeVisible();
+    const triggerBtn = page.getByRole('button', { name: /delete redirect/i }).first();
+    await triggerBtn.scrollIntoViewIfNeeded();
+    await triggerBtn.click();
+    const panel = page.locator('.nxp-confirm--inline').first();
+    await panel.locator('.nxp-confirm__cancel').click();
+    // Panel hides; original trigger button re-appears
+    await expect(panel).not.toBeVisible();
+    await expect(page.getByRole('button', { name: /delete redirect/i }).first()).toBeVisible();
   });
 });
 

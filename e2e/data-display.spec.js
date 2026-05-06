@@ -71,7 +71,8 @@ test.describe('Progress', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
   test('progress bar renders', async ({ page }) => {
-    const progress = page.locator('.nxp-prog').first();
+    // Root class is .nxp-progress (not .nxp-prog)
+    const progress = page.locator('.nxp-progress').first();
     await progress.scrollIntoViewIfNeeded();
     await expect(progress).toBeVisible();
   });
@@ -107,7 +108,8 @@ test.describe('Skeleton', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
   test('skeleton renders', async ({ page }) => {
-    const skel = page.locator('.nxp-skel').first();
+    // Root class is .nxp-skeleton (not .nxp-skel)
+    const skel = page.locator('.nxp-skeleton').first();
     await skel.scrollIntoViewIfNeeded();
     await expect(skel).toBeVisible();
   });
@@ -117,7 +119,8 @@ test.describe('Spinner', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
   test('spinner renders', async ({ page }) => {
-    const spin = page.locator('.nxp-spin').first();
+    // Root class is .nxp-spinner (not .nxp-spin)
+    const spin = page.locator('.nxp-spinner').first();
     await spin.scrollIntoViewIfNeeded();
     await expect(spin).toBeVisible();
   });

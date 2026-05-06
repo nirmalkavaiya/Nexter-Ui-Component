@@ -1,43 +1,63 @@
-import { jsxs as M, Fragment as R, jsx as h } from "react/jsx-runtime";
-import { useState as v, useRef as x, useCallback as l, useEffect as F } from "react";
-import { createPortal as P } from "react-dom";
-function z({ content: c, children: E, className: b = "" }) {
-  const [o, u] = v(!1), [a, g] = v({ top: 0, left: 0 }), n = x(null), r = x(null), t = l(() => {
-    var w, m;
-    if (!n.current) return;
-    const e = n.current.getBoundingClientRect(), p = ((w = r.current) == null ? void 0 : w.offsetWidth) || 120, L = ((m = r.current) == null ? void 0 : m.offsetHeight) || 30;
-    let s = e.top - L - 6 + window.scrollY, i = e.left + e.width / 2 - p / 2 + window.scrollX;
-    i = Math.max(8, Math.min(i, window.innerWidth - p - 8)), s < 4 && (s = e.bottom + 6 + window.scrollY), g({ top: s, left: i });
-  }, []), f = l(() => {
-    u(!0), requestAnimationFrame(t);
-  }, [t]), d = l(() => u(!1), []);
-  return F(() => {
-    if (o)
-      return window.addEventListener("scroll", t, !0), window.addEventListener("resize", t), () => {
-        window.removeEventListener("scroll", t, !0), window.removeEventListener("resize", t);
+import { jsxs as R, Fragment as N, jsx as u } from "react/jsx-runtime";
+import { useState as p, useRef as P, useCallback as m, useEffect as W } from "react";
+import { createPortal as j } from "react-dom";
+const l = 8;
+function B({
+  content: h,
+  children: w,
+  /** 'top' | 'bottom' | 'left' | 'right' — default 'top' */
+  position: n = "top",
+  className: X = ""
+}) {
+  const [a, g] = p(!1), [v, L] = p({ top: 0, left: 0 }), [A, F] = p(n), d = P(null), f = P(null), r = m(() => {
+    var Y, E;
+    if (!d.current) return;
+    const t = d.current.getBoundingClientRect(), i = ((Y = f.current) == null ? void 0 : Y.offsetWidth) || 120, s = ((E = f.current) == null ? void 0 : E.offsetHeight) || 32;
+    let o, e, c = n;
+    n === "top" ? (o = t.top - s - l + window.scrollY, e = t.left + t.width / 2 - i / 2 + window.scrollX, o < window.scrollY + 8 && (o = t.bottom + l + window.scrollY, c = "bottom")) : n === "bottom" ? (o = t.bottom + l + window.scrollY, e = t.left + t.width / 2 - i / 2 + window.scrollX, o + s > window.scrollY + window.innerHeight - 8 && (o = t.top - s - l + window.scrollY, c = "top")) : n === "left" ? (o = t.top + t.height / 2 - s / 2 + window.scrollY, e = t.left - i - l + window.scrollX, e < 8 && (e = t.right + l + window.scrollX, c = "right")) : n === "right" && (o = t.top + t.height / 2 - s / 2 + window.scrollY, e = t.right + l + window.scrollX, e + i > window.innerWidth - 8 && (e = t.left - i - l + window.scrollX, c = "left")), e = Math.max(8, Math.min(e, window.innerWidth - i - 8)), L({ top: o, left: e }), F(c);
+  }, [n]), b = m(() => {
+    g(!0), requestAnimationFrame(() => requestAnimationFrame(r));
+  }, [r]), x = m(() => g(!1), []);
+  W(() => {
+    if (a)
+      return window.addEventListener("scroll", r, !0), window.addEventListener("resize", r), () => {
+        window.removeEventListener("scroll", r, !0), window.removeEventListener("resize", r);
       };
-  }, [o, t]), /* @__PURE__ */ M(R, { children: [
-    /* @__PURE__ */ h(
+  }, [a, r]);
+  const M = w != null && w !== "" ? w : /* @__PURE__ */ u(
+    "span",
+    {
+      className: "nxp-tooltip-wrap__icon",
+      role: "img",
+      "aria-label": "Info",
+      tabIndex: 0,
+      children: "ⓘ"
+    }
+  );
+  return /* @__PURE__ */ R(N, { children: [
+    /* @__PURE__ */ u(
       "span",
       {
-        ref: n,
-        className: `nxp-tooltip-wrap ${b}`,
-        onMouseEnter: f,
-        onMouseLeave: d,
-        onFocus: f,
-        onBlur: d,
-        children: E
+        ref: d,
+        className: `nxp-tooltip-wrap ${X}`,
+        onMouseEnter: b,
+        onMouseLeave: x,
+        onFocus: b,
+        onBlur: x,
+        children: M
       }
     ),
-    o && c && P(
-      /* @__PURE__ */ h(
+    a && h && j(
+      /* @__PURE__ */ u(
         "div",
         {
-          ref: r,
+          ref: f,
           className: "nxp-tooltip",
-          style: { top: a.top, left: a.left },
+          "data-position": A,
+          style: { top: v.top, left: v.left },
           role: "tooltip",
-          children: c
+          "aria-live": "polite",
+          children: h
         }
       ),
       document.body
@@ -45,6 +65,6 @@ function z({ content: c, children: E, className: b = "" }) {
   ] });
 }
 export {
-  z as Tooltip,
-  z as default
+  B as Tooltip,
+  B as default
 };
