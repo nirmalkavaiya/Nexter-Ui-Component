@@ -137,7 +137,7 @@
   text-underline-offset: 2px;
 }
 .nxp-btn--link:hover {
-  color: var(--nxp-brand-2);
+  color: var(--nxp-brand-secondary);
 }
 .nxp-btn--link:focus-visible {
   outline: none;
@@ -3793,7 +3793,7 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.nxp-prose a:hover { color: var(--nxp-brand-2); }
+.nxp-prose a:hover { color: var(--nxp-brand-secondary); }
 .nxp-prose strong { font-weight: 600; color: var(--nxp-text-strong); }
 .nxp-prose em     { font-style: italic; }
 .nxp-prose ul,
@@ -4115,7 +4115,7 @@
   font-weight: var(--nxp-font-weight-semibold);    /* 600 */
   line-height: var(--nxp-font-lineHeight-snug);    /* 1.375 */
   letter-spacing: -0.01em;
-  color: var(--nxp-color-text-default);
+  color: var(--nxp-color-text-strong);
   margin: 0;
 }
 
@@ -4125,7 +4125,7 @@
   font-weight: var(--nxp-font-weight-medium);    /* 500 */
   line-height: var(--nxp-font-lineHeight-snug);    /* 1.375 */
   letter-spacing: -0.01em;
-  color: var(--nxp-color-text-muted);
+  color: var(--nxp-color-text-strong);
   margin: 0;
 }
 

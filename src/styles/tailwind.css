@@ -25,60 +25,60 @@
   --color-nxp-brand-200: #BFDBFE;
   --color-nxp-brand-300: #93C5FD;
   --color-nxp-brand-400: #60A5FA;
-  --color-nxp-brand-500: #3B82F6;
+  --color-nxp-brand-500: var(--nexter-color-primary);
   --color-nxp-brand-600: #2563EB;
   --color-nxp-brand-700: #1D4ED8;
   --color-nxp-brand-800: #1E40AF;
   --color-nxp-brand-900: #1E3A8A;
-  --color-nxp-brand-accent: #4F46E5;
-  --color-nxp-brand-soft: #EEF2FF;
+  --color-nxp-brand-accent: var(--nexter-color-secondary);
+  --color-nxp-brand-soft: var(--nexter-color-primary-lightest);
 
   /* ── Semantic status colors ──────────────────────────────── */
-  --color-nxp-success: #16A34A;
-  --color-nxp-success-soft: #DCFCE7;
-  --color-nxp-success-dark: #15803D;
-  --color-nxp-warning: #D97706;
-  --color-nxp-warning-soft: #FEF3C7;
-  --color-nxp-warning-dark: #B45309;
-  --color-nxp-error: #DC2626;
-  --color-nxp-error-soft: #FEE2E2;
-  --color-nxp-error-dark: #B91C1C;
-  --color-nxp-info: #2563EB;
-  --color-nxp-info-soft: #DBEAFE;
-  --color-nxp-info-dark: #1D4ED8;
+  --color-nxp-success: var(--nexter-color-success);
+  --color-nxp-success-soft: var(--nexter-color-success-lightest);
+  --color-nxp-success-dark: var(--nexter-color-success-darker);
+  --color-nxp-warning: var(--nexter-color-warning);
+  --color-nxp-warning-soft: var(--nexter-color-warning-lightest);
+  --color-nxp-warning-dark: var(--nexter-color-warning-darker);
+  --color-nxp-error: var(--nexter-color-error);
+  --color-nxp-error-soft: var(--nexter-color-error-lightest);
+  --color-nxp-error-dark: var(--nexter-color-error-darker);
+  --color-nxp-info: var(--nexter-color-primary);
+  --color-nxp-info-soft: var(--nexter-color-primary-lightest);
+  --color-nxp-info-dark: var(--nexter-color-primary-darker);
 
   /* ── Background ──────────────────────────────────────────── */
-  --color-nxp-bg: #ffffff;
-  --color-nxp-bg-alt: #F8FAFC;
-  --color-nxp-bg-wash: #F1F5F9;
-  --color-nxp-bg-wash-active: #EEF2FF;
+  --color-nxp-bg: var(--nexter-color-background-weaker);
+  --color-nxp-bg-alt: var(--nexter-color-background-default);
+  --color-nxp-bg-wash: var(--nexter-color-background-stronger);
+  --color-nxp-bg-wash-active: var(--nexter-color-background-strongest);
   --color-nxp-bg-overlay: rgba(15, 23, 42, 0.4);
 
   /* ── Primary interactive ─────────────────────────────────── */
-  --color-nxp-primary: #1E40AF;
-  --color-nxp-primary-hover: #1D4ED8;
-  --color-nxp-primary-active: #1e3a8a;
-  --color-nxp-primary-fg: #ffffff;
+  --color-nxp-primary: var(--nexter-color-primary);
+  --color-nxp-primary-hover: var(--nexter-color-primary-lighter);
+  --color-nxp-primary-active: var(--nexter-color-primary-darker);
+  --color-nxp-primary-fg: var(--nexter-color-text-white);
 
   /* ── Text ────────────────────────────────────────────────── */
-  --color-nxp-text: #0F172A;
-  --color-nxp-text-strong: #0B1220;
-  --color-nxp-text-muted: #64748B;
+  --color-nxp-text: var(--nexter-color-text-default);
+  --color-nxp-text-strong: var(--nexter-color-text-default);
+  --color-nxp-text-muted: var(--nexter-color-text-weaker);
   --color-nxp-text-faint: #94A3B8;
-  --color-nxp-text-inverse: #ffffff;
-  --color-nxp-text-link: #2563EB;
-  --color-nxp-text-link-hover: #1D4ED8;
+  --color-nxp-text-inverse: var(--nexter-color-text-white);
+  --color-nxp-text-link: var(--nexter-color-primary);
+  --color-nxp-text-link-hover: var(--nexter-color-primary-darker);
 
   /* ── Border ──────────────────────────────────────────────── */
-  --color-nxp-border: #E2E8F0;
-  --color-nxp-border-strong: #CBD5E1;
-  --color-nxp-border-focus: #1E40AF;
+  --color-nxp-border: var(--nexter-color-border-default);
+  --color-nxp-border-strong: var(--nexter-color-border-weak);
+  --color-nxp-border-focus: var(--nexter-color-primary);
 
   /* ── Surface ─────────────────────────────────────────────── */
-  --color-nxp-surface-input: #ffffff;
-  --color-nxp-surface-card: #ffffff;
-  --color-nxp-surface-popover: #ffffff;
-  --color-nxp-surface-tooltip: #0F172A;
+  --color-nxp-surface-input: var(--nexter-color-background-weaker);
+  --color-nxp-surface-card: var(--nexter-color-background-weaker);
+  --color-nxp-surface-popover: var(--nexter-color-background-weaker);
+  --color-nxp-surface-tooltip: var(--nexter-color-text-default);
   --color-nxp-surface-tooltip-text: #F8FAFC;
 
   /* ── Spacing ─────────────────────────────────────────────── */
@@ -218,6 +218,38 @@
 
   /* ── Light: --nxp-* aliases pointing at @theme vars ─────── */
   :root {
+    /* Figma exported dynamic color tokens */
+    --nexter-color-primary: #1717cc;
+    --nexter-color-primary-lightest: #f5f7fe;
+    --nexter-color-primary-lighter: #b1b1f6;
+    --nexter-color-primary-darker: #111193;
+    --nexter-color-secondary: #f12d2d;
+    --nexter-color-secondary-lightest: #fef1f1;
+    --nexter-color-secondary-lighter: #fbc6c6;
+    --nexter-color-secondary-darker: #bf0d0d;
+    --nexter-color-text-default: #1a1a1a;
+    --nexter-color-text-weaker: #666666;
+    --nexter-color-text-disabled: #b3b3b3;
+    --nexter-color-text-white: #ffffff;
+    --nexter-color-background-default: #f0f0f1;
+    --nexter-color-background-weaker: #ffffff;
+    --nexter-color-background-stronger: #dfdfe1;
+    --nexter-color-background-strongest: #c5c5c9;
+    --nexter-color-border-default: #d1d1d6;
+    --nexter-color-border-weak: #f0f0f0;
+    --nexter-color-success: #2ea343;
+    --nexter-color-success-lightest: #e7ffe7;
+    --nexter-color-success-lighter: #a7eaaa;
+    --nexter-color-success-darker: #0a842a;
+    --nexter-color-warning: #aa8d10;
+    --nexter-color-warning-lightest: #fff8d9;
+    --nexter-color-warning-lighter: #f4db6f;
+    --nexter-color-warning-darker: #86700b;
+    --nexter-color-error: #f65258;
+    --nexter-color-error-lightest: #fff2ef;
+    --nexter-color-error-lighter: #fdc9c6;
+    --nexter-color-error-darker: #d12d37;
+
     /* colors */
     --nxp-color-brand-100:          var(--color-nxp-brand-100);
     --nxp-color-brand-200:          var(--color-nxp-brand-200);
@@ -248,8 +280,6 @@
     --nxp-color-bg-wash-active:     var(--color-nxp-bg-wash-active);
     --nxp-color-bg-overlay:         var(--color-nxp-bg-overlay);
     --nxp-color-primary-default:    var(--color-nxp-primary);
-    --nxp-color-primary-hover:      var(--color-nxp-primary-hover);
-    --nxp-color-primary-active:     var(--color-nxp-primary-active);
     --nxp-color-primary-foreground: var(--color-nxp-primary-fg);
     --nxp-color-text-default:       var(--color-nxp-text);
     --nxp-color-text-strong:        var(--color-nxp-text-strong);
@@ -314,8 +344,6 @@
     --nxp-font-size-xl:            var(--text-nxp-xl);
     --nxp-font-size-2xl:           var(--text-nxp-2xl);
     --nxp-font-size-3xl:           var(--text-nxp-3xl);
-    --nxp-font-size-4xl:           var(--text-nxp-4xl);
-    --nxp-font-size-5xl:           var(--text-nxp-5xl);
     --nxp-font-weight-regular:     var(--font-weight-nxp-regular);
     --nxp-font-weight-medium:      var(--font-weight-nxp-medium);
     --nxp-font-weight-semibold:    var(--font-weight-nxp-semibold);
@@ -347,8 +375,8 @@
     --nxp-shadow-ring: var(--shadow-nxp-ring);
 
     /* backward-compat short aliases (used directly in component styles) */
-    --nxp-brand:        var(--color-nxp-primary);
-    --nxp-brand-2:      var(--color-nxp-brand-accent);
+    --nxp-brand:        #1717cc;
+    --nxp-brand-secondary:      #f12d2d;
     --nxp-brand-soft:   var(--color-nxp-brand-soft);
     --nxp-brand-grad:   var(--nxp-color-brand-grad);
     --nxp-bg:           var(--color-nxp-bg);
