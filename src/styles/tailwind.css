@@ -21,104 +21,104 @@
 
 @theme {
   /* ── Brand ───────────────────────────────────────────────── */
-  --color-nxp-brand-accent: var(--nexter-color-secondary);
-  --color-nxp-brand-soft:   var(--nexter-color-primary-lightest);
+  --color-nxp-brand-accent: var(--nxp-color-secondary);
+  --color-nxp-brand-soft:   var(--nxp-color-primary-subtle);
 
   /* ── Semantic status colors ──────────────────────────────── */
-  --color-nxp-success: var(--nexter-color-success);
-  --color-nxp-success-soft: var(--nexter-color-success-lightest);
-  --color-nxp-success-dark: var(--nexter-color-success-darker);
-  --color-nxp-warning: var(--nexter-color-warning);
-  --color-nxp-warning-soft: var(--nexter-color-warning-lightest);
-  --color-nxp-warning-dark: var(--nexter-color-warning-darker);
-  --color-nxp-error: var(--nexter-color-error);
-  --color-nxp-error-soft: var(--nexter-color-error-lightest);
-  --color-nxp-error-dark: var(--nexter-color-error-darker);
-  --color-nxp-info: var(--nexter-color-primary);
-  --color-nxp-info-soft: var(--nexter-color-primary-lightest);
-  --color-nxp-info-dark: var(--nexter-color-primary-darker);
+  --color-nxp-success:      var(--nxp-color-success);
+  --color-nxp-success-soft: var(--nxp-color-success-subtle);
+  --color-nxp-success-dark: var(--nxp-color-success-dark);
+  --color-nxp-warning:      var(--nxp-color-warning);
+  --color-nxp-warning-soft: var(--nxp-color-warning-subtle);
+  --color-nxp-warning-dark: var(--nxp-color-warning-dark);
+  --color-nxp-error:        var(--nxp-color-error);
+  --color-nxp-error-soft:   var(--nxp-color-error-subtle);
+  --color-nxp-error-dark:   var(--nxp-color-error-dark);
+  --color-nxp-info:         var(--nxp-color-info);
+  --color-nxp-info-soft:    var(--nxp-color-info-subtle);
+  --color-nxp-info-dark:    var(--nxp-color-info-dark);
 
   /* ── Background ──────────────────────────────────────────── */
-  --color-nxp-bg: var(--nexter-color-background-weaker);
-  --color-nxp-bg-alt: var(--nexter-color-background-default);
-  --color-nxp-bg-wash: var(--nexter-color-background-stronger);
-  --color-nxp-bg-wash-active: var(--nexter-color-background-strongest);
-  --color-nxp-bg-overlay: rgba(15, 23, 42, 0.4);
+  --color-nxp-bg:           var(--nxp-color-bg);
+  --color-nxp-bg-alt:       var(--nxp-color-bg-muted);
+  --color-nxp-bg-wash:      var(--nxp-color-bg-subtle);
+  --color-nxp-bg-wash-active: var(--nxp-color-bg-strong);
+  --color-nxp-bg-overlay:   rgba(15, 23, 42, 0.4);
 
   /* ── Primary interactive ─────────────────────────────────── */
-  --color-nxp-primary: var(--nexter-color-primary);
-  --color-nxp-primary-hover: var(--nexter-color-primary-lighter);
-  --color-nxp-primary-active: var(--nexter-color-primary-darker);
-  --color-nxp-primary-fg: var(--nexter-color-text-white);
+  --color-nxp-primary:        var(--nxp-color-primary);
+  --color-nxp-primary-hover:  var(--nxp-color-primary-light);
+  --color-nxp-primary-active: var(--nxp-color-primary-dark);
+  --color-nxp-primary-fg:     var(--nxp-color-text-inverse);
 
   /* ── Text ────────────────────────────────────────────────── */
-  --color-nxp-text: var(--nexter-color-text-default);
-  --color-nxp-text-strong: var(--nexter-color-text-default);
-  --color-nxp-text-muted: var(--nexter-color-text-weaker);
-  --color-nxp-text-faint: #94A3B8;
-  --color-nxp-text-inverse: var(--nexter-color-text-white);
-  --color-nxp-text-link: var(--nexter-color-primary);
-  --color-nxp-text-link-hover: var(--nexter-color-primary-darker);
+  --color-nxp-text:             var(--nxp-color-text);
+  --color-nxp-text-strong:      var(--nxp-color-text);
+  --color-nxp-text-muted:       var(--nxp-color-text-muted);
+  --color-nxp-text-faint:       #94A3B8;
+  --color-nxp-text-inverse:     var(--nxp-color-text-inverse);
+  --color-nxp-text-link:        var(--nxp-color-primary);
+  --color-nxp-text-link-hover:  var(--nxp-color-primary-dark);
 
   /* ── Border ──────────────────────────────────────────────── */
-  --color-nxp-border: var(--nexter-color-border-default);
-  --color-nxp-border-strong: var(--nexter-color-border-weak);
-  --color-nxp-border-focus: var(--nexter-color-primary);
+  --color-nxp-border:       var(--nxp-color-border);
+  --color-nxp-border-strong: var(--nxp-color-border-subtle);
+  --color-nxp-border-focus: var(--nxp-color-primary);
 
   /* ── Surface ─────────────────────────────────────────────── */
-  --color-nxp-surface-input: var(--nexter-color-background-weaker);
-  --color-nxp-surface-card: var(--nexter-color-background-weaker);
-  --color-nxp-surface-popover: var(--nexter-color-background-weaker);
-  --color-nxp-surface-tooltip: var(--nexter-color-text-default);
+  --color-nxp-surface-input:        var(--nxp-color-bg);
+  --color-nxp-surface-card:         var(--nxp-color-bg);
+  --color-nxp-surface-popover:      var(--nxp-color-bg);
+  --color-nxp-surface-tooltip:      var(--nxp-color-text);
   --color-nxp-surface-tooltip-text: #F8FAFC;
 
-  /* ── Spacing → Figma tokens ─────────────────────────────── */
-  --spacing-nxp-0:  var(--nexter-spacing-none);
-  --spacing-nxp-1:  var(--nexter-spacing-xs);
-  --spacing-nxp-2:  var(--nexter-spacing-md);
-  --spacing-nxp-3:  var(--nexter-spacing-xl);
-  --spacing-nxp-4:  var(--nexter-spacing-3xl);
-  --spacing-nxp-5:  var(--nexter-spacing-4xl);
-  --spacing-nxp-6:  var(--nexter-spacing-5xl);
-  --spacing-nxp-8:  var(--nexter-spacing-6xl);
-  --spacing-nxp-10: var(--nexter-spacing-7xl);
-  --spacing-nxp-12: var(--nexter-spacing-8xl);
-  --spacing-nxp-16: var(--nexter-spacing-9xl);
+  /* ── Spacing → --nxp-space-* ────────────────────────────── */
+  --spacing-nxp-0:  var(--nxp-space-0);
+  --spacing-nxp-1:  var(--nxp-space-4);
+  --spacing-nxp-2:  var(--nxp-space-8);
+  --spacing-nxp-3:  var(--nxp-space-12);
+  --spacing-nxp-4:  var(--nxp-space-16);
+  --spacing-nxp-5:  var(--nxp-space-20);
+  --spacing-nxp-6:  var(--nxp-space-24);
+  --spacing-nxp-8:  var(--nxp-space-32);
+  --spacing-nxp-10: var(--nxp-space-40);
+  --spacing-nxp-12: var(--nxp-space-48);
+  --spacing-nxp-16: var(--nxp-space-64);
 
-  /* ── Border radius → Figma tokens ───────────────────────── */
-  --radius-nxp-none: var(--nexter-radius-0);
-  --radius-nxp-sm:   var(--nexter-radius-2);
-  --radius-nxp-md:   var(--nexter-radius-3);
-  --radius-nxp-lg:   var(--nexter-radius-4);
-  --radius-nxp-xl:   var(--nexter-radius-5);
-  --radius-nxp-2xl:  var(--nexter-radius-6);
-  --radius-nxp-full: var(--nexter-radius-8);
+  /* ── Border radius → --nxp-radius-* ─────────────────────── */
+  --radius-nxp-none: var(--nxp-radius-none);
+  --radius-nxp-sm:   var(--nxp-radius-sm);
+  --radius-nxp-md:   var(--nxp-radius-md);
+  --radius-nxp-lg:   var(--nxp-radius-lg);
+  --radius-nxp-xl:   var(--nxp-radius-xl);
+  --radius-nxp-2xl:  var(--nxp-radius-2xl);
+  --radius-nxp-full: var(--nxp-radius-full);
 
   /* ── Component heights ───────────────────────────────────── */
   --spacing-nxp-h-sm: 28px;
   --spacing-nxp-h-md: 36px;
   --spacing-nxp-h-lg: 40px;
 
-  /* ── Font family → Figma token ───────────────────────────── */
-  --font-nxp-sans: var(--nexter-font-family-body);
-  --font-nxp-mono: "Geist Mono", ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+  /* ── Font family ─────────────────────────────────────────── */
+  --font-nxp-sans: var(--nxp-font);
+  --font-nxp-mono: var(--nxp-font-mono);
 
-  /* ── Font sizes → Figma tokens ───────────────────────────── */
-  --text-nxp-xs:  var(--nexter-font-size-xs);
-  --text-nxp-sm:  var(--nexter-font-size-sm);
-  --text-nxp-md:  var(--nexter-font-size-md);
-  --text-nxp-lg:  var(--nexter-font-size-lg);
+  /* ── Font sizes → --nxp-text-* ──────────────────────────── */
+  --text-nxp-xs:  var(--nxp-text-xs);
+  --text-nxp-sm:  var(--nxp-text-sm);
+  --text-nxp-md:  var(--nxp-text-md);
+  --text-nxp-lg:  var(--nxp-text-lg);
   --text-nxp-xl:  18px;
-  --text-nxp-2xl: var(--nexter-font-size-xl);
+  --text-nxp-2xl: var(--nxp-text-xl);
   --text-nxp-3xl: 24px;
   --text-nxp-4xl: 30px;
   --text-nxp-5xl: 36px;
 
-  /* ── Font weights → Figma tokens ────────────────────────── */
-  --font-weight-nxp-regular:  var(--nexter-font-weight-regular);
-  --font-weight-nxp-medium:   var(--nexter-font-weight-medium);
+  /* ── Font weights → --nxp-font-* ────────────────────────── */
+  --font-weight-nxp-regular:  var(--nxp-font-regular);
+  --font-weight-nxp-medium:   var(--nxp-font-medium);
   --font-weight-nxp-semibold: 600;
-  --font-weight-nxp-bold:     var(--nexter-font-weight-bold);
+  --font-weight-nxp-bold:     var(--nxp-font-bold);
 
   /* ── Line heights ────────────────────────────────────────── */
   --leading-nxp-none:    1;
@@ -153,93 +153,84 @@
      These read from globals.css HSL variables at runtime,
      enabling dynamic theme switching with full Tailwind utility support.
      Usage: bg-background, text-foreground, border-border, bg-primary …  ── */
-  --color-background:              hsl(var(--nxp-background));
-  --color-foreground:              hsl(var(--nxp-foreground));
+  --color-background:             hsl(var(--nxp-background));
+  --color-foreground:             hsl(var(--nxp-foreground));
 
-  --color-card:                    hsl(var(--nxp-card));
-  --color-card-foreground:         hsl(var(--nxp-card-foreground));
+  --color-card:                   hsl(var(--nxp-card));
+  --color-card-foreground:        hsl(var(--nxp-card-foreground));
 
-  --color-popover:                 hsl(var(--nxp-popover));
-  --color-popover-foreground:      hsl(var(--nxp-popover-foreground));
+  --color-popover:                hsl(var(--nxp-popover));
+  --color-popover-foreground:     hsl(var(--nxp-popover-foreground));
 
-  --color-primary:                 hsl(var(--nxp-primary));
-  --color-primary-foreground:      hsl(var(--nxp-primary-foreground));
+  --color-primary:                hsl(var(--nxp-primary));
+  --color-primary-foreground:     hsl(var(--nxp-primary-foreground));
 
-  --color-secondary:               hsl(var(--nxp-secondary));
-  --color-secondary-foreground:    hsl(var(--nxp-secondary-foreground));
+  --color-secondary:              hsl(var(--nxp-secondary));
+  --color-secondary-foreground:   hsl(var(--nxp-secondary-foreground));
 
-  --color-muted:                   hsl(var(--nxp-muted));
-  --color-muted-foreground:        hsl(var(--nxp-muted-foreground));
+  --color-muted:                  hsl(var(--nxp-muted));
+  --color-muted-foreground:       hsl(var(--nxp-muted-foreground));
 
-  --color-accent:                  hsl(var(--nxp-accent));
-  --color-accent-foreground:       hsl(var(--nxp-accent-foreground));
+  --color-accent:                 hsl(var(--nxp-accent));
+  --color-accent-foreground:      hsl(var(--nxp-accent-foreground));
 
-  --color-destructive:             hsl(var(--nxp-destructive));
-  --color-destructive-foreground:  hsl(var(--nxp-destructive-foreground));
+  --color-destructive:            hsl(var(--nxp-destructive));
+  --color-destructive-foreground: hsl(var(--nxp-destructive-foreground));
 
-  --color-success:                 hsl(var(--nxp-success));
-  --color-success-foreground:      hsl(var(--nxp-success-foreground));
+  --color-success:                hsl(var(--nxp-success));
+  --color-success-foreground:     hsl(var(--nxp-success-foreground));
 
-  --color-warning:                 hsl(var(--nxp-warning));
-  --color-warning-foreground:      hsl(var(--nxp-warning-foreground));
+  --color-warning:                hsl(var(--nxp-warning));
+  --color-warning-foreground:     hsl(var(--nxp-warning-foreground));
 
-  --color-info:                    hsl(var(--nxp-info));
-  --color-info-foreground:         hsl(var(--nxp-info-foreground));
+  --color-info:                   hsl(var(--nxp-info));
+  --color-info-foreground:        hsl(var(--nxp-info-foreground));
 
-  --color-border:                  hsl(var(--nxp-border));
-  --color-input:                   hsl(var(--nxp-input));
-  --color-ring:                    hsl(var(--nxp-ring));
+  --color-border:                 hsl(var(--nxp-border));
+  --color-input:                  hsl(var(--nxp-input));
+  --color-ring:                   hsl(var(--nxp-ring));
 
   /* Radius tokens forwarded to Tailwind rounded-* utilities */
-  --radius:                        var(--nxp-radius);
-  --radius-sm:                     var(--nxp-radius-sm);
-  --radius-lg:                     var(--nxp-radius-lg);
-  --radius-full:                   var(--nxp-radius-full);
+  --radius:      var(--nxp-radius);
+  --radius-sm:   var(--nxp-radius-sm);
+  --radius-lg:   var(--nxp-radius-lg);
+  --radius-full: var(--nxp-radius-full);
 }
 
 /* ============================================================
-   @layer base
-   1. --nxp-* aliases  → component styles keep working unchanged
-   2. Gradient token   → not a color, lives outside @theme
-   3. Dark overrides   → only values that change in dark mode
+   @layer base  —  dark-mode overrides for @theme color tokens
    ============================================================ */
 
 @layer base {
 
-  /* ── Token aliases: theme.css owns --nexter-* and --nxp-*. ───
-     This block only defines what Tailwind @theme references need
-     at CSS build time, plus dark-mode overrides.               ── */
-  :root {
-
-  /* ── Dark: override only the values that differ ──────────── */
   .nxp-dark,
   [data-theme="dark"] {
     /* background */
-    --color-nxp-bg:            #0F172A;
-    --color-nxp-bg-alt:        #1E293B;
-    --color-nxp-bg-wash:       #1E293B;
+    --color-nxp-bg:             #0F172A;
+    --color-nxp-bg-alt:         #1E293B;
+    --color-nxp-bg-wash:        #1E293B;
     --color-nxp-bg-wash-active: #1e254a;
-    --color-nxp-bg-overlay:    rgba(0, 0, 0, 0.6);
+    --color-nxp-bg-overlay:     rgba(0, 0, 0, 0.6);
 
     /* primary */
-    --color-nxp-primary:       #3B82F6;
-    --color-nxp-primary-hover: #60A5FA;
+    --color-nxp-primary:        #3B82F6;
+    --color-nxp-primary-hover:  #60A5FA;
     --color-nxp-primary-active: #93C5FD;
-    --color-nxp-primary-fg:    #0F172A;
+    --color-nxp-primary-fg:     #0F172A;
 
     /* text */
-    --color-nxp-text:           #F1F5F9;
-    --color-nxp-text-strong:    #F8FAFC;
-    --color-nxp-text-muted:     #94A3B8;
-    --color-nxp-text-faint:     #475569;
-    --color-nxp-text-inverse:   #0F172A;
-    --color-nxp-text-link:      #60A5FA;
-    --color-nxp-text-link-hover: #93C5FD;
+    --color-nxp-text:              #F1F5F9;
+    --color-nxp-text-strong:       #F8FAFC;
+    --color-nxp-text-muted:        #94A3B8;
+    --color-nxp-text-faint:        #475569;
+    --color-nxp-text-inverse:      #0F172A;
+    --color-nxp-text-link:         #60A5FA;
+    --color-nxp-text-link-hover:   #93C5FD;
 
     /* border */
-    --color-nxp-border:        #334155;
+    --color-nxp-border:       #334155;
     --color-nxp-border-strong: #475569;
-    --color-nxp-border-focus:  #3B82F6;
+    --color-nxp-border-focus: #3B82F6;
 
     /* surface */
     --color-nxp-surface-input:        #1E293B;
@@ -256,28 +247,28 @@
     --shadow-nxp-ring: 0 0 0 2px rgba(59, 130, 246, 0.35);
   }
 
-  /* ── Dark: system preference (overridable with .nxp-light) ── */
+  /* ── Dark: system preference (opt-out with .nxp-light) ── */
   @media (prefers-color-scheme: dark) {
     :root:not(.nxp-light) {
-      --color-nxp-bg:            #0F172A;
-      --color-nxp-bg-alt:        #1E293B;
-      --color-nxp-bg-wash:       #1E293B;
+      --color-nxp-bg:             #0F172A;
+      --color-nxp-bg-alt:         #1E293B;
+      --color-nxp-bg-wash:        #1E293B;
       --color-nxp-bg-wash-active: #1e254a;
-      --color-nxp-bg-overlay:    rgba(0, 0, 0, 0.6);
-      --color-nxp-primary:       #3B82F6;
-      --color-nxp-primary-hover: #60A5FA;
+      --color-nxp-bg-overlay:     rgba(0, 0, 0, 0.6);
+      --color-nxp-primary:        #3B82F6;
+      --color-nxp-primary-hover:  #60A5FA;
       --color-nxp-primary-active: #93C5FD;
-      --color-nxp-primary-fg:    #0F172A;
-      --color-nxp-text:           #F1F5F9;
-      --color-nxp-text-strong:    #F8FAFC;
-      --color-nxp-text-muted:     #94A3B8;
-      --color-nxp-text-faint:     #475569;
-      --color-nxp-text-inverse:   #0F172A;
-      --color-nxp-text-link:      #60A5FA;
-      --color-nxp-text-link-hover: #93C5FD;
-      --color-nxp-border:        #334155;
-      --color-nxp-border-strong: #475569;
-      --color-nxp-border-focus:  #3B82F6;
+      --color-nxp-primary-fg:     #0F172A;
+      --color-nxp-text:              #F1F5F9;
+      --color-nxp-text-strong:       #F8FAFC;
+      --color-nxp-text-muted:        #94A3B8;
+      --color-nxp-text-faint:        #475569;
+      --color-nxp-text-inverse:      #0F172A;
+      --color-nxp-text-link:         #60A5FA;
+      --color-nxp-text-link-hover:   #93C5FD;
+      --color-nxp-border:            #334155;
+      --color-nxp-border-strong:     #475569;
+      --color-nxp-border-focus:      #3B82F6;
       --color-nxp-surface-input:        #1E293B;
       --color-nxp-surface-card:         #1E293B;
       --color-nxp-surface-popover:      #1E293B;

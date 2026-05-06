@@ -1,219 +1,252 @@
 /* ============================================================
    Nexter UI — Design Tokens  (theme.css)
-   Source: figma-export.json  (Figma Variables)
-   Regenerate: npm run build:tokens
+   Source:      figma-export.json
+   Regenerate:  npm run build:tokens
+   ============================================================
+   Architecture: single-layer --nxp-* custom properties.
+   No --nexter-* in output. No multi-hop var() chains.
    ============================================================ */
 
-/* ── Figma Design Tokens ────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   LIGHT THEME  (default)
+   ───────────────────────────────────────────────────────────── */
 :root {
 
-  /* ── Colors ───────────────────────────────────────────────── */
-  --nexter-color-background-default: #f0f0f1;
-  --nexter-color-background-stronger: #dfdfe1;
-  --nexter-color-background-strongest: #c5c5c9;
-  --nexter-color-background-weaker: #ffffff;
-  --nexter-color-border-default: #d1d1d6;
-  --nexter-color-border-weak: #f0f0f0;
-  --nexter-color-error: #f65258;
-  --nexter-color-error-darker: #d12d37;
-  --nexter-color-error-lighter: #fdc9c6;
-  --nexter-color-error-lightest: #fff2ef;
-  --nexter-color-primary: #1717cc;
-  --nexter-color-primary-darker: #111193;
-  --nexter-color-primary-lighter: #b1b1f6;
-  --nexter-color-primary-lightest: #f5f7fe;
-  --nexter-color-secondary: #f12d2d;
-  --nexter-color-secondary-darker: #bf0d0d;
-  --nexter-color-secondary-lighter: #fbc6c6;
-  --nexter-color-secondary-lightest: #fef1f1;
-  --nexter-color-success: #2ea343;
-  --nexter-color-success-darker: #0a842a;
-  --nexter-color-success-lighter: #a7eaaa;
-  --nexter-color-success-lightest: #e7ffe7;
-  --nexter-color-text-default: #1a1a1a;
-  --nexter-color-text-disabled: #b3b3b3;
-  --nexter-color-text-weaker: #666666;
-  --nexter-color-text-white: #ffffff;
-  --nexter-color-warning: #aa8d10;
-  --nexter-color-warning-darker: #86700b;
-  --nexter-color-warning-lighter: #f4db6f;
-  --nexter-color-warning-lightest: #fff8d9;
+  /* ══ COLORS ══════════════════════════════════════════════ */
 
-  /* ── Spacing ──────────────────────────────────────────────── */
-  --nexter-spacing-none: 0px;
-  --nexter-spacing-xxs: 2px;
-  --nexter-spacing-xs: 4px;
-  --nexter-spacing-sm: 6px;
-  --nexter-spacing-md: 8px;
-  --nexter-spacing-lg: 10px;
-  --nexter-spacing-xl: 12px;
-  --nexter-spacing-2xl: 15px;
-  --nexter-spacing-3xl: 16px;
-  --nexter-spacing-4xl: 20px;
-  --nexter-spacing-5xl: 24px;
-  --nexter-spacing-6xl: 32px;
-  --nexter-spacing-7xl: 40px;
-  --nexter-spacing-8xl: 48px;
-  --nexter-spacing-9xl: 64px;
-  --nexter-spacing-10xl: 96px;
-  --nexter-spacing-11xl: 100px;
-  --nexter-spacing-12xl: 145px;
-  --nexter-spacing-13xl: 160px;
-  --nexter-spacing-14xl: 200px;
+  /* Primary */
+  --nxp-color-primary:        #1717cc;
+  --nxp-color-primary-dark:   #111193;
+  --nxp-color-primary-light:  #b1b1f6;
+  --nxp-color-primary-subtle: #f5f7fe;
 
-  /* ── Radius ───────────────────────────────────────────────── */
-  --nexter-radius-0: 0px;
-  --nexter-radius-1: 4px;
-  --nexter-radius-2: 5px;
-  --nexter-radius-3: 8px;
-  --nexter-radius-4: 12px;
-  --nexter-radius-5: 16px;
-  --nexter-radius-6: 20px;
-  --nexter-radius-7: 40px;
-  --nexter-radius-8: 9999px;
+  /* Secondary */
+  --nxp-color-secondary:        #f12d2d;
+  --nxp-color-secondary-dark:   #bf0d0d;
+  --nxp-color-secondary-light:  #fbc6c6;
+  --nxp-color-secondary-subtle: #fef1f1;
 
-  /* ── Typography ───────────────────────────────────────────── */
-  --nexter-font-family-body: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --nexter-font-size-xs: 10px;
-  --nexter-font-size-sm: 12px;
-  --nexter-font-size-md: 14px;
-  --nexter-font-size-lg: 16px;
-  --nexter-font-size-xl: 20px;
-  --nexter-font-weight-regular: 400;
-  --nexter-font-weight-medium: 500;
-  --nexter-font-weight-bold: 700;
-  --nexter-line-height-xs: 15px;
-  --nexter-line-height-sm: 18px;
-  --nexter-line-height-md: 17px;
-  --nexter-line-height-lg: 24px;
-  --nexter-line-height-xl: 28px;
+  /* Text */
+  --nxp-color-text:         #1a1a1a;
+  --nxp-color-text-muted:   #666666;
+  --nxp-color-text-faint:   #b3b3b3;
+  --nxp-color-text-inverse: #ffffff;
 
-  /* ── Component height tokens (not in Figma) ──────────────── */
-  --nxp-size-h-sm: 28px;
-  --nxp-size-h-md: 36px;
-  --nxp-size-h-lg: 40px;
+  /* Background */
+  --nxp-color-bg:       #ffffff;
+  --nxp-color-bg-muted: #f0f0f1;
+  --nxp-color-bg-subtle: #dfdfe1;
+  --nxp-color-bg-strong: #c5c5c9;
 
-  /* ── Motion tokens (not in Figma) ────────────────────────── */
-  --nxp-motion-ease-standard:    cubic-bezier(0.16, 1, 0.3, 1);
-  --nxp-motion-ease-in:          cubic-bezier(0.4, 0, 1, 1);
-  --nxp-motion-ease-out:         cubic-bezier(0, 0, 0.2, 1);
-  --nxp-motion-ease-linear:      linear;
-  --nxp-motion-duration-instant: 80ms;
-  --nxp-motion-duration-fast:    120ms;
-  --nxp-motion-duration-hover:   180ms;
-  --nxp-motion-duration-active:  220ms;
-  --nxp-motion-duration-motion:  240ms;
-  --nxp-motion-duration-slow:    400ms;
+  /* Border */
+  --nxp-color-border:        #d1d1d6;
+  --nxp-color-border-subtle: #f0f0f0;
+  --nxp-color-border-focus:  #1717cc;
 
-  /* ── Shadow tokens (not in Figma) ────────────────────────── */
+  /* Surface (contextual aliases — used by components) */
+  --nxp-color-surface:         #ffffff;
+  --nxp-color-surface-raised:  #ffffff;
+  --nxp-color-surface-overlay: rgba(26, 26, 26, 0.4);
+
+  /* Status — Success */
+  --nxp-color-success:        #2ea343;
+  --nxp-color-success-dark:   #0a842a;
+  --nxp-color-success-light:  #a7eaaa;
+  --nxp-color-success-subtle: #e7ffe7;
+
+  /* Status — Warning */
+  --nxp-color-warning:        #aa8d10;
+  --nxp-color-warning-dark:   #86700b;
+  --nxp-color-warning-light:  #f4db6f;
+  --nxp-color-warning-subtle: #fff8d9;
+
+  /* Status — Error */
+  --nxp-color-error:        #f65258;
+  --nxp-color-error-dark:   #d12d37;
+  --nxp-color-error-light:  #fdc9c6;
+  --nxp-color-error-subtle: #fff2ef;
+
+  /* Status — Info (maps to primary scale) */
+  --nxp-color-info:        #1717cc;
+  --nxp-color-info-dark:   #111193;
+  --nxp-color-info-subtle: #f5f7fe;
+
+  /* ══ SPACING  (scale = pixel value) ══════════════════════ */
+  --nxp-space-0: 0px;
+  --nxp-space-2: 2px;
+  --nxp-space-4: 4px;
+  --nxp-space-6: 6px;
+  --nxp-space-8: 8px;
+  --nxp-space-10: 10px;
+  --nxp-space-12: 12px;
+  --nxp-space-15: 15px;
+  --nxp-space-16: 16px;
+  --nxp-space-20: 20px;
+  --nxp-space-24: 24px;
+  --nxp-space-32: 32px;
+  --nxp-space-40: 40px;
+  --nxp-space-48: 48px;
+  --nxp-space-64: 64px;
+  --nxp-space-96: 96px;
+  --nxp-space-100: 100px;
+  --nxp-space-145: 145px;
+  --nxp-space-160: 160px;
+  --nxp-space-200: 200px;
+
+  /* ══ RADIUS ══════════════════════════════════════════════ */
+  --nxp-radius-none: 0px;
+  --nxp-radius-xs: 4px;
+  --nxp-radius-sm: 5px;
+  --nxp-radius-md: 8px;
+  --nxp-radius-lg: 12px;
+  --nxp-radius-xl: 16px;
+  --nxp-radius-2xl: 20px;
+  --nxp-radius-3xl: 40px;
+  --nxp-radius-full: 9999px;
+
+  /* ══ TYPOGRAPHY ══════════════════════════════════════════ */
+
+  /* Font family */
+  --nxp-font: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --nxp-font-mono: ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+
+  /* Font sizes */
+  --nxp-text-xs: 10px;
+  --nxp-text-sm: 12px;
+  --nxp-text-md: 14px;
+  --nxp-text-lg: 16px;
+  --nxp-text-xl: 20px;
+
+  /* Font weights */
+  --nxp-font-regular: 400;
+  --nxp-font-medium: 500;
+  --nxp-font-bold: 700;
+  --nxp-font-semibold: 600;
+
+  /* Line heights */
+  --nxp-leading-xs: 15px;
+  --nxp-leading-md: 17px;
+  --nxp-leading-sm: 18px;
+  --nxp-leading-lg: 24px;
+  --nxp-leading-xl: 28px;
+
+  /* ══ SHADOWS ═════════════════════════════════════════════ */
   --nxp-shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
   --nxp-shadow-md:   0 1px 2px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
   --nxp-shadow-lg:   0 4px 12px -4px rgba(15, 23, 42, 0.10);
   --nxp-shadow-xl:   0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
   --nxp-shadow-ring: 0 0 0 2px rgba(23, 23, 204, 0.25);
 
+  /* ══ MOTION ══════════════════════════════════════════════ */
+  --nxp-ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --nxp-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --nxp-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  --nxp-duration-instant: 80ms;
+  --nxp-duration-fast:    120ms;
+  --nxp-duration-hover:   180ms;
+  --nxp-duration-active:  220ms;
+  --nxp-duration-motion:  240ms;
+  --nxp-duration-slow:    400ms;
+
+  /* ══ COMPONENT HEIGHTS ═══════════════════════════════════ */
+  --nxp-h-sm: 28px;
+  --nxp-h-md: 36px;
+  --nxp-h-lg: 40px;
+
   /* ══════════════════════════════════════════════════════════
-     --nxp-* semantic aliases → var(--nexter-*)
-     Components reference these names; all resolve to Figma tokens.
+     BACKWARD-COMPAT ALIASES
+     Maps old --nxp-color-*-default / --nxp-spacing-* / etc.
+     → new clean --nxp-* names.
+     One hop max. Never through --nexter-*.
+     Safe to remove in a future major version.
      ══════════════════════════════════════════════════════════ */
 
-  /* Primary interactive */
-  --nxp-color-primary-default:    var(--nexter-color-primary);
-  --nxp-color-primary-hover:      var(--nexter-color-primary-darker);
-  --nxp-color-primary-active:     var(--nexter-color-primary-darker);
-  --nxp-color-primary-foreground: var(--nexter-color-text-white);
+  /* ── Colors: primary interactive ── */
+  --nxp-color-primary-default:    var(--nxp-color-primary);
+  --nxp-color-primary-hover:      var(--nxp-color-primary-dark);
+  --nxp-color-primary-active:     var(--nxp-color-primary-dark);
+  --nxp-color-primary-foreground: var(--nxp-color-text-inverse);
 
-  /* Brand compat */
-  --nxp-color-brand-soft:  var(--nexter-color-primary-lightest);
-  --nxp-color-brand-accent: var(--nexter-color-secondary);
-  --nxp-color-brand-grad:  linear-gradient(180deg, var(--nexter-color-primary-darker) 0%, var(--nexter-color-primary) 100%);
+  /* ── Colors: brand ── */
+  --nxp-color-brand-soft:   var(--nxp-color-primary-subtle);
+  --nxp-color-brand-accent: var(--nxp-color-secondary);
+  --nxp-color-brand-grad:   linear-gradient(180deg, var(--nxp-color-primary-dark) 0%, var(--nxp-color-primary) 100%);
 
-  /* Status */
-  --nxp-color-success-default: var(--nexter-color-success);
-  --nxp-color-success-soft:    var(--nexter-color-success-lightest);
-  --nxp-color-success-dark:    var(--nexter-color-success-darker);
-  --nxp-color-warning-default: var(--nexter-color-warning);
-  --nxp-color-warning-soft:    var(--nexter-color-warning-lightest);
-  --nxp-color-warning-dark:    var(--nexter-color-warning-darker);
-  --nxp-color-error-default:   var(--nexter-color-error);
-  --nxp-color-error-soft:      var(--nexter-color-error-lightest);
-  --nxp-color-error-dark:      var(--nexter-color-error-darker);
-  --nxp-color-info-default:    var(--nexter-color-primary);
-  --nxp-color-info-soft:       var(--nexter-color-primary-lightest);
-  --nxp-color-info-dark:       var(--nexter-color-primary-darker);
+  /* ── Colors: status ── */
+  --nxp-color-success-default: var(--nxp-color-success);
+  --nxp-color-success-soft:    var(--nxp-color-success-subtle);
+  --nxp-color-warning-default: var(--nxp-color-warning);
+  --nxp-color-warning-soft:    var(--nxp-color-warning-subtle);
+  --nxp-color-error-default:   var(--nxp-color-error);
+  --nxp-color-error-soft:      var(--nxp-color-error-subtle);
+  --nxp-color-info-default:    var(--nxp-color-info);
+  --nxp-color-info-soft:       var(--nxp-color-info-subtle);
+  --nxp-color-info-dark:       var(--nxp-color-info-dark);
 
-  /* Background */
-  --nxp-color-bg-default:     var(--nexter-color-background-weaker);
-  --nxp-color-bg-alt:         var(--nexter-color-background-default);
-  --nxp-color-bg-wash:        var(--nexter-color-background-default);
-  --nxp-color-bg-wash-active: var(--nexter-color-primary-lightest);
-  --nxp-color-bg-overlay:     rgba(26, 26, 26, 0.4);
+  /* ── Colors: background ── */
+  --nxp-color-bg-default:     var(--nxp-color-bg);
+  --nxp-color-bg-alt:         var(--nxp-color-bg-muted);
+  --nxp-color-bg-wash:        var(--nxp-color-bg-muted);
+  --nxp-color-bg-wash-active: var(--nxp-color-primary-subtle);
+  --nxp-color-bg-overlay:     var(--nxp-color-surface-overlay);
 
-  /* Text */
-  --nxp-color-text-default:    var(--nexter-color-text-default);
-  --nxp-color-text-strong:     var(--nexter-color-text-default);
-  --nxp-color-text-muted:      var(--nexter-color-text-weaker);
-  --nxp-color-text-faint:      var(--nexter-color-text-disabled);
-  --nxp-color-text-inverse:    var(--nexter-color-text-white);
-  --nxp-color-text-link:       var(--nexter-color-primary);
-  --nxp-color-text-link-hover: var(--nexter-color-primary-darker);
+  /* ── Colors: text ── */
+  --nxp-color-text-default: var(--nxp-color-text);
+  --nxp-color-text-strong:  var(--nxp-color-text);
+  --nxp-color-text-link:    var(--nxp-color-primary);
+  --nxp-color-text-link-hover: var(--nxp-color-primary-dark);
 
-  /* Border */
-  --nxp-color-border-default: var(--nexter-color-border-default);
-  --nxp-color-border-strong:  var(--nexter-color-background-strongest);
-  --nxp-color-border-focus:   var(--nexter-color-primary);
+  /* ── Colors: border ── */
+  --nxp-color-border-default: var(--nxp-color-border);
+  --nxp-color-border-strong:  var(--nxp-color-bg-strong);
 
-  /* Surface */
-  --nxp-color-surface-input:        var(--nexter-color-background-weaker);
-  --nxp-color-surface-card:         var(--nexter-color-background-weaker);
-  --nxp-color-surface-popover:      var(--nexter-color-background-weaker);
-  --nxp-color-surface-tooltip:      var(--nexter-color-text-default);
-  --nxp-color-surface-tooltip-text: var(--nexter-color-text-white);
+  /* ── Colors: surface ── */
+  --nxp-color-surface-input:         var(--nxp-color-bg);
+  --nxp-color-surface-card:          var(--nxp-color-bg);
+  --nxp-color-surface-popover:       var(--nxp-color-bg);
+  --nxp-color-surface-tooltip:       var(--nxp-color-text);
+  --nxp-color-surface-tooltip-text:  var(--nxp-color-text-inverse);
 
-  /* Spacing aliases */
-  --nxp-spacing-0:   var(--nexter-spacing-none);
-  --nxp-spacing-1:   var(--nexter-spacing-xs);
-  --nxp-spacing-2:   var(--nexter-spacing-md);
-  --nxp-spacing-3:   var(--nexter-spacing-xl);
-  --nxp-spacing-4:   var(--nexter-spacing-3xl);
-  --nxp-spacing-5:   var(--nexter-spacing-4xl);
-  --nxp-spacing-6:   var(--nexter-spacing-5xl);
-  --nxp-spacing-8:   var(--nexter-spacing-6xl);
-  --nxp-spacing-10:  var(--nexter-spacing-7xl);
-  --nxp-spacing-12:  var(--nexter-spacing-8xl);
-  --nxp-spacing-16:  var(--nexter-spacing-9xl);
-  --nxp-spacing-xs:  var(--nexter-spacing-xs);
-  --nxp-spacing-sm:  var(--nexter-spacing-md);
-  --nxp-spacing-md:  var(--nexter-spacing-3xl);
-  --nxp-spacing-lg:  var(--nexter-spacing-5xl);
-  --nxp-spacing-xl:  var(--nexter-spacing-6xl);
-  --nxp-spacing-2xl: var(--nexter-spacing-8xl);
-  --nxp-spacing-3xl: var(--nexter-spacing-9xl);
+  /* ── Spacing: numeric scale ── */
+  --nxp-spacing-0:   var(--nxp-space-0);
+  --nxp-spacing-1:   var(--nxp-space-4);
+  --nxp-spacing-2:   var(--nxp-space-8);
+  --nxp-spacing-3:   var(--nxp-space-12);
+  --nxp-spacing-4:   var(--nxp-space-16);
+  --nxp-spacing-5:   var(--nxp-space-20);
+  --nxp-spacing-6:   var(--nxp-space-24);
+  --nxp-spacing-8:   var(--nxp-space-32);
+  --nxp-spacing-10:  var(--nxp-space-40);
+  --nxp-spacing-12:  var(--nxp-space-48);
+  --nxp-spacing-16:  var(--nxp-space-64);
+  --nxp-spacing-xs:  var(--nxp-space-4);
+  --nxp-spacing-sm:  var(--nxp-space-8);
+  --nxp-spacing-md:  var(--nxp-space-16);
+  --nxp-spacing-lg:  var(--nxp-space-24);
+  --nxp-spacing-xl:  var(--nxp-space-32);
+  --nxp-spacing-2xl: var(--nxp-space-48);
+  --nxp-spacing-3xl: var(--nxp-space-64);
 
-  /* Radius aliases */
-  --nxp-radius-none: var(--nexter-radius-0);
-  --nxp-radius-sm:   var(--nexter-radius-2);
-  --nxp-radius-md:   var(--nexter-radius-3);
-  --nxp-radius-lg:   var(--nexter-radius-4);
-  --nxp-radius-xl:   var(--nexter-radius-5);
-  --nxp-radius-2xl:  var(--nexter-radius-6);
-  --nxp-radius-full: var(--nexter-radius-8);
+  /* ── Radius ── (names unchanged, kept for compat) */
+  --nxp-radius-2xl: var(--nxp-radius-2xl);  /* same name → no-op, documents intent */
 
-  /* Typography aliases */
-  --nxp-font-family-sans:        var(--nexter-font-family-body);
-  --nxp-font-size-xs:            var(--nexter-font-size-xs);
-  --nxp-font-size-sm:            var(--nexter-font-size-sm);
-  --nxp-font-size-md:            var(--nexter-font-size-md);
-  --nxp-font-size-lg:            var(--nexter-font-size-lg);
+  /* ── Typography ── */
+  --nxp-font-family-sans:        var(--nxp-font);
+  --nxp-font-family-mono:        var(--nxp-font-mono);
+  --nxp-font-size-xs:            var(--nxp-text-xs);
+  --nxp-font-size-sm:            var(--nxp-text-sm);
+  --nxp-font-size-md:            var(--nxp-text-md);
+  --nxp-font-size-lg:            var(--nxp-text-lg);
   --nxp-font-size-xl:            18px;
-  --nxp-font-size-2xl:           var(--nexter-font-size-xl);
+  --nxp-font-size-2xl:           var(--nxp-text-xl);
   --nxp-font-size-3xl:           24px;
   --nxp-font-size-4xl:           30px;
   --nxp-font-size-5xl:           36px;
-  --nxp-font-weight-regular:     var(--nexter-font-weight-regular);
-  --nxp-font-weight-medium:      var(--nexter-font-weight-medium);
-  --nxp-font-weight-semibold:    600;
-  --nxp-font-weight-bold:        var(--nexter-font-weight-bold);
+  --nxp-font-weight-regular:     var(--nxp-font-regular);
+  --nxp-font-weight-medium:      var(--nxp-font-medium);
+  --nxp-font-weight-semibold:    var(--nxp-font-semibold);
+  --nxp-font-weight-bold:        var(--nxp-font-bold);
   --nxp-font-lineHeight-none:    1;
   --nxp-font-lineHeight-tight:   1.25;
   --nxp-font-lineHeight-snug:    1.375;
@@ -221,46 +254,146 @@
   --nxp-font-lineHeight-relaxed: 1.625;
   --nxp-font-lineHeight-loose:   2;
 
-  /* ── Short backward-compat aliases ───────────────────────── */
-  --nxp-brand:           var(--nexter-color-primary);
-  --nxp-brand-secondary: var(--nexter-color-secondary);
-  --nxp-brand-soft:      var(--nexter-color-primary-lightest);
+  /* ── Motion ── */
+  --nxp-motion-ease-standard:       var(--nxp-ease);
+  --nxp-motion-ease-in:             var(--nxp-ease-in);
+  --nxp-motion-ease-out:            var(--nxp-ease-out);
+  --nxp-motion-ease-linear:         linear;
+  --nxp-motion-duration-instant:    var(--nxp-duration-instant);
+  --nxp-motion-duration-fast:       var(--nxp-duration-fast);
+  --nxp-motion-duration-hover:      var(--nxp-duration-hover);
+  --nxp-motion-duration-active:     var(--nxp-duration-active);
+  --nxp-motion-duration-motion:     var(--nxp-duration-motion);
+  --nxp-motion-duration-slow:       var(--nxp-duration-slow);
+
+  /* ── Size heights ── */
+  --nxp-size-h-sm: var(--nxp-h-sm);
+  --nxp-size-h-md: var(--nxp-h-md);
+  --nxp-size-h-lg: var(--nxp-h-lg);
+
+  /* ── Short aliases  (used directly in component styles) ── */
+  --nxp-brand:           var(--nxp-color-primary);
+  --nxp-brand-secondary: var(--nxp-color-secondary);
+  --nxp-brand-soft:      var(--nxp-color-primary-subtle);
   --nxp-brand-grad:      var(--nxp-color-brand-grad);
-  --nxp-bg:              var(--nxp-color-bg-default);
-  --nxp-bg-alt:          var(--nxp-color-bg-alt);
-  --nxp-wash-hover:      var(--nxp-color-bg-wash);
-  --nxp-wash-active:     var(--nxp-color-bg-wash-active);
-  --nxp-text:            var(--nxp-color-text-default);
-  --nxp-text-strong:     var(--nxp-color-text-strong);
+  --nxp-bg:              var(--nxp-color-bg);
+  --nxp-bg-alt:          var(--nxp-color-bg-muted);
+  --nxp-wash-hover:      var(--nxp-color-bg-muted);
+  --nxp-wash-active:     var(--nxp-color-primary-subtle);
+  --nxp-text:            var(--nxp-color-text);
+  --nxp-text-strong:     var(--nxp-color-text);
   --nxp-text-muted:      var(--nxp-color-text-muted);
   --nxp-text-faint:      var(--nxp-color-text-faint);
-  --nxp-border:          var(--nxp-color-border-default);
-  --nxp-border-strong:   var(--nxp-color-border-strong);
-  --nxp-success:         var(--nxp-color-success-default);
-  --nxp-warning:         var(--nxp-color-warning-default);
-  --nxp-error:           var(--nxp-color-error-default);
-  --nxp-info:            var(--nxp-color-info-default);
+  --nxp-border:          var(--nxp-color-border);
+  --nxp-border-strong:   var(--nxp-color-bg-strong);
+  --nxp-success:         var(--nxp-color-success);
+  --nxp-warning:         var(--nxp-color-warning);
+  --nxp-error:           var(--nxp-color-error);
+  --nxp-info:            var(--nxp-color-info);
   --nxp-shadow:          var(--nxp-shadow-md);
   --nxp-ring:            var(--nxp-shadow-ring);
-  --nxp-ease:            var(--nxp-motion-ease-standard);
-  --nxp-dur-hover:       var(--nxp-motion-duration-hover);
-  --nxp-dur-active:      var(--nxp-motion-duration-active);
-  --nxp-dur-motion:      var(--nxp-motion-duration-motion);
-  --nxp-font:            var(--nxp-font-family-sans);
+  --nxp-dur-hover:       var(--nxp-duration-hover);
+  --nxp-dur-active:      var(--nxp-duration-active);
+  --nxp-dur-motion:      var(--nxp-duration-motion);
   --nxp-radius:          var(--nxp-radius-md);
   --nxp-radius-pill:     var(--nxp-radius-full);
-  --nxp-h:               var(--nxp-size-h-md);
-  --nxp-h-sm:            var(--nxp-size-h-sm);
-  --nxp-h-lg:            var(--nxp-size-h-lg);
+  --nxp-h:               var(--nxp-h-md);
 }
 
-/* ── Dark theme ──────────────────────────────────────────────── */
-.nxp-dark,
-[data-theme="dark"] {
+/* ─────────────────────────────────────────────────────────────
+   DARK THEME  —  explicit opt-in
+   Usage:  <html data-theme="dark">  or  <div class="nxp-dark">
+   ───────────────────────────────────────────────────────────── */
+[data-theme="dark"],
+.nxp-dark {
+  /* Primary (brighter in dark contexts) */
+  --nxp-color-primary:        #4f4ff5;
+  --nxp-color-primary-dark:   #3333e0;
+  --nxp-color-primary-light:  #8080f8;
+  --nxp-color-primary-subtle: #1a1a3a;
+
+  /* Secondary */
+  --nxp-color-secondary:        #ff5555;
+  --nxp-color-secondary-dark:   #cc2222;
+  --nxp-color-secondary-light:  #ff9999;
+  --nxp-color-secondary-subtle: #2a1515;
+
+  /* Text */
+  --nxp-color-text:         #f1f5f9;
+  --nxp-color-text-muted:   #94a3b8;
+  --nxp-color-text-faint:   #475569;
+  --nxp-color-text-inverse: #0f172a;
+
+  /* Background */
+  --nxp-color-bg:        #0f172a;
+  --nxp-color-bg-muted:  #1e293b;
+  --nxp-color-bg-subtle: #1e293b;
+  --nxp-color-bg-strong: #475569;
+
+  /* Border */
+  --nxp-color-border:        #334155;
+  --nxp-color-border-subtle: #1e293b;
+  --nxp-color-border-focus:  #4f4ff5;
+
+  /* Surface */
+  --nxp-color-surface:         #1e293b;
+  --nxp-color-surface-raised:  #263248;
+  --nxp-color-surface-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Info */
+  --nxp-color-info:        #4f4ff5;
+  --nxp-color-info-dark:   #3333e0;
+  --nxp-color-info-subtle: #1a1a3a;
+
+  /* Shadows (stronger in dark) */
+  --nxp-shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+  --nxp-shadow-md:   0 2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --nxp-shadow-lg:   0 4px 16px -4px rgba(0, 0, 0, 0.6);
+  --nxp-shadow-xl:   0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --nxp-shadow-ring: 0 0 0 2px rgba(79, 79, 245, 0.4);
 }
 
-/* ── Dark theme (system preference) ─────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   DARK THEME  —  system preference  (opt-out with .nxp-light)
+   ───────────────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not(.nxp-light) {
+    --nxp-color-primary:        #4f4ff5;
+    --nxp-color-primary-dark:   #3333e0;
+    --nxp-color-primary-light:  #8080f8;
+    --nxp-color-primary-subtle: #1a1a3a;
+
+    --nxp-color-secondary:        #ff5555;
+    --nxp-color-secondary-dark:   #cc2222;
+    --nxp-color-secondary-light:  #ff9999;
+    --nxp-color-secondary-subtle: #2a1515;
+
+    --nxp-color-text:         #f1f5f9;
+    --nxp-color-text-muted:   #94a3b8;
+    --nxp-color-text-faint:   #475569;
+    --nxp-color-text-inverse: #0f172a;
+
+    --nxp-color-bg:        #0f172a;
+    --nxp-color-bg-muted:  #1e293b;
+    --nxp-color-bg-subtle: #1e293b;
+    --nxp-color-bg-strong: #475569;
+
+    --nxp-color-border:        #334155;
+    --nxp-color-border-subtle: #1e293b;
+    --nxp-color-border-focus:  #4f4ff5;
+
+    --nxp-color-surface:         #1e293b;
+    --nxp-color-surface-raised:  #263248;
+    --nxp-color-surface-overlay: rgba(0, 0, 0, 0.6);
+
+    --nxp-color-info:        #4f4ff5;
+    --nxp-color-info-dark:   #3333e0;
+    --nxp-color-info-subtle: #1a1a3a;
+
+    --nxp-shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+    --nxp-shadow-md:   0 2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --nxp-shadow-lg:   0 4px 16px -4px rgba(0, 0, 0, 0.6);
+    --nxp-shadow-xl:   0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --nxp-shadow-ring: 0 0 0 2px rgba(79, 79, 245, 0.4);
   }
 }
