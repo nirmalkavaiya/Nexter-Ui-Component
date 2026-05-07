@@ -323,6 +323,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node style-dictionary.config.mjs && vite build && node -e \"require('fs').copyFileSync('src/index.d.ts','dist/index.d.ts')\"",
+    "prepare": "node -e \"if(require('fs').existsSync('dist/index.js')){process.exit(0)}\" || npm run build",
     "setup-theme": "node scripts/setup-theme.js",
     "build:tokens": "node style-dictionary.config.mjs",
     "preview": "vite preview",
