@@ -1,129 +1,87 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
 
-const GAP = 8; // px gap between anchor edge and tooltip
+/**
+ * Tooltip — CSS-only show/hide (no JS events).
+ *
+ * Props
+ * ─────
+ * content   string | ReactNode  — tooltip text, HTML string, or JSX
+ * position  'top'|'bottom'|'left'|'right'  (default 'top')
+ * className string  — extra classes on the wrapper span
+ * children  ReactNode  — trigger element; falls back to ⓘ SVG icon
+ *
+ * Behaviour
+ * ─────────
+ * • Shown on  :hover  and  :focus-within  via CSS — zero JS events.
+ * • content as HTML string → rendered via dangerouslySetInnerHTML.
+ * • content as JSX          → rendered as React children.
+ * • No children → renders the default SVG info icon (.nxp-tooltip-wrap__icon).
+ *
+ * Usage
+ * ─────
+ * <Tooltip content="Plain text" position="top">
+ *   <Button>Hover me</Button>
+ * </Tooltip>
+ *
+ * <Tooltip content="<strong>Bold</strong> and <em>italic</em>" position="bottom" />
+ *
+ * <Tooltip content={<span>Rich <b>JSX</b></span>} position="right">
+ *   <span className="nxp-tooltip-wrap__icon"><MyIcon /></span>
+ * </Tooltip>
+ */
+
+const InfoIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.4" />
+    <path d="M8 7.5V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="8" cy="5.5" r="0.75" fill="currentColor" />
+  </svg>
+);
 
 function Tooltip({
   content,
   children,
-  /** 'top' | 'bottom' | 'left' | 'right' — default 'top' */
   position = 'top',
   className = '',
 }) {
-  const [visible, setVisible]   = useState(false);
-  const [pos, setPos]           = useState({ top: 0, left: 0 });
-  const [actualPos, setActualPos] = useState(position);
-  const anchorRef  = useRef(null);
-  const tooltipRef = useRef(null);
+  if (!content) return children ?? null;
 
-  const updatePosition = useCallback(() => {
-    if (!anchorRef.current) return;
-    const rect = anchorRef.current.getBoundingClientRect();
-    const tw = tooltipRef.current?.offsetWidth  || 120;
-    const th = tooltipRef.current?.offsetHeight || 32;
-    let top, left, used = position;
+  /* Detect HTML string so we can use dangerouslySetInnerHTML */
+  const isHtml = typeof content === 'string' && /<[a-z][\s\S]*>/i.test(content);
 
-    if (position === 'top') {
-      top  = rect.top  - th - GAP + window.scrollY;
-      left = rect.left + rect.width / 2 - tw / 2 + window.scrollX;
-      // Flip to bottom if no room above
-      if (top < window.scrollY + 8) {
-        top  = rect.bottom + GAP + window.scrollY;
-        used = 'bottom';
-      }
-    } else if (position === 'bottom') {
-      top  = rect.bottom + GAP + window.scrollY;
-      left = rect.left + rect.width / 2 - tw / 2 + window.scrollX;
-      // Flip to top if no room below
-      if (top + th > window.scrollY + window.innerHeight - 8) {
-        top  = rect.top - th - GAP + window.scrollY;
-        used = 'top';
-      }
-    } else if (position === 'left') {
-      top  = rect.top  + rect.height / 2 - th / 2 + window.scrollY;
-      left = rect.left - tw - GAP + window.scrollX;
-      // Flip to right if no room on left
-      if (left < 8) {
-        left = rect.right + GAP + window.scrollX;
-        used = 'right';
-      }
-    } else if (position === 'right') {
-      top  = rect.top  + rect.height / 2 - th / 2 + window.scrollY;
-      left = rect.right + GAP + window.scrollX;
-      // Flip to left if no room on right
-      if (left + tw > window.innerWidth - 8) {
-        left = rect.left - tw - GAP + window.scrollX;
-        used = 'left';
-      }
-    }
-
-    // Clamp horizontal within viewport
-    left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
-
-    setPos({ top, left });
-    setActualPos(used);
-  }, [position]);
-
-  const show = useCallback(() => {
-    setVisible(true);
-    // Run twice: first render to get size, then reposition
-    requestAnimationFrame(() => requestAnimationFrame(updatePosition));
-  }, [updatePosition]);
-
-  const hide = useCallback(() => setVisible(false), []);
-
-  // Reposition on scroll / resize while tooltip is open
-  useEffect(() => {
-    if (!visible) return;
-    window.addEventListener('scroll', updatePosition, true);
-    window.addEventListener('resize', updatePosition);
-    return () => {
-      window.removeEventListener('scroll', updatePosition, true);
-      window.removeEventListener('resize', updatePosition);
-    };
-  }, [visible, updatePosition]);
-
-  // When children is omitted/null, fall back to the ⓘ info icon
-  const trigger = (children !== undefined && children !== null && children !== '')
+  /* Default trigger — SVG info icon */
+  const trigger = (children != null && children !== '')
     ? children
     : (
       <span
         className="nxp-tooltip-wrap__icon"
         role="img"
-        aria-label="Info"
+        aria-label="More information"
         tabIndex={0}
       >
-        ⓘ
+        <InfoIcon />
       </span>
     );
 
   return (
-    <>
-      <span
-        ref={anchorRef}
-        className={`nxp-tooltip-wrap ${className}`}
-        onMouseEnter={show}
-        onMouseLeave={hide}
-        onFocus={show}
-        onBlur={hide}
-      >
-        {trigger}
-      </span>
+    <span
+      className={`nxp-tooltip-wrap${className ? ` ${className}` : ''}`}
+      data-position={position}
+    >
+      {trigger}
 
-      {visible && content && createPortal(
+      {isHtml ? (
         <div
-          ref={tooltipRef}
           className="nxp-tooltip"
-          data-position={actualPos}
-          style={{ top: pos.top, left: pos.left }}
           role="tooltip"
-          aria-live="polite"
-        >
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      ) : (
+        <div className="nxp-tooltip" role="tooltip">
           {content}
-        </div>,
-        document.body
+        </div>
       )}
-    </>
+    </span>
   );
 }
 

@@ -2172,21 +2172,21 @@
 /* ============================================================
    TOOLTIP
    ============================================================ */
+/* ── Tooltip — pure CSS show/hide, no JS events ─────────────── */
+
 .nxp-tooltip-wrap {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-/* Default info icon — shown when Tooltip has no children */
+/* SVG info icon — shown when Tooltip has no children prop */
 .nxp-tooltip-wrap__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 16px;
   height: 16px;
-  font-size: var(--nxp-text-md);
-  font-style: normal;
   color: var(--nxp-text-muted);
   cursor: default;
   border-radius: 50%;
@@ -2195,13 +2195,14 @@
   outline: none;
 }
 .nxp-tooltip-wrap__icon:hover,
-.nxp-tooltip-wrap__icon:focus {
-  color: var(--nxp-text);
+.nxp-tooltip-wrap__icon:focus-visible {
+  color: var(--nxp-brand);
 }
 
+/* ── Bubble ──────────────────────────────────────────────────── */
 .nxp-tooltip {
-  position: fixed;
-  z-index: 9999;
+  position: absolute;
+  z-index: var(--nxp-z-tooltip, 9999);
   background: var(--nxp-text);
   color: #fff;
   font-family: var(--nxp-font);
@@ -2211,54 +2212,100 @@
   border-radius: var(--nxp-radius-sm);
   white-space: normal;
   max-width: 240px;
+  min-width: 48px;
   word-break: break-word;
   pointer-events: none;
   box-shadow: var(--nxp-shadow-md);
-  animation: nxp-tooltip-in 0.12s var(--nxp-ease) both;
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity    0.15s var(--nxp-ease),
+    visibility 0.15s var(--nxp-ease),
+    transform  0.15s var(--nxp-ease);
 }
 
-@keyframes nxp-tooltip-in {
-  from { opacity: 0; transform: scale(0.94); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-/* Arrow caret — direction controlled by data-position */
+/* Arrow shared reset */
 .nxp-tooltip::after {
   content: '';
   position: absolute;
   border: 5px solid transparent;
 }
 
-/* Top (default): arrow at bottom, pointing down toward trigger */
-.nxp-tooltip[data-position="top"]::after {
-  top: 100%;
+/* HTML content helpers */
+.nxp-tooltip a       { color: #93c5fd; text-decoration: underline; }
+.nxp-tooltip strong  { font-weight: var(--nxp-font-semibold); }
+.nxp-tooltip em      { font-style: italic; }
+.nxp-tooltip ul,
+.nxp-tooltip ol      { margin: 4px 0; padding-left: 16px; }
+.nxp-tooltip li      { margin: 2px 0; }
+
+/* ── TOP ─────────────────────────────────────────────────────── */
+.nxp-tooltip-wrap[data-position="top"] > .nxp-tooltip {
+  bottom: calc(100% + 8px);
   left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.nxp-tooltip-wrap[data-position="top"] > .nxp-tooltip::after {
+  top: 100%; left: 50%;
   transform: translateX(-50%);
   border-top-color: var(--nxp-text);
 }
+.nxp-tooltip-wrap[data-position="top"]:hover > .nxp-tooltip,
+.nxp-tooltip-wrap[data-position="top"]:focus-within > .nxp-tooltip {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
 
-/* Bottom: arrow at top, pointing up toward trigger */
-.nxp-tooltip[data-position="bottom"]::after {
-  bottom: 100%;
+/* ── BOTTOM ──────────────────────────────────────────────────── */
+.nxp-tooltip-wrap[data-position="bottom"] > .nxp-tooltip {
+  top: calc(100% + 8px);
   left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+.nxp-tooltip-wrap[data-position="bottom"] > .nxp-tooltip::after {
+  bottom: 100%; left: 50%;
   transform: translateX(-50%);
   border-bottom-color: var(--nxp-text);
 }
+.nxp-tooltip-wrap[data-position="bottom"]:hover > .nxp-tooltip,
+.nxp-tooltip-wrap[data-position="bottom"]:focus-within > .nxp-tooltip {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
 
-/* Left: arrow at right, pointing right toward trigger */
-.nxp-tooltip[data-position="left"]::after {
+/* ── LEFT ────────────────────────────────────────────────────── */
+.nxp-tooltip-wrap[data-position="left"] > .nxp-tooltip {
+  right: calc(100% + 8px);
   top: 50%;
-  left: 100%;
+  transform: translateY(-50%) translateX(4px);
+}
+.nxp-tooltip-wrap[data-position="left"] > .nxp-tooltip::after {
+  top: 50%; left: 100%;
   transform: translateY(-50%);
   border-left-color: var(--nxp-text);
 }
+.nxp-tooltip-wrap[data-position="left"]:hover > .nxp-tooltip,
+.nxp-tooltip-wrap[data-position="left"]:focus-within > .nxp-tooltip {
+  opacity: 1; visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
 
-/* Right: arrow at left, pointing left toward trigger */
-.nxp-tooltip[data-position="right"]::after {
+/* ── RIGHT ───────────────────────────────────────────────────── */
+.nxp-tooltip-wrap[data-position="right"] > .nxp-tooltip {
+  left: calc(100% + 8px);
   top: 50%;
-  right: 100%;
+  transform: translateY(-50%) translateX(-4px);
+}
+.nxp-tooltip-wrap[data-position="right"] > .nxp-tooltip::after {
+  top: 50%; right: 100%;
   transform: translateY(-50%);
   border-right-color: var(--nxp-text);
+}
+.nxp-tooltip-wrap[data-position="right"]:hover > .nxp-tooltip,
+.nxp-tooltip-wrap[data-position="right"]:focus-within > .nxp-tooltip {
+  opacity: 1; visibility: visible;
+  transform: translateY(-50%) translateX(0);
 }
 
 /* ============================================================
