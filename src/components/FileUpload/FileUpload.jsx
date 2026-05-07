@@ -205,7 +205,7 @@ function FileUpload({
           type="file"
           accept={accept}
           multiple={multiple}
-          className="hidden"
+          className="nxp-hidden"
           onChange={onFileInput}
           disabled={disabled}
         />

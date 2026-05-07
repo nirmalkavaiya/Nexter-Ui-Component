@@ -78,7 +78,7 @@ function S({
                   onClick: () => h(e),
                   onMouseEnter: () => t(o),
                   children: [
-                    /* @__PURE__ */ n("span", { className: "flex-1", children: e.label }),
+                    /* @__PURE__ */ n("span", { className: "nxp-flex-1", children: e.label }),
                     e.sub && /* @__PURE__ */ n("span", { className: "nxp-dropdown__sub", children: e.sub }),
                     v && /* @__PURE__ */ n("svg", { className: "nxp-dropdown__check", viewBox: "0 0 14 14", fill: "none", children: /* @__PURE__ */ n("path", { d: "M2 7l4 4 6-6", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) })
                   ]

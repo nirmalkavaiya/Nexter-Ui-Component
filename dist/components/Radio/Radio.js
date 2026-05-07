@@ -1,8 +1,8 @@
-import { jsxs as f, jsx as n } from "react/jsx-runtime";
+import { jsxs as f, jsx as e } from "react/jsx-runtime";
 import { useId as m } from "react";
-function x({
-  checked: i = !1,
-  onChange: r,
+function u({
+  checked: r = !1,
+  onChange: o,
   disabled: a = !1,
   name: d,
   value: s,
@@ -11,49 +11,49 @@ function x({
 }) {
   const l = m(), p = [
     "nxp-radio",
-    i ? "is-checked" : "",
+    r ? "is-checked" : "",
     a ? "is-disabled" : "",
     c
-  ].filter(Boolean).join(" "), o = () => {
-    a || r && r(s);
+  ].filter(Boolean).join(" "), i = () => {
+    a || o && o(s);
   };
   return /* @__PURE__ */ f("label", { className: p, htmlFor: l, children: [
-    /* @__PURE__ */ n(
+    /* @__PURE__ */ e(
       "input",
       {
         id: l,
         type: "radio",
         name: d,
         value: s,
-        checked: i,
-        onChange: o,
+        checked: r,
+        onChange: i,
         disabled: a,
-        className: "absolute opacity-0 w-0 h-0",
+        className: "nxp-sr-only",
         "aria-hidden": "true",
         tabIndex: -1
       }
     ),
-    /* @__PURE__ */ n(
+    /* @__PURE__ */ e(
       "div",
       {
         className: "nxp-radio__dot",
         role: "radio",
-        "aria-checked": i,
+        "aria-checked": r,
         "aria-disabled": a,
         tabIndex: a ? -1 : 0,
-        onKeyDown: (e) => {
-          e.key === " " && (e.preventDefault(), o());
+        onKeyDown: (n) => {
+          n.key === " " && (n.preventDefault(), i());
         },
-        onClick: (e) => {
-          e.preventDefault(), o();
+        onClick: (n) => {
+          n.preventDefault(), i();
         },
-        children: /* @__PURE__ */ n("span", { className: "nxp-radio__inner" })
+        children: /* @__PURE__ */ e("span", { className: "nxp-radio__inner" })
       }
     ),
-    t && /* @__PURE__ */ n("span", { children: t })
+    t && /* @__PURE__ */ e("span", { children: t })
   ] });
 }
 export {
-  x as Radio,
-  x as default
+  u as Radio,
+  u as default
 };

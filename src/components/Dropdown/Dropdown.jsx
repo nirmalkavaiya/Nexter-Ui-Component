@@ -129,7 +129,7 @@ function Dropdown({
                 onClick={() => select(opt)}
                 onMouseEnter={() => setFocused(vIdx)}
               >
-                <span className="flex-1">{opt.label}</span>
+                <span className="nxp-flex-1">{opt.label}</span>
                 {opt.sub && <span className="nxp-dropdown__sub">{opt.sub}</span>}
                 {isSelected && (
                   <svg className="nxp-dropdown__check" viewBox="0 0 14 14" fill="none">

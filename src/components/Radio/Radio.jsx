@@ -34,7 +34,7 @@ function Radio({
         checked={checked}
         onChange={handleChange}
         disabled={disabled}
-        className="absolute opacity-0 w-0 h-0"
+        className="nxp-sr-only"
         aria-hidden="true"
         tabIndex={-1}
       />

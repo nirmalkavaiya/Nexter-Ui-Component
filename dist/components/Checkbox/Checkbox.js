@@ -1,15 +1,15 @@
 import { jsxs as p, jsx as o } from "react/jsx-runtime";
-import { useState as u, useId as f, useCallback as m } from "react";
+import { useState as f, useId as u, useCallback as m } from "react";
 function C({
   checked: t,
   onChange: c,
   disabled: e = !1,
-  label: r,
+  label: i,
   className: h = ""
 }) {
-  const a = t !== void 0, [x, k] = u(!1), s = a ? t : x, l = f(), i = m(() => {
-    e || (a ? c && c(!t) : k((n) => !n));
-  }, [e, a, t, c]), d = [
+  const r = t !== void 0, [x, k] = f(!1), s = r ? t : x, l = u(), a = m(() => {
+    e || (r ? c && c(!t) : k((n) => !n));
+  }, [e, r, t, c]), d = [
     "nxp-checkbox",
     s ? "is-checked" : "",
     e ? "is-disabled" : "",
@@ -22,9 +22,9 @@ function C({
         id: l,
         type: "checkbox",
         checked: s,
-        onChange: i,
+        onChange: a,
         disabled: e,
-        className: "absolute opacity-0 w-0 h-0",
+        className: "nxp-sr-only",
         "aria-hidden": "true",
         tabIndex: -1
       }
@@ -38,15 +38,15 @@ function C({
         "aria-disabled": e,
         tabIndex: e ? -1 : 0,
         onKeyDown: (n) => {
-          n.key === " " && (n.preventDefault(), i());
+          n.key === " " && (n.preventDefault(), a());
         },
         onClick: (n) => {
-          n.preventDefault(), i();
+          n.preventDefault(), a();
         },
         children: s && /* @__PURE__ */ o("svg", { className: "nxp-checkbox__check", viewBox: "0 0 9 7", fill: "none", children: /* @__PURE__ */ o("path", { d: "M1 3.5L3.5 6L8 1", stroke: "white", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) })
       }
     ),
-    r && /* @__PURE__ */ o("span", { children: r })
+    i && /* @__PURE__ */ o("span", { children: i })
   ] });
 }
 export {

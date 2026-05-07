@@ -133,7 +133,7 @@ function rt({
               type: "file",
               accept: _,
               multiple: l,
-              className: "hidden",
+              className: "nxp-hidden",
               onChange: H,
               disabled: a
             }
