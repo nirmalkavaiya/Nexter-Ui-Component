@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "./globals.css";
 
 /* ── Dark mode: .dark (shadcn), .nxp-dark, and [data-theme="dark"] all activate dark: prefix ── */
 @custom-variant dark (&:where(.dark, .dark *, .nxp-dark, .nxp-dark *, [data-theme="dark"], [data-theme="dark"] *));
