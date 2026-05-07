@@ -51,6 +51,13 @@
 /* ============================================================
    BUTTON
    ============================================================ */
+
+/* Button-specific gradient token — themed to primary palette */
+:root {
+  --nxp-btn-grad:       linear-gradient(135deg, var(--nxp-color-primary-dark) 0%, var(--nxp-color-primary) 55%, #6366f1 100%);
+  --nxp-btn-grad-hover: linear-gradient(135deg, #0e0e7a 0%, var(--nxp-color-primary-dark) 55%, #4f46e5 100%);
+  --nxp-btn-grad-ring:  0 0 0 3px rgba(99, 102, 241, 0.28);
+}
 .nxp-btn {
   display: inline-flex;
   align-items: center;
@@ -84,19 +91,20 @@
   pointer-events: none;
 }
 
-/* Primary */
+/* Primary — solid brand color */
 .nxp-btn--primary {
-  background: var(--nxp-brand-grad);
+  background: var(--nxp-color-primary);
   color: #fff;
   border-color: transparent;
   box-shadow: var(--nxp-shadow-sm);
 }
 .nxp-btn--primary:hover {
-  background: linear-gradient(180deg, #1d3a9e 0%, #4338ca 100%);
+  background: var(--nxp-color-primary-dark);
   box-shadow: var(--nxp-shadow);
 }
 .nxp-btn--primary:active {
-  background: linear-gradient(180deg, #1e3a8a 0%, #3730a3 100%);
+  background: var(--nxp-color-primary-dark);
+  filter: brightness(0.92);
 }
 .nxp-btn--primary:focus-visible {
   outline: none;
@@ -197,6 +205,41 @@
   outline: none;
   box-shadow: var(--nxp-ring);
   border-radius: 2px;
+}
+
+/* Gradient — vibrant primary-to-violet gradient with shimmer on hover */
+.nxp-btn--grad {
+  background: var(--nxp-btn-grad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--nxp-shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.nxp-btn--grad::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity var(--nxp-dur-hover) var(--nxp-ease);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.nxp-btn--grad:hover {
+  background: var(--nxp-btn-grad-hover);
+  box-shadow: var(--nxp-shadow);
+}
+.nxp-btn--grad:hover::before {
+  opacity: 1;
+}
+.nxp-btn--grad:active {
+  filter: brightness(0.88);
+  box-shadow: var(--nxp-shadow-sm);
+}
+.nxp-btn--grad:focus-visible {
+  outline: none;
+  box-shadow: var(--nxp-btn-grad-ring);
 }
 
 /* Sizes */
