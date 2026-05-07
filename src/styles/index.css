@@ -368,7 +368,7 @@
   color: var(--nxp-text-faint);
 }
 .nxp-input:hover {
-  border-color: var(--nxp-border-strong);
+  border-color: var(--nxp-brand);
 }
 .nxp-input:focus {
   border-color: var(--nxp-brand);
@@ -440,7 +440,7 @@
   color: var(--nxp-text-faint);
 }
 .nxp-textarea__control:hover:not(:disabled) {
-  border-color: var(--nxp-border-strong);
+  border-color: var(--nxp-brand);
 }
 .nxp-textarea__control:focus {
   border-color: var(--nxp-brand);
