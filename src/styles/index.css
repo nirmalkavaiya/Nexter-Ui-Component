@@ -2211,18 +2211,14 @@
   padding: var(--nxp-space-6) var(--nxp-space-10);
   border-radius: var(--nxp-radius-sm);
   white-space: normal;
-  max-width: 240px;
+  width: 140px;
   min-width: 48px;
   word-break: break-word;
   pointer-events: none;
   box-shadow: var(--nxp-shadow-md);
-  /* Hidden by default */
   opacity: 0;
   visibility: hidden;
-  transition:
-    opacity    0.15s var(--nxp-ease),
-    visibility 0.15s var(--nxp-ease),
-    transform  0.15s var(--nxp-ease);
+  transition: opacity .15s var(--nxp-ease), visibility .15s var(--nxp-ease), transform .15s var(--nxp-ease);
 }
 
 /* Arrow shared reset */
