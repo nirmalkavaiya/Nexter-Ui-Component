@@ -339,7 +339,7 @@
 }
 .nxp-field__hint {
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-sm);
+  font-size: var(--nxp-text-xs);
   color: var(--nxp-text-muted);
   line-height: var(--nxp-font-lineHeight-snug);
 }
@@ -404,6 +404,9 @@
   outline: none;
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
 }
+.nxp-select:hover {
+  border-color: var(--nxp-brand);
+}
 .nxp-select:focus {
   border-color: var(--nxp-brand);
   box-shadow: var(--nxp-ring);
@@ -424,7 +427,7 @@
   min-height: 96px;
   padding: var(--nxp-space-10) var(--nxp-space-12);
   border: 1px solid var(--nxp-border);
-  border-radius: var(--nxp-radius-lg, 8px);
+  border-radius: var(--nxp-radius);
   background: var(--nxp-bg);
   color: var(--nxp-text);
   font-family: var(--nxp-font);
