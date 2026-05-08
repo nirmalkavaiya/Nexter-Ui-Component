@@ -4274,6 +4274,7 @@
 /* ── Display ────────────────────────────────────────────────── */
 .nxp-flex        { display: flex; }
 .nxp-inline-flex { display: inline-flex; }
+.nxp-grid        { display: grid; }
 
 /* ── Direction ──────────────────────────────────────────────── */
 .nxp-flex-row         { flex-direction: row; }
@@ -4650,7 +4651,6 @@
 .nxp-relative { position: relative; }
 .nxp-absolute { position: absolute; }
 .nxp-fixed    { position: fixed; }
-.nxp-sticky   { position: sticky; }
 .nxp-inset-0  { top: 0; right: 0; bottom: 0; left: 0; }
 .nxp-z-0      { z-index: 0; }
 .nxp-z-10     { z-index: 10; }
