@@ -1,7 +1,7 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.9.16",
-  "description": "Nexter Design System — React component library. 62 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
+  "version": "1.9.17",
+  "description": "Nexter Design System — React component library. 63 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
   "homepage": "https://github.com/nirmalkavaiya/Nexter-Ui-Component#readme",
@@ -244,6 +244,10 @@
     },
     "./SortableList": {
       "import": "./dist/components/SortableList/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./CountCard": {
+      "import": "./dist/components/CountCard/index.js",
       "types": "./dist/index.d.ts"
     },
     "./StatCard": {
