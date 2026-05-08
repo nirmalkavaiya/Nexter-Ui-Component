@@ -1,72 +1,100 @@
-import { jsxs as o, jsx as a } from "react/jsx-runtime";
-import { useState as p, useRef as h, useCallback as _, useEffect as f } from "react";
-function x({ slides: n = [], className: u = "" }) {
-  const [r, i] = p(0), c = h(null), s = _((e) => {
-    if (!c.current) return;
-    const t = c.current.children[e];
+import { jsxs as s, jsx as n, Fragment as v } from "react/jsx-runtime";
+import { useState as x, useRef as k, useCallback as N, useEffect as d } from "react";
+function I({
+  slides: r = [],
+  className: _ = "",
+  autoPlay: m = !1,
+  interval: h = 4e3,
+  showArrows: p = !0,
+  variant: b = ""
+}) {
+  const [c, i] = x(0), o = k(null), u = N((e) => {
+    if (!o.current) return;
+    const t = o.current.children[e];
     t && t.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" }), i(e);
   }, []);
-  return f(() => {
-    const e = c.current;
+  return d(() => {
+    const e = o.current;
     if (!e) return;
     let t;
-    const l = () => {
+    const a = () => {
       cancelAnimationFrame(t), t = requestAnimationFrame(() => {
-        const m = e.offsetWidth, d = Math.round(e.scrollLeft / m);
-        i(Math.min(Math.max(0, d), n.length - 1));
+        const l = e.offsetWidth, f = Math.round(e.scrollLeft / l);
+        i(Math.min(Math.max(0, f), r.length - 1));
       });
     };
-    return e.addEventListener("scroll", l, { passive: !0 }), () => {
-      e.removeEventListener("scroll", l), cancelAnimationFrame(t);
+    return e.addEventListener("scroll", a, { passive: !0 }), () => {
+      e.removeEventListener("scroll", a), cancelAnimationFrame(t);
     };
-  }, [n.length]), /* @__PURE__ */ o("div", { className: `nxp-carousel ${u}`, children: [
-    /* @__PURE__ */ a("div", { className: "nxp-carousel__track", ref: c, children: n.map((e, t) => /* @__PURE__ */ o("div", { className: "nxp-carousel__slide", children: [
-      e.eyebrow && /* @__PURE__ */ a("span", { className: "nxp-carousel__eyebrow", children: e.eyebrow }),
-      /* @__PURE__ */ a("div", { className: "nxp-carousel__title", children: e.title }),
-      e.description && /* @__PURE__ */ a("p", { className: "nxp-carousel__desc", children: e.description }),
-      e.cta && /* @__PURE__ */ o(
-        "a",
-        {
-          className: "nxp-carousel__cta",
-          href: e.ctaHref || "#",
-          onClick: e.ctaHref ? void 0 : (l) => l.preventDefault(),
-          children: [
-            e.cta,
-            " →"
-          ]
+  }, [r.length]), d(() => {
+    if (!m || r.length <= 1) return;
+    const e = setInterval(() => {
+      i((t) => {
+        const a = (t + 1) % r.length;
+        if (o.current) {
+          const l = o.current.children[a];
+          l && l.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
         }
-      )
-    ] }, t)) }),
-    /* @__PURE__ */ o("div", { className: "nxp-carousel__nav", children: [
-      /* @__PURE__ */ a(
+        return a;
+      });
+    }, h);
+    return () => clearInterval(e);
+  }, [m, h, r.length]), /* @__PURE__ */ s("div", { className: `nxp-carousel${b === "dark" ? " nxp-carousel--dark" : ""} ${_}`.trim(), children: [
+    /* @__PURE__ */ n("div", { className: "nxp-carousel__track", ref: o, children: r.map((e, t) => /* @__PURE__ */ n(
+      "div",
+      {
+        className: `nxp-carousel__slide${e.content ? " nxp-carousel__slide--custom" : ""}`,
+        style: e.background ? { background: e.background } : void 0,
+        children: e.content ? e.content : /* @__PURE__ */ s(v, { children: [
+          e.eyebrow && /* @__PURE__ */ n("span", { className: "nxp-carousel__eyebrow", children: e.eyebrow }),
+          /* @__PURE__ */ n("div", { className: "nxp-carousel__title", children: e.title }),
+          e.description && /* @__PURE__ */ n("p", { className: "nxp-carousel__desc", children: e.description }),
+          e.cta && /* @__PURE__ */ s(
+            "a",
+            {
+              className: "nxp-carousel__cta",
+              href: e.ctaHref || "#",
+              onClick: e.ctaHref ? void 0 : (a) => a.preventDefault(),
+              children: [
+                e.cta,
+                " →"
+              ]
+            }
+          )
+        ] })
+      },
+      t
+    )) }),
+    /* @__PURE__ */ s("div", { className: "nxp-carousel__nav", children: [
+      p && /* @__PURE__ */ n(
         "button",
         {
           type: "button",
           className: "nxp-carousel__btn",
-          onClick: () => s(r - 1),
-          disabled: r === 0,
+          onClick: () => u(c - 1),
+          disabled: c === 0,
           "aria-label": "Previous slide",
           children: "‹"
         }
       ),
-      /* @__PURE__ */ a("div", { className: "nxp-carousel__dots", children: n.map((e, t) => /* @__PURE__ */ a(
+      /* @__PURE__ */ n("div", { className: "nxp-carousel__dots", children: r.map((e, t) => /* @__PURE__ */ n(
         "button",
         {
           type: "button",
-          className: `nxp-carousel__dot${r === t ? " is-active" : ""}`,
-          onClick: () => s(t),
+          className: `nxp-carousel__dot${c === t ? " is-active" : ""}`,
+          onClick: () => u(t),
           "aria-label": `Go to slide ${t + 1}`,
-          "aria-current": r === t
+          "aria-current": c === t
         },
         t
       )) }),
-      /* @__PURE__ */ a(
+      p && /* @__PURE__ */ n(
         "button",
         {
           type: "button",
           className: "nxp-carousel__btn",
-          onClick: () => s(r + 1),
-          disabled: r === n.length - 1,
+          onClick: () => u(c + 1),
+          disabled: c === r.length - 1,
           "aria-label": "Next slide",
           children: "›"
         }
@@ -75,6 +103,6 @@ function x({ slides: n = [], className: u = "" }) {
   ] });
 }
 export {
-  x as Carousel,
-  x as default
+  I as Carousel,
+  I as default
 };
