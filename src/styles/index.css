@@ -4523,7 +4523,7 @@
 /* ============================================================
    UTILITY — CARDS
    ============================================================ */
-.npx-section-cover{
+.nxp-section-cover {
   background-color: var(--nxtext-white);
   border-radius: var(--nxtext-radius-md);
   display: flex;
