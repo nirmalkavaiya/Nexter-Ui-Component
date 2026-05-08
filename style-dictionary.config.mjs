@@ -276,7 +276,7 @@ ${L(lineHeights)}
   /* ══ COMPONENT HEIGHTS ═══════════════════════════════════ */
   --nxp-h-sm: 28px;
   --nxp-h-md: 36px;
-  --nxp-h-lg: 40px;
+  --nxp-h-lg: 43px;
 
   /* ══════════════════════════════════════════════════════════
      BACKWARD-COMPAT ALIASES
@@ -371,12 +371,12 @@ ${L(lineHeights)}
   --nxp-font-weight-medium:      var(--nxp-font-medium);
   --nxp-font-weight-semibold:    var(--nxp-font-semibold);
   --nxp-font-weight-bold:        var(--nxp-font-bold);
-  --nxp-font-lineHeight-none:    1;
-  --nxp-font-lineHeight-tight:   1.25;
-  --nxp-font-lineHeight-snug:    1.375;
-  --nxp-font-lineHeight-normal:  1.5;
-  --nxp-font-lineHeight-relaxed: 1.625;
-  --nxp-font-lineHeight-loose:   2;
+  --nxp-font-lineHeight-none:    16px;
+  --nxp-font-lineHeight-tight:   17px;
+  --nxp-font-lineHeight-snug:    18px;
+  --nxp-font-lineHeight-normal:  24px;
+  --nxp-font-lineHeight-relaxed: 26px;
+  --nxp-font-lineHeight-loose:   32px;
 
   /* ── Motion ── */
   --nxp-motion-ease-standard:       var(--nxp-ease);
