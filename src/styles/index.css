@@ -1930,19 +1930,6 @@
   background: var(--nxp-brand);
   transform: scale(1.3);
 }
-.nxp-carousel__slide--custom {
-  padding: 0;
-}
-.nxp-carousel--dark .nxp-carousel__dot {
-  background: rgba(255, 255, 255, 0.35);
-}
-.nxp-carousel--dark .nxp-carousel__dot.is-active {
-  background: #fff;
-  width: 16px;
-  height: 7px;
-  border-radius: 99px;
-  transform: none;
-}
 
 /* ============================================================
    ACCORDION
@@ -4693,7 +4680,7 @@
 .nxp-bg-warning  { background: var(--nxp-color-warning-subtle); }
 .nxp-bg-error    { background: var(--nxp-color-error-subtle); }
 .nxp-bg-brand-grad { background: var(--nxp-color-brand-grad); }
-.nxp-bg-grad {background: linear-gradient(93.13deg, var(--nxtext-blue) 0.37%, var(--nxtext-blue-dark) 116.12%);}
+.nxp-bg-grad { background: linear-gradient(93.13deg, var(--nxp-color-primary) 0.37%, var(--nxp-color-primary-active) 116.12%); }
 
 /* ============================================================
    UTILITY — FONT SIZE

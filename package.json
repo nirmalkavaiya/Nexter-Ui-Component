@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.9.20",
+  "version": "1.9.21",
   "description": "Nexter Design System — React component library. 63 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
