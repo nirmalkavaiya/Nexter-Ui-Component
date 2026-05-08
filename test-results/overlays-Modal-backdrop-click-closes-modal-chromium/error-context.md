@@ -1,0 +1,1073 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: overlays.spec.js >> Modal >> backdrop click closes modal
+- Location: e2e\overlays.spec.js:37:7
+
+# Error details
+
+```
+Tearing down "context" exceeded the test timeout of 30000ms.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e7]: "N"
+      - heading "Nexter UI Components" [level=1] [ref=e8]
+      - generic [ref=e9]: v1.0
+    - paragraph [ref=e10]: Design system component library — interactive demo
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - paragraph [ref=e13]: Interactions
+      - heading "Buttons" [level=2] [ref=e14]
+      - paragraph [ref=e15]: Primary actions, secondary controls, ghost, destructive, and link styles across all sizes.
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - button "Primary" [ref=e19] [cursor=pointer]
+        - button "Secondary" [ref=e20] [cursor=pointer]
+        - button "Ghost" [ref=e21] [cursor=pointer]
+        - button "Destructive" [ref=e22] [cursor=pointer]
+        - button "Link button" [ref=e23] [cursor=pointer]
+      - generic [ref=e24]:
+        - button "Small" [ref=e25] [cursor=pointer]
+        - button "Medium" [ref=e26] [cursor=pointer]
+        - button "Large" [ref=e27] [cursor=pointer]
+      - generic [ref=e28]:
+        - button "Saving…" [disabled]: Saving…
+        - button "Disabled" [disabled]
+        - button "Add" [ref=e29] [cursor=pointer]: +
+        - button "Settings" [ref=e30] [cursor=pointer]: ⚙
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - paragraph [ref=e33]: Forms
+      - heading "Fields & Inputs" [level=2] [ref=e34]
+      - paragraph [ref=e35]: Labelled form controls with hint text and validation error states.
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e40]: Page title
+        - textbox "Enter page title…" [ref=e41]
+        - generic [ref=e42]: Used as the browser tab title.
+      - generic [ref=e43]:
+        - generic [ref=e45]: Meta description
+        - textbox "Describe the page…" [ref=e46]
+        - alert [ref=e47]: Meta description is required.
+      - generic [ref=e48]:
+        - generic [ref=e50]: Post type
+        - combobox [ref=e51] [cursor=pointer]:
+          - option "Choose type…" [disabled] [selected]
+          - option "Post"
+          - option "Page"
+          - option "Product"
+        - generic [ref=e52]: Select the content type.
+      - generic [ref=e53]:
+        - generic [ref=e55]: Redirect target (disabled)
+        - textbox "https://example.com" [disabled] [ref=e56]
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: Exclude Images From Optimisation
+          - button "More information" [ref=e61] [cursor=pointer]:
+            - img [ref=e62]
+        - generic [ref=e65]:
+          - textbox "Enter one path per line" [ref=e66]
+          - generic [ref=e67]: 0/500
+        - generic [ref=e68]: One path per line.
+  - generic [ref=e69]:
+    - generic [ref=e70]:
+      - paragraph [ref=e71]: Selection
+      - heading "Dropdown" [level=2] [ref=e72]
+      - paragraph [ref=e73]: Fully accessible custom listbox with keyboard navigation, sub-labels, and dividers.
+    - generic [ref=e75]:
+      - button "Post status…" [ref=e77] [cursor=pointer]:
+        - generic [ref=e78]: Post status…
+        - img [ref=e79]
+      - button "Language…" [ref=e82] [cursor=pointer]:
+        - generic [ref=e83]: Language…
+        - img [ref=e84]
+      - button "Disabled" [disabled] [ref=e87]:
+        - generic [ref=e88]: Disabled
+        - img [ref=e89]
+  - generic [ref=e91]:
+    - generic [ref=e92]:
+      - paragraph [ref=e93]: Controls
+      - heading "Toggle, Checkbox & Radio" [level=2] [ref=e94]
+      - paragraph [ref=e95]: React-controlled interactive states with accessible keyboard support.
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - paragraph [ref=e99]: Toggle
+        - switch "Enable indexing" [checked] [ref=e100] [cursor=pointer]:
+          - generic [ref=e103]: Enable indexing
+        - switch "Noindex page" [ref=e104] [cursor=pointer]:
+          - generic [ref=e107]: Noindex page
+        - switch "Always on (disabled)" [checked] [disabled] [ref=e108]:
+          - generic [ref=e111]: Always on (disabled)
+        - switch "Success variant" [checked] [ref=e112] [cursor=pointer]:
+          - generic [ref=e115]: Success variant
+      - generic [ref=e116]:
+        - paragraph [ref=e117]: Checkbox
+        - generic [ref=e118] [cursor=pointer]:
+          - checkbox [checked] [ref=e119]:
+            - img [ref=e120]
+          - generic [ref=e122]: Enable canonical URL
+        - generic [ref=e123] [cursor=pointer]:
+          - checkbox [ref=e124]
+          - generic [ref=e125]: Override robots.txt
+        - generic [ref=e126]:
+          - checkbox [disabled] [ref=e127]
+          - generic [ref=e128]: Disabled option
+      - generic [ref=e129]:
+        - paragraph [ref=e130]: Radio
+        - generic [ref=e131] [cursor=pointer]:
+          - radio [checked] [ref=e132]
+          - generic [ref=e134]: React
+        - generic [ref=e135] [cursor=pointer]:
+          - radio [ref=e136]
+          - generic [ref=e138]: Vue
+        - generic [ref=e139] [cursor=pointer]:
+          - radio [ref=e140]
+          - generic [ref=e142]: Svelte
+        - generic [ref=e143]:
+          - radio [disabled] [ref=e144]
+          - generic [ref=e146]: Disabled
+  - generic [ref=e147]:
+    - generic [ref=e148]:
+      - paragraph [ref=e149]: Composite
+      - heading "Feature Toggle Card" [level=2] [ref=e150]
+      - paragraph [ref=e151]: Settings-dashboard card with plan badge (PRO/FREEMIUM), NEW badge, tooltip, locked state with upgrade CTA, and controlled toggle.
+    - generic [ref=e153]:
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: Adobe Fonts
+            - button "About Adobe Fonts" [ref=e161] [cursor=pointer]:
+              - img [ref=e162]
+          - button "Read Docs" [ref=e166] [cursor=pointer]
+        - generic [ref=e167]:
+          - button "Adobe Fonts settings" [ref=e168] [cursor=pointer]:
+            - img [ref=e169]
+          - switch [checked] [ref=e172] [cursor=pointer]
+      - generic [ref=e175]:
+        - generic [ref=e176]: FREEMIUM
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e181]: SMTP Email
+              - generic "BETA feature" [ref=e182]: BETA
+              - button "About SMTP Email" [ref=e184] [cursor=pointer]:
+                - img [ref=e185]
+            - button "Read Docs" [ref=e189] [cursor=pointer]
+          - generic [ref=e190]:
+            - button "SMTP Email settings" [ref=e191] [cursor=pointer]:
+              - img [ref=e192]
+            - switch [ref=e195] [cursor=pointer]
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - generic [ref=e203]: Advanced Cache
+            - generic "New feature" [ref=e204]: NEW
+            - button "About Advanced Cache" [ref=e206] [cursor=pointer]:
+              - img [ref=e207]
+          - button "Read Docs" [ref=e211] [cursor=pointer]
+        - generic [ref=e212]:
+          - button "Advanced Cache settings" [ref=e213] [cursor=pointer]:
+            - img [ref=e214]
+          - switch [ref=e217] [cursor=pointer]
+      - generic [ref=e220]:
+        - generic [ref=e221]: PRO
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e226]: White Label
+              - button "About White Label" [ref=e228] [cursor=pointer]:
+                - img [ref=e229]
+            - generic [ref=e232]:
+              - button "Read Docs" [disabled] [ref=e233]
+              - generic [ref=e234]: ·
+              - button "Upgrade" [ref=e235] [cursor=pointer]:
+                - text: Upgrade
+                - img [ref=e236]
+          - button "Upgrade to unlock White Label" [ref=e239] [cursor=pointer]:
+            - img [ref=e240]
+      - generic [ref=e243]:
+        - generic [ref=e244]: PRO
+        - generic [ref=e246]:
+          - generic [ref=e247]:
+            - generic [ref=e248]:
+              - generic [ref=e249]: AI Content Assistant
+              - generic "New feature" [ref=e250]: NEW
+              - button "About AI Content Assistant" [ref=e252] [cursor=pointer]:
+                - img [ref=e253]
+            - generic [ref=e256]:
+              - button "Read Docs" [disabled] [ref=e257]
+              - generic [ref=e258]: ·
+              - button "Upgrade" [ref=e259] [cursor=pointer]:
+                - text: Upgrade
+                - img [ref=e260]
+          - button "Upgrade to unlock AI Content Assistant" [ref=e263] [cursor=pointer]:
+            - img [ref=e264]
+  - generic [ref=e267]:
+    - generic [ref=e268]:
+      - paragraph [ref=e269]: Navigation
+      - heading "Tabs" [level=2] [ref=e270]
+      - paragraph [ref=e271]: "Three tab variants: pill (default), underline, and vertical with sub-tabs."
+    - generic [ref=e272]:
+      - generic [ref=e273]:
+        - paragraph [ref=e274]: Pill (default)
+        - tablist [ref=e275]:
+          - generic [ref=e276]:
+            - tab "General" [selected] [ref=e277] [cursor=pointer]
+            - tab "SEO" [ref=e278] [cursor=pointer]
+            - tab "Social" [ref=e279] [cursor=pointer]
+          - tabpanel [ref=e280]:
+            - paragraph [ref=e281]: General settings content goes here.
+      - generic [ref=e282]:
+        - paragraph [ref=e283]: Underline
+        - tablist [ref=e284]:
+          - generic [ref=e285]:
+            - tab "Overview" [selected] [ref=e286] [cursor=pointer]
+            - tab "Analytics" [ref=e287] [cursor=pointer]
+            - tab "Reports" [ref=e288] [cursor=pointer]
+          - tabpanel [ref=e289]:
+            - paragraph [ref=e290]: Overview content.
+      - generic [ref=e291]:
+        - paragraph [ref=e292]: Vertical with sub-tabs
+        - tablist [ref=e293]:
+          - generic [ref=e294]:
+            - tab "Account" [selected] [ref=e295] [cursor=pointer]
+            - generic [ref=e296]:
+              - button "Profile" [ref=e297] [cursor=pointer]
+              - button "Billing" [ref=e298] [cursor=pointer]
+            - tab "Security" [ref=e299] [cursor=pointer]
+            - tab "Notifications" [ref=e300] [cursor=pointer]
+          - tabpanel [ref=e301]:
+            - paragraph [ref=e302]: Account settings content.
+  - generic [ref=e303]:
+    - generic [ref=e304]:
+      - paragraph [ref=e305]: Labels
+      - heading "Tags & Badges" [level=2] [ref=e306]
+      - paragraph [ref=e307]: Semantic status labels and count badges in all variants.
+    - generic [ref=e309]:
+      - generic [ref=e310]:
+        - generic [ref=e311]: Default
+        - generic [ref=e312]: Primary
+        - generic [ref=e313]: Published
+        - generic [ref=e314]: Draft
+        - generic [ref=e315]: Error
+      - generic [ref=e316]:
+        - generic [ref=e317]: "42"
+        - generic [ref=e318]: New
+        - generic [ref=e319]: Live
+        - generic [ref=e320]: Beta
+        - generic [ref=e321]: Error
+        - generic [ref=e322]: Pro
+  - generic [ref=e323]:
+    - generic [ref=e324]:
+      - paragraph [ref=e325]: Feedback
+      - heading "Alerts" [level=2] [ref=e326]
+      - paragraph [ref=e327]: Inline feedback messages in four semantic variants.
+    - generic [ref=e329]:
+      - alert [ref=e330]:
+        - generic [ref=e331]: i
+        - generic [ref=e332]: Your sitemap was submitted to Google Search Console successfully.
+      - alert [ref=e333]:
+        - generic [ref=e334]: ✓
+        - generic [ref=e335]: All 48 redirects are working correctly. No errors detected.
+      - alert [ref=e336]:
+        - generic [ref=e337]: "!"
+        - generic [ref=e338]: IndexNow rate limit approaching — 8 of 10 requests used this window.
+      - alert [ref=e339]:
+        - generic [ref=e340]: ×
+        - generic [ref=e341]: Failed to fetch robots.txt. Check your site's .htaccess configuration.
+  - generic [ref=e342]:
+    - generic [ref=e343]:
+      - paragraph [ref=e344]: Feedback
+      - heading "Notices" [level=2] [ref=e345]
+      - paragraph [ref=e346]: Dismissible bordered notices with smooth fade-out transition.
+    - generic [ref=e348]:
+      - status [ref=e349]:
+        - generic [ref=e350]: ℹ
+        - generic [ref=e351]: You are viewing a cached version of the SEO report. Refresh to update.
+        - button "Dismiss" [ref=e352] [cursor=pointer]: ×
+      - status [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: Schema JSON-LD validated successfully. No structured data errors.
+        - button "Dismiss" [ref=e356] [cursor=pointer]: ×
+      - status [ref=e357]:
+        - generic [ref=e358]: ⚠
+        - generic [ref=e359]: The focus keyword appears only once in the body. Consider adding more uses.
+        - button "Dismiss" [ref=e360] [cursor=pointer]: ×
+      - status [ref=e361]:
+        - generic [ref=e362]: ✕
+        - generic [ref=e363]: A critical error occurred reading the 404 log database table.
+        - button "Dismiss" [ref=e364] [cursor=pointer]: ×
+  - generic [ref=e365]:
+    - generic [ref=e366]:
+      - paragraph [ref=e367]: Feedback
+      - heading "Toasts" [level=2] [ref=e368]
+      - paragraph [ref=e369]: Dark floating notifications for async confirmations and errors.
+    - generic [ref=e371]:
+      - alert [ref=e372]:
+        - generic [ref=e373]: ✓
+        - generic [ref=e374]:
+          - generic [ref=e375]: Settings saved
+          - generic [ref=e376]: Your SEO configuration has been updated.
+        - button "Close" [ref=e377] [cursor=pointer]: ×
+      - alert [ref=e378]:
+        - generic [ref=e379]: ✕
+        - generic [ref=e380]:
+          - generic [ref=e381]: Save failed
+          - generic [ref=e382]: Could not write to the database. Please try again.
+        - button "Close" [ref=e383] [cursor=pointer]: ×
+  - generic [ref=e384]:
+    - generic [ref=e385]:
+      - paragraph [ref=e386]: Feedback
+      - heading "Banners" [level=2] [ref=e387]
+      - paragraph [ref=e388]: Prominent section-level announcements with optional CTA actions.
+    - generic [ref=e390]:
+      - region [ref=e391]:
+        - generic [ref=e392]: 🚀
+        - generic [ref=e393]:
+          - generic [ref=e394]: Upgrade to Nexter SEO Pro
+          - paragraph [ref=e395]: Unlock schema templates, advanced redirects, and priority indexing with the Pro plan.
+          - generic [ref=e396]:
+            - button "Upgrade now" [ref=e397] [cursor=pointer]
+            - button "Learn more" [ref=e398] [cursor=pointer]
+      - region [ref=e399]:
+        - generic [ref=e400]: ✅
+        - generic [ref=e401]:
+          - generic [ref=e402]: Plugin updated successfully
+          - paragraph [ref=e403]: Nexter Extension has been updated to v2.4.0. All features are working correctly.
+      - region [ref=e404]:
+        - generic [ref=e405]: ⚠️
+        - generic [ref=e406]:
+          - generic [ref=e407]: Canonical URLs not configured
+          - paragraph [ref=e408]: Some pages have conflicting canonical tags. Review the canonical settings panel.
+          - button "Review now" [ref=e410] [cursor=pointer]
+      - region [ref=e411]:
+        - generic [ref=e412]: ❌
+        - generic [ref=e413]:
+          - generic [ref=e414]: IndexNow API key missing
+          - paragraph [ref=e415]: Add your IndexNow API key to enable instant URL submission to search engines.
+          - button "Add key" [ref=e417] [cursor=pointer]
+  - generic [ref=e418]:
+    - generic [ref=e419]:
+      - paragraph [ref=e420]: Data
+      - heading "Progress Bars" [level=2] [ref=e421]
+      - paragraph [ref=e422]: Animated fill bars for task completion, scores, and metrics.
+    - generic [ref=e424]:
+      - generic [ref=e425]:
+        - generic [ref=e426]:
+          - generic [ref=e427]: SEO Score
+          - generic [ref=e428]: 78%
+        - progressbar [ref=e429]
+      - generic [ref=e431]:
+        - generic [ref=e432]:
+          - generic [ref=e433]: Indexed Pages
+          - generic [ref=e434]: 100%
+        - progressbar [ref=e435]
+      - generic [ref=e437]:
+        - generic [ref=e438]:
+          - generic [ref=e439]: Redirect health
+          - generic [ref=e440]: 55%
+        - progressbar [ref=e441]
+  - generic [ref=e443]:
+    - generic [ref=e444]:
+      - paragraph [ref=e445]: Loading
+      - heading "Skeletons & Spinners" [level=2] [ref=e446]
+      - paragraph [ref=e447]: Placeholder states for async content and loading indicators.
+    - generic [ref=e457]:
+      - generic [ref=e458]:
+        - status "Loading" [ref=e459]
+        - paragraph [ref=e460]: sm
+      - generic [ref=e461]:
+        - status "Loading" [ref=e462]
+        - paragraph [ref=e463]: md
+      - generic [ref=e464]:
+        - status "Loading" [ref=e465]
+        - paragraph [ref=e466]: lg
+  - generic [ref=e467]:
+    - generic [ref=e468]:
+      - paragraph [ref=e469]: Overlay
+      - heading "Modal" [level=2] [ref=e470]
+      - paragraph [ref=e471]: Portal-rendered dialog with brand accent stripe, backdrop, and Esc-to-close.
+    - button "Open Modal" [ref=e473] [cursor=pointer]
+  - generic [ref=e474]:
+    - generic [ref=e475]:
+      - paragraph [ref=e476]: Overlay
+      - heading "Dialog, Sheet & Popover" [level=2] [ref=e477]
+      - paragraph [ref=e478]: Confirm dialogs, card layouts, and inline info popover patterns.
+    - generic [ref=e479]:
+      - generic [ref=e480]:
+        - paragraph [ref=e481]: Dialog
+        - alertdialog "Delete redirect rule?" [ref=e482]:
+          - generic [ref=e483]: ⚠
+          - generic [ref=e484]: Delete redirect rule?
+          - paragraph [ref=e485]: This will permanently remove the 301 redirect from /old-url to /new-url. This action cannot be undone.
+          - generic [ref=e486]:
+            - button "Cancel" [ref=e487] [cursor=pointer]
+            - button "Delete" [ref=e488] [cursor=pointer]
+      - generic [ref=e489]:
+        - paragraph [ref=e490]: Sheet
+        - generic [ref=e491]:
+          - generic [ref=e492]:
+            - generic [ref=e493]: Schema Configuration
+            - generic [ref=e494]: JSON-LD settings for this post
+          - paragraph [ref=e496]: Configure structured data output for this post type. Changes apply immediately on save.
+          - generic [ref=e497]:
+            - button "Reset" [ref=e498] [cursor=pointer]
+            - button "Apply" [ref=e499] [cursor=pointer]
+      - generic [ref=e500]:
+        - paragraph [ref=e501]: Popover
+        - tooltip "Focus keyword tip Your focus keyword should appear in the first paragraph, at least one heading, and the meta description. Read guide →" [ref=e502]:
+          - generic [ref=e503]: Focus keyword tip
+          - paragraph [ref=e504]: Your focus keyword should appear in the first paragraph, at least one heading, and the meta description.
+          - button "Read guide →" [ref=e506] [cursor=pointer]
+  - generic [ref=e507]:
+    - generic [ref=e508]:
+      - paragraph [ref=e509]: Input Controls
+      - heading "Slider, Stepper & Segmented" [level=2] [ref=e510]
+      - paragraph [ref=e511]: Numeric input patterns for ranges, counts, and option groups.
+    - generic [ref=e513]:
+      - generic [ref=e514]:
+        - generic [ref=e515]:
+          - generic [ref=e516]:
+            - generic [ref=e517]: Menu Width
+            - generic [ref=e518]:
+              - combobox "Unit" [ref=e519] [cursor=pointer]:
+                - option "px" [selected]
+                - option "%"
+                - option "rem"
+                - option "em"
+              - spinbutton "Menu Width value" [ref=e521]: "280"
+          - slider "Menu Width" [ref=e522] [cursor=pointer]: "280"
+        - generic [ref=e523]:
+          - generic [ref=e524]:
+            - generic [ref=e525]: Border Radius
+            - generic [ref=e527]:
+              - spinbutton "Border Radius value" [ref=e528]: "8"
+              - generic [ref=e529]: px
+          - slider "Border Radius" [ref=e530] [cursor=pointer]: "8"
+        - generic [ref=e531]:
+          - generic [ref=e532]:
+            - generic [ref=e533]: Opacity
+            - spinbutton "Opacity value" [ref=e536]: "75"
+          - slider "Opacity" [ref=e537] [cursor=pointer]: "75"
+      - generic [ref=e538]:
+        - paragraph [ref=e539]: Stepper
+        - generic [ref=e540]:
+          - generic "Stepper" [ref=e541]:
+            - button "Decrease" [ref=e542] [cursor=pointer]: −
+            - spinbutton "Value" [ref=e543]: "3"
+            - button "Increase" [ref=e544] [cursor=pointer]: +
+          - generic [ref=e545]: max redirects per page
+      - generic [ref=e546]:
+        - paragraph [ref=e547]: Segmented
+        - group "Segmented control" [ref=e548]:
+          - button "Monthly" [pressed] [ref=e549] [cursor=pointer]
+          - button "Yearly" [ref=e550] [cursor=pointer]
+          - button "Lifetime" [ref=e551] [cursor=pointer]
+  - generic [ref=e552]:
+    - generic [ref=e553]:
+      - paragraph [ref=e554]: Input
+      - heading "Search" [level=2] [ref=e555]
+      - paragraph [ref=e556]: Icon-prefixed search input for filtering lists and content.
+    - generic [ref=e558]:
+      - generic: ⌕
+      - searchbox "Search redirects…" [ref=e559]
+  - generic [ref=e560]:
+    - generic [ref=e561]:
+      - paragraph [ref=e562]: Media
+      - heading "Carousel" [level=2] [ref=e563]
+      - paragraph [ref=e564]: Snap-scroll carousel with prev/next controls and dot indicators.
+    - generic [ref=e565]:
+      - generic [ref=e566]:
+        - generic [ref=e567]:
+          - generic [ref=e568]: What's New
+          - generic [ref=e569]: Nexter SEO — Content Analysis
+          - paragraph [ref=e570]: Multi-keyword focus scoring with real-time readability feedback.
+          - link "Learn more →" [ref=e571] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e572]:
+          - generic [ref=e573]: Performance
+          - generic [ref=e574]: IndexNow Bulk Submission
+          - paragraph [ref=e575]: Submit up to 10 URLs per 5 minutes with built-in rate limiting.
+          - link "View docs →" [ref=e576] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e577]:
+          - generic [ref=e578]: Schema
+          - generic [ref=e579]: JSON-LD Schema Builder
+          - paragraph [ref=e580]: Structured data for every post type — validated and production-ready.
+          - link "Get started →" [ref=e581] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e582]:
+        - button "Previous slide" [disabled] [ref=e583]: ‹
+        - generic [ref=e584]:
+          - button "Go to slide 1" [ref=e585] [cursor=pointer]
+          - button "Go to slide 2" [ref=e586] [cursor=pointer]
+          - button "Go to slide 3" [ref=e587] [cursor=pointer]
+        - button "Next slide" [ref=e588] [cursor=pointer]: ›
+  - generic [ref=e589]:
+    - generic [ref=e590]:
+      - paragraph [ref=e591]: Content
+      - heading "Accordion" [level=2] [ref=e592]
+      - paragraph [ref=e593]: Expandable FAQ sections with smooth open/close toggle.
+    - generic [ref=e594]:
+      - generic [ref=e595]:
+        - button "What is Nexter SEO?" [expanded] [ref=e596] [cursor=pointer]:
+          - generic [ref=e597]: What is Nexter SEO?
+          - img [ref=e598]
+        - region [ref=e600]: Nexter SEO is a full-featured WordPress SEO plugin with meta management, schema, IndexNow, redirects, and 404 monitoring.
+      - button "How does focus keyword analysis work?" [ref=e602] [cursor=pointer]:
+        - generic [ref=e603]: How does focus keyword analysis work?
+        - img [ref=e604]
+      - button "What redirect types are supported?" [ref=e607] [cursor=pointer]:
+        - generic [ref=e608]: What redirect types are supported?
+        - img [ref=e609]
+  - generic [ref=e611]:
+    - generic [ref=e612]:
+      - paragraph [ref=e613]: Selection
+      - heading "Combobox" [level=2] [ref=e614]
+      - paragraph [ref=e615]: Filterable searchable dropdown with full keyboard navigation.
+    - generic [ref=e617]:
+      - generic [ref=e619]: Framework
+      - combobox "Search framework…" [ref=e621]
+  - generic [ref=e622]:
+    - generic [ref=e623]:
+      - paragraph [ref=e624]: Navigation
+      - heading "Pagination" [level=2] [ref=e625]
+      - paragraph [ref=e626]: Page number navigation with prev/next controls.
+    - generic [ref=e627]:
+      - navigation "Pagination" [ref=e628]:
+        - button "Previous page" [disabled] [ref=e629]: ‹
+        - button "1" [ref=e630] [cursor=pointer]
+        - button "2" [ref=e631] [cursor=pointer]
+        - button "3" [ref=e632] [cursor=pointer]
+        - button "4" [ref=e633] [cursor=pointer]
+        - button "5" [ref=e634] [cursor=pointer]
+        - button "6" [ref=e635] [cursor=pointer]
+        - button "7" [ref=e636] [cursor=pointer]
+        - button "Next page" [ref=e637] [cursor=pointer]: ›
+      - paragraph [ref=e638]: "Current page: 1"
+  - generic [ref=e639]:
+    - generic [ref=e640]:
+      - paragraph [ref=e641]: Data
+      - heading "Table" [level=2] [ref=e642]
+      - paragraph [ref=e643]: Striped data table with sortable columns, numeric alignment, and action slots.
+    - table [ref=e646]:
+      - rowgroup [ref=e647]:
+        - row "Name Status Visits Score Actions" [ref=e648]:
+          - columnheader "Name" [ref=e649]
+          - columnheader "Status" [ref=e650]
+          - columnheader "Visits" [ref=e651]
+          - columnheader "Score" [ref=e652]
+          - columnheader "Actions" [ref=e653]
+      - rowgroup [ref=e654]:
+        - row "Homepage Published 12400 94 Edit View" [ref=e655]:
+          - cell "Homepage" [ref=e656]
+          - cell "Published" [ref=e657]
+          - cell "12400" [ref=e658]
+          - cell "94" [ref=e659]
+          - cell "Edit View" [ref=e660]:
+            - generic [ref=e661]:
+              - button "Edit" [ref=e662] [cursor=pointer]
+              - button "View" [ref=e663] [cursor=pointer]
+        - row "About Us Published 3200 87 Edit View" [ref=e664]:
+          - cell "About Us" [ref=e665]
+          - cell "Published" [ref=e666]
+          - cell "3200" [ref=e667]
+          - cell "87" [ref=e668]
+          - cell "Edit View" [ref=e669]:
+            - generic [ref=e670]:
+              - button "Edit" [ref=e671] [cursor=pointer]
+              - button "View" [ref=e672] [cursor=pointer]
+        - row "Blog Draft 820 72 Edit View" [ref=e673]:
+          - cell "Blog" [ref=e674]
+          - cell "Draft" [ref=e675]
+          - cell "820" [ref=e676]
+          - cell "72" [ref=e677]
+          - cell "Edit View" [ref=e678]:
+            - generic [ref=e679]:
+              - button "Edit" [ref=e680] [cursor=pointer]
+              - button "View" [ref=e681] [cursor=pointer]
+        - row "Contact Published 1540 91 Edit View" [ref=e682]:
+          - cell "Contact" [ref=e683]
+          - cell "Published" [ref=e684]
+          - cell "1540" [ref=e685]
+          - cell "91" [ref=e686]
+          - cell "Edit View" [ref=e687]:
+            - generic [ref=e688]:
+              - button "Edit" [ref=e689] [cursor=pointer]
+              - button "View" [ref=e690] [cursor=pointer]
+  - generic [ref=e691]:
+    - generic [ref=e692]:
+      - paragraph [ref=e693]: Misc
+      - heading "Avatar, Kbd & Tooltip" [level=2] [ref=e694]
+      - paragraph [ref=e695]: User avatars, keyboard shortcut badges, and hover tooltip overlays.
+    - generic [ref=e697]:
+      - generic [ref=e698]:
+        - generic "NK" [ref=e699]
+        - generic "NK" [ref=e700]
+        - generic "NK" [ref=e701]
+        - generic "User avatar" [ref=e702]:
+          - img "User avatar" [ref=e703]
+      - generic [ref=e704]:
+        - generic [ref=e705]: Save changes
+        - generic [ref=e706]: ⌘
+        - generic [ref=e707]: S
+      - generic [ref=e708]:
+        - button "Hover me" [ref=e710] [cursor=pointer]
+        - button "Open ↗" [ref=e712] [cursor=pointer]
+  - generic [ref=e713]:
+    - generic [ref=e714]:
+      - paragraph [ref=e715]: Analytics
+      - heading "Stat Cards" [level=2] [ref=e716]
+      - paragraph [ref=e717]: Key metric display cards for dashboards and overview panels.
+    - generic [ref=e718]:
+      - generic [ref=e719]:
+        - generic [ref=e720]: Total Pages
+        - generic [ref=e721]: 1,248
+        - generic [ref=e723]: ↑ 12%
+      - generic [ref=e724]:
+        - generic [ref=e725]: SEO Score
+        - generic [ref=e726]: "94"
+        - generic [ref=e728]: Excellent
+      - generic [ref=e729]:
+        - generic [ref=e730]: 404 Errors
+        - generic [ref=e731]: "3"
+        - generic [ref=e733]: Review needed
+      - generic [ref=e734]:
+        - generic [ref=e735]: Redirects
+        - generic [ref=e736]: "47"
+        - generic [ref=e737]: Active rules
+  - generic [ref=e738]:
+    - generic [ref=e739]:
+      - paragraph [ref=e740]: Features
+      - heading "Icon Boxes" [level=2] [ref=e741]
+      - paragraph [ref=e742]: Feature highlight cards with icon, title, description, and CTA link.
+    - generic [ref=e743]:
+      - generic [ref=e744]:
+        - generic [ref=e745]: Step 1
+        - generic [ref=e746]: "1"
+        - generic [ref=e747]: Configure Meta Tags
+        - paragraph [ref=e748]: Set global templates for title and description tags across all post types.
+        - link "Configure →" [ref=e749] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e750]:
+        - generic [ref=e751]: Step 2
+        - generic [ref=e752]: "2"
+        - generic [ref=e753]: Enable Schema Output
+        - paragraph [ref=e754]: Generate valid JSON-LD structured data for posts, pages, and custom types.
+        - link "Enable →" [ref=e755] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e756]:
+        - generic [ref=e757]: Step 3
+        - generic [ref=e758]: "3"
+        - generic [ref=e759]: Submit to IndexNow
+        - paragraph [ref=e760]: Bulk-submit new and updated URLs to Bing, Yandex, and other search engines.
+        - link "Submit →" [ref=e761] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e762]:
+    - generic [ref=e763]:
+      - paragraph [ref=e764]: States
+      - heading "Empty State" [level=2] [ref=e765]
+      - paragraph [ref=e766]: Friendly placeholder for empty lists, search results with no matches.
+    - status [ref=e768]:
+      - generic [ref=e769]: 🔍
+      - generic [ref=e770]: No redirects found
+      - paragraph [ref=e771]: No redirect rules match your current search. Try adjusting your filters or add a new redirect.
+      - button "Add redirect" [ref=e773] [cursor=pointer]
+  - generic [ref=e774]:
+    - generic [ref=e775]:
+      - paragraph [ref=e776]: Controls
+      - heading "Toggle Grid" [level=2] [ref=e777]
+      - paragraph [ref=e778]: Compact grid of labeled toggles — controlled via valueMap or uncontrolled with internal state.
+    - generic [ref=e780]:
+      - generic [ref=e781]:
+        - paragraph [ref=e782]: 2 Columns (Controlled)
+        - group [ref=e783]:
+          - generic [ref=e784]:
+            - generic [ref=e785]:
+              - generic [ref=e786]: Canonical URL
+              - button "About Canonical URL" [ref=e788] [cursor=pointer]:
+                - img [ref=e789]
+            - switch [checked] [ref=e792] [cursor=pointer]
+          - generic [ref=e795]:
+            - generic [ref=e796]:
+              - generic [ref=e797]: Open Graph
+              - button "About Open Graph" [ref=e799] [cursor=pointer]:
+                - img [ref=e800]
+            - switch [ref=e803] [cursor=pointer]
+          - generic [ref=e806]:
+            - generic [ref=e807]:
+              - generic [ref=e808]: JSON-LD Schema
+              - button "About JSON-LD Schema" [ref=e810] [cursor=pointer]:
+                - img [ref=e811]
+            - switch [checked] [ref=e814] [cursor=pointer]
+          - generic [ref=e817]:
+            - generic [ref=e818]:
+              - generic [ref=e819]: XML Sitemap
+              - button "About XML Sitemap" [ref=e821] [cursor=pointer]:
+                - img [ref=e822]
+            - switch [ref=e825] [cursor=pointer]
+          - generic [ref=e828]:
+            - generic [ref=e829]:
+              - generic [ref=e830]: Robots Meta
+              - button "About Robots Meta" [ref=e832] [cursor=pointer]:
+                - img [ref=e833]
+            - switch [checked] [ref=e836] [cursor=pointer]
+          - generic [ref=e839]:
+            - generic [ref=e840]:
+              - generic [ref=e841]: IndexNow
+              - button "About IndexNow" [ref=e843] [cursor=pointer]:
+                - img [ref=e844]
+            - switch [ref=e847] [cursor=pointer]
+      - generic [ref=e850]:
+        - paragraph [ref=e851]: 3 Columns (Uncontrolled)
+        - group [ref=e852]:
+          - generic [ref=e853]:
+            - generic [ref=e854]:
+              - generic [ref=e855]: Canonical URL
+              - button "About Canonical URL" [ref=e857] [cursor=pointer]:
+                - img [ref=e858]
+            - switch [ref=e861] [cursor=pointer]
+          - generic [ref=e864]:
+            - generic [ref=e865]:
+              - generic [ref=e866]: Open Graph
+              - button "About Open Graph" [ref=e868] [cursor=pointer]:
+                - img [ref=e869]
+            - switch [ref=e872] [cursor=pointer]
+          - generic [ref=e875]:
+            - generic [ref=e876]:
+              - generic [ref=e877]: JSON-LD Schema
+              - button "About JSON-LD Schema" [ref=e879] [cursor=pointer]:
+                - img [ref=e880]
+            - switch [ref=e883] [cursor=pointer]
+          - generic [ref=e886]:
+            - generic [ref=e887]:
+              - generic [ref=e888]: XML Sitemap
+              - button "About XML Sitemap" [ref=e890] [cursor=pointer]:
+                - img [ref=e891]
+            - switch [ref=e894] [cursor=pointer]
+          - generic [ref=e897]:
+            - generic [ref=e898]:
+              - generic [ref=e899]: Robots Meta
+              - button "About Robots Meta" [ref=e901] [cursor=pointer]:
+                - img [ref=e902]
+            - switch [ref=e905] [cursor=pointer]
+          - generic [ref=e908]:
+            - generic [ref=e909]:
+              - generic [ref=e910]: IndexNow
+              - button "About IndexNow" [ref=e912] [cursor=pointer]:
+                - img [ref=e913]
+            - switch [ref=e916] [cursor=pointer]
+      - generic [ref=e919]:
+        - paragraph [ref=e920]: 1 Column
+        - group [ref=e921]:
+          - generic [ref=e922]:
+            - generic [ref=e923]:
+              - generic [ref=e924]: Canonical URL
+              - button "About Canonical URL" [ref=e926] [cursor=pointer]:
+                - img [ref=e927]
+            - switch [ref=e930] [cursor=pointer]
+          - generic [ref=e933]:
+            - generic [ref=e934]:
+              - generic [ref=e935]: Open Graph
+              - button "About Open Graph" [ref=e937] [cursor=pointer]:
+                - img [ref=e938]
+            - switch [ref=e941] [cursor=pointer]
+          - generic [ref=e944]:
+            - generic [ref=e945]:
+              - generic [ref=e946]: JSON-LD Schema
+              - button "About JSON-LD Schema" [ref=e948] [cursor=pointer]:
+                - img [ref=e949]
+            - switch [ref=e952] [cursor=pointer]
+  - generic [ref=e955]:
+    - generic [ref=e956]:
+      - paragraph [ref=e957]: Navigation
+      - heading "Breadcrumb" [level=2] [ref=e958]
+      - paragraph [ref=e959]: Contextual navigation trail for settings pages and deep views.
+    - generic [ref=e961]:
+      - navigation "Breadcrumb" [ref=e962]:
+        - list [ref=e963]:
+          - listitem [ref=e964]:
+            - button "Dashboard" [ref=e965] [cursor=pointer]
+            - img [ref=e967]
+          - listitem [ref=e969]:
+            - button "Settings" [ref=e970] [cursor=pointer]
+            - img [ref=e972]
+          - listitem [ref=e974]:
+            - generic [ref=e975]: SEO
+      - navigation "Breadcrumb" [ref=e976]:
+        - list [ref=e977]:
+          - listitem [ref=e978]:
+            - link "Home" [ref=e979] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e981]
+              - text: Home
+            - img [ref=e985]
+          - listitem [ref=e987]:
+            - link "Plugins" [ref=e988] [cursor=pointer]:
+              - /url: "#"
+            - img [ref=e990]
+          - listitem [ref=e992]:
+            - link "Nexter SEO" [ref=e993] [cursor=pointer]:
+              - /url: "#"
+            - img [ref=e995]
+          - listitem [ref=e997]:
+            - generic [ref=e998]: Schema Settings
+  - generic [ref=e999]:
+    - generic [ref=e1000]:
+      - paragraph [ref=e1001]: Utilities
+      - heading "CopyInput" [level=2] [ref=e1002]
+      - paragraph [ref=e1003]: Read-only input with one-click clipboard copy — for API keys, license keys, shortcodes.
+    - generic [ref=e1005]:
+      - generic [ref=e1006]:
+        - generic [ref=e1007]: License Key
+        - generic [ref=e1008]:
+          - textbox "License Key" [ref=e1009]: NXTR-PRO-A1B2-C3D4-E5F6
+          - button "Copy to clipboard" [ref=e1010] [cursor=pointer]:
+            - img [ref=e1011]
+            - generic [ref=e1014]: Copy
+        - generic [ref=e1015]: Renews annually. Do not share.
+      - generic [ref=e1016]:
+        - generic [ref=e1017]: Shortcode
+        - generic [ref=e1018]:
+          - textbox "Shortcode" [ref=e1019]: "[nexter_schema type=\"article\"]"
+          - button "Copy to clipboard" [ref=e1020] [cursor=pointer]:
+            - img [ref=e1021]
+            - generic [ref=e1024]: Copy
+      - generic [ref=e1025]:
+        - generic [ref=e1026]: API Endpoint
+        - generic [ref=e1027]:
+          - textbox "API Endpoint" [ref=e1028]: https://api.nexterseo.com/v1/index
+          - button "Copy to clipboard" [ref=e1029] [cursor=pointer]:
+            - img [ref=e1030]
+            - generic [ref=e1033]: Copy URL
+  - generic [ref=e1034]:
+    - generic [ref=e1035]:
+      - paragraph [ref=e1036]: Actions
+      - heading "ConfirmButton" [level=2] [ref=e1037]
+      - paragraph [ref=e1038]: Inline two-step confirmation pattern — prevents accidental destructive actions.
+    - generic [ref=e1040]:
+      - button "Delete Redirect" [ref=e1041] [cursor=pointer]
+      - button "Reset Settings" [ref=e1042] [cursor=pointer]
+      - button "Publish Changes" [ref=e1043] [cursor=pointer]
+  - generic [ref=e1044]:
+    - generic [ref=e1045]:
+      - paragraph [ref=e1046]: Form Controls
+      - heading "NumberInput" [level=2] [ref=e1047]
+      - paragraph [ref=e1048]: Precise numeric entry with +/− step buttons, min/max clamping, prefix/suffix support.
+    - generic [ref=e1050]:
+      - generic [ref=e1051]:
+        - generic [ref=e1052]: Cache TTL
+        - generic [ref=e1053]:
+          - button "Decrease" [ref=e1054] [cursor=pointer]:
+            - img [ref=e1055]
+          - generic [ref=e1056]:
+            - textbox "Cache TTL" [ref=e1057]: "12"
+            - generic [ref=e1058]: s
+          - button "Increase" [ref=e1059] [cursor=pointer]:
+            - img [ref=e1060]
+      - generic [ref=e1062]:
+        - generic [ref=e1063]: Font Size
+        - generic [ref=e1064]:
+          - button "Decrease" [ref=e1065] [cursor=pointer]:
+            - img [ref=e1066]
+          - generic [ref=e1067]:
+            - textbox "Font Size" [ref=e1068]: "16"
+            - generic [ref=e1069]: px
+          - button "Increase" [ref=e1070] [cursor=pointer]:
+            - img [ref=e1071]
+      - generic [ref=e1073]:
+        - generic [ref=e1074]: Line Height
+        - generic [ref=e1075]:
+          - button "Decrease" [ref=e1076] [cursor=pointer]:
+            - img [ref=e1077]
+          - textbox "Line Height" [ref=e1079]: "1.5"
+          - button "Increase" [ref=e1080] [cursor=pointer]:
+            - img [ref=e1081]
+  - generic [ref=e1083]:
+    - generic [ref=e1084]:
+      - paragraph [ref=e1085]: Form Controls
+      - heading "OTPInput" [level=2] [ref=e1086]
+      - paragraph [ref=e1087]: Segmented input for license codes — auto-advances on type, handles paste, arrow-key navigation.
+    - generic [ref=e1089]:
+      - generic [ref=e1090]:
+        - paragraph [ref=e1091]: 6-digit OTP
+        - group "OTP input" [ref=e1092]:
+          - textbox "OTP digit 1" [ref=e1093]
+          - textbox "OTP digit 2" [ref=e1094]
+          - textbox "OTP digit 3" [ref=e1095]
+          - textbox "OTP digit 4" [ref=e1096]
+          - textbox "OTP digit 5" [ref=e1097]
+          - textbox "OTP digit 6" [ref=e1098]
+        - paragraph [ref=e1099]: "Value: \"\""
+      - generic [ref=e1100]:
+        - paragraph [ref=e1101]: License key — 4+4 with separator
+        - group "OTP input" [ref=e1102]:
+          - textbox "OTP digit 1" [ref=e1103]
+          - textbox "OTP digit 2" [ref=e1104]
+          - textbox "OTP digit 3" [ref=e1105]
+          - textbox "OTP digit 4" [ref=e1106]
+          - generic [ref=e1107]: –
+          - textbox "OTP digit 5" [ref=e1108]
+          - textbox "OTP digit 6" [ref=e1109]
+          - textbox "OTP digit 7" [ref=e1110]
+          - textbox "OTP digit 8" [ref=e1111]
+  - generic [ref=e1112]:
+    - generic [ref=e1113]:
+      - paragraph [ref=e1114]: Layout
+      - heading "SortableList" [level=2] [ref=e1115]
+      - paragraph [ref=e1116]: Drag-to-reorder list using HTML5 DnD — no external dependencies.
+    - list [ref=e1118]:
+      - listitem [ref=e1119]:
+        - generic "Drag to reorder" [ref=e1120]:
+          - img [ref=e1121]
+        - generic [ref=e1129]:
+          - generic [ref=e1130]: "301 Redirect: /old-page → /new-page"
+          - generic [ref=e1131]: Active
+      - listitem [ref=e1132]:
+        - generic "Drag to reorder" [ref=e1133]:
+          - img [ref=e1134]
+        - generic [ref=e1142]:
+          - generic [ref=e1143]: "302 Redirect: /promo → /sale"
+          - generic [ref=e1144]: Active
+      - listitem [ref=e1145]:
+        - generic "Drag to reorder" [ref=e1146]:
+          - img [ref=e1147]
+        - generic [ref=e1155]:
+          - generic [ref=e1156]: "307 Redirect: /temp → /landing"
+          - generic [ref=e1157]: Active
+  - generic [ref=e1158]:
+    - generic [ref=e1159]:
+      - paragraph [ref=e1160]: Form Controls
+      - heading "FileUpload / Dropzone" [level=2] [ref=e1161]
+      - paragraph [ref=e1162]: "Drag-and-drop file upload with preview. Supports WP Media Library when wpMedia={true}."
+    - generic "File upload area" [ref=e1166] [cursor=pointer]:
+      - img [ref=e1167]
+      - generic [ref=e1170]: Drag & drop files here, or
+      - button "Browse" [ref=e1172]
+      - generic [ref=e1173]: PNG, JPG, PDF up to 5 MB
+  - generic [ref=e1174]:
+    - generic [ref=e1175]:
+      - paragraph [ref=e1176]: Form Controls
+      - heading "ColorPicker" [level=2] [ref=e1177]
+      - paragraph [ref=e1178]: HSV color picker with 2D gradient box, hue slider, hex input, and preset swatches.
+    - generic [ref=e1180]:
+      - generic [ref=e1181]:
+        - paragraph [ref=e1182]: Standard
+        - 'button "Color picker, current: #1e40af" [ref=e1184] [cursor=pointer]':
+          - generic [ref=e1186]: "#1E40AF"
+          - generic [ref=e1187]: ▾
+        - paragraph [ref=e1188]: "Value: #1E40AF"
+      - generic [ref=e1189]:
+        - paragraph [ref=e1190]: With Alpha
+        - 'button "Color picker, current: #3b82f6" [ref=e1192] [cursor=pointer]':
+          - generic [ref=e1194]: "#3B82F6"
+          - generic [ref=e1195]: ▾
+      - generic [ref=e1196]:
+        - paragraph [ref=e1197]: No swatches
+        - 'button "Color picker, current: #22c55e" [ref=e1199] [cursor=pointer]':
+          - generic [ref=e1201]: "#22C55E"
+          - generic [ref=e1202]: ▾
+  - generic [ref=e1203]:
+    - generic [ref=e1204]:
+      - paragraph [ref=e1205]: Form Controls
+      - heading "DatePicker" [level=2] [ref=e1206]
+      - paragraph [ref=e1207]: Calendar popover date selector with min/max support, Today shortcut, and clearable input.
+    - generic [ref=e1209]:
+      - generic [ref=e1210]:
+        - paragraph [ref=e1211]: Single Date (controlled)
+        - button "Select expiry date" [ref=e1213] [cursor=pointer]:
+          - img [ref=e1215]
+          - generic [ref=e1218]: Select expiry date
+        - paragraph [ref=e1219]: "Value: —"
+      - generic [ref=e1220]:
+        - paragraph [ref=e1221]: With min/max
+        - button "Select date" [ref=e1223] [cursor=pointer]:
+          - img [ref=e1225]
+          - generic [ref=e1228]: 2026-05-01
+          - button "Clear" [ref=e1229]:
+            - img [ref=e1230]
+  - generic [ref=e1232]:
+    - generic [ref=e1233]:
+      - paragraph [ref=e1234]: Form Controls
+      - heading "DateRangePicker" [level=2] [ref=e1235]
+      - paragraph [ref=e1236]: Two-calendar range picker for analytics filters — start/end date selection with range highlight.
+    - generic [ref=e1238]:
+      - button "From date To date" [ref=e1240] [cursor=pointer]:
+        - img [ref=e1242]
+        - generic [ref=e1245]: From date
+        - img [ref=e1247]
+        - generic [ref=e1249]: To date
+      - paragraph [ref=e1250]: "Range: — → —"
+  - generic [ref=e1251]:
+    - generic [ref=e1252]:
+      - paragraph [ref=e1253]: Input Controls
+      - heading "MultiSelect" [level=2] [ref=e1254]
+      - paragraph [ref=e1255]: Div-based multi-select with tag chips, grouped options, live search, and full keyboard navigation.
+    - generic [ref=e1257]:
+      - generic [ref=e1258]:
+        - paragraph [ref=e1259]: Grouped — searchable (controlled)
+        - combobox [ref=e1260]:
+          - generic "Open select" [ref=e1261] [cursor=pointer]:
+            - generic [ref=e1262]:
+              - generic [ref=e1263]:
+                - generic [ref=e1264]: Entire Website
+                - button "Remove Entire Website" [ref=e1265]: ×
+              - generic [ref=e1266]:
+                - generic [ref=e1267]: All Singulars
+                - button "Remove All Singulars" [ref=e1268]: ×
+              - generic [ref=e1269]:
+                - generic [ref=e1270]: All Archives
+                - button "Remove All Archives" [ref=e1271]: ×
+            - generic [ref=e1272]:
+              - button "Clear all" [ref=e1273]: ×
+              - img [ref=e1275]
+        - paragraph [ref=e1277]: "Selected: entire, singulars, archives"
+      - generic [ref=e1278]:
+        - paragraph [ref=e1279]: No search input
+        - combobox [ref=e1280]:
+          - generic "Open select" [ref=e1281] [cursor=pointer]:
+            - generic [ref=e1283]: Select pages…
+            - img [ref=e1286]
+      - generic [ref=e1288]:
+        - paragraph [ref=e1289]: Disabled
+        - combobox [disabled]:
+          - generic "Open select":
+            - generic:
+              - generic:
+                - generic: Entire Website
+                - button "Remove Entire Website" [disabled]: ×
+              - generic:
+                - generic: Front Page
+                - button "Remove Front Page" [disabled]: ×
+            - generic:
+              - generic:
+                - img
+  - generic [ref=e1290]:
+    - generic [ref=e1291]:
+      - paragraph [ref=e1292]: Labels
+      - heading "Status Pills" [level=2] [ref=e1293]
+      - paragraph [ref=e1294]: Animated presence indicators for active, inactive, pending, and info states.
+    - generic [ref=e1296]:
+      - 'generic "Status: default" [ref=e1297]': Default
+      - 'generic "Status: active" [ref=e1298]': Active
+      - 'generic "Status: inactive" [ref=e1299]': Inactive
+      - 'generic "Status: pending" [ref=e1300]': Pending
+      - 'generic "Status: info" [ref=e1301]': Indexing
+  - generic [ref=e1302]:
+    - paragraph [ref=e1303]: Nexter UI Components v1.0.0 — Nexter Design System
+    - generic [ref=e1304]:
+      - generic [ref=e1305]: React 18
+      - generic [ref=e1306]: Zero dependencies
+      - generic [ref=e1307]: WCAG 2.2 AA
+```

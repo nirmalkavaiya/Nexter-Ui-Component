@@ -48,6 +48,12 @@
 /* Spacing */
 .nxp-mt-2 { margin-top: var(--nxp-space-8); }
 
+.nxp-sticky{
+  position: sticky;
+  top: 40px;
+  z-index: 1;
+}
+
 /* ============================================================
    BUTTON
    ============================================================ */
@@ -3873,7 +3879,7 @@
   visibility: visible;
 }
 .nxp-collapsible__inner {
-  padding: 0 16px 16px;
+  padding: 10px 16px;
 }
 
 /* Divider between trigger and content */
@@ -4475,3 +4481,166 @@
     background var(--nxp-motion-duration-hover) var(--nxp-motion-ease-standard),
     border-color var(--nxp-motion-duration-hover) var(--nxp-motion-ease-standard);
 }
+
+/* ============================================================
+   UTILITY — PADDING
+   ============================================================ */
+.nxp-p-0   { padding: 0; }
+.nxp-p-4   { padding: var(--nxp-space-4); }
+.nxp-p-8   { padding: var(--nxp-space-8); }
+.nxp-p-10  { padding: var(--nxp-space-10); }
+.nxp-p-12  { padding: var(--nxp-space-12); }
+.nxp-p-16  { padding: var(--nxp-space-16); }
+.nxp-p-20  { padding: var(--nxp-space-20); }
+.nxp-p-24  { padding: var(--nxp-space-24); }
+.nxp-p-32  { padding: var(--nxp-space-32); }
+
+.nxp-px-4   { padding-left: var(--nxp-space-4);  padding-right: var(--nxp-space-4); }
+.nxp-px-8   { padding-left: var(--nxp-space-8);  padding-right: var(--nxp-space-8); }
+.nxp-px-10  { padding-left: var(--nxp-space-10); padding-right: var(--nxp-space-10); }
+.nxp-px-12  { padding-left: var(--nxp-space-12); padding-right: var(--nxp-space-12); }
+.nxp-px-16  { padding-left: var(--nxp-space-16); padding-right: var(--nxp-space-16); }
+.nxp-px-20  { padding-left: var(--nxp-space-20); padding-right: var(--nxp-space-20); }
+.nxp-px-24  { padding-left: var(--nxp-space-24); padding-right: var(--nxp-space-24); }
+
+.nxp-py-4   { padding-top: var(--nxp-space-4);  padding-bottom: var(--nxp-space-4); }
+.nxp-py-8   { padding-top: var(--nxp-space-8);  padding-bottom: var(--nxp-space-8); }
+.nxp-py-10  { padding-top: var(--nxp-space-10); padding-bottom: var(--nxp-space-10); }
+.nxp-py-12  { padding-top: var(--nxp-space-12); padding-bottom: var(--nxp-space-12); }
+.nxp-py-16  { padding-top: var(--nxp-space-16); padding-bottom: var(--nxp-space-16); }
+.nxp-py-20  { padding-top: var(--nxp-space-20); padding-bottom: var(--nxp-space-20); }
+
+.nxp-pt-4   { padding-top: var(--nxp-space-4); }
+.nxp-pt-8   { padding-top: var(--nxp-space-8); }
+.nxp-pt-12  { padding-top: var(--nxp-space-12); }
+.nxp-pt-16  { padding-top: var(--nxp-space-16); }
+.nxp-pt-20  { padding-top: var(--nxp-space-20); }
+
+.nxp-pb-4   { padding-bottom: var(--nxp-space-4); }
+.nxp-pb-8   { padding-bottom: var(--nxp-space-8); }
+.nxp-pb-12  { padding-bottom: var(--nxp-space-12); }
+.nxp-pb-16  { padding-bottom: var(--nxp-space-16); }
+.nxp-pb-20  { padding-bottom: var(--nxp-space-20); }
+
+/* ============================================================
+   UTILITY — MARGIN
+   ============================================================ */
+.nxp-m-0    { margin: 0; }
+.nxp-m-auto { margin: auto; }
+.nxp-mx-auto { margin-left: auto; margin-right: auto; }
+.nxp-ml-auto { margin-left: auto; }
+.nxp-mr-auto { margin-right: auto; }
+
+.nxp-mt-0   { margin-top: 0; }
+.nxp-mt-4   { margin-top: var(--nxp-space-4); }
+.nxp-mt-8   { margin-top: var(--nxp-space-8); }
+.nxp-mt-12  { margin-top: var(--nxp-space-12); }
+.nxp-mt-16  { margin-top: var(--nxp-space-16); }
+.nxp-mt-20  { margin-top: var(--nxp-space-20); }
+.nxp-mt-24  { margin-top: var(--nxp-space-24); }
+
+.nxp-mb-0   { margin-bottom: 0; }
+.nxp-mb-4   { margin-bottom: var(--nxp-space-4); }
+.nxp-mb-8   { margin-bottom: var(--nxp-space-8); }
+.nxp-mb-12  { margin-bottom: var(--nxp-space-12); }
+.nxp-mb-16  { margin-bottom: var(--nxp-space-16); }
+.nxp-mb-20  { margin-bottom: var(--nxp-space-20); }
+.nxp-mb-24  { margin-bottom: var(--nxp-space-24); }
+
+/* ============================================================
+   UTILITY — BORDER
+   ============================================================ */
+.nxp-border        { border: 1px solid var(--nxp-color-border); }
+.nxp-border-strong { border: 1px solid var(--nxp-color-border-strong); }
+.nxp-border-none   { border: none; }
+.nxp-border-t      { border-top: 1px solid var(--nxp-color-border); }
+.nxp-border-b      { border-bottom: 1px solid var(--nxp-color-border); }
+.nxp-border-l      { border-left: 1px solid var(--nxp-color-border); }
+.nxp-border-r      { border-right: 1px solid var(--nxp-color-border); }
+
+/* ============================================================
+   UTILITY — BORDER RADIUS
+   ============================================================ */
+.nxp-rounded-none { border-radius: var(--nxp-radius-none); }
+.nxp-rounded-xxs  { border-radius: var(--nxp-radius-xxs); }
+.nxp-rounded-xs   { border-radius: var(--nxp-radius-xs); }
+.nxp-rounded-sm   { border-radius: var(--nxp-radius-sm); }
+.nxp-rounded-md   { border-radius: var(--nxp-radius-md); }
+.nxp-rounded-lg   { border-radius: var(--nxp-radius-lg); }
+.nxp-rounded-xl   { border-radius: var(--nxp-radius-xl); }
+.nxp-rounded-2xl  { border-radius: var(--nxp-radius-2xl); }
+.nxp-rounded-full { border-radius: var(--nxp-radius-full); }
+
+/* ============================================================
+   UTILITY — POSITION
+   ============================================================ */
+.nxp-relative { position: relative; }
+.nxp-absolute { position: absolute; }
+.nxp-fixed    { position: fixed; }
+.nxp-sticky   { position: sticky; }
+.nxp-inset-0  { top: 0; right: 0; bottom: 0; left: 0; }
+.nxp-z-0      { z-index: 0; }
+.nxp-z-10     { z-index: 10; }
+.nxp-z-20     { z-index: 20; }
+.nxp-z-50     { z-index: 50; }
+
+/* ============================================================
+   UTILITY — TEXT COLOR
+   ============================================================ */
+.nxp-text-default { color: var(--nxp-color-text); }
+.nxp-text-muted   { color: var(--nxp-color-text-muted); }
+.nxp-text-faint   { color: var(--nxp-color-text-faint); }
+.nxp-text-white   { color: #fff; }
+.nxp-text-primary { color: var(--nxp-color-primary); }
+.nxp-text-success { color: var(--nxp-color-success); }
+.nxp-text-warning { color: var(--nxp-color-warning); }
+.nxp-text-error   { color: var(--nxp-color-error); }
+
+/* ============================================================
+   UTILITY — BACKGROUND COLOR
+   ============================================================ */
+.nxp-bg-default  { background: var(--nxp-color-bg); }
+.nxp-bg-muted    { background: var(--nxp-color-bg-muted); }
+.nxp-bg-subtle   { background: var(--nxp-color-bg-subtle); }
+.nxp-bg-primary  { background: var(--nxp-color-primary); }
+.nxp-bg-success  { background: var(--nxp-color-success-subtle); }
+.nxp-bg-warning  { background: var(--nxp-color-warning-subtle); }
+.nxp-bg-error    { background: var(--nxp-color-error-subtle); }
+.nxp-bg-brand-grad { background: var(--nxp-color-brand-grad); }
+
+/* ============================================================
+   UTILITY — FONT SIZE
+   ============================================================ */
+.nxp-text-xs  { font-size: var(--nxp-text-xs); }
+.nxp-text-sm  { font-size: var(--nxp-text-sm); }
+.nxp-text-md  { font-size: var(--nxp-text-md); }
+.nxp-text-lg  { font-size: var(--nxp-text-lg); }
+.nxp-text-xl  { font-size: var(--nxp-font-size-xl); }
+.nxp-text-2xl { font-size: var(--nxp-font-size-2xl); }
+.nxp-text-3xl { font-size: var(--nxp-font-size-3xl); }
+
+/* ============================================================
+   UTILITY — FONT WEIGHT
+   ============================================================ */
+.nxp-weight-regular  { font-weight: var(--nxp-font-regular); }
+.nxp-weight-medium   { font-weight: var(--nxp-font-medium); }
+.nxp-weight-semibold { font-weight: var(--nxp-font-semibold); }
+.nxp-weight-bold     { font-weight: var(--nxp-font-bold); }
+
+/* ============================================================
+   UTILITY — CURSOR & INTERACTION
+   ============================================================ */
+.nxp-cursor-pointer { cursor: pointer; }
+.nxp-cursor-default { cursor: default; }
+.nxp-select-none    { user-select: none; }
+
+/* ============================================================
+   UTILITY — TEXT HELPERS
+   ============================================================ */
+.nxp-truncate          { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nxp-whitespace-nowrap { white-space: nowrap; }
+.nxp-text-center       { text-align: center; }
+.nxp-text-left         { text-align: left; }
+.nxp-no-underline      { text-decoration: none; }
+.nxp-underline         { text-decoration: underline; }
+.nxp-font-family       { font-family: var(--nxp-font); }
