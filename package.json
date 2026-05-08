@@ -1,7 +1,7 @@
 {
   "name": "nexter-ui-component",
-  "version": "1.9.22",
-  "description": "Nexter Design System — React component library. 63 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
+  "version": "1.9.23",
+  "description": "Nexter Design System — React component library. 64 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
   "homepage": "https://github.com/nirmalkavaiya/Nexter-Ui-Component#readme",
@@ -88,6 +88,10 @@
     },
     "./Carousel": {
       "import": "./dist/components/Carousel/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./Container": {
+      "import": "./dist/components/Container/index.js",
       "types": "./dist/index.d.ts"
     },
     "./Checkbox": {

@@ -67,6 +67,9 @@ export { default as Typography }       from './components/Typography';
 // v1.4.0 additions
 export { ThemeProvider, useTheme }     from './components/ThemeProvider';
 
+// v1.9.23 additions
+export { default as Container }        from './components/Container';
+
 // v1.8.0 additions
 export { VerticalNavigationMenu } from './components/VerticalNavigationMenu';
 

@@ -1932,6 +1932,76 @@
 }
 
 /* ============================================================
+   CONTAINER
+   ============================================================ */
+
+/* ── Flex container ── */
+.nxp-container--flex {
+  display: flex;
+}
+
+/* ── Grid container ──
+   Columns are driven by --nxp-c-cols (default 1).
+   Pass responsive values via --nxp-c-cols-md and --nxp-c-cols-sm.
+   ─────────────────────────────────────────────── */
+.nxp-container--grid {
+  display: grid;
+  grid-template-columns: repeat(var(--nxp-c-cols, 1), 1fr);
+}
+
+/* md breakpoint (641–1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .nxp-container--grid {
+    grid-template-columns: repeat(var(--nxp-c-cols-md, var(--nxp-c-cols, 1)), 1fr);
+  }
+}
+
+/* sm breakpoint (≤640px) */
+@media (max-width: 640px) {
+  .nxp-container--grid {
+    grid-template-columns: repeat(var(--nxp-c-cols-sm, 1), 1fr);
+  }
+}
+
+/* ── Container.Item — col span ──
+   Span is driven by --nxp-c-span.
+   Responsive overrides: --nxp-c-span-md, --nxp-c-span-sm.
+   ─────────────────────────────────────────────── */
+.nxp-container__item--span {
+  grid-column: span var(--nxp-c-span, 1) / span var(--nxp-c-span, 1);
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .nxp-container__item--span {
+    grid-column: span var(--nxp-c-span-md, var(--nxp-c-span, 1)) / span var(--nxp-c-span-md, var(--nxp-c-span, 1));
+  }
+}
+@media (max-width: 640px) {
+  .nxp-container__item--span {
+    grid-column: span var(--nxp-c-span-sm, 1) / span var(--nxp-c-span-sm, 1);
+  }
+}
+
+/* full width — always spans entire row */
+.nxp-container__item--span-full {
+  grid-column: 1 / -1;
+}
+
+/* ── Container.Item — row span ── */
+.nxp-container__item--row-span {
+  grid-row: span var(--nxp-c-row-span, 1) / span var(--nxp-c-row-span, 1);
+}
+
+/* ── justify-self utilities (for grid items) ── */
+.nxp-justify-self-auto    { justify-self: auto; }
+.nxp-justify-self-start   { justify-self: start; }
+.nxp-justify-self-end     { justify-self: end; }
+.nxp-justify-self-center  { justify-self: center; }
+.nxp-justify-self-stretch { justify-self: stretch; }
+
+/* ── align-self baseline (supplement existing nxp-self-* set) ── */
+.nxp-self-baseline { align-self: baseline; }
+
+/* ============================================================
    ACCORDION
    ============================================================ */
 .nxp-accordion {
