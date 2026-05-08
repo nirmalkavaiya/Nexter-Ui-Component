@@ -1675,8 +1675,8 @@
 .nxp-stepper {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--nxp-border-strong);
-  border-radius: var(--nxp-radius);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-md);
   overflow: hidden;
   background: var(--nxp-bg);
 }
