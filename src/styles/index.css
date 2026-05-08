@@ -2162,7 +2162,9 @@
   box-shadow: var(--nxp-shadow-sm);
 }
 .nxp-avatar--sm { width: 26px; height: 26px; font-size: var(--nxp-text-xs); }
-.nxp-avatar--lg { width: 48px; height: 48px; font-size: 17px; }
+.nxp-avatar--lg { width: 48px; height: 48px; font-size: var(--nxp-text-md); }
+.nxp-avatar--xl { width: 55px; height: 55px; font-size: var(--nxp-text-lg); }
+.nxp-avatar--xxl { width: 70px; height: 70px; font-size: var(--nxp-text-xl); }
 .nxp-avatar img {
   width: 100%;
   height: 100%;
