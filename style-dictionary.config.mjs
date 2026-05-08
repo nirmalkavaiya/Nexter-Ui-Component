@@ -233,6 +233,7 @@ const css = `/* ============================================================
 
   /* ══ SPACING  (scale = pixel value) ══════════════════════ */
 ${L(spacing)}
+  --nxp-space-25: 25px;
 
   /* ══ RADIUS ══════════════════════════════════════════════ */
 ${L(radius)}
@@ -346,7 +347,7 @@ ${L(lineHeights)}
   --nxp-spacing-xs:  var(--nxp-space-4);
   --nxp-spacing-sm:  var(--nxp-space-8);
   --nxp-spacing-md:  var(--nxp-space-16);
-  --nxp-spacing-lg:  var(--nxp-space-24);
+  --nxp-spacing-lg:  var(--nxp-space-25);
   --nxp-spacing-xl:  var(--nxp-space-32);
   --nxp-spacing-2xl: var(--nxp-space-48);
   --nxp-spacing-3xl: var(--nxp-space-64);
