@@ -1,70 +1,111 @@
-import { jsxs as k, jsx as t } from "react/jsx-runtime";
-import { useState as g, useRef as y, useEffect as N } from "react";
-function j({
-  children: u,
-  onConfirm: r,
+import { jsxs as u, jsx as o } from "react/jsx-runtime";
+import { useState as $, useRef as x, useEffect as l } from "react";
+function z({
+  children: _,
+  label: v,
+  // fallback trigger label when no children
+  onConfirm: c,
   /* text — all translatable */
-  message: f = "Are you sure?",
-  confirmText: a = "Yes, confirm",
-  cancelText: m = "Cancel",
+  message: m = "",
+  // optional message above actions; empty = hidden
+  confirmText: h = "Remove",
+  cancelText: b = "Cancel",
   /* styling */
-  variant: o = "error",
+  variant: f = "error",
   // 'error' | 'warning' | 'primary'
-  confirmVariant: p,
-  // defaults to same as variant
-  size: x = "md",
+  confirmVariant: k,
+  // defaults to variant
+  size: y = "md",
   // 'sm' | 'md'
-  disabled: c = !1,
-  /* timing */
-  autoResetMs: i = 0,
-  // auto-cancel confirmation after N ms (0 = never)
-  className: s = ""
+  disabled: d = !1,
+  /* behaviour */
+  autoResetMs: p = 0,
+  // auto-dismiss confirmation after N ms (0 = never)
+  placement: N = "bottom-end",
+  // 'bottom-end' | 'bottom-start' | 'bottom'
+  className: w = ""
 }) {
-  const [b, n] = g(!1), e = y(null);
-  function _() {
-    c || (n(!0), i > 0 && (e.current = setTimeout(() => n(!1), i)));
-  }
-  function d() {
-    clearTimeout(e.current), n(!1), r == null || r();
-  }
+  const [e, t] = $(!1), r = x(null), a = x(null);
   function C() {
-    clearTimeout(e.current), n(!1);
+    d || (t(!0), p > 0 && (r.current = setTimeout(() => t(!1), p)));
   }
-  N(() => () => clearTimeout(e.current), []);
-  const h = p ?? o, l = x === "sm" ? " nxp-confirm--sm" : "";
-  return b ? /* @__PURE__ */ k("div", { className: `nxp-confirm nxp-confirm--inline${l} ${s}`, role: "group", "aria-label": "Confirm action", children: [
-    /* @__PURE__ */ t("span", { className: "nxp-confirm__message", children: f }),
-    /* @__PURE__ */ t(
-      "button",
-      {
-        type: "button",
-        className: `nxp-confirm__ok nxp-confirm__ok--${h}`,
-        onClick: d,
-        autoFocus: !0,
-        children: a
-      }
-    ),
-    /* @__PURE__ */ t(
-      "button",
-      {
-        type: "button",
-        className: "nxp-confirm__cancel",
-        onClick: C,
-        children: m
-      }
-    )
-  ] }) : /* @__PURE__ */ t(
-    "button",
+  function E() {
+    clearTimeout(r.current), t(!1), c == null || c();
+  }
+  function i() {
+    clearTimeout(r.current), t(!1);
+  }
+  l(() => {
+    if (!e) return;
+    function n(s) {
+      a.current && !a.current.contains(s.target) && i();
+    }
+    return document.addEventListener("mousedown", n), () => document.removeEventListener("mousedown", n);
+  }, [e]), l(() => {
+    if (!e) return;
+    function n(s) {
+      s.key === "Escape" && i();
+    }
+    return document.addEventListener("keydown", n), () => document.removeEventListener("keydown", n);
+  }, [e]), l(() => () => clearTimeout(r.current), []);
+  const g = k ?? f, L = y === "sm" ? " nxp-confirm--sm" : "", T = _ ?? v;
+  return /* @__PURE__ */ u(
+    "div",
     {
-      type: "button",
-      className: [`nxp-btn nxp-btn--${o}`, l, s].filter(Boolean).join(" "),
-      onClick: _,
-      disabled: c,
-      children: u
+      ref: a,
+      className: `nxp-confirm${L} ${w}`.trim(),
+      children: [
+        /* @__PURE__ */ o(
+          "button",
+          {
+            type: "button",
+            className: `nxp-btn nxp-btn--${f}`,
+            onClick: C,
+            disabled: d,
+            "aria-expanded": e,
+            "aria-haspopup": "dialog",
+            children: T
+          }
+        ),
+        e && /* @__PURE__ */ u(
+          "div",
+          {
+            className: "nxp-confirm__popover",
+            "data-placement": N,
+            role: "dialog",
+            "aria-label": "Confirm action",
+            "aria-modal": "false",
+            children: [
+              m && /* @__PURE__ */ o("p", { className: "nxp-confirm__message", children: m }),
+              /* @__PURE__ */ u("div", { className: "nxp-confirm__actions", children: [
+                /* @__PURE__ */ o(
+                  "button",
+                  {
+                    type: "button",
+                    className: "nxp-confirm__cancel",
+                    onClick: i,
+                    children: b
+                  }
+                ),
+                /* @__PURE__ */ o(
+                  "button",
+                  {
+                    type: "button",
+                    className: `nxp-confirm__ok nxp-confirm__ok--${g}`,
+                    onClick: E,
+                    autoFocus: !0,
+                    children: h
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      ]
     }
   );
 }
 export {
-  j as ConfirmButton,
-  j as default
+  z as ConfirmButton,
+  z as default
 };

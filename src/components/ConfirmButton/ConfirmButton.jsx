@@ -2,83 +2,124 @@ import React, { useState, useRef, useEffect } from 'react';
 
 function ConfirmButton({
   children,
+  label,                          // fallback trigger label when no children
   onConfirm,
 
   /* text — all translatable */
-  message       = 'Are you sure?',
-  confirmText   = 'Yes, confirm',
+  message       = '',             // optional message above actions; empty = hidden
+  confirmText   = 'Remove',
   cancelText    = 'Cancel',
 
   /* styling */
-  variant       = 'error',      // 'error' | 'warning' | 'primary'
-  confirmVariant,                // defaults to same as variant
-  size          = 'md',          // 'sm' | 'md'
+  variant       = 'error',        // 'error' | 'warning' | 'primary'
+  confirmVariant,                  // defaults to variant
+  size          = 'md',           // 'sm' | 'md'
   disabled      = false,
 
-  /* timing */
-  autoResetMs   = 0,             // auto-cancel confirmation after N ms (0 = never)
+  /* behaviour */
+  autoResetMs   = 0,              // auto-dismiss confirmation after N ms (0 = never)
+  placement     = 'bottom-end',   // 'bottom-end' | 'bottom-start' | 'bottom'
 
   className     = '',
 }) {
-  const [confirming, setConfirming] = useState(false);
-  const timerRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const timerRef        = useRef(null);
+  const wrapRef         = useRef(null);
 
   function openConfirm() {
     if (disabled) return;
-    setConfirming(true);
+    setOpen(true);
     if (autoResetMs > 0) {
-      timerRef.current = setTimeout(() => setConfirming(false), autoResetMs);
+      timerRef.current = setTimeout(() => setOpen(false), autoResetMs);
     }
   }
 
   function handleConfirm() {
     clearTimeout(timerRef.current);
-    setConfirming(false);
+    setOpen(false);
     onConfirm?.();
   }
 
   function handleCancel() {
     clearTimeout(timerRef.current);
-    setConfirming(false);
+    setOpen(false);
   }
+
+  /* close on outside click */
+  useEffect(() => {
+    if (!open) return;
+    function onDown(e) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        handleCancel();
+      }
+    }
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [open]);
+
+  /* close on Escape */
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e) { if (e.key === 'Escape') handleCancel(); }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
-  const cv = confirmVariant ?? variant;
+  const cv        = confirmVariant ?? variant;
   const sizeClass = size === 'sm' ? ' nxp-confirm--sm' : '';
-
-  if (confirming) {
-    return (
-      <div className={`nxp-confirm nxp-confirm--inline${sizeClass} ${className}`} role="group" aria-label="Confirm action">
-        <span className="nxp-confirm__message">{message}</span>
-        <button
-          type="button"
-          className={`nxp-confirm__ok nxp-confirm__ok--${cv}`}
-          onClick={handleConfirm}
-          autoFocus
-        >
-          {confirmText}
-        </button>
-        <button
-          type="button"
-          className="nxp-confirm__cancel"
-          onClick={handleCancel}
-        >
-          {cancelText}
-        </button>
-      </div>
-    );
-  }
+  const trigger   = children ?? label;
 
   return (
-    <button
-      type="button"
-      className={[`nxp-btn nxp-btn--${variant}`, sizeClass, className].filter(Boolean).join(' ')}
-      onClick={openConfirm}
-      disabled={disabled}
+    <div
+      ref={wrapRef}
+      className={`nxp-confirm${sizeClass} ${className}`.trim()}
     >
-      {children}
-    </button>
+      {/* ── Trigger button ── */}
+      <button
+        type="button"
+        className={`nxp-btn nxp-btn--${variant}`}
+        onClick={openConfirm}
+        disabled={disabled}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+      >
+        {trigger}
+      </button>
+
+      {/* ── Confirmation popover ── */}
+      {open && (
+        <div
+          className="nxp-confirm__popover"
+          data-placement={placement}
+          role="dialog"
+          aria-label="Confirm action"
+          aria-modal="false"
+        >
+          {message && (
+            <p className="nxp-confirm__message">{message}</p>
+          )}
+          <div className="nxp-confirm__actions">
+            <button
+              type="button"
+              className="nxp-confirm__cancel"
+              onClick={handleCancel}
+            >
+              {cancelText}
+            </button>
+            <button
+              type="button"
+              className={`nxp-confirm__ok nxp-confirm__ok--${cv}`}
+              onClick={handleConfirm}
+              autoFocus
+            >
+              {confirmText}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

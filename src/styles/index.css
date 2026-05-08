@@ -2927,17 +2927,87 @@
 /* ============================================================
    CONFIRM BUTTON
    ============================================================ */
-.nxp-confirm--inline { display: inline-flex; align-items: center; gap: var(--nxp-space-6); flex-wrap: wrap; }
-.nxp-confirm__message { font-family: var(--nxp-font); font-size: var(--nxp-text-sm); font-weight: var(--nxp-font-medium); color: var(--nxp-text-muted); }
-.nxp-confirm__ok { display: inline-flex; align-items: center; height: 28px; padding: 0 var(--nxp-space-12); border: none; border-radius: var(--nxp-radius-sm); font-family: var(--nxp-font); font-size: var(--nxp-text-sm); font-weight: var(--nxp-font-semibold); cursor: pointer; transition: opacity var(--nxp-dur-hover) var(--nxp-ease); }
-.nxp-confirm__ok--error { background: var(--nxp-error); color: #fff; }
-.nxp-confirm__ok--warning { background: var(--nxp-warning); color: #fff; }
-.nxp-confirm__ok--primary { background: var(--nxp-brand); color: #fff; }
-.nxp-confirm__ok:hover { opacity: .88; }
-.nxp-confirm__cancel { display: inline-flex; align-items: center; height: 28px; padding: 0 var(--nxp-space-12); border: 1px solid var(--nxp-border); border-radius: var(--nxp-radius-sm); background: var(--nxp-bg); font-family: var(--nxp-font); font-size: var(--nxp-text-sm); color: var(--nxp-text-muted); cursor: pointer; transition: border-color var(--nxp-dur-hover) var(--nxp-ease), background var(--nxp-dur-hover) var(--nxp-ease); }
-.nxp-confirm__cancel:hover { border-color: var(--nxp-border-strong); background: var(--nxp-wash-hover); }
+/* ── ConfirmButton wrapper ── */
+.nxp-confirm { position: relative; display: inline-flex; }
+
+/* ── Popover card ── */
+.nxp-confirm__popover {
+  position: absolute;
+  top: calc(100% + var(--nxp-space-6));
+  right: 0;
+  z-index: 120;
+  min-width: 190px;
+  background: var(--nxp-color-bg);
+  border: 1px solid var(--nxp-color-border);
+  border-radius: var(--nxp-radius-md);
+  box-shadow: var(--nxp-shadow-xl);
+  padding: var(--nxp-space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--nxp-space-8);
+  animation: nxp-dropdown-in 130ms var(--nxp-ease) both;
+}
+.nxp-confirm__popover[data-placement="bottom-start"] { right: auto; left: 0; }
+.nxp-confirm__popover[data-placement="bottom"] { right: auto; left: 50%; transform: translateX(-50%); }
+
+/* ── Optional message ── */
+.nxp-confirm__message {
+  margin: 0;
+  padding: 0 var(--nxp-space-2) var(--nxp-space-4);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-sm);
+  font-weight: var(--nxp-font-medium);
+  color: var(--nxp-color-text-muted);
+  line-height: 1.45;
+}
+
+/* ── Action row ── */
+.nxp-confirm__actions { display: flex; align-items: center; gap: var(--nxp-space-8); }
+
+/* ── Cancel button ── */
+.nxp-confirm__cancel {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--nxp-space-12);
+  border: 1.5px solid var(--nxp-color-border);
+  border-radius: var(--nxp-radius-sm);
+  background: var(--nxp-color-bg);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-sm);
+  font-weight: var(--nxp-font-medium);
+  color: var(--nxp-color-text-muted);
+  cursor: pointer;
+  transition: border-color var(--nxp-dur-hover) var(--nxp-ease), background var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-confirm__cancel:hover { border-color: var(--nxp-color-border-strong); background: var(--nxp-color-bg-muted); }
+
+/* ── Confirm (ok) button ── */
+.nxp-confirm__ok {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--nxp-space-12);
+  border: none;
+  border-radius: var(--nxp-radius-sm);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-sm);
+  font-weight: var(--nxp-font-semibold);
+  cursor: pointer;
+  transition: opacity var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-confirm__ok--error   { background: var(--nxp-color-error);   color: #fff; }
+.nxp-confirm__ok--warning { background: var(--nxp-color-warning); color: #fff; }
+.nxp-confirm__ok--primary { background: var(--nxp-color-primary); color: #fff; }
+.nxp-confirm__ok:hover { opacity: .86; }
+
+/* ── Small size variant ── */
 .nxp-confirm--sm .nxp-confirm__ok,
-.nxp-confirm--sm .nxp-confirm__cancel { height: 24px; padding: 0 var(--nxp-space-10); font-size: var(--nxp-text-xs); }
+.nxp-confirm--sm .nxp-confirm__cancel { height: 26px; padding: 0 var(--nxp-space-10); font-size: var(--nxp-text-xs); }
 
 /* ============================================================
    NUMBER INPUT
