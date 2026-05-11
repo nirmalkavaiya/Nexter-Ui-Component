@@ -2698,12 +2698,10 @@ input.nxp-input--invalid:focus {
   border-radius: var(--nxp-radius-md);
   padding: var(--nxp-space-12);
   font-family: var(--nxp-font);
-  box-shadow: var(--nxp-shadow-sm);
   transition: box-shadow var(--nxp-dur-hover) var(--nxp-ease),
               border-color var(--nxp-dur-hover) var(--nxp-ease);
 }
 .nxp-ftc:hover {
-  box-shadow: var(--nxp-shadow-md);
   border-color: var(--nxp-color-border-focus);
 }
 /* Locked state */
