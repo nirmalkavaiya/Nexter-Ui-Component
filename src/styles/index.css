@@ -109,11 +109,9 @@ a.nxp-btn:active {
   background: var(--nxp-color-primary);
   color: var(--nxp-color-bg);
   border-color: transparent;
-  box-shadow: var(--nxp-shadow-sm);
 }
 .nxp-btn--primary:hover {
   background: var(--nxp-color-primary-dark);
-  box-shadow: var(--nxp-shadow);
 }
 .nxp-btn--primary:active {
   background: var(--nxp-color-primary-dark);
@@ -121,7 +119,6 @@ a.nxp-btn:active {
 }
 .nxp-btn--primary:focus-visible {
   outline: none;
-  box-shadow: var(--nxp-ring);
 }
 
 /* Secondary */
@@ -129,7 +126,6 @@ a.nxp-btn:active {
   background: var(--nxp-bg);
   color: var(--nxp-text);
   border-color: var(--nxp-border-strong);
-  box-shadow: var(--nxp-shadow-sm);
 }
 .nxp-btn--secondary:hover {
   background: var(--nxp-wash-hover);
@@ -140,7 +136,6 @@ a.nxp-btn:active {
 }
 .nxp-btn--secondary:focus-visible {
   outline: none;
-  box-shadow: var(--nxp-ring);
 }
 
 /* Outline */
@@ -157,7 +152,6 @@ a.nxp-btn:active {
 }
 .nxp-btn--outline:focus-visible {
   outline: none;
-  box-shadow: var(--nxp-ring);
 }
 
 /* Ghost */
@@ -175,7 +169,6 @@ a.nxp-btn:active {
 }
 .nxp-btn--ghost:focus-visible {
   outline: none;
-  box-shadow: var(--nxp-ring);
 }
 
 /* Destructive */
@@ -185,15 +178,13 @@ a.nxp-btn:active {
   border-color: transparent;
 }
 .nxp-btn--destructive:hover {
-  background: var(--nxp-color-error-dark, #b91c1c);
+  background: var(--nxp-color-secondary);
 }
 .nxp-btn--destructive:active {
-  background: var(--nxp-color-error-dark, #b91c1c);
-  filter: brightness(0.9);
+  background: var(--nxp-color-secondary-dark);
 }
 .nxp-btn--destructive:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.28);
 }
 
 /* Link */
@@ -361,7 +352,6 @@ a.nxp-btn:active {
 /* Input */
 input.nxp-input {
   width: 100%;
-  height: var(--nxp-h);
   padding: var(--nxp-space-12);
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
@@ -400,7 +390,6 @@ input.nxp-input--invalid:focus {
 /* Select */
 .nxp-select {
   width: 100%;
-  height: var(--nxp-h);
   padding: var(--nxp-space-10) var(--nxp-space-12);
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
@@ -520,14 +509,10 @@ input.nxp-input--invalid:focus {
   height: 16px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.12);
   transition: transform var(--nxp-dur-hover) var(--nxp-ease);
 }
 .nxp-toggle.is-checked .nxp-toggle__thumb {
   transform: translateX(23px);
-}
-.nxp-toggle:focus-within .nxp-toggle__track {
-  box-shadow: var(--nxp-ring);
 }
 
 
@@ -1194,7 +1179,7 @@ input.nxp-input--invalid:focus {
    ============================================================ */
 .nxp-progress {
   width: 100%;
-  height: 8px;
+  height: 7px;
   background: var(--nxp-bg-alt);
   border-radius: var(--nxp-radius-pill);
   overflow: hidden;
@@ -1347,8 +1332,7 @@ input.nxp-input--invalid:focus {
 /* ── Header — LEFT align (default) ─────────────────────────── */
 .nxp-modal__head {
   padding: var(--nxp-space-24) var(--nxp-space-24) var(--nxp-space-16) var(--nxp-space-24);
-  text-align: left;
-  border-bottom: 1px solid var(--nxp-color-border-default, var(--nxp-border));
+  text-align : center;
 }
 .nxp-modal__title {
   font-family: var(--nxp-font);
