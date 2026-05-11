@@ -149,13 +149,13 @@ a.nxp-btn:active {
 .nxp-btn--outline {
   background: transparent;
   color: var(--nxp-brand);
-  border-color: var(--nxp-color-primary-light);
+  border-color: var(--nxp-brand);
   box-shadow: none;
 }
 .nxp-btn--outline:hover {
-  background: var(--nxp-brand-soft);
+  background: var(--nxp-brand);
   border-color: var(--nxp-brand);
-  color: var(--nxp-brand);
+  color: var(--nxp-color-bg-default);
 }
 .nxp-btn--outline:active {
   background: var(--nxp-color-primary-subtle);
