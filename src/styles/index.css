@@ -4702,6 +4702,7 @@ input.nxp-input--invalid:focus {
 .nxp-border-l      { border-left: 1px solid var(--nxp-color-border); }
 .nxp-border-r      { border-right: 1px solid var(--nxp-color-border); }
 
+
 /* ============================================================
    UTILITY — BORDER RADIUS
    ============================================================ */
@@ -4751,7 +4752,7 @@ input.nxp-input--invalid:focus {
 .nxp-bg-error    { background: var(--nxp-color-error-subtle); }
 .nxp-bg-brand-grad { background: var(--nxp-color-brand-grad); }
 .nxp-bg-grad { background: linear-gradient(93.13deg, var(--nxp-color-primary) 0.37%, var(--nxp-color-primary-active) 116.12%); }
-
+.nxp-bg-tran { background: transparent;}
 /* ============================================================
    UTILITY — FONT SIZE
    ============================================================ */
