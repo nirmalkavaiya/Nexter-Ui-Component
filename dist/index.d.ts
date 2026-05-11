@@ -123,20 +123,99 @@ export declare const Button: React.FC<ButtonProps>;
 
 // ─── Carousel ────────────────────────────────────────────────────────────────
 
+/** Breakpoint config for slidesPerView */
+export interface CarouselBreakpoints {
+  desktop?: number;
+  tablet?:  number;
+  mobile?:  number;
+}
+
+/** Data-driven slide object (slides[] prop API) */
 export interface CarouselSlide {
-  eyebrow?: ReactNode;
-  title: ReactNode;
+  eyebrow?:     ReactNode;
+  title?:       ReactNode;
   description?: ReactNode;
-  cta?: string;
-  ctaHref?: string;
+  cta?:         string;
+  ctaHref?:     string;
+  /** Fully custom slide content — overrides text layout */
+  content?:     ReactNode;
+  /** Inline background (gradient or color) */
+  background?:  string;
 }
 
 export interface CarouselProps {
-  slides?: CarouselSlide[];
-  className?: string;
+  /** v1 data API — array of slide objects */
+  slides?:              CarouselSlide[];
+  /** v2 JSX API — <Slide> children */
+  children?:            ReactNode;
+  className?:           string;
+  /** Enable auto-advance */
+  autoPlay?:            boolean;
+  /** Auto-advance interval in ms (default 4000) */
+  interval?:            number;
+  /** Show prev/next arrow buttons (default true) */
+  showArrows?:          boolean;
+  /** 'dark' — inverts nav controls for dark/gradient slides */
+  variant?:             '' | 'dark';
+  /** Enable mouse/touch drag (default true) */
+  draggable?:           boolean;
+  /** Pixel threshold to trigger navigation on drag (default 50) */
+  dragThreshold?:       number;
+  /** Velocity threshold in px/ms to trigger navigation (default 0.3) */
+  swipeVelocity?:       number;
+  /** Pause autoPlay while hovered (default true) */
+  pauseOnHover?:        boolean;
+  /** Seamless infinite looping (default false) */
+  infinite?:            boolean;
+  /** Number of slides visible simultaneously */
+  slidesPerView?:       number | CarouselBreakpoints;
+  /** Gap between slides in pixels */
+  gap?:                 number;
+  /** ArrowLeft/ArrowRight keyboard nav (default true) */
+  keyboardNavigation?:  boolean;
+  /** Auto-adjust height to current slide (default false) */
+  autoHeight?:          boolean;
+  /** Right-to-left mode (default false) */
+  rtl?:                 boolean;
+  /** Only render visible slides for large carousels (default false) */
+  virtual?:             boolean;
+  /** ARIA label for the carousel region */
+  label?:               string;
+  /** Controlled active slide index */
+  activeIndex?:         number;
+  /** Called when slide changes — receives new 0-based index */
+  onSlideChange?:       (index: number) => void;
 }
 
-export declare const Carousel: React.FC<CarouselProps>;
+export interface SlideProps {
+  children?:   ReactNode;
+  background?: string;
+  className?:  string;
+  style?:      React.CSSProperties;
+  [key: string]: unknown;
+}
+
+export interface CarouselContextValue {
+  current:    number;
+  total:      number;
+  perView:    number;
+  isDragging: boolean;
+  goTo:       (index: number) => void;
+  goPrev:     () => void;
+  goNext:     () => void;
+}
+
+/** Composable JSX slide — use as direct child of <Carousel> */
+export declare const Slide: React.FC<SlideProps>;
+
+/** Access Carousel state from any descendant component */
+export declare function useCarousel(): CarouselContextValue;
+
+export interface CarouselComponent extends React.FC<CarouselProps> {
+  Slide: React.FC<SlideProps>;
+}
+
+export declare const Carousel: CarouselComponent;
 
 // ─── Checkbox ────────────────────────────────────────────────────────────────
 

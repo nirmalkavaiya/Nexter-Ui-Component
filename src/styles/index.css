@@ -1806,28 +1806,44 @@ input.nxp-input--invalid:focus {
 }
 
 /* ============================================================
-   CAROUSEL
+   CAROUSEL  v2 — transform engine
    ============================================================ */
+
+/* Root */
 .nxp-carousel {
   position: relative;
   width: 100%;
-  overflow: hidden;
   border-radius: var(--nxp-radius-lg);
+  --nxp-dur-slide: 380ms;
 }
+.nxp-carousel:focus-visible {
+  outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
+  outline-offset: 2px;
+}
+
+/* Viewport — clips the sliding track */
+.nxp-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+  transition: height var(--nxp-dur-slide) var(--nxp-ease, cubic-bezier(0.16,1,0.3,1));
+}
+
+/* Track — GPU-accelerated transform (transition set inline for config) */
 .nxp-carousel__track {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 0;
+  will-change: transform;
+  touch-action: pan-y;
 }
-.nxp-carousel__track::-webkit-scrollbar {
-  display: none;
+.nxp-carousel__track--dragging {
+  cursor: grabbing;
 }
+.nxp-carousel--dragging {
+  user-select: none;
+}
+
+/* Slide */
 .nxp-carousel__slide {
-  min-width: 100%;
-  scroll-snap-align: start;
+  flex-shrink: 0;
   background: var(--nxp-brand-grad);
   padding: var(--nxp-space-40);
   display: flex;
@@ -1835,7 +1851,18 @@ input.nxp-input--invalid:focus {
   gap: var(--nxp-space-10);
   color: #fff;
   border-radius: var(--nxp-radius-lg);
+  box-sizing: border-box;
 }
+
+/* Custom (JSX) slide — no default styles, pure layout wrapper */
+.nxp-carousel__slide--custom {
+  background: none;
+  padding: 0;
+  color: inherit;
+  border-radius: 0;
+}
+
+/* ── Text content ─────────────────────────────────────────── */
 .nxp-carousel__eyebrow {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-xs);
@@ -1878,57 +1905,104 @@ input.nxp-input--invalid:focus {
 .nxp-carousel__cta:hover {
   background: rgba(255,255,255,0.25);
 }
+
+/* ── Navigation bar ───────────────────────────────────────── */
 .nxp-carousel__nav {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--nxp-space-8);
-  margin-top: var(--nxp-space-12);
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 0;
   right: 0;
 }
+
+/* ── Arrow buttons ────────────────────────────────────────── */
 .nxp-carousel__btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid var(--nxp-border-strong);
-  background: var(--nxp-bg);
+  border: 1px solid var(--nxp-border-strong, var(--nxp-color-border));
+  background: var(--nxp-bg, var(--nxp-color-bg));
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--nxp-text-lg);
-  color: var(--nxp-text-muted);
-  transition: background var(--nxp-dur-hover) var(--nxp-ease), color var(--nxp-dur-hover) var(--nxp-ease);
+  color: var(--nxp-text-muted, var(--nxp-color-text-muted));
+  transition: background var(--nxp-dur-hover) var(--nxp-ease),
+              color     var(--nxp-dur-hover) var(--nxp-ease);
 }
-.nxp-carousel__btn:hover {
-  background: var(--nxp-wash-hover);
-  color: var(--nxp-text);
+.nxp-carousel__btn:hover:not(:disabled) {
+  background: var(--nxp-wash-hover, var(--nxp-color-bg-muted));
+  color: var(--nxp-text, var(--nxp-color-text));
 }
 .nxp-carousel__btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
+.nxp-carousel__btn:focus-visible {
+  outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
+  outline-offset: 2px;
+}
+
+/* ── Dot indicators ───────────────────────────────────────── */
 .nxp-carousel__dots {
   display: flex;
-  gap: var(--nxp-space-8);
+  gap: var(--nxp-space-6);
   align-items: center;
 }
 .nxp-carousel__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--nxp-border-strong);
+  background: var(--nxp-border-strong, var(--nxp-color-border));
   cursor: pointer;
-  transition: background var(--nxp-dur-hover) var(--nxp-ease), transform var(--nxp-dur-hover) var(--nxp-ease);
   border: none;
   padding: 0;
+  transition: background var(--nxp-dur-hover) var(--nxp-ease),
+              transform  var(--nxp-dur-hover) var(--nxp-ease),
+              width      var(--nxp-dur-hover) var(--nxp-ease);
 }
 .nxp-carousel__dot.is-active {
-  background: var(--nxp-brand);
-  transform: scale(1.3);
+  background: var(--nxp-brand, var(--nxp-color-primary));
+  transform: scale(1.35);
+  width: 20px;
+  border-radius: 4px;
+}
+.nxp-carousel__dot:focus-visible {
+  outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
+  outline-offset: 2px;
+}
+
+/* ── Variant: dark (light controls for dark/gradient backgrounds) */
+.nxp-carousel--dark .nxp-carousel__btn {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+  color: #fff;
+}
+.nxp-carousel--dark .nxp-carousel__btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.28);
+}
+.nxp-carousel--dark .nxp-carousel__dot {
+  background: rgba(255,255,255,0.35);
+}
+.nxp-carousel--dark .nxp-carousel__dot.is-active {
+  background: #fff;
+}
+
+/* ── RTL ── */
+.nxp-carousel--rtl .nxp-carousel__track {
+  direction: rtl;
+}
+
+/* ── Auto-height ── */
+.nxp-carousel--auto-height .nxp-carousel__track {
+  align-items: flex-start;
+}
+.nxp-carousel--auto-height .nxp-carousel__slide {
+  height: auto;
 }
 
 /* ============================================================

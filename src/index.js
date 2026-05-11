@@ -6,7 +6,7 @@ export { default as Avatar } from './components/Avatar';
 export { default as Badge } from './components/Badge';
 export { default as Banner } from './components/Banner';
 export { default as Button } from './components/Button';
-export { default as Carousel } from './components/Carousel';
+export { default as Carousel, Slide, useCarousel } from './components/Carousel';
 export { default as Checkbox } from './components/Checkbox';
 export { default as Combobox } from './components/Combobox';
 export { default as Dialog } from './components/Dialog';
