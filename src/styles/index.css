@@ -91,10 +91,19 @@
 }
 
 .nxp-btn:disabled,
-.nxp-btn--loading {
+.nxp-btn--loading,
+.nxp-btn--disabled {
   opacity: 0.55;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* Anchor reset — preserve button colors on visited / active states */
+a.nxp-btn,
+a.nxp-btn:visited,
+a.nxp-btn:active {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* Primary — solid brand color */

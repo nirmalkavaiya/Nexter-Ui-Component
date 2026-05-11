@@ -107,16 +107,46 @@ export declare const Breadcrumb: React.FC<BreadcrumbProps>;
 
 // ─── Button ──────────────────────────────────────────────────────────────────
 
-export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'destructive';
-  size?: NxpSize;
-  /** Render as icon-only (square) button */
+export interface ButtonProps {
+  /** Visual style variant (default 'secondary') */
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link' | 'grad';
+  /** Size override (default 'md') */
+  size?: 'sm' | 'md' | 'lg';
+  /** Square icon-only mode */
   icon?: boolean;
+  /** Show spinner and disable interaction */
   loading?: boolean;
   disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
   className?: string;
+
+  // ── Link / anchor props ──────────────────────────────────
+  /** Renders an <a> element when supplied */
+  href?: string;
+  /** Link target. '_blank' auto-adds rel="nofollow noopener noreferrer" */
+  target?: '_blank' | '_self' | '_parent' | '_top' | (string & {});
+  /** Explicit rel — overrides the auto-generated value */
+  rel?: string;
+  /** Download attribute for file links */
+  download?: string | boolean;
+
+  // ── Element override ─────────────────────────────────────
+  /**
+   * Swap the root element.
+   * Pass Next.js <Link>, React Router <Link>, or any valid element type.
+   * @example <Button as={NextLink} href="/dashboard">Go</Button>
+   */
+  as?: React.ElementType;
+
+  // ── Button-specific ──────────────────────────────────────
+  /** HTML button type (default 'button' — prevents accidental form submit) */
+  type?: 'button' | 'submit' | 'reset';
+
+  // ── Events ───────────────────────────────────────────────
+  onClick?: React.MouseEventHandler<HTMLElement>;
+
+  /** Any additional HTML attributes */
+  [key: string]: unknown;
 }
 
 export declare const Button: React.FC<ButtonProps>;
