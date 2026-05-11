@@ -1,14 +1,14 @@
-import { jsx as y, jsxs as P, Fragment as ye } from "react/jsx-runtime";
-import xe, { useRef as R, useState as j, useMemo as H, useCallback as I, useEffect as x, useContext as Me, Children as ke, isValidElement as ge, createContext as we } from "react";
+import { jsx as x, jsxs as P, Fragment as ye } from "react/jsx-runtime";
+import Me, { useRef as w, useState as I, useMemo as G, useCallback as z, useEffect as y, useContext as ke, Children as we, isValidElement as ge, createContext as Ee } from "react";
 import { Slide as le } from "./Slide.js";
-const ue = 380, Ee = "cubic-bezier(0.16,1,0.3,1)", ie = we(null);
-function ze() {
-  const e = Me(ie);
+const ue = 380, De = "cubic-bezier(0.16,1,0.3,1)", ie = Ee(null);
+function Ye() {
+  const e = ke(ie);
   if (!e) throw new Error("useCarousel must be used inside <Carousel>");
   return e;
 }
-function De(e, c) {
-  x(() => {
+function Le(e, c) {
+  y(() => {
     const s = e.current;
     if (!s) return;
     let n;
@@ -22,76 +22,76 @@ function De(e, c) {
     };
   }, [e, c]);
 }
-function Le({ enabled: e, interval: c, paused: s, totalReal: n, goNext: o }) {
-  const f = R(o);
-  x(() => {
+function Re({ enabled: e, interval: c, paused: s, totalReal: n, goNext: o }) {
+  const f = w(o);
+  y(() => {
     f.current = o;
-  }, [o]), x(() => {
+  }, [o]), y(() => {
     if (!e || n <= 1 || s) return;
-    const d = setInterval(() => f.current(), c);
-    return () => clearInterval(d);
+    const p = setInterval(() => f.current(), c);
+    return () => clearInterval(p);
   }, [e, c, s, n]);
 }
-function Re({ trackRef: e, enabled: c, dragThreshold: s, swipeVelocity: n, goPrev: o, goNext: f, rtl: d }) {
-  const u = R({ active: !1, startX: 0, startY: 0, delta: 0, t0: 0 }), w = R(o), J = R(f);
-  x(() => {
-    w.current = o, J.current = f;
+function $e({ trackRef: e, enabled: c, dragThreshold: s, swipeVelocity: n, goPrev: o, goNext: f, rtl: p }) {
+  const u = w({ active: !1, startX: 0, startY: 0, delta: 0, t0: 0 }), g = w(o), H = w(f);
+  y(() => {
+    g.current = o, H.current = f;
   }, [o, f]);
-  const [S, m] = j(!1), [Q, $] = j(0), z = I((l, b) => {
-    u.current = { active: !0, startX: l, startY: b, delta: 0, t0: Date.now() }, $(0);
-  }, []), E = I((l) => {
+  const [U, m] = I(!1), [J, R] = I(0), Y = z((l, b) => {
+    u.current = { active: !0, startX: l, startY: b, delta: 0, t0: Date.now() }, R(0);
+  }, []), E = z((l) => {
     if (!u.current.active) return;
     const b = l - u.current.startX;
-    u.current.delta = b, Math.abs(b) > 6 && m(!0), $(d ? -b : b);
-  }, [d]), D = I(() => {
+    u.current.delta = b, Math.abs(b) > 6 && m(!0), R(p ? -b : b);
+  }, [p]), D = z(() => {
     if (!u.current.active) return;
     u.current.active = !1;
     const { delta: l, t0: b } = u.current, h = Math.max(1, Date.now() - b), a = Math.abs(l) / h;
-    (Math.abs(l) >= s || a >= n) && ((d ? l > 0 : l < 0) ? J.current() : w.current()), $(0), setTimeout(() => m(!1), 50);
-  }, [s, n, d]);
-  return x(() => {
+    (Math.abs(l) >= s || a >= n) && ((p ? l > 0 : l < 0) ? H.current() : g.current()), R(0), setTimeout(() => m(!1), 50);
+  }, [s, n, p]);
+  return y(() => {
     if (!c) return;
     const l = e.current;
     if (!l) return;
-    const b = (p) => {
-      p.preventDefault(), z(p.clientX, p.clientY);
-    }, h = (p) => {
-      u.current.active && (p.preventDefault(), E(p.clientX));
+    const b = (d) => {
+      d.preventDefault(), Y(d.clientX, d.clientY);
+    }, h = (d) => {
+      u.current.active && (d.preventDefault(), E(d.clientX));
     }, a = () => D();
-    let M = !1;
-    const N = (p) => {
-      M = !1, z(p.touches[0].clientX, p.touches[0].clientY);
-    }, A = (p) => {
+    let $ = !1;
+    const N = (d) => {
+      $ = !1, Y(d.touches[0].clientX, d.touches[0].clientY);
+    }, A = (d) => {
       if (!u.current.active) return;
-      const Z = Math.abs(p.touches[0].clientX - u.current.startX);
-      if (Math.abs(p.touches[0].clientY - u.current.startY) > Z && Z < 10) {
-        M = !0, u.current.active = !1, $(0);
+      const Q = Math.abs(d.touches[0].clientX - u.current.startX);
+      if (Math.abs(d.touches[0].clientY - u.current.startY) > Q && Q < 10) {
+        $ = !0, u.current.active = !1, R(0);
         return;
       }
-      M || (p.preventDefault(), E(p.touches[0].clientX));
-    }, U = () => {
-      M || D();
+      $ || (d.preventDefault(), E(d.touches[0].clientX));
+    }, X = () => {
+      $ || D();
     };
-    return l.addEventListener("mousedown", b, { passive: !1 }), window.addEventListener("mousemove", h, { passive: !1 }), window.addEventListener("mouseup", a), l.addEventListener("touchstart", N, { passive: !0 }), l.addEventListener("touchmove", A, { passive: !1 }), l.addEventListener("touchend", U, { passive: !0 }), () => {
-      l.removeEventListener("mousedown", b), window.removeEventListener("mousemove", h), window.removeEventListener("mouseup", a), l.removeEventListener("touchstart", N), l.removeEventListener("touchmove", A), l.removeEventListener("touchend", U);
+    return l.addEventListener("mousedown", b, { passive: !1 }), window.addEventListener("mousemove", h, { passive: !1 }), window.addEventListener("mouseup", a), l.addEventListener("touchstart", N, { passive: !0 }), l.addEventListener("touchmove", A, { passive: !1 }), l.addEventListener("touchend", X, { passive: !0 }), () => {
+      l.removeEventListener("mousedown", b), window.removeEventListener("mousemove", h), window.removeEventListener("mouseup", a), l.removeEventListener("touchstart", N), l.removeEventListener("touchmove", A), l.removeEventListener("touchend", X);
     };
-  }, [c, z, E, D, e]), { isDragging: S, dragDelta: Q };
+  }, [c, Y, E, D, e]), { isDragging: U, dragDelta: J };
 }
-function $e({ rootRef: e, enabled: c, goPrev: s, goNext: n }) {
-  const o = R(s), f = R(n);
-  x(() => {
+function Ne({ rootRef: e, enabled: c, goPrev: s, goNext: n }) {
+  const o = w(s), f = w(n);
+  y(() => {
     o.current = s, f.current = n;
-  }, [s, n]), x(() => {
+  }, [s, n]), y(() => {
     if (!c) return;
-    const d = e.current;
-    if (!d) return;
-    const u = (w) => {
-      !d.contains(document.activeElement) && document.activeElement !== d || (w.key === "ArrowLeft" && (w.preventDefault(), o.current()), w.key === "ArrowRight" && (w.preventDefault(), f.current()));
+    const p = e.current;
+    if (!p) return;
+    const u = (g) => {
+      !p.contains(document.activeElement) && document.activeElement !== p || (g.key === "ArrowLeft" && (g.preventDefault(), o.current()), g.key === "ArrowRight" && (g.preventDefault(), f.current()));
     };
     return window.addEventListener("keydown", u), () => window.removeEventListener("keydown", u);
   }, [c, e]);
 }
-function Ne(e, c) {
+function Ae(e, c) {
   if (typeof e == "number") return Math.max(1, Math.floor(e));
   if (typeof e == "object" && e !== null) {
     const { desktop: s = 1, tablet: n = 1, mobile: o = 1 } = e;
@@ -99,18 +99,18 @@ function Ne(e, c) {
   }
   return 1;
 }
-function Ae(e, c) {
+function Xe(e, c) {
   const s = [];
   return (e || []).forEach((n, o) => {
     s.push({ __type: "data", __key: `prop-${o}`, ...n });
-  }), ke.forEach(c, (n) => {
+  }), we.forEach(c, (n) => {
     var f;
     if (!ge(n)) return;
     (n.type === le || ((f = n.type) == null ? void 0 : f.__isSlide)) && s.push({ __type: "jsx", __key: n.key ?? `jsx-${s.length}`, __node: n });
   }), s;
 }
-function Xe({ slide: e, slideWidth: c, gapPx: s, isLast: n, index: o, totalInTrack: f }) {
-  const d = {
+function Te({ slide: e, slideWidth: c, gapPx: s, isLast: n, index: o, totalInTrack: f }) {
+  const p = {
     width: c,
     flexShrink: 0,
     marginRight: n ? 0 : s,
@@ -120,29 +120,29 @@ function Xe({ slide: e, slideWidth: c, gapPx: s, isLast: n, index: o, totalInTra
   };
   if (e.__type === "jsx") {
     const u = e.__node;
-    return xe.cloneElement(u, {
+    return Me.cloneElement(u, {
       key: e.__key,
-      style: { ...d, ...u.props.style || {} },
+      style: { ...p, ...u.props.style || {} },
       "aria-hidden": e.__isClone ? "true" : void 0,
       "aria-roledescription": "slide",
       "aria-label": e.__isClone ? void 0 : `Slide ${(e.__realIdx ?? o) + 1} of ${f}`
     });
   }
-  return /* @__PURE__ */ y(
+  return /* @__PURE__ */ x(
     "div",
     {
       className: `nxp-carousel__slide${e.content ? " nxp-carousel__slide--custom" : ""}`,
       style: {
-        ...d,
+        ...p,
         ...e.background ? { background: e.background } : {}
       },
       "aria-roledescription": "slide",
       "aria-label": e.__isClone ? void 0 : `Slide ${(e.__realIdx ?? o) + 1} of ${f}`,
       "aria-hidden": e.__isClone ? "true" : void 0,
       children: e.content ? e.content : /* @__PURE__ */ P(ye, { children: [
-        e.eyebrow && /* @__PURE__ */ y("span", { className: "nxp-carousel__eyebrow", children: e.eyebrow }),
-        e.title && /* @__PURE__ */ y("div", { className: "nxp-carousel__title", children: e.title }),
-        e.description && /* @__PURE__ */ y("p", { className: "nxp-carousel__desc", children: e.description }),
+        e.eyebrow && /* @__PURE__ */ x("span", { className: "nxp-carousel__eyebrow", children: e.eyebrow }),
+        e.title && /* @__PURE__ */ x("div", { className: "nxp-carousel__title", children: e.title }),
+        e.description && /* @__PURE__ */ x("p", { className: "nxp-carousel__desc", children: e.description }),
         e.cta && /* @__PURE__ */ P(
           "a",
           {
@@ -169,15 +169,15 @@ function fe({
   showArrows: o = !0,
   variant: f = "",
   /* ── v2 props ── */
-  children: d,
+  children: p,
   draggable: u = !0,
-  dragThreshold: w = 50,
-  swipeVelocity: J = 0.3,
-  pauseOnHover: S = !0,
+  dragThreshold: g = 50,
+  swipeVelocity: H = 0.3,
+  pauseOnHover: U = !0,
   infinite: m = !1,
-  slidesPerView: Q = 1,
-  gap: $ = 0,
-  keyboardNavigation: z = !0,
+  slidesPerView: J = 1,
+  gap: R = 0,
+  keyboardNavigation: Y = !0,
   autoHeight: E = !1,
   rtl: D = !1,
   virtual: l = !1,
@@ -186,157 +186,158 @@ function fe({
   activeIndex: h,
   onSlideChange: a
 }) {
-  const M = R(null), N = R(null), [A, U] = j(0), [p, Z] = j(!1), oe = S && p && s, [ee, ae] = j(null), Y = H(
-    () => Ae(e, d).map((r, i) => ({ ...r, __realIdx: i })),
-    [e, d]
-  ), t = Y.length, _ = H(
-    () => Ne(Q, A),
-    [Q, A]
-  ), { displaySlides: B, cloneOffset: k } = H(() => {
-    if (!m || t === 0) return { displaySlides: Y, cloneOffset: 0 };
-    const r = Math.min(_, t), i = Y.slice(-r).map((C, G) => ({ ...C, __key: `cb-${G}`, __isClone: !0 })), L = Y.slice(0, r).map((C, G) => ({ ...C, __key: `ca-${G}`, __isClone: !0 }));
-    return { displaySlides: [...i, ...Y, ...L], cloneOffset: r };
-  }, [Y, m, _, t]), [g, q] = j(() => m ? Math.min(_, t) : 0), [te, K] = j(!1), re = R(!1), X = h !== void 0, v = X ? Math.max(0, Math.min(h, t - 1)) : Math.max(0, Math.min(g - k, t - 1)), V = typeof $ == "number" ? $ : parseInt($, 10) || 0, ne = A > 0 ? (A - V * (_ - 1)) / _ : 0, me = ne + V, T = I((r, i = !1) => {
-    const L = m ? (r % t + t) % t : Math.max(0, Math.min(r, t - 1)), C = m ? L + k : L;
-    i && K(!0), q(C), a == null || a(L);
-  }, [t, m, k, a]), W = I(() => {
-    if (X) {
+  const $ = w(null), N = w(null), A = w(null), [X, d] = I(0), [Q, ee] = I(!1), me = U && Q && s, [te, ae] = I(null), q = G(
+    () => Xe(e, p).map((r, i) => ({ ...r, __realIdx: i })),
+    [e, p]
+  ), t = q.length, _ = G(
+    () => Ae(J, X),
+    [J, X]
+  ), { displaySlides: Z, cloneOffset: M } = G(() => {
+    if (!m || t === 0) return { displaySlides: q, cloneOffset: 0 };
+    const r = Math.min(_, t), i = q.slice(-r).map((S, W) => ({ ...S, __key: `cb-${W}`, __isClone: !0 })), L = q.slice(0, r).map((S, W) => ({ ...S, __key: `ca-${W}`, __isClone: !0 }));
+    return { displaySlides: [...i, ...q, ...L], cloneOffset: r };
+  }, [q, m, _, t]), [k, O] = I(() => m ? Math.min(_, t) : 0), [re, B] = I(!1), ne = w(!1), T = h !== void 0, v = T ? Math.max(0, Math.min(h, t - 1)) : Math.max(0, Math.min(k - M, t - 1)), V = typeof R == "number" ? R : parseInt(R, 10) || 0, se = X > 0 ? Math.max(0, (X - V * (_ - 1)) / _) : 0, de = se + V, F = z((r, i = !1) => {
+    const L = m ? (r % t + t) % t : Math.max(0, Math.min(r, t - 1)), S = m ? L + M : L;
+    i && B(!0), O(S), a == null || a(L);
+  }, [t, m, M, a]), K = z(() => {
+    if (T) {
       a == null || a((h - 1 + t) % t);
       return;
     }
     if (m)
-      q((r) => r - 1), a == null || a((v - 1 + t) % t);
+      O((r) => r - 1), a == null || a((v - 1 + t) % t);
     else {
       if (v <= 0) return;
-      T(v - 1);
+      F(v - 1);
     }
-  }, [X, m, v, t, T, a, h]), O = I(() => {
-    if (X) {
+  }, [T, m, v, t, F, a, h]), C = z(() => {
+    if (T) {
       a == null || a((h + 1) % t);
       return;
     }
     if (m)
-      q((r) => r + 1), a == null || a((v + 1) % t);
+      O((r) => r + 1), a == null || a((v + 1) % t);
     else {
       if (v >= t - _) return;
-      T(v + 1);
+      F(v + 1);
     }
-  }, [X, m, v, t, _, T, a, h]);
-  x(() => {
-    if (!m || re.current) return;
-    const r = k + t - 1;
-    if (!(g > r + (Math.min(_, t) - 1) || g < k)) return;
-    re.current = !0;
+  }, [T, m, v, t, _, F, a, h]);
+  y(() => {
+    if (!m || ne.current) return;
+    const r = M + t - 1;
+    if (!(k > r + (Math.min(_, t) - 1) || k < M)) return;
+    ne.current = !0;
     const L = setTimeout(() => {
-      const G = ((g - k) % t + t) % t + k;
-      K(!0), q(G), requestAnimationFrame(() => requestAnimationFrame(() => {
-        K(!1), re.current = !1;
+      const W = ((k - M) % t + t) % t + M;
+      B(!0), O(W), requestAnimationFrame(() => requestAnimationFrame(() => {
+        B(!1), ne.current = !1;
       }));
     }, ue);
     return () => clearTimeout(L);
-  }, [g, m, k, t, _]), x(() => {
-    if (!te) return;
-    const r = requestAnimationFrame(() => requestAnimationFrame(() => K(!1)));
+  }, [k, m, M, t, _]), y(() => {
+    if (!re) return;
+    const r = requestAnimationFrame(() => requestAnimationFrame(() => B(!1)));
     return () => cancelAnimationFrame(r);
-  }, [te]), x(() => {
-    if (!X) return;
+  }, [re]), y(() => {
+    if (!T) return;
     const r = Math.max(0, Math.min(h, t - 1));
-    q(r + k);
-  }, [X, h, t, k]), x(() => {
-    m && (K(!0), q(v + k));
+    O(r + M);
+  }, [T, h, t, M]), y(() => {
+    m && (B(!0), O(v + M));
   }, [_]);
-  const de = I((r) => U(r.width), []);
-  De(M, de), x(() => {
-    M.current && U(M.current.offsetWidth);
-  }, []), x(() => {
-    if (!E || !N.current) return;
-    const r = N.current.children[g];
+  const pe = z((r) => d(r.width), []);
+  Le(N, pe), y(() => {
+    N.current && d(N.current.offsetWidth);
+  }, []), y(() => {
+    if (!E || !A.current) return;
+    const r = A.current.children[k];
     if (!r) return;
     const i = new ResizeObserver(([L]) => ae(L.contentRect.height));
     return i.observe(r), ae(r.offsetHeight), () => i.disconnect();
-  }, [E, g]), Le({ enabled: s, interval: n, paused: oe, totalReal: t, goNext: O }), $e({ rootRef: M, enabled: z, goPrev: W, goNext: O });
-  const F = Re({
-    trackRef: N,
+  }, [E, k]), Re({ enabled: s, interval: n, paused: me, totalReal: t, goNext: C }), Ne({ rootRef: $, enabled: Y, goPrev: K, goNext: C });
+  const j = $e({
+    trackRef: A,
     enabled: u && t > 1,
-    dragThreshold: w,
-    swipeVelocity: J,
-    goPrev: W,
-    goNext: O,
+    dragThreshold: g,
+    swipeVelocity: H,
+    goPrev: K,
+    goNext: C,
     rtl: D
-  }), se = H(() => {
+  }), oe = G(() => {
     if (!l) return null;
     const r = _ + 1;
     return {
-      start: Math.max(0, g - r),
-      end: Math.min(B.length - 1, g + _ + r - 1)
+      start: Math.max(0, k - r),
+      end: Math.min(Z.length - 1, k + _ + r - 1)
     };
-  }, [l, g, _, B.length]), ce = g * me, pe = {
+  }, [l, k, _, Z.length]), ce = k * de, _e = {
     display: "flex",
     willChange: "transform",
-    transform: `translate3d(${D ? ce + F.dragDelta : -(ce - F.dragDelta)}px, 0, 0)`,
-    transition: te || F.isDragging ? "none" : `transform ${ue}ms ${Ee}`,
-    ...E && ee != null ? { alignItems: "flex-start" } : {}
-  }, _e = [
+    transform: `translate3d(${D ? ce + j.dragDelta : -(ce - j.dragDelta)}px, 0, 0)`,
+    transition: re || j.isDragging ? "none" : `transform ${ue}ms ${De}`,
+    ...E && te != null ? { alignItems: "flex-start" } : {}
+  }, ve = [
     "nxp-carousel",
     f === "dark" ? "nxp-carousel--dark" : "",
-    F.isDragging ? "nxp-carousel--dragging" : "",
+    j.isDragging ? "nxp-carousel--dragging" : "",
     D ? "nxp-carousel--rtl" : "",
     E ? "nxp-carousel--auto-height" : "",
     c
-  ].filter(Boolean).join(" "), ve = H(() => ({
+  ].filter(Boolean).join(" "), be = G(() => ({
     current: v,
     total: t,
     perView: _,
-    isDragging: F.isDragging,
-    goTo: T,
-    goPrev: W,
-    goNext: O
-  }), [v, t, _, F.isDragging, T, W, O]);
+    isDragging: j.isDragging,
+    goTo: F,
+    goPrev: K,
+    goNext: C
+  }), [v, t, _, j.isDragging, F, K, C]);
   if (t === 0) return null;
-  const be = !m && v <= 0, he = !m && v >= t - _;
-  return /* @__PURE__ */ y(ie.Provider, { value: ve, children: /* @__PURE__ */ P(
+  const he = !m && v <= 0, xe = !m && v >= t - _;
+  return /* @__PURE__ */ x(ie.Provider, { value: be, children: /* @__PURE__ */ P(
     "div",
     {
-      ref: M,
-      className: _e,
+      ref: $,
+      className: ve,
       role: "region",
       "aria-label": b,
       "aria-roledescription": "carousel",
-      tabIndex: z ? 0 : void 0,
-      onMouseEnter: S ? () => Z(!0) : void 0,
-      onMouseLeave: S ? () => Z(!1) : void 0,
+      tabIndex: Y ? 0 : void 0,
+      onMouseEnter: U ? () => ee(!0) : void 0,
+      onMouseLeave: U ? () => ee(!1) : void 0,
       children: [
-        /* @__PURE__ */ y(
+        /* @__PURE__ */ x(
           "div",
           {
+            ref: N,
             className: "nxp-carousel__viewport",
-            style: E && ee != null ? { height: ee } : void 0,
-            children: /* @__PURE__ */ y(
+            style: E && te != null ? { height: te } : void 0,
+            children: /* @__PURE__ */ x(
               "div",
               {
-                ref: N,
-                className: `nxp-carousel__track${F.isDragging ? " nxp-carousel__track--dragging" : ""}`,
-                style: pe,
+                ref: A,
+                className: `nxp-carousel__track${j.isDragging ? " nxp-carousel__track--dragging" : ""}`,
+                style: _e,
                 "aria-live": s ? "off" : "polite",
-                children: B.map((r, i) => l && se && (i < se.start || i > se.end) ? /* @__PURE__ */ y(
+                children: Z.map((r, i) => l && oe && (i < oe.start || i > oe.end) ? /* @__PURE__ */ x(
                   "div",
                   {
                     "aria-hidden": "true",
                     style: {
-                      width: ne,
+                      width: se,
                       flexShrink: 0,
-                      marginRight: i === B.length - 1 ? 0 : V
+                      marginRight: i === Z.length - 1 ? 0 : V
                     }
                   },
                   r.__key
-                ) : /* @__PURE__ */ y(
-                  Xe,
+                ) : /* @__PURE__ */ x(
+                  Te,
                   {
                     slide: r,
-                    slideWidth: ne,
+                    slideWidth: se,
                     gapPx: V,
                     index: i,
-                    isLast: i === B.length - 1,
+                    isLast: i === Z.length - 1,
                     totalInTrack: t
                   },
                   r.__key
@@ -346,30 +347,30 @@ function fe({
           }
         ),
         /* @__PURE__ */ P("div", { className: "nxp-carousel__nav", role: "group", "aria-label": "Carousel controls", children: [
-          o && /* @__PURE__ */ y(
+          o && /* @__PURE__ */ x(
             "button",
             {
               type: "button",
               className: "nxp-carousel__btn nxp-carousel__btn--prev",
-              onClick: W,
-              disabled: be,
+              onClick: K,
+              disabled: he,
               "aria-label": "Previous slide",
               children: D ? "›" : "‹"
             }
           ),
-          /* @__PURE__ */ y(
+          /* @__PURE__ */ x(
             "div",
             {
               className: "nxp-carousel__dots",
               role: "tablist",
               "aria-label": "Select slide",
-              children: Array.from({ length: t }).map((r, i) => /* @__PURE__ */ y(
+              children: Array.from({ length: t }).map((r, i) => /* @__PURE__ */ x(
                 "button",
                 {
                   type: "button",
                   role: "tab",
                   className: `nxp-carousel__dot${v === i ? " is-active" : ""}`,
-                  onClick: () => T(i),
+                  onClick: () => F(i),
                   "aria-label": `Slide ${i + 1} of ${t}`,
                   "aria-selected": v === i,
                   tabIndex: v === i ? 0 : -1
@@ -378,13 +379,13 @@ function fe({
               ))
             }
           ),
-          o && /* @__PURE__ */ y(
+          o && /* @__PURE__ */ x(
             "button",
             {
               type: "button",
               className: "nxp-carousel__btn nxp-carousel__btn--next",
-              onClick: O,
-              disabled: he,
+              onClick: C,
+              disabled: xe,
               "aria-label": "Next slide",
               children: D ? "‹" : "›"
             }
@@ -399,5 +400,5 @@ fe.displayName = "Carousel";
 export {
   fe as Carousel,
   fe as default,
-  ze as useCarousel
+  Ye as useCarousel
 };

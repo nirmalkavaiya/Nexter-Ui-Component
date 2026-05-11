@@ -323,6 +323,7 @@ function Carousel({
   onSlideChange,
 }) {
   const rootRef    = useRef(null);
+  const wrapperRef = useRef(null);   // viewport element — has overflow:hidden, safe to measure
   const trackRef   = useRef(null);
 
   /* container width — drives geometry + responsive perView */
@@ -370,7 +371,7 @@ function Carousel({
   /* ── geometry ── */
   const gapPx      = typeof gap === 'number' ? gap : parseInt(gap, 10) || 0;
   const slideWidth = containerWidth > 0
-    ? (containerWidth - gapPx * (perView - 1)) / perView
+    ? Math.max(0, (containerWidth - gapPx * (perView - 1)) / perView)
     : 0;
   const slideStep  = slideWidth + gapPx;
 
@@ -472,9 +473,11 @@ function Carousel({
      Resize observer
   ───────────────────────────────────────── */
   const onResize = useCallback((rect) => setContainerWidth(rect.width), []);
-  useResizeObserver(rootRef, onResize);
+  // Observe the viewport (has overflow:hidden) — never the root which can report
+  // inflated width from overflowing track children causing a feedback loop.
+  useResizeObserver(wrapperRef, onResize);
   useEffect(() => {
-    if (rootRef.current) setContainerWidth(rootRef.current.offsetWidth);
+    if (wrapperRef.current) setContainerWidth(wrapperRef.current.offsetWidth);
   }, []);
 
   /* ─────────────────────────────────────────
@@ -588,6 +591,7 @@ function Carousel({
 
         {/* ── Viewport (clips track overflow) ── */}
         <div
+          ref={wrapperRef}
           className="nxp-carousel__viewport"
           style={autoHeight && slideHeight != null ? { height: slideHeight } : undefined}
         >

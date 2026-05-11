@@ -1822,6 +1822,7 @@ input.nxp-input--invalid:focus {
 .nxp-carousel {
   position: relative;
   width: 100%;
+  overflow: hidden; /* prevent track from inflating measured width */
   border-radius: var(--nxp-radius-lg);
   --nxp-dur-slide: 380ms;
 }
