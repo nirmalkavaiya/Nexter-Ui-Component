@@ -1,6 +1,6 @@
 import { jsx as a, jsxs as f } from "react/jsx-runtime";
 import { useRef as R, useEffect as z, Children as A, isValidElement as J } from "react";
-import { Splide as O, SplideSlide as h } from "../../node_modules/@splidejs/react-splide/dist/js/react-splide.esm.js";
+import { Splide as O, SplideSlide as h } from "@splidejs/react-splide";
 /* empty css                                                                     */
 import { Slide as q } from "./Slide.js";
 function F(t, e) {
