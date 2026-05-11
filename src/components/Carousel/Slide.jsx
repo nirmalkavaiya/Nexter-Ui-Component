@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Slide — composable slide cell for Carousel v2.
+ * Slide — content wrapper for use inside <Carousel>.
  *
  * Usage:
  *   <Carousel>
@@ -11,9 +11,9 @@ import React from 'react';
  *     </Slide>
  *   </Carousel>
  *
- * When used as a direct child of Carousel, the component receives
- * width / margin layout styles injected by the Carousel engine.
- * Any style you pass is merged on top of those layout styles.
+ * The <Slide> renders a full-height content div inside each Splide
+ * slide cell. Pass background for quick gradient/color fills, or
+ * supply any className / style overrides.
  */
 export function Slide({
   children,
@@ -22,13 +22,11 @@ export function Slide({
   style      = {},
   ...rest
 }) {
-  const resolvedStyle = background
-    ? { background, ...style }
-    : style;
+  const resolvedStyle = background ? { background, ...style } : style;
 
   return (
     <div
-      className={`nxp-carousel__slide nxp-carousel__slide--custom ${className}`.trim()}
+      className={`nxp-carousel__slide-content ${className}`.trim()}
       style={resolvedStyle}
       {...rest}
     >
@@ -37,8 +35,8 @@ export function Slide({
   );
 }
 
-// Marker used by Carousel to detect <Slide> children
-Slide.__isSlide    = true;
-Slide.displayName  = 'Slide';
+/* Marker — lets Carousel distinguish <Slide> from arbitrary children */
+Slide.__isSlide   = true;
+Slide.displayName = 'Slide';
 
 export default Slide;

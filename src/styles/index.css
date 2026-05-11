@@ -1815,64 +1815,47 @@ input.nxp-input--invalid:focus {
 }
 
 /* ============================================================
-   CAROUSEL  v2 — transform engine
+   CAROUSEL  v3 — powered by @splidejs/react-splide
    ============================================================ */
 
-/* Root */
+/* ── Root wrapper ─────────────────────────────────────────── */
 .nxp-carousel {
   position: relative;
   width: 100%;
-  overflow: hidden; /* prevent track from inflating measured width */
+}
+
+/* ── Splide structural resets ─────────────────────────────── */
+.nxp-carousel .splide {
+  visibility: visible; /* override Splide's pre-init hidden state */
+}
+.nxp-carousel .splide__track {
   border-radius: var(--nxp-radius-lg);
-  --nxp-dur-slide: 380ms;
-}
-.nxp-carousel:focus-visible {
-  outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
-  outline-offset: 2px;
-}
-
-/* Viewport — clips the sliding track */
-.nxp-carousel__viewport {
   overflow: hidden;
-  width: 100%;
-  transition: height var(--nxp-dur-slide) var(--nxp-ease, cubic-bezier(0.16,1,0.3,1));
+}
+.nxp-carousel .splide__slide {
+  /* let content dictate height */
+  height: auto;
 }
 
-/* Track — GPU-accelerated transform (transition set inline for config) */
-.nxp-carousel__track {
-  display: flex;
-  will-change: transform;
-  touch-action: pan-y;
-}
-.nxp-carousel__track--dragging {
-  cursor: grabbing;
-}
-.nxp-carousel--dragging {
-  user-select: none;
-}
-
-/* Slide */
+/* ── Data-slide inner content ─────────────────────────────── */
 .nxp-carousel__slide {
-  flex-shrink: 0;
   background: var(--nxp-brand-grad);
   padding: var(--nxp-space-40);
   display: flex;
   flex-direction: column;
   gap: var(--nxp-space-10);
   color: #fff;
+  min-height: 160px;
   border-radius: var(--nxp-radius-lg);
   box-sizing: border-box;
 }
 
-/* Custom (JSX) slide — no default styles, pure layout wrapper */
-.nxp-carousel__slide--custom {
-  background: none;
-  padding: 0;
-  color: inherit;
-  border-radius: 0;
+/* ── JSX Slide wrapper — transparent by default ──────────── */
+.nxp-carousel__slide-content {
+  box-sizing: border-box;
 }
 
-/* ── Text content ─────────────────────────────────────────── */
+/* ── Text content (data slides) ───────────────────────────── */
 .nxp-carousel__eyebrow {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-xs);
@@ -1893,6 +1876,7 @@ input.nxp-input--invalid:focus {
   font-size: var(--nxp-text-md);
   color: rgba(255,255,255,0.75);
   line-height: var(--nxp-font-lineHeight-normal);
+  margin: 0;
 }
 .nxp-carousel__cta {
   margin-top: var(--nxp-space-8);
@@ -1909,110 +1893,98 @@ input.nxp-input--invalid:focus {
   font-weight: var(--nxp-font-medium);
   text-decoration: none;
   cursor: pointer;
-  transition: background var(--nxp-dur-hover) var(--nxp-ease);
+  transition: background var(--nxp-dur-hover, 140ms) var(--nxp-ease, ease);
   width: fit-content;
 }
 .nxp-carousel__cta:hover {
   background: rgba(255,255,255,0.25);
 }
 
-/* ── Navigation bar ───────────────────────────────────────── */
-.nxp-carousel__nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--nxp-space-8);
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-}
-
 /* ── Arrow buttons ────────────────────────────────────────── */
-.nxp-carousel__btn {
+.nxp-carousel .splide__arrow {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid var(--nxp-border-strong, var(--nxp-color-border));
-  background: var(--nxp-bg, var(--nxp-color-bg));
+  border: 1px solid var(--nxp-color-border);
+  background: var(--nxp-color-bg);
+  color: var(--nxp-color-text-muted);
+  opacity: 1;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--nxp-text-lg);
-  color: var(--nxp-text-muted, var(--nxp-color-text-muted));
-  transition: background var(--nxp-dur-hover) var(--nxp-ease),
-              color     var(--nxp-dur-hover) var(--nxp-ease);
+  transition: background var(--nxp-dur-hover, 140ms) var(--nxp-ease, ease),
+              color     var(--nxp-dur-hover, 140ms) var(--nxp-ease, ease),
+              border-color var(--nxp-dur-hover, 140ms) var(--nxp-ease, ease);
 }
-.nxp-carousel__btn:hover:not(:disabled) {
-  background: var(--nxp-wash-hover, var(--nxp-color-bg-muted));
-  color: var(--nxp-text, var(--nxp-color-text));
+.nxp-carousel .splide__arrow svg {
+  fill: currentColor;
+  width: 14px;
+  height: 14px;
 }
-.nxp-carousel__btn:disabled {
-  opacity: 0.35;
+.nxp-carousel .splide__arrow:hover:not(:disabled) {
+  background: var(--nxp-color-bg-muted);
+  color: var(--nxp-color-text);
+  border-color: var(--nxp-color-primary);
+}
+.nxp-carousel .splide__arrow:disabled {
+  opacity: 0.3;
   cursor: not-allowed;
 }
-.nxp-carousel__btn:focus-visible {
+.nxp-carousel .splide__arrow:focus-visible {
   outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
   outline-offset: 2px;
 }
+.nxp-carousel .splide__arrow--prev { left:  -16px; }
+.nxp-carousel .splide__arrow--next { right: -16px; }
 
-/* ── Dot indicators ───────────────────────────────────────── */
-.nxp-carousel__dots {
-  display: flex;
-  gap: var(--nxp-space-6);
-  align-items: center;
+/* ── Dot pagination ───────────────────────────────────────── */
+.nxp-carousel .splide__pagination {
+  padding: 0;
+  gap: 6px;
+  margin-top: 12px;
+  position: static;
+  bottom: auto;
 }
-.nxp-carousel__dot {
+.nxp-carousel .splide__pagination__page {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background: var(--nxp-border-strong, var(--nxp-color-border));
-  cursor: pointer;
+  border-radius: 4px;
+  background: var(--nxp-color-border);
   border: none;
   padding: 0;
-  transition: background var(--nxp-dur-hover) var(--nxp-ease),
-              transform  var(--nxp-dur-hover) var(--nxp-ease),
-              width      var(--nxp-dur-hover) var(--nxp-ease);
+  margin: 0;
+  cursor: pointer;
+  transition: background 140ms ease, width 140ms ease, transform 140ms ease;
 }
-.nxp-carousel__dot.is-active {
+.nxp-carousel .splide__pagination__page.is-active {
   background: var(--nxp-brand, var(--nxp-color-primary));
-  transform: scale(1.35);
-  width: 20px;
-  border-radius: 4px;
+  width: 18px;
+  transform: scale(1.1);
 }
-.nxp-carousel__dot:focus-visible {
+.nxp-carousel .splide__pagination__page:focus-visible {
   outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
   outline-offset: 2px;
 }
 
-/* ── Variant: dark (light controls for dark/gradient backgrounds) */
-.nxp-carousel--dark .nxp-carousel__btn {
+/* ── Variant: dark — light controls on dark/gradient bg ───── */
+.nxp-carousel--dark .splide__arrow {
   background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.28);
   color: #fff;
 }
-.nxp-carousel--dark .nxp-carousel__btn:hover:not(:disabled) {
+.nxp-carousel--dark .splide__arrow:hover:not(:disabled) {
   background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
 }
-.nxp-carousel--dark .nxp-carousel__dot {
+.nxp-carousel--dark .splide__pagination__page {
   background: rgba(255,255,255,0.35);
 }
-.nxp-carousel--dark .nxp-carousel__dot.is-active {
+.nxp-carousel--dark .splide__pagination__page.is-active {
   background: #fff;
-}
-
-/* ── RTL ── */
-.nxp-carousel--rtl .nxp-carousel__track {
-  direction: rtl;
-}
-
-/* ── Auto-height ── */
-.nxp-carousel--auto-height .nxp-carousel__track {
-  align-items: flex-start;
-}
-.nxp-carousel--auto-height .nxp-carousel__slide {
-  height: auto;
 }
 
 /* ============================================================

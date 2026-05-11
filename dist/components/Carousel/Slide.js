@@ -1,25 +1,25 @@
 import { jsx as d } from "react/jsx-runtime";
 import "react";
-function s({
+function t({
   children: l,
   background: e,
   className: r = "",
   style: i = {},
-  ...t
+  ...s
 }) {
   const o = e ? { background: e, ...i } : i;
   return /* @__PURE__ */ d(
     "div",
     {
-      className: `nxp-carousel__slide nxp-carousel__slide--custom ${r}`.trim(),
+      className: `nxp-carousel__slide-content ${r}`.trim(),
       style: o,
-      ...t,
+      ...s,
       children: l
     }
   );
 }
-s.__isSlide = !0;
-s.displayName = "Slide";
+t.__isSlide = !0;
+t.displayName = "Slide";
 export {
-  s as Slide
+  t as Slide
 };
