@@ -56,7 +56,8 @@ import { cn } from '../../lib/utils';
  *  wrap         boolean (default true) — wraps items in horizontal layout.
  *  divider      boolean (default false) — renders a separator between vertical items.
  *  fullWidth    boolean (default false) — stretches list to 100% width.
- *  className    string  — extra classes on the root <ul>.
+ *  className     string  — extra classes on the root <ul>.
+ *  textClassName string  — extra classes on every nxp-feature-list__text <span>.
  */
 
 /* ── Default circular check icon ────────────────────────────── */
@@ -107,7 +108,8 @@ function FeatureList({
   fullWidth = false,
 
   /* passthrough */
-  className = '',
+  className     = '',
+  textClassName = '',
 }) {
   /* ── Root class list ───────────────────────────────────────── */
   const rootClass = cn(
@@ -163,7 +165,7 @@ function FeatureList({
                 {resolvedIcon}
               </span>
             )}
-            <span className="nxp-feature-list__text nxp-body">
+            <span className={cn('nxp-feature-list__text nxp-body', textClassName)}>
               {text}
             </span>
           </li>

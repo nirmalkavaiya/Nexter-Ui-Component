@@ -1,7 +1,7 @@
-import { jsx as r, jsxs as c } from "react/jsx-runtime";
+import { jsx as r, jsxs as u } from "react/jsx-runtime";
 import "react";
-import { cn as m } from "../../lib/utils.js";
-const g = ({ size: s = 16 }) => /* @__PURE__ */ c(
+import { cn as c } from "../../lib/utils.js";
+const k = ({ size: s = 16 }) => /* @__PURE__ */ u(
   "svg",
   {
     width: s,
@@ -25,7 +25,7 @@ const g = ({ size: s = 16 }) => /* @__PURE__ */ c(
     ]
   }
 );
-function $({
+function w({
   /* data */
   items: s = [],
   /* icon */
@@ -40,39 +40,40 @@ function $({
   /* alignment */
   align: p = "start",
   /* behaviour */
-  wrap: u = !0,
-  divider: d = !1,
-  fullWidth: x = !1,
+  wrap: d = !0,
+  divider: x = !1,
+  fullWidth: h = !1,
   /* passthrough */
-  className: h = ""
+  className: v = "",
+  textClassName: y = ""
 }) {
-  const v = m(
+  const b = c(
     "nxp-feature-list",
     `nxp-feature-list--${f}`,
     p !== "start" ? `nxp-feature-list--align-${p}` : "",
-    f === "horizontal" && u ? "nxp-feature-list--wrap" : "",
-    d ? "nxp-feature-list--divider" : "",
-    x ? "nxp-feature-list--full-width" : "",
-    h
+    f === "horizontal" && d ? "nxp-feature-list--wrap" : "",
+    x ? "nxp-feature-list--divider" : "",
+    h ? "nxp-feature-list--full-width" : "",
+    v
   ), n = {};
   return l !== 16 && (n["--nxpl-icon-size"] = typeof l == "number" ? `${l}px` : l), i !== void 0 && (n["--nxpl-icon-text-gap"] = typeof i == "number" ? `${i}px` : i), o !== void 0 && (n["--nxpl-item-gap"] = typeof o == "number" ? `${o}px` : o), /* @__PURE__ */ r(
     "ul",
     {
-      className: v,
+      className: b,
       style: Object.keys(n).length ? n : void 0,
       role: "list",
-      children: s.map((e, y) => {
-        const b = typeof e == "string" ? e : e.text;
+      children: s.map((e, m) => {
+        const g = typeof e == "string" ? e : e.text;
         let t;
-        return typeof e == "object" && "icon" in e ? t = e.icon : a !== void 0 ? t = a : t = /* @__PURE__ */ r(g, { size: l }), /* @__PURE__ */ c("li", { className: "nxp-feature-list__item", children: [
+        return typeof e == "object" && "icon" in e ? t = e.icon : a !== void 0 ? t = a : t = /* @__PURE__ */ r(k, { size: l }), /* @__PURE__ */ u("li", { className: "nxp-feature-list__item", children: [
           t != null && /* @__PURE__ */ r("span", { className: "nxp-feature-list__icon", "aria-hidden": "true", children: t }),
-          /* @__PURE__ */ r("span", { className: "nxp-feature-list__text nxp-body", children: b })
-        ] }, y);
+          /* @__PURE__ */ r("span", { className: c("nxp-feature-list__text nxp-body", y), children: g })
+        ] }, m);
       })
     }
   );
 }
 export {
-  $ as FeatureList,
-  $ as default
+  w as FeatureList,
+  w as default
 };
