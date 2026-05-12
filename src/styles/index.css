@@ -4917,6 +4917,10 @@ input.nxp-input--invalid:focus {
 .nxp-text-muted   { color: var(--nxp-color-text-muted); }
 .nxp-text-faint   { color: var(--nxp-color-text-faint); }
 .nxp-text-white   { color: #fff; }
+.nxp-text-hover-white:hover,
+.nxp-text-hover-white:active {
+    color: #fff;
+}
 .nxp-text-primary { color: var(--nxp-color-primary); }
 .nxp-text-success { color: var(--nxp-color-success); }
 .nxp-text-warning { color: var(--nxp-color-warning); }
