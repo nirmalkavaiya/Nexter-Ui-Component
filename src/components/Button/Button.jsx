@@ -42,7 +42,7 @@ import { cn } from '../../lib/utils';
  * ─────────────────────────────────────────────────────────────
  *
  * Props
- *  variant      'primary'|'secondary'|'outline'|'ghost'|'destructive'|'link'|'grad'
+ *  variant      'primary'|'secondary'|'outline'|'ghost'|'destructive'|'link'|'grad'|'underline'
  *  size         'sm'|'md'|'lg'
  *  icon         boolean  — square icon-only button
  *  loading      boolean  — shows spinner, disables interaction
@@ -119,6 +119,7 @@ function Button({
   const classes = cn(
     'nxp-btn',
     `nxp-btn--${variant}`,
+    variant === 'underline' ? 'nxp-hover-underline' : '',
     size && size !== 'md' ? `nxp-btn--${size}` : '',
     icon     ? 'nxp-btn--icon'     : '',
     loading  ? 'nxp-btn--loading'  : '',
