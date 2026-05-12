@@ -119,7 +119,6 @@ function Button({
   const classes = cn(
     'nxp-btn',
     `nxp-btn--${variant}`,
-    variant === 'underline' ? 'nxp-hover-underline' : '',
     size && size !== 'md' ? `nxp-btn--${size}` : '',
     icon     ? 'nxp-btn--icon'     : '',
     loading  ? 'nxp-btn--loading'  : '',
