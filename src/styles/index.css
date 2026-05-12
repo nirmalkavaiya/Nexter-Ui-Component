@@ -86,7 +86,6 @@
     box-shadow var(--nxp-dur-hover) var(--nxp-ease),
     opacity var(--nxp-dur-hover) var(--nxp-ease);
   position: relative;
-  overflow: hidden;
 }
 
 .nxp-btn:disabled,
