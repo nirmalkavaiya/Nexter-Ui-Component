@@ -70,6 +70,9 @@ export { ThemeProvider, useTheme }     from './components/ThemeProvider';
 // v1.9.23 additions
 export { default as Container }        from './components/Container';
 
+// v2.1.6 additions
+export { default as FeatureList } from './components/FeatureList';
+
 // v1.8.0 additions
 export { VerticalNavigationMenu } from './components/VerticalNavigationMenu';
 

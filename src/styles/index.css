@@ -215,11 +215,11 @@ a.nxp-btn:active {
   height: auto;
   text-decoration: none;
 }
-.nxp-btn--underline:focus-visible {
+/* .nxp-btn--underline:focus-visible {
   outline: none;
   box-shadow: var(--nxp-ring);
   border-radius: 2px;
-}
+} */
 
 /* ========================================
    Underline Hover Animation
@@ -2962,6 +2962,122 @@ input.nxp-input--invalid:focus {
 .nxp-ftc__lock-btn:focus-visible {
   box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
   border-color: #7C3AED;
+}
+
+/* ============================================================
+   FEATURE LIST
+   ============================================================ */
+
+/*
+ * Component-scoped CSS custom properties.
+ * Override any of these on a parent element or inline style to
+ * customise a specific instance without touching global tokens.
+ *
+ *  --nxpl-icon-size       Width/height of every icon cell
+ *  --nxpl-icon-bg         Fill of the default circular check icon
+ *  --nxpl-icon-check      Stroke colour of the checkmark inside the icon
+ *  --nxpl-icon-color      currentColor passed to custom SVG icons
+ *  --nxpl-text-color      Text colour for every list item
+ *  --nxpl-item-gap        Space between items (vertical row gap / horizontal column gap)
+ *  --nxpl-icon-text-gap   Space between the icon cell and the text
+ *  --nxpl-layout-gap      Gap used in horizontal layout (overrides --nxpl-item-gap)
+ *  --nxpl-divider-color   Colour of the optional between-item rule
+ */
+:root {
+  --nxpl-icon-size:       16px;
+  --nxpl-icon-bg:         var(--nxp-color-primary);
+  --nxpl-icon-check:      #ffffff;
+  --nxpl-icon-color:      var(--nxp-color-primary);
+  --nxpl-text-color:      var(--nxp-color-text);
+  --nxpl-item-gap:        var(--nxp-space-12);
+  --nxpl-icon-text-gap:   var(--nxp-space-8);
+  --nxpl-layout-gap:      var(--nxp-space-24);
+  --nxpl-divider-color:   var(--nxp-color-border-subtle);
+}
+
+/* ── Root <ul> ──────────────────────────────────────────────── */
+.nxp-feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nxpl-item-gap);
+}
+
+/* ── Layout: vertical (default) ────────────────────────────── */
+.nxp-feature-list--vertical {
+  flex-direction: column;
+}
+
+/* ── Layout: horizontal ─────────────────────────────────────── */
+.nxp-feature-list--horizontal {
+  flex-direction: row;
+  gap: var(--nxpl-layout-gap);
+}
+
+/* ── Wrap modifier (horizontal only) ───────────────────────── */
+.nxp-feature-list--wrap {
+  flex-wrap: wrap;
+}
+
+/* ── Full-width modifier ────────────────────────────────────── */
+.nxp-feature-list--full-width {
+  width: 100%;
+}
+
+/* ── Alignment modifiers ────────────────────────────────────── */
+.nxp-feature-list--align-center { justify-content: center; }
+.nxp-feature-list--align-end    { justify-content: flex-end; }
+
+/* ── List item <li> ─────────────────────────────────────────── */
+.nxp-feature-list__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nxpl-icon-text-gap);
+  min-width: 0;
+}
+
+/* Vertical: items stretch full width so text wraps correctly */
+.nxp-feature-list--vertical .nxp-feature-list__item {
+  width: 100%;
+}
+
+/* ── Divider — vertical layout only ────────────────────────── */
+.nxp-feature-list--vertical.nxp-feature-list--divider
+  .nxp-feature-list__item:not(:last-child) {
+  padding-bottom: var(--nxpl-item-gap);
+  border-bottom: 1px solid var(--nxpl-divider-color);
+}
+
+/* ── Icon wrapper <span> ────────────────────────────────────── */
+.nxp-feature-list__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--nxpl-icon-size);
+  height: var(--nxpl-icon-size);
+  color: var(--nxpl-icon-color);
+}
+
+/* ── Text <span> ────────────────────────────────────────────── */
+.nxp-feature-list__text {
+  color: var(--nxpl-text-color);
+  min-width: 0;
+  flex: 1 1 0%;
+}
+
+/* ── Responsive: horizontal → vertical below 480 px ────────── */
+@media (max-width: 480px) {
+  .nxp-feature-list--horizontal {
+    flex-direction: column;
+    gap: var(--nxpl-item-gap);
+  }
+
+  .nxp-feature-list--horizontal .nxp-feature-list__item {
+    width: 100%;
+  }
 }
 
 /* ============================================================
