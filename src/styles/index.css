@@ -111,6 +111,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--primary:hover {
   background: var(--nxp-color-primary-dark);
+  color: var(--nxp-color-bg);
 }
 .nxp-btn--primary:active {
   background: var(--nxp-color-primary-dark);
