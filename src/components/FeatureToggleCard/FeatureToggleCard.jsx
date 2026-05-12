@@ -1,7 +1,6 @@
 import React from 'react';
 import { Toggle } from '../Toggle/Toggle';
 import { Tooltip } from '../Tooltip/Tooltip';
-
 /* ─── SVG icons ─────────────────────────────────────────────────────────── */
 
 const InfoIcon = () => (
@@ -91,7 +90,7 @@ function FeatureToggleCard({
   onChange,
   onSettingsClick,
   disabled = false,
-
+  redirectLink,
   className = '',
 }) {
   const hasPlanBadge = planType && planType !== 'free';
@@ -223,7 +222,12 @@ function FeatureToggleCard({
                 <GearIcon />
               </button>
             )}
-
+            {redirectLink && isEnabled && (
+              <a href={redirectLink} target="_blank" className="nxp-ftc__redirect-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 19 19" fill="none"><path d="M12.6667 8.77778V13.4444C12.6667 13.857 12.5028 14.2527 12.2111 14.5444C11.9193 14.8361 11.5237 15 11.1111 15H2.55556C2.143 15 1.74733 14.8361 1.45561 14.5444C1.16389 14.2527 1 13.857 1 13.4444V4.88889C1 4.47633 1.16389 4.08067 1.45561 3.78894C1.74733 3.49722 2.143 3.33333 2.55556 3.33333H7.22222M10.3333 1H15M15 1V5.66667M15 1L6.44482 9.55556" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+              </a>
+            )}
+            
             {/* Toggle OR lock button */}
             {isLocked ? (
               <button
