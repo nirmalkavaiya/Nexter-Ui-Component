@@ -1,12 +1,12 @@
 import { jsxs as n, jsx as e, Fragment as E } from "react/jsx-runtime";
 import "react";
-import { Toggle as M } from "../Toggle/Toggle.js";
-import { Tooltip as W } from "../Tooltip/Tooltip.js";
-const j = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+import { Toggle as y } from "../Toggle/Toggle.js";
+import { Tooltip as M } from "../Tooltip/Tooltip.js";
+const W = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("circle", { cx: "7", cy: "7", r: "6.25", stroke: "currentColor", strokeWidth: "1.5" }),
   /* @__PURE__ */ e("path", { d: "M7 6.5v3.5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }),
   /* @__PURE__ */ e("circle", { cx: "7", cy: "4.25", r: "0.875", fill: "currentColor" })
-] }), y = () => /* @__PURE__ */ n("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", "aria-hidden": "true", children: [
+] }), j = () => /* @__PURE__ */ n("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e(
     "path",
     {
@@ -59,10 +59,10 @@ function G({
   // 'free' | 'pro' | 'freemium'
   isLocked: r = !1,
   isNew: k = !1,
-  onUpgradeClick: i,
+  onUpgradeClick: l,
   /* feature-level badge (backward compat) */
   showBadge: m = !1,
-  badgeText: l = "BETA",
+  badgeText: i = "BETA",
   badgeVariant: g = "beta",
   /* docs */
   docsLabel: f = "Read Docs",
@@ -84,7 +84,7 @@ function G({
     "nxp-ftc-outer",
     x ? "nxp-ftc-outer--has-plan" : ""
   ].filter(Boolean).join(" "), L = [
-    "nxp-ftc",
+    "nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md",
     r ? "nxp-ftc--locked" : "",
     a ? "nxp-ftc--disabled" : "",
     w
@@ -92,7 +92,7 @@ function G({
     "a",
     {
       href: h,
-      className: "nxp-ftc__link",
+      className: "nxp-body nxp-btn--underline nxp-ftc__link",
       target: "_blank",
       rel: "noopener noreferrer",
       tabIndex: o ? -1 : 0,
@@ -114,37 +114,37 @@ function G({
     /* @__PURE__ */ e("div", { className: L, children: /* @__PURE__ */ n("div", { className: "nxp-ftc__body", children: [
       /* @__PURE__ */ n("div", { className: "nxp-ftc__left", children: [
         /* @__PURE__ */ n("div", { className: "nxp-ftc__title-row", children: [
-          /* @__PURE__ */ e("span", { className: "nxp-ftc__title", children: t }),
+          /* @__PURE__ */ e("span", { className: "nxp-title-label nxp-cursor-pointer", children: t }),
           k && /* @__PURE__ */ e("span", { className: "nxp-ftc__badge nxp-ftc__badge--new", "aria-label": "New feature", children: "NEW" }),
-          m && l && /* @__PURE__ */ e(
+          m && i && /* @__PURE__ */ e(
             "span",
             {
               className: b[g] ?? b.default,
-              "aria-label": `${l} feature`,
-              children: l
+              "aria-label": `${i} feature`,
+              children: i
             }
           ),
-          p && /* @__PURE__ */ e(W, { content: p, children: /* @__PURE__ */ e(
+          p && /* @__PURE__ */ e(M, { content: p, children: /* @__PURE__ */ e(
             "span",
             {
               className: "nxp-ftc__info-icon",
               tabIndex: o ? -1 : 0,
               role: "button",
               "aria-label": `About ${t}`,
-              children: /* @__PURE__ */ e(j, {})
+              children: /* @__PURE__ */ e(W, {})
             }
           ) })
         ] }),
         /* @__PURE__ */ n("div", { className: "nxp-ftc__links", children: [
           C,
-          r && i && /* @__PURE__ */ n(E, { children: [
+          r && l && /* @__PURE__ */ n(E, { children: [
             /* @__PURE__ */ e("span", { className: "nxp-ftc__links-sep", "aria-hidden": "true", children: "·" }),
             /* @__PURE__ */ n(
               "button",
               {
                 type: "button",
                 className: "nxp-ftc__upgrade-link nxp-ftc__link--btn",
-                onClick: i,
+                onClick: l,
                 children: [
                   "Upgrade",
                   /* @__PURE__ */ e($, {})
@@ -164,7 +164,7 @@ function G({
             disabled: a,
             "aria-label": `${t} settings`,
             tabIndex: a ? -1 : 0,
-            children: /* @__PURE__ */ e(y, {})
+            children: /* @__PURE__ */ e(j, {})
           }
         ),
         r ? /* @__PURE__ */ e(
@@ -172,13 +172,13 @@ function G({
           {
             type: "button",
             className: "nxp-ftc__lock-btn",
-            onClick: i,
+            onClick: l,
             "aria-label": `Upgrade to unlock ${t}`,
             title: "Upgrade to unlock",
             children: /* @__PURE__ */ e(A, {})
           }
         ) : /* @__PURE__ */ e(
-          M,
+          y,
           {
             checked: N,
             onChange: I,

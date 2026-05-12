@@ -109,7 +109,7 @@ function FeatureToggleCard({
   ].filter(Boolean).join(' ');
 
   const cardClass = [
-    'nxp-ftc',
+    'nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md',
     isLocked  ? 'nxp-ftc--locked'   : '',
     disabled  ? 'nxp-ftc--disabled' : '',
     className,
@@ -120,7 +120,7 @@ function FeatureToggleCard({
     ? (
       <a
         href={docsHref}
-        className="nxp-ftc__link"
+        className="nxp-body nxp-btn--underline nxp-ftc__link"
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={isInteractionLocked ? -1 : 0}
@@ -155,7 +155,7 @@ function FeatureToggleCard({
           {/* ── Left ── */}
           <div className="nxp-ftc__left">
             <div className="nxp-ftc__title-row">
-              <span className="nxp-ftc__title">{title}</span>
+              <span className="nxp-title-label nxp-cursor-pointer">{title}</span>
 
               {/* NEW badge */}
               {isNew && (

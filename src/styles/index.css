@@ -2365,18 +2365,18 @@ input.nxp-input--invalid:focus {
   position: absolute;
   z-index: var(--nxp-z-tooltip, 9999);
   background: var(--nxp-text);
-  color: #fff;
+  color: var(--nxp-bg);
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-sm);
-  line-height: var(--nxp-font-lineHeight-normal);
+  line-height: var(--nxp-font-lineHeight-snug);
   padding: var(--nxp-space-6) var(--nxp-space-10);
   border-radius: var(--nxp-radius-sm);
   white-space: normal;
-  width: 140px;
+  width: 165px;
   min-width: 48px;
   word-break: break-word;
   pointer-events: none;
-  box-shadow: var(--nxp-shadow-md);
+  text-align: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity .15s var(--nxp-ease), visibility .15s var(--nxp-ease), transform .15s var(--nxp-ease);
@@ -2725,24 +2725,14 @@ input.nxp-input--invalid:focus {
 
 /* ── Root card ───────────────────────────────────────────────────────── */
 .nxp-ftc {
-  background: var(--nxp-bg);
-  border: 1px solid var(--nxp-border);
-  border-radius: var(--nxp-radius-md);
-  padding: var(--nxp-space-12);
-  font-family: var(--nxp-font);
-  transition: box-shadow var(--nxp-dur-hover) var(--nxp-ease),
-              border-color var(--nxp-dur-hover) var(--nxp-ease);
+  transition: box-shadow var(--nxp-dur-hover) var(--nxp-ease), border-color var(--nxp-dur-hover) var(--nxp-ease);
 }
-.nxp-ftc:hover {
-  border-color: var(--nxp-color-border-focus);
-}
+
 /* Locked state */
 .nxp-ftc--locked {
   background: var(--nxp-bg-alt, #f8fafc);
 }
-.nxp-ftc--locked .nxp-ftc__title {
-  color: var(--nxp-text-muted);
-}
+
 /* Disabled state */
 .nxp-ftc--disabled {
   opacity: 0.55;
@@ -2776,14 +2766,6 @@ input.nxp-input--invalid:focus {
   gap: var(--nxp-space-6);
   flex-wrap: wrap;
 }
-.nxp-ftc__title {
-  font-size: var(--nxp-text-md);
-  font-weight: var(--nxp-font-medium);
-  color: var(--nxp-text);
-  line-height: var(--nxp-font-lineHeight-snug);
-  transition: color var(--nxp-dur-hover) var(--nxp-ease);
-}
-
 /* ── Inline feature badges (BETA / PRO / NEW) ────────────────────────── */
 .nxp-ftc__badge {
   display: inline-flex;
@@ -2862,16 +2844,12 @@ input.nxp-input--invalid:focus {
 .nxp-ftc__link {
   display: inline-flex;
   align-items: center;
-  gap: var(--nxp-space-4);
-  font-size: var(--nxp-text-sm);
-  font-weight: var(--nxp-font-medium);
-  color: var(--nxp-brand);
   text-decoration: none;
-  line-height: var(--nxp-font-lineHeight-snug);
   cursor: pointer;
 }
 .nxp-ftc__link:hover {
-  text-decoration: underline;
+  color: var(--nxp-color-primary);
+  text-decoration: none;
 }
 .nxp-ftc__link--btn {
   border: none;
