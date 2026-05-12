@@ -97,7 +97,10 @@ function FeatureToggleCard({
   const isInteractionLocked = isLocked || disabled;
 
   function handleToggle(newValue) {
-    onChange?.(newValue);
+    // Wrap boolean in a synthetic event so consumers using `e.target.checked`
+    // (the standard WP dashboard pattern) keep working without modification.
+    const syntheticEvent = { target: { checked: newValue } };
+    onChange?.(syntheticEvent);
     onToggle?.(newValue);
   }
 

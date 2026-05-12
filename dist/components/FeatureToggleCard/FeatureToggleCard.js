@@ -1,12 +1,12 @@
-import { jsxs as n, jsx as e, Fragment as A } from "react/jsx-runtime";
+import { jsxs as n, jsx as e, Fragment as y } from "react/jsx-runtime";
 import "react";
-import { Toggle as j } from "../Toggle/Toggle.js";
-import { Tooltip as y } from "../Tooltip/Tooltip.js";
-const E = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+import { Toggle as E } from "../Toggle/Toggle.js";
+import { Tooltip as j } from "../Tooltip/Tooltip.js";
+const W = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("circle", { cx: "7", cy: "7", r: "6.25", stroke: "currentColor", strokeWidth: "1.5" }),
   /* @__PURE__ */ e("path", { d: "M7 6.5v3.5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }),
   /* @__PURE__ */ e("circle", { cx: "7", cy: "4.25", r: "0.875", fill: "currentColor" })
-] }), W = () => /* @__PURE__ */ n("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", "aria-hidden": "true", children: [
+] }), $ = () => /* @__PURE__ */ n("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e(
     "path",
     {
@@ -27,7 +27,7 @@ const E = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "
       strokeLinejoin: "round"
     }
   )
-] }), $ = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+] }), R = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("rect", { x: "2.5", y: "6.5", width: "9", height: "6.5", rx: "1.5", stroke: "currentColor", strokeWidth: "1.4" }),
   /* @__PURE__ */ e(
     "path",
@@ -38,7 +38,7 @@ const E = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "
       strokeLinecap: "round"
     }
   )
-] }), R = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), g = {
+] }), F = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), g = {
   default: "nxp-ftc__badge",
   primary: "nxp-ftc__badge nxp-ftc__badge--primary",
   success: "nxp-ftc__badge nxp-ftc__badge--success",
@@ -46,11 +46,11 @@ const E = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "
   error: "nxp-ftc__badge nxp-ftc__badge--error",
   beta: "nxp-ftc__badge nxp-ftc__badge--beta",
   pro: "nxp-ftc__badge nxp-ftc__badge--pro"
-}, F = {
+}, V = {
   pro: "PRO",
   freemium: "FREEMIUM"
 };
-function U({
+function G({
   /* content */
   title: t,
   tooltip: p,
@@ -79,7 +79,8 @@ function U({
 }) {
   const b = c && c !== "free", o = r || a;
   function L(k) {
-    d == null || d(k), s == null || s(k);
+    const A = { target: { checked: k } };
+    d == null || d(A), s == null || s(k);
   }
   const M = [
     "nxp-ftc-outer",
@@ -111,7 +112,7 @@ function U({
     }
   );
   return /* @__PURE__ */ n("div", { className: M, children: [
-    b && /* @__PURE__ */ e("span", { className: `nxp-ftc-plan nxp-ftc-plan--${c}`, children: F[c] }),
+    b && /* @__PURE__ */ e("span", { className: `nxp-ftc-plan nxp-ftc-plan--${c}`, children: V[c] }),
     /* @__PURE__ */ e("div", { className: B, children: /* @__PURE__ */ n("div", { className: "nxp-ftc__body", children: [
       /* @__PURE__ */ n("div", { className: "nxp-ftc__left", children: [
         /* @__PURE__ */ n("div", { className: "nxp-ftc__title-row", children: [
@@ -125,20 +126,20 @@ function U({
               children: l
             }
           ),
-          p && /* @__PURE__ */ e(y, { content: p, children: /* @__PURE__ */ e(
+          p && /* @__PURE__ */ e(j, { content: p, children: /* @__PURE__ */ e(
             "span",
             {
               className: "nxp-ftc__info-icon",
               tabIndex: o ? -1 : 0,
               role: "button",
               "aria-label": `About ${t}`,
-              children: /* @__PURE__ */ e(E, {})
+              children: /* @__PURE__ */ e(W, {})
             }
           ) })
         ] }),
         /* @__PURE__ */ n("div", { className: "nxp-ftc__links", children: [
           I,
-          r && i && /* @__PURE__ */ n(A, { children: [
+          r && i && /* @__PURE__ */ n(y, { children: [
             /* @__PURE__ */ e("span", { className: "nxp-ftc__links-sep", "aria-hidden": "true", children: "·" }),
             /* @__PURE__ */ n(
               "button",
@@ -148,7 +149,7 @@ function U({
                 onClick: i,
                 children: [
                   "Upgrade",
-                  /* @__PURE__ */ e(R, {})
+                  /* @__PURE__ */ e(F, {})
                 ]
               }
             )
@@ -165,7 +166,7 @@ function U({
             disabled: a,
             "aria-label": `${t} settings`,
             tabIndex: a ? -1 : 0,
-            children: /* @__PURE__ */ e(W, {})
+            children: /* @__PURE__ */ e($, {})
           }
         ),
         u && _ && /* @__PURE__ */ e("a", { href: u, target: "_blank", className: "nxp-ftc__redirect-link", children: /* @__PURE__ */ e("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 19 19", fill: "none", children: /* @__PURE__ */ e("path", { d: "M12.6667 8.77778V13.4444C12.6667 13.857 12.5028 14.2527 12.2111 14.5444C11.9193 14.8361 11.5237 15 11.1111 15H2.55556C2.143 15 1.74733 14.8361 1.45561 14.5444C1.16389 14.2527 1 13.857 1 13.4444V4.88889C1 4.47633 1.16389 4.08067 1.45561 3.78894C1.74733 3.49722 2.143 3.33333 2.55556 3.33333H7.22222M10.3333 1H15M15 1V5.66667M15 1L6.44482 9.55556", stroke: "#1A1A1A", strokeLinecap: "round", strokeLinejoin: "round" }) }) }),
@@ -177,10 +178,10 @@ function U({
             onClick: i,
             "aria-label": `Upgrade to unlock ${t}`,
             title: "Upgrade to unlock",
-            children: /* @__PURE__ */ e($, {})
+            children: /* @__PURE__ */ e(R, {})
           }
         ) : /* @__PURE__ */ e(
-          j,
+          E,
           {
             checked: _,
             onChange: L,
@@ -193,6 +194,6 @@ function U({
   ] });
 }
 export {
-  U as FeatureToggleCard,
-  U as default
+  G as FeatureToggleCard,
+  G as default
 };
