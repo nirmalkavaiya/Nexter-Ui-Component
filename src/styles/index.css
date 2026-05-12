@@ -1924,9 +1924,11 @@ input.nxp-input--invalid:focus {
 .nxp-carousel .splide__pagination {
   padding: 0;
   gap: 6px;
-  margin-top: 12px;
-  position: static;
-  bottom: auto;
+  margin-top: 0;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
 }
 .nxp-carousel .splide__pagination__page {
   width: 8px;
@@ -1940,9 +1942,8 @@ input.nxp-input--invalid:focus {
   transition: background 140ms ease, width 140ms ease, transform 140ms ease;
 }
 .nxp-carousel .splide__pagination__page.is-active {
-  background: var(--nxp-brand, var(--nxp-color-primary));
-  width: 18px;
-  transform: scale(1.1);
+  background: var(--nxp-bg-alt);
+  transform: scale(1.4);
 }
 .nxp-carousel .splide__pagination__page:focus-visible {
   outline: 2px solid var(--nxp-color-primary, var(--nxp-brand));
@@ -4182,7 +4183,7 @@ input.nxp-input--invalid:focus {
 .nxp-typo--small {
   font-size: var(--nxp-text-sm);
   font-weight: var(--nxp-font-medium);
-  line-height: var(--nxp-font-lineHeight-normal);
+  line-height: var(--nxp-font-lineHeight-snug);
   color: var(--nxp-text);
 }
 .nxp-typo--muted {
