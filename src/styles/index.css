@@ -4782,6 +4782,12 @@ input.nxp-input--invalid:focus {
 .nxp-bg-muted    { background: var(--nxp-color-bg-muted); }
 .nxp-bg-subtle   { background: var(--nxp-color-bg-subtle); }
 .nxp-bg-primary  { background: var(--nxp-color-primary); }
+.nxp-bg-secondary {
+    background: var(--nxp-color-secondary);
+}
+.nxp-bg-secondary:hover {
+    background: var(--nxp-color-secondary-dark);
+}
 .nxp-bg-success  { background: var(--nxp-color-success-subtle); }
 .nxp-bg-warning  { background: var(--nxp-color-warning-subtle); }
 .nxp-bg-error    { background: var(--nxp-color-error-subtle); }
