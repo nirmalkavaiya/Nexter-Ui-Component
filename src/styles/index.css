@@ -4589,13 +4589,13 @@ input.nxp-input--invalid:focus {
    ============================================================ */
 
 .nxp-heading {
-  font-family: var(--nxp-font-family-sans);
-  font-size: var(--nxp-font-size-3xl);             /* 24px */
-  font-weight: var(--nxp-font-weight-bold);         /* 700 */
-  line-height: var(--nxp-font-lineHeight-tight);    /* 1.25 */
-  letter-spacing: -0.02em;
-  color: var(--nxp-color-text-strong);
-  margin: 0;
+    font-family: var(--nxp-font-family-sans);
+    font-size: var(--nxp-font-size-3xl);
+    font-weight: var(--nxp-font-weight-bold);
+    line-height: var(--nxp-font-lineHeight-loose);
+    letter-spacing: -.02em;
+    color: var(--nxp-color-text-strong);
+    margin: 0;
 }
 
 .nxp-subheading {
