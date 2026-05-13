@@ -4759,6 +4759,10 @@ input.nxp-input--invalid:focus {
   border-radius: var(--nxp-radius-md);
   padding: 20px;
 }
+.nxp-object-cover-center {
+  object-fit: cover;
+  object-position: center;
+}
 .nxp-card {
   background: var(--nxp-color-surface-card);
   border: 1px solid var(--nxp-color-border-default);
