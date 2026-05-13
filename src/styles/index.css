@@ -4757,7 +4757,6 @@ input.nxp-input--invalid:focus {
 .nxp-section-cover {
   background-color: var(--nxp-color-bg);
   border-radius: var(--nxp-radius-md);
-  gap: var(--nxp-space-20);
   padding: 20px;
 }
 .nxp-card {
