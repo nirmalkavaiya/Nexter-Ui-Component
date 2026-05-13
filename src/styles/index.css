@@ -128,8 +128,8 @@ a.nxp-btn:active {
   border-color: var(--nxp-border-strong);
 }
 .nxp-btn--secondary:hover {
-  background: var(--nxp-wash-hover);
-  border-color: var(--nxp-border-strong);
+  border-color: var(--nxp-color-primary);
+  color: var(--nxp-color-primary);
 }
 .nxp-btn--secondary:active {
   background: var(--nxp-wash-active);
