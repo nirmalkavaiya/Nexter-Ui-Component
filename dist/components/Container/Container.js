@@ -6,6 +6,7 @@ const M = {
   sm: "var(--nxp-space-8)",
   md: "var(--nxp-space-12)",
   lg: "var(--nxp-space-16)",
+  20: "var(--nxp-space-20)",
   xl: "var(--nxp-space-24)",
   "2xl": "var(--nxp-space-32)"
 };
@@ -66,14 +67,14 @@ function A({
   style: v = {},
   as: y = "div",
   children: _,
-  ...i
+  ...p
 }) {
-  const p = {}, o = j(f);
-  o && (p.gap = o);
+  const i = {}, o = j(f);
+  o && (i.gap = o);
   const m = j(r);
-  m && (p.columnGap = m);
+  m && (i.columnGap = m);
   const d = j(c);
-  d && (p.rowGap = d);
+  d && (i.rowGap = d);
   const t = {};
   if (e === "grid" && n !== void 0)
     if (typeof n == "object") {
@@ -93,8 +94,8 @@ function A({
     y,
     {
       className: w,
-      style: { ...p, ...t, ...v },
-      ...i,
+      style: { ...i, ...t, ...v },
+      ...p,
       children: _
     }
   ) });
@@ -113,25 +114,25 @@ function P({
   children: v,
   ...y
 }) {
-  const { containerType: _ } = V(), i = {};
-  let p = "", o = "";
+  const { containerType: _ } = V(), p = {};
+  let i = "", o = "";
   if (_ === "grid") {
     if (s !== void 0)
       if (s === "full")
-        p = "nxp-container__item--span-full";
+        i = "nxp-container__item--span-full";
       else if (typeof s == "object") {
-        p = "nxp-container__item--span";
+        i = "nxp-container__item--span";
         const I = s.lg ?? s.md ?? s.sm ?? 1;
-        i["--nxp-c-span"] = I, s.md !== void 0 && (i["--nxp-c-span-md"] = s.md), s.sm !== void 0 && (i["--nxp-c-span-sm"] = s.sm);
+        p["--nxp-c-span"] = I, s.md !== void 0 && (p["--nxp-c-span-md"] = s.md), s.sm !== void 0 && (p["--nxp-c-span-sm"] = s.sm);
       } else
-        p = "nxp-container__item--span", i["--nxp-c-span"] = s;
-    x !== void 0 && (o = "nxp-container__item--row-span", i["--nxp-c-row-span"] = x);
+        i = "nxp-container__item--span", p["--nxp-c-span"] = s;
+    x !== void 0 && (o = "nxp-container__item--row-span", p["--nxp-c-row-span"] = x);
   }
   const m = e === 1 ? "nxp-grow" : e === 0 ? "nxp-grow-0" : "", d = f === 1 ? "nxp-shrink" : f === 0 ? "nxp-shrink-0" : "";
   let t = "";
   r === "first" ? t = "nxp-order-first" : r === "last" ? t = "nxp-order-last" : r === 0 ? t = "nxp-order-none" : typeof r == "number" && r >= 1 && r <= 5 && (t = `nxp-order-${r}`);
   const w = h(
-    p,
+    i,
     o,
     m,
     d,
@@ -139,12 +140,12 @@ function P({
     c && O[c],
     a && T[a],
     l
-  ), g = Object.keys(i).length > 0;
+  ), g = Object.keys(p).length > 0;
   return /* @__PURE__ */ b(
     u,
     {
       className: w,
-      style: g ? { ...i, ...n } : Object.keys(n).length > 0 ? n : void 0,
+      style: g ? { ...p, ...n } : Object.keys(n).length > 0 ? n : void 0,
       ...y,
       children: v
     }

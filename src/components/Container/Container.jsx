@@ -8,7 +8,7 @@ import React, { createContext, useContext } from 'react';
  *
  * Props (Container):
  *   containerType  'flex' | 'grid'                          default: 'flex'
- *   gap            'none'|'xs'|'sm'|'md'|'lg'|'xl'|'2xl'   default: 'sm'
+ *   gap            'none'|'xs'|'sm'|'md'|'lg'|'20'|'xl'|'2xl'   default: 'sm'
  *   gapX           same as gap — column gap only
  *   gapY           same as gap — row gap only
  *   direction      'row'|'row-reverse'|'column'|'column-reverse'
@@ -41,6 +41,7 @@ const GAP_TOKENS = {
   sm:   'var(--nxp-space-8)',
   md:   'var(--nxp-space-12)',
   lg:   'var(--nxp-space-16)',
+  '20': 'var(--nxp-space-20)',
   xl:   'var(--nxp-space-24)',
   '2xl':'var(--nxp-space-32)',
 };
