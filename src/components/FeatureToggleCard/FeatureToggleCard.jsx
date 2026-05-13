@@ -185,7 +185,7 @@ function FeatureToggleCard({
             {onSettingsClick && !isLocked && (
               <button
                 type="button"
-                className="nxp-ftc__settings-btn"
+                className={"nxp-ftc__settings-btn"+(isEnabled ? ' setting-enable' : '')}
                 onClick={onSettingsClick}
                 disabled={!isEnabled || disabled}
                 aria-label={`${title} settings`}

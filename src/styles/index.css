@@ -2896,13 +2896,21 @@ input.nxp-input--invalid:focus {
   padding: 0;
   flex-shrink: 0;
 }
-.nxp-ftc__settings-btn:hover {
+.nxp-ftc__settings-btn.setting-enable{
+  border-color: var(--nxp-text-strong);
+  color: var(--nxp-text-strong);
+}
+.nxp-ftc__settings-btn.setting-enable svg path{
+ fill : var(--nxp-text-strong);
+}
+.nxp-ftc__settings-btn.setting-enable:hover {
   border-color: var(--nxp-brand);
   color: var(--nxp-brand);
-  background: var(--nxp-brand-soft);
 }
-.nxp-ftc__settings-btn:focus-visible {
-  box-shadow: var(--nxp-ring);
+.nxp-ftc__settings-btn.setting-enable:hover svg path{
+  fill : var(--nxp-brand);
+}
+.nxp-ftc__settings-btn.setting-enable:focus-visible {
   border-color: var(--nxp-brand);
 }
 .nxp-ftc__settings-btn:disabled {

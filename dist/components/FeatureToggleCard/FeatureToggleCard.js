@@ -1,7 +1,7 @@
 import { jsxs as n, jsx as e, Fragment as L } from "react/jsx-runtime";
 import "react";
-import { Toggle as E } from "../Toggle/Toggle.js";
-import { Tooltip as j } from "../Tooltip/Tooltip.js";
+import { Toggle as j } from "../Toggle/Toggle.js";
+import { Tooltip as E } from "../Tooltip/Tooltip.js";
 const W = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("circle", { cx: "7", cy: "7", r: "6.25", stroke: "currentColor", strokeWidth: "1.5" }),
   /* @__PURE__ */ e("path", { d: "M7 6.5v3.5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }),
@@ -17,7 +17,7 @@ const W = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "
       strokeLinecap: "round"
     }
   )
-] }), F = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), g = {
+] }), F = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), m = {
   default: "nxp-ftc__badge",
   primary: "nxp-ftc__badge nxp-ftc__badge--primary",
   success: "nxp-ftc__badge nxp-ftc__badge--success",
@@ -34,7 +34,7 @@ function H({
   title: t,
   tooltip: f,
   /* plan */
-  planType: r = "free",
+  planType: l = "free",
   // 'free' | 'pro' | 'freemium'
   isLocked: c = !1,
   isNew: k = !1,
@@ -48,18 +48,18 @@ function H({
   docsHref: _,
   onDocsClick: N,
   /* interaction */
-  isEnabled: l,
+  isEnabled: a,
   onToggle: p,
   onChange: o,
   onSettingsClick: x,
-  disabled: a = !1,
+  disabled: r = !1,
   redirectLink: u,
   className: C = ""
 }) {
-  const b = r && r !== "free", i = c || a;
-  function B(m) {
-    const y = { target: { checked: m } };
-    o == null || o(y), p == null || p(m);
+  const b = l && l !== "free", i = c || r;
+  function B(g) {
+    const y = { target: { checked: g } };
+    o == null || o(y), p == null || p(g);
   }
   const I = [
     "nxp-ftc-outer",
@@ -67,7 +67,7 @@ function H({
   ].filter(Boolean).join(" "), M = [
     "nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md",
     c ? "nxp-ftc--locked" : "",
-    a ? "nxp-ftc--disabled" : "",
+    r ? "nxp-ftc--disabled" : "",
     C
   ].filter(Boolean).join(" "), A = _ ? /* @__PURE__ */ e(
     "a",
@@ -91,7 +91,7 @@ function H({
     }
   );
   return /* @__PURE__ */ n("div", { className: I, children: [
-    b && /* @__PURE__ */ e("span", { className: `nxp-ftc-plan nxp-ftc-plan--${r}`, children: D[r] }),
+    b && /* @__PURE__ */ e("span", { className: `nxp-ftc-plan nxp-ftc-plan--${l}`, children: D[l] }),
     /* @__PURE__ */ n("div", { className: M, children: [
       /* @__PURE__ */ n("div", { className: "nxp-ftc__body", children: [
         /* @__PURE__ */ n("div", { className: "nxp-ftc__title-row", children: [
@@ -100,12 +100,12 @@ function H({
           v && d && /* @__PURE__ */ e(
             "span",
             {
-              className: g[w] ?? g.default,
+              className: m[w] ?? m.default,
               "aria-label": `${d} feature`,
               children: d
             }
           ),
-          f && /* @__PURE__ */ e(j, { content: f, children: /* @__PURE__ */ e(
+          f && /* @__PURE__ */ e(E, { content: f, children: /* @__PURE__ */ e(
             "span",
             {
               className: "nxp-ftc__info-icon",
@@ -121,15 +121,15 @@ function H({
             "button",
             {
               type: "button",
-              className: "nxp-ftc__settings-btn",
+              className: "nxp-ftc__settings-btn" + (a ? " setting-enable" : ""),
               onClick: x,
-              disabled: !l || a,
+              disabled: !a || r,
               "aria-label": `${t} settings`,
-              tabIndex: !l || a ? -1 : 0,
+              tabIndex: !a || r ? -1 : 0,
               children: /* @__PURE__ */ e($, {})
             }
           ),
-          u && l && /* @__PURE__ */ e("a", { href: u, target: "_blank", className: "nxp-ftc__redirect-link", children: /* @__PURE__ */ e("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 19 19", fill: "none", children: /* @__PURE__ */ e("path", { d: "M12.6667 8.77778V13.4444C12.6667 13.857 12.5028 14.2527 12.2111 14.5444C11.9193 14.8361 11.5237 15 11.1111 15H2.55556C2.143 15 1.74733 14.8361 1.45561 14.5444C1.16389 14.2527 1 13.857 1 13.4444V4.88889C1 4.47633 1.16389 4.08067 1.45561 3.78894C1.74733 3.49722 2.143 3.33333 2.55556 3.33333H7.22222M10.3333 1H15M15 1V5.66667M15 1L6.44482 9.55556", stroke: "#1A1A1A", strokeLinecap: "round", strokeLinejoin: "round" }) }) }),
+          u && a && /* @__PURE__ */ e("a", { href: u, target: "_blank", className: "nxp-ftc__redirect-link", children: /* @__PURE__ */ e("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 19 19", fill: "none", children: /* @__PURE__ */ e("path", { d: "M12.6667 8.77778V13.4444C12.6667 13.857 12.5028 14.2527 12.2111 14.5444C11.9193 14.8361 11.5237 15 11.1111 15H2.55556C2.143 15 1.74733 14.8361 1.45561 14.5444C1.16389 14.2527 1 13.857 1 13.4444V4.88889C1 4.47633 1.16389 4.08067 1.45561 3.78894C1.74733 3.49722 2.143 3.33333 2.55556 3.33333H7.22222M10.3333 1H15M15 1V5.66667M15 1L6.44482 9.55556", stroke: "#1A1A1A", strokeLinecap: "round", strokeLinejoin: "round" }) }) }),
           c ? /* @__PURE__ */ e(
             "button",
             {
@@ -141,11 +141,11 @@ function H({
               children: /* @__PURE__ */ e(R, {})
             }
           ) : o && /* @__PURE__ */ e(
-            E,
+            j,
             {
-              checked: l,
+              checked: a,
               onChange: B,
-              disabled: a,
+              disabled: r,
               "aria-label": `Enable ${t}`
             }
           )
