@@ -165,7 +165,7 @@ function FeatureList({
                 {resolvedIcon}
               </span>
             )}
-            <span className={cn('nxp-feature-list__text nxp-body', textClassName)}>
+            <span className={cn('nxp-feature-list__text', textClassName)}>
               {text}
             </span>
           </li>
