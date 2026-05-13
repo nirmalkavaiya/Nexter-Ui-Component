@@ -4248,9 +4248,9 @@ input.nxp-input--invalid:focus {
   margin: 0;
 }
 .nxp-typo--h1 {
-  font-size: 2rem;       /* 32px */
+  font-size: 1.9rem;
   font-weight: var(--nxp-font-bold);
-  line-height: var(--nxp-font-lineHeight-tight);
+  line-height: 35px;
   letter-spacing: -0.025em;
   color: var(--nxp-text-strong);
 }
