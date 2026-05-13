@@ -12,18 +12,7 @@ const InfoIcon = () => (
 );
 
 const GearIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-    <path
-      d="M7.5 9.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-      stroke="currentColor" strokeWidth="1.4"
-      strokeLinecap="round" strokeLinejoin="round"
-    />
-    <path
-      d="M12.03 9.22a1 1 0 0 0 .2 1.1l.04.04a1.21 1.21 0 0 1-1.71 1.71l-.04-.04a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.91v.11a1.21 1.21 0 0 1-2.42 0v-.06a1 1 0 0 0-.66-.91 1 1 0 0 0-1.1.2l-.04.04a1.21 1.21 0 0 1-1.71-1.71l.04-.04a1 1 0 0 0 .2-1.1 1 1 0 0 0-.91-.6H2.1a1.21 1.21 0 0 1 0-2.42h.06a1 1 0 0 0 .91-.66 1 1 0 0 0-.2-1.1l-.04-.04a1.21 1.21 0 0 1 1.71-1.71l.04.04a1 1 0 0 0 1.1.2h.05a1 1 0 0 0 .6-.91V2.1a1.21 1.21 0 0 1 2.42 0v.06a1 1 0 0 0 .6.91 1 1 0 0 0 1.1-.2l.04-.04a1.21 1.21 0 0 1 1.71 1.71l-.04.04a1 1 0 0 0-.2 1.1v.05a1 1 0 0 0 .91.6h.11a1.21 1.21 0 0 1 0 2.42h-.06a1 1 0 0 0-.91.6Z"
-      stroke="currentColor" strokeWidth="1.4"
-      strokeLinecap="round" strokeLinejoin="round"
-    />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 15 15"><path fill="#4b465c80" fill-rule="evenodd" d="M13.006 9.758a.5.5 0 0 0-.172.203.5.5 0 0 0-.03.274c.01.09.06.172.12.243.183.183.315.365.396.578.09.213.131.426.131.649s-.05.446-.131.649a1.67 1.67 0 0 1-.912.912 1.69 1.69 0 0 1-1.842-.365.53.53 0 0 0-.273-.162.4.4 0 0 0-.273.03.45.45 0 0 0-.213.172.44.44 0 0 0-.081.254c0 .537-.172.963-.496 1.287a1.684 1.684 0 0 1-2.389 0 1.7 1.7 0 0 1-.496-1.196.6.6 0 0 0-.091-.304.5.5 0 0 0-.223-.162c-.121-.04-.213-.061-.304-.04a.46.46 0 0 0-.243.12 1.8 1.8 0 0 1-.577.396 1.69 1.69 0 0 1-2.206-.912 1.6 1.6 0 0 1-.132-.649c0-.223.05-.446.132-.649a1.6 1.6 0 0 1 .364-.547.53.53 0 0 0 .162-.274.43.43 0 0 0-.03-.274.45.45 0 0 0-.172-.212.44.44 0 0 0-.254-.082c-.546 0-.981-.182-1.295-.496a1.69 1.69 0 0 1 0-2.393c.314-.314.749-.497 1.194-.497.142 0 .233-.03.304-.08a.46.46 0 0 0 .172-.224.55.55 0 0 0 .04-.304.46.46 0 0 0-.12-.243 1.8 1.8 0 0 1-.396-.578 1.6 1.6 0 0 1-.131-.649c0-.223.05-.446.131-.649a1.669 1.669 0 0 1 .911-.912 1.69 1.69 0 0 1 1.843.365.53.53 0 0 0 .273.162c.091.02.192.01.273-.03l.023-.009a.3.3 0 0 1 .089-.022.5.5 0 0 0 .141-.142.44.44 0 0 0 .081-.253c0-.547.183-.973.496-1.287.638-.64 1.762-.64 2.39 0 .323.324.495.75.495 1.196 0 .142.03.223.081.304s.122.132.203.172a.5.5 0 0 0 .273.03.46.46 0 0 0 .243-.121 1.688 1.688 0 0 1 2.784.517c.091.213.132.426.132.649s-.051.446-.132.649a1.6 1.6 0 0 1-.364.547.6.6 0 0 0-.152.274.42.42 0 0 0 .03.274c.02.04.04.08.04.121.041.061.082.102.142.142.071.05.162.081.253.081.547 0 .972.173 1.286.497.324.324.496.74.496 1.196s-.172.882-.496 1.196a1.66 1.66 0 0 1-1.194.497.54.54 0 0 0-.304.081m-1.094-.203c.112-.263.294-.486.537-.648l.01-.01c.243-.153.516-.244.81-.244.243 0 .405-.06.537-.192a.64.64 0 0 0 .202-.477.7.7 0 0 0-.202-.476.64.64 0 0 0-.476-.203h-.101c-.284 0-.567-.081-.81-.243a1.42 1.42 0 0 1-.547-.65.3.3 0 0 1-.04-.141 1.5 1.5 0 0 1-.061-.76c.05-.294.182-.558.395-.77a.8.8 0 0 0 .182-.264.8.8 0 0 0 .05-.264.8.8 0 0 0-.05-.264.6.6 0 0 0-.142-.223.6.6 0 0 0-.223-.152.65.65 0 0 0-.516 0 .56.56 0 0 0-.223.142c-.253.244-.516.385-.81.436a1.48 1.48 0 0 1-1.508-.649 1.5 1.5 0 0 1-.243-.81c0-.244-.07-.406-.202-.538a.69.69 0 0 0-.952 0 .64.64 0 0 0-.202.477v.1c0 .285-.081.569-.243.812a1.42 1.42 0 0 1-.67.556c-.04.017-.076.032-.12.032a1.5 1.5 0 0 1-.759.06 1.4 1.4 0 0 1-.77-.395.8.8 0 0 0-.262-.182.65.65 0 0 0-.517 0 .6.6 0 0 0-.222.152.8.8 0 0 0-.142.223.8.8 0 0 0-.05.264c0 .09.02.182.05.263s.08.162.142.223c.242.254.384.517.435.811s.02.588-.101.862a1.46 1.46 0 0 1-.517.659 1.45 1.45 0 0 1-.83.274.77.77 0 0 0-.546.202.66.66 0 0 0-.203.477c0 .172.081.344.203.476a.66.66 0 0 0 .475.203h.102a1.477 1.477 0 0 1 1.356.892c.122.274.152.568.101.862s-.182.557-.394.77a.8.8 0 0 0-.183.264.8.8 0 0 0-.05.263c0 .092.02.173.05.254.04.091.081.162.152.223.071.06.142.111.223.142a.65.65 0 0 0 .516 0 .56.56 0 0 0 .223-.142c.253-.243.516-.385.81-.436.08-.02.172-.02.263-.02.202 0 .405.04.597.121.243.091.486.274.658.517.172.244.273.538.273.832 0 .233.081.415.203.537.243.253.698.253.951 0a.66.66 0 0 0 .203-.477v-.101c0-.284.08-.568.243-.811.152-.243.385-.436.648-.547.273-.122.567-.152.86-.102s.557.183.77.396a.7.7 0 0 0 .253.182.65.65 0 0 0 .516 0 .47.47 0 0 0 .223-.142.708.708 0 0 0 .192-.476.8.8 0 0 0-.05-.264.6.6 0 0 0-.143-.213c-.242-.253-.384-.517-.435-.81a1.5 1.5 0 0 1 .101-.863m-6.185-1.56a2.283 2.283 0 0 1 2.278-2.28 2.283 2.283 0 0 1 2.278 2.28 2.283 2.283 0 0 1-2.278 2.282 2.283 2.283 0 0 1-2.278-2.281m1.013 0c0 .7.567 1.268 1.265 1.268a1.267 1.267 0 0 0 0-2.535c-.698 0-1.265.568-1.265 1.268" clip-rule="evenodd"/></svg>
 );
 
 const LockIcon = () => (
@@ -155,59 +144,39 @@ function FeatureToggleCard({
         <div className="nxp-ftc__body">
 
           {/* ── Left ── */}
-          <div className="nxp-ftc__left">
-            <div className="nxp-ftc__title-row">
-              <span className="nxp-title-label nxp-cursor-pointer">{title}</span>
+          <div className="nxp-ftc__title-row">
+            <span className="nxp-title-label nxp-cursor-pointer">{title}</span>
 
-              {/* NEW badge */}
-              {isNew && (
-                <span className="nxp-ftc__badge nxp-ftc__badge--new" aria-label="New feature">
-                  NEW
-                </span>
-              )}
+            {/* NEW badge */}
+            {isNew && (
+              <span className="nxp-ftc__badge nxp-ftc__badge--new" aria-label="New feature">
+                NEW
+              </span>
+            )}
 
-              {/* Feature badge (BETA / PRO / etc.) */}
-              {showBadge && badgeText && (
+            {/* Feature badge (BETA / PRO / etc.) */}
+            {showBadge && badgeText && (
+              <span
+                className={FEATURE_BADGE[badgeVariant] ?? FEATURE_BADGE.default}
+                aria-label={`${badgeText} feature`}
+              >
+                {badgeText}
+              </span>
+            )}
+
+            {/* Info tooltip */}
+            {tooltip && (
+              <Tooltip content={tooltip}>
                 <span
-                  className={FEATURE_BADGE[badgeVariant] ?? FEATURE_BADGE.default}
-                  aria-label={`${badgeText} feature`}
+                  className="nxp-ftc__info-icon"
+                  tabIndex={isInteractionLocked ? -1 : 0}
+                  role="button"
+                  aria-label={`About ${title}`}
                 >
-                  {badgeText}
+                  <InfoIcon />
                 </span>
-              )}
-
-              {/* Info tooltip */}
-              {tooltip && (
-                <Tooltip content={tooltip}>
-                  <span
-                    className="nxp-ftc__info-icon"
-                    tabIndex={isInteractionLocked ? -1 : 0}
-                    role="button"
-                    aria-label={`About ${title}`}
-                  >
-                    <InfoIcon />
-                  </span>
-                </Tooltip>
-              )}
-            </div>
-
-            {/* Bottom links row */}
-            <div className="nxp-ftc__links">
-              {DocsLink}
-              {isLocked && onUpgradeClick && (
-                <>
-                  <span className="nxp-ftc__links-sep" aria-hidden="true">·</span>
-                  <button
-                    type="button"
-                    className="nxp-ftc__upgrade-link nxp-ftc__link--btn"
-                    onClick={onUpgradeClick}
-                  >
-                    Upgrade
-                    <ArrowRightIcon />
-                  </button>
-                </>
-              )}
-            </div>
+              </Tooltip>
+            )}
           </div>
 
           {/* ── Right ── */}
@@ -218,9 +187,9 @@ function FeatureToggleCard({
                 type="button"
                 className="nxp-ftc__settings-btn"
                 onClick={onSettingsClick}
-                disabled={disabled}
+                disabled={!isEnabled || disabled}
                 aria-label={`${title} settings`}
-                tabIndex={disabled ? -1 : 0}
+                tabIndex={!isEnabled || disabled ? -1 : 0}
               >
                 <GearIcon />
               </button>
@@ -242,7 +211,7 @@ function FeatureToggleCard({
               >
                 <LockIcon />
               </button>
-            ) : (
+            ) : ( onChange &&
               <Toggle
                 checked={isEnabled}
                 onChange={handleToggle}
@@ -252,6 +221,24 @@ function FeatureToggleCard({
             )}
           </div>
 
+        </div>
+        
+        {/* Bottom links row */}
+        <div className="nxp-ftc__links">
+          {DocsLink}
+          {isLocked && onUpgradeClick && (
+            <>
+              <span className="nxp-ftc__links-sep" aria-hidden="true">·</span>
+              <button
+                type="button"
+                className="nxp-ftc__upgrade-link nxp-ftc__link--btn"
+                onClick={onUpgradeClick}
+              >
+                Upgrade
+                <ArrowRightIcon />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

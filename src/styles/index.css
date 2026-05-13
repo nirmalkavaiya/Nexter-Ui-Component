@@ -2880,16 +2880,15 @@ input.nxp-input--invalid:focus {
 /* ── Circle icon buttons (settings + lock) ───────────────────────────── */
 .nxp-ftc__settings-btn,
 .nxp-ftc__lock-btn {
-  width: 32px;
-  height: 32px;
+  width: 29px;
+  height: 29px;
   border-radius: 50%;
-  border: 1.5px solid var(--nxp-border-strong);
+  border: 1px solid rgba(75, 70, 92, 0.5);
   background: var(--nxp-bg);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--nxp-text-muted);
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease),
               color var(--nxp-dur-hover) var(--nxp-ease),
               background var(--nxp-dur-hover) var(--nxp-ease);
