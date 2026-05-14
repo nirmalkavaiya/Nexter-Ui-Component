@@ -1414,7 +1414,6 @@ input.nxp-input--invalid:focus {
 .nxp-modal__foot {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: var(--nxp-space-8);
   padding: var(--nxp-space-15) var(--nxp-space-40) var(--nxp-space-40);
 }
