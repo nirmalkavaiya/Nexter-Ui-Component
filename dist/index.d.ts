@@ -76,6 +76,8 @@ export declare const Badge: React.FC<BadgeProps>;
 
 export interface BannerProps {
   variant?: 'default' | 'success' | 'warning' | 'error';
+  /** Visual density: `sm` inline toolbars, `md` default, `lg` hero callouts */
+  size?: 'sm' | 'md' | 'lg';
   icon?: ReactNode;
   title?: ReactNode;
   text?: ReactNode;

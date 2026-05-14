@@ -1206,6 +1206,50 @@ input.nxp-input--invalid:focus {
   flex-wrap: wrap;
 }
 
+/* Size: compact (settings rows, dense lists) */
+.nxp-banner--sm {
+  gap: var(--nxp-space-8);
+  padding: var(--nxp-space-10) var(--nxp-space-12);
+  border-radius: var(--nxp-radius-md);
+}
+.nxp-banner--sm .nxp-banner__icon {
+  font-size: var(--nxp-text-lg);
+  margin-top: 0;
+}
+.nxp-banner--sm .nxp-banner__title {
+  font-size: var(--nxp-text-sm);
+  margin-bottom: var(--nxp-space-2);
+}
+.nxp-banner--sm .nxp-banner__text {
+  font-size: var(--nxp-text-sm);
+}
+.nxp-banner--sm .nxp-banner__actions {
+  gap: var(--nxp-space-6);
+  margin-top: var(--nxp-space-8);
+}
+
+/* Size: prominent (upgrade nudges, empty states) */
+.nxp-banner--lg {
+  gap: var(--nxp-space-16);
+  padding: var(--nxp-space-20) var(--nxp-space-24);
+  border-radius: var(--nxp-radius-xl);
+}
+.nxp-banner--lg .nxp-banner__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-top: var(--nxp-space-4);
+}
+.nxp-banner--lg .nxp-banner__title {
+  font-size: var(--nxp-text-lg);
+  margin-bottom: var(--nxp-space-6);
+}
+.nxp-banner--lg .nxp-banner__text {
+  font-size: var(--nxp-text-md);
+}
+.nxp-banner--lg .nxp-banner__actions {
+  margin-top: var(--nxp-space-16);
+}
+
 /* ============================================================
    PROGRESS
    ============================================================ */

@@ -7,12 +7,14 @@ const DEFAULT_ICONS = {
   error: '❌',
 };
 
-function Banner({ variant = 'default', icon, title, text, actions, className = '' }) {
+function Banner({ variant = 'default', size = 'md', icon, title, text, actions, className = '' }) {
   const displayIcon = icon !== undefined ? icon : DEFAULT_ICONS[variant];
+  const sizeClass = size !== 'md' ? ` nxp-banner--${size}` : '';
   const variantClass = variant !== 'default' ? ` nxp-banner--${variant}` : '';
+  const rootClass = `nxp-banner${sizeClass}${variantClass}${className ? ` ${className}` : ''}`.trim();
 
   return (
-    <div className={`nxp-banner${variantClass} ${className}`} role="region">
+    <div className={rootClass} role="region">
       {displayIcon && (
         <span className="nxp-banner__icon" aria-hidden="true">{displayIcon}</span>
       )}
