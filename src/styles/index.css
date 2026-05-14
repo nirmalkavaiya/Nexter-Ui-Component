@@ -2755,7 +2755,7 @@ input.nxp-input--invalid:focus {
 .nxp-ftc__right {
   display: flex;
   align-items: center;
-  gap: var(--nxp-space-10);
+  gap: var(--nxp-space-15);
   flex-shrink: 0;
 }
 
