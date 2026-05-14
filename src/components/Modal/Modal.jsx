@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '../../lib/utils';
+import Button from '../Button';
 
 /* ── SVG close icon ──────────────────────────────────────────── */
 const CloseIcon = () => (
@@ -25,15 +27,14 @@ const CloseIcon = () => (
  * Modal
  *
  * Props:
- *   open      {boolean}         — show / hide
- *   onClose   {function}        — called on backdrop click, Esc, or close button
- *   size      {'sm'|'md'|'lg'|'xl'}
- *   align     {'left'|'center'} — header text alignment (default 'left')
- *   title     {ReactNode}
- *   byline    {ReactNode}       — subtitle / description below title
- *   children  {ReactNode}       — body content
- *   footer    {ReactNode}       — renders in footer bar
- *   className {string}          — extra class on .nxp-modal
+ *   open, onClose, size, align, title, byline, children, className
+ *   footer            {ReactNode} — custom footer content (wins over preset actions)
+ *   footerClassName   {string}    — extra classes on .nxp-modal__foot
+ *   Preset footer (used when `footer` is omitted and at least one is set):
+ *   doclink           {string}    — docs URL → underline link button
+ *   doclinkText       {ReactNode} — link label (default "Read How it Works")
+ *   onClick           {function}  — primary action handler
+ *   buttonText        {ReactNode} — primary button label (default "Save")
  */
 function Modal({
   open = false,
@@ -44,6 +45,11 @@ function Modal({
   byline,
   children,
   footer,
+  footerClassName,
+  doclink,
+  doclinkText,
+  buttonText,
+  onClick,
   className = '',
 }) {
   /* ── scroll lock ── */
@@ -67,11 +73,27 @@ function Modal({
     }
   }, [open, handleKey]);
 
+  const hasPresetActions = Boolean(doclink || onClick);
+  const hasCustomFooter = footer != null && footer !== true && footer !== false;
+  const showFooter = hasCustomFooter || hasPresetActions;
+
+  const footLayoutClass =
+    !hasCustomFooter && hasPresetActions
+      ? doclink && onClick
+        ? 'nxp-flex-between'
+        : onClick
+          ? 'nxp-flex-end'
+          : 'nxp-flex-start'
+      : '';
+
   if (!open) return null;
 
   const sizeClass   = size !== 'md' ? ` nxp-modal--${size}` : '';
   const alignClass  = align === 'center' ? ' nxp-modal--center' : '';
   const hasHead     = title || byline || onClose;
+
+  const docLabel = doclinkText ?? 'Read How it Works';
+  const primaryLabel = buttonText ?? 'Save';
 
   return createPortal(
     <div
@@ -83,7 +105,6 @@ function Modal({
     >
       <div className={`nxp-modal${sizeClass}${alignClass} ${className}`.trim()}>
 
-        {/* ── Close button (always top-right, shown when onClose provided) ── */}
         {onClose && (
           <button
             type="button"
@@ -95,7 +116,6 @@ function Modal({
           </button>
         )}
 
-        {/* ── Header ── */}
         {hasHead && (
           <div className="nxp-flex nxp-flex-col-center nxp-justify-center nxp-modal__head">
             {title  && <div className="nxp-modal__title">{title}</div>}
@@ -103,11 +123,36 @@ function Modal({
           </div>
         )}
 
-        {/* ── Body ── */}
         <div className="nxp-modal__body">{children}</div>
 
-        {/* ── Footer ── */}
-        {footer && <div className="nxp-modal__foot">{footer}</div>}
+        {showFooter && (
+          <div
+            className={cn('nxp-modal__foot', footLayoutClass, footerClassName)}
+          >
+            {hasCustomFooter ? (
+              footer
+            ) : (
+              <>
+                {doclink && (
+                  <Button
+                    className="nxp-text-primary nxp-weight-regular nxp-text-hover"
+                    variant="underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={doclink}
+                  >
+                    {docLabel}
+                  </Button>
+                )}
+                {onClick && (
+                  <Button type="button" variant="primary" onClick={onClick}>
+                    {primaryLabel}
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>,
     document.body

@@ -9,7 +9,7 @@ const h = () => /* @__PURE__ */ o("svg", { width: "13", height: "13", viewBox: "
 ] }), _ = s(function({ itemKey: n, label: r, value: i, tooltip: t, onToggle: c, disabled: l }) {
   return /* @__PURE__ */ o("div", { className: "nxp-tg__item", children: [
     /* @__PURE__ */ o("div", { className: "nxp-tg__item-label-row", children: [
-      /* @__PURE__ */ e("span", { className: "nxp-tg__item-label", children: r }),
+      /* @__PURE__ */ e("span", { className: "nxp-tg__item-label nxp-body", children: r }),
       t && /* @__PURE__ */ e(d, { content: t, children: /* @__PURE__ */ e(
         "span",
         {

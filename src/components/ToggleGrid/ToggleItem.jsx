@@ -14,7 +14,7 @@ const ToggleItem = memo(function ToggleItem({ itemKey, label, value, tooltip, on
   return (
     <div className="nxp-tg__item">
       <div className="nxp-tg__item-label-row">
-        <span className="nxp-tg__item-label">{label}</span>
+        <span className="nxp-tg__item-label nxp-body">{label}</span>
         {tooltip && (
           <Tooltip content={tooltip}>
             <span

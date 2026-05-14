@@ -544,9 +544,18 @@ export interface ModalProps {
   open?: boolean;
   onClose?: () => void;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  align?: 'left' | 'center';
   title?: ReactNode;
   byline?: ReactNode;
+  /** Custom footer content. When set (and not `true`), replaces preset doc + primary actions. */
   footer?: ReactNode;
+  footerClassName?: string;
+  /** Preset docs link URL (underline button, new tab). */
+  doclink?: string;
+  doclinkText?: ReactNode;
+  /** Preset primary footer button handler. */
+  onClick?: () => void;
+  buttonText?: ReactNode;
   children?: ReactNode;
   className?: string;
 }
