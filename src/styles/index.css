@@ -1300,15 +1300,15 @@ input.nxp-input--invalid:focus {
 /* ── Shell ─────────────────────────────────────────────────── */
 .nxp-modal {
   background: var(--nxp-color-surface-card, #fff);
-  border-radius: var(--nxp-radius-lg);
-  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.08);
+  border-radius: var(--nxp-radius-sm);
+  box-shadow: 0 8px 40px #0f172a24, 0 2px 8px #0f172a14;
   width: 100%;
-  max-width: 520px;
+  max-width: 720px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: nxp-modal-in var(--nxp-dur-motion, 180ms) var(--nxp-ease, ease);
+  animation: nxp-modal-in var(--nxp-dur-motion, .18s) var(--nxp-ease, ease);
   position: relative;
 }
 
@@ -1316,7 +1316,7 @@ input.nxp-input--invalid:focus {
 .nxp-modal::before {
   content: '';
   display: block;
-  height: 3px;
+  height: 5px;
   background: var(--nxp-brand-grad, linear-gradient(90deg, #1E40AF 0%, #4F46E5 100%));
   position: absolute;
   top: 0;
