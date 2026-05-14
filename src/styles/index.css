@@ -657,10 +657,10 @@ input.nxp-input--invalid:focus {
   display: inline-flex;
   align-items: center;
   gap: var(--nxp-space-6);
-  height: var(--nxp-h);
+  height: var(--nxp-h-md);
   padding: 0 var(--nxp-space-10);
-  border: 1px solid var(--nxp-border-strong);
-  border-radius: var(--nxp-radius);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-sm);
   background: var(--nxp-bg);
   color: var(--nxp-text);
   font-family: var(--nxp-font);
@@ -670,9 +670,10 @@ input.nxp-input--invalid:focus {
   min-width: 160px;
   justify-content: space-between;
   transition: background var(--nxp-dur-hover) var(--nxp-ease), border-color var(--nxp-dur-hover) var(--nxp-ease);
+  width: 100%;
 }
 .nxp-dropdown__trigger:hover {
-  background: var(--nxp-wash-hover);
+  background: var(--nxp-wash-active);
 }
 .nxp-dropdown__trigger:focus-visible {
   outline: none;
