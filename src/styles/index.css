@@ -1362,8 +1362,8 @@ input.nxp-input--invalid:focus {
 
 /* ── Header — LEFT align (default) ─────────────────────────── */
 .nxp-modal__head {
-  padding: var(--nxp-space-24) var(--nxp-space-24) var(--nxp-space-16) var(--nxp-space-24);
-  text-align : center;
+  padding: var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-20);
+  text-align: center;
 }
 .nxp-modal__title {
   font-family: var(--nxp-font);
@@ -1377,7 +1377,7 @@ input.nxp-input--invalid:focus {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-sm);
   color: var(--nxp-color-text-muted, #64748B);
-  margin-top: var(--nxp-space-8);
+  margin-top: var(--nxp-space-4);
   line-height: var(--nxp-font-lineHeight-relaxed);
 }
 
@@ -1399,7 +1399,7 @@ input.nxp-input--invalid:focus {
 
 /* ── Body ───────────────────────────────────────────────────── */
 .nxp-modal__body {
-  padding: var(--nxp-space-20) var(--nxp-space-24) var(--nxp-space-24);
+  padding: var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-24);
   overflow-y: auto;
   flex: 1;
   font-family: var(--nxp-font);
@@ -1417,7 +1417,7 @@ input.nxp-input--invalid:focus {
   align-items: center;
   justify-content: flex-end;
   gap: var(--nxp-space-8);
-  padding: var(--nxp-space-15) var(--nxp-space-24);
+  padding: var(--nxp-space-15) var(--nxp-space-40) var(--nxp-space-40);
 }
 /* Center modal: footer is space-between (link left, action right) */
 .nxp-modal--center .nxp-modal__foot {
