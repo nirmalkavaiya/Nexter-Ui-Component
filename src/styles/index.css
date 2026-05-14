@@ -1398,8 +1398,7 @@ input.nxp-input--invalid:focus {
 
 /* ── Body ───────────────────────────────────────────────────── */
 .nxp-modal__body {
-  padding: var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-24);
-  overflow-y: auto;
+  padding: var(--nxp-space-0) var(--nxp-space-40) var(--nxp-space-24);
   flex: 1;
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-md);
@@ -3058,7 +3057,7 @@ input.nxp-input--invalid:focus {
 
 .nxp-tg {
   display: grid;
-  gap: var(--nxp-space-8);
+  gap: var(--nxp-space-10);
 }
 
 .nxp-tg--cols-1 { grid-template-columns: 1fr; }
@@ -3083,17 +3082,16 @@ input.nxp-input--invalid:focus {
   align-items: center;
   justify-content: space-between;
   gap: var(--nxp-space-10);
-  padding: var(--nxp-space-10) var(--nxp-space-12);
+  padding: var(--nxp-space-12);
   background: var(--nxp-bg);
   border: 1px solid var(--nxp-border);
-  border-radius: var(--nxp-radius);
-  box-shadow: var(--nxp-shadow-sm);
+  border-radius: var(--nxp-radius-sm);
   min-width: 0;
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
 }
 
 .nxp-tg__item:hover {
-  border-color: var(--nxp-border-strong);
+  border-color: var(--nxp-brand);
 }
 
 /* Label row */
@@ -3105,10 +3103,6 @@ input.nxp-input--invalid:focus {
 }
 
 .nxp-tg__item-label {
-  font-family: var(--nxp-font);
-  font-size: var(--nxp-text-md);
-  font-weight: var(--nxp-font-medium);
-  color: var(--nxp-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3119,12 +3113,27 @@ input.nxp-input--invalid:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--nxp-text-faint);
+  color: var(--nxp-text);
   cursor: pointer;
   border-radius: 50%;
   padding: var(--nxp-space-2);
   transition: color var(--nxp-dur-hover) var(--nxp-ease);
   flex-shrink: 0;
+}
+
+/* ── Toggle size overrides inside ToggleGrid items ──────────── */
+.nxp-tg__item span.nxp-toggle__track {
+  width: 40px;
+  height: 21px;
+}
+.nxp-tg__item span.nxp-toggle__thumb {
+  width: 13px;
+  height: 13px;
+  top: 4px;
+  left: 4px;
+}
+.nxp-tg__item .nxp-toggle.is-checked .nxp-toggle__thumb {
+  transform: translate(19px);
 }
 
 .nxp-tg__item-info:hover,
