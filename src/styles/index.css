@@ -1339,15 +1339,14 @@ input.nxp-input--invalid:focus {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--nxp-color-text-muted, #64748B);
+  color: var(--nxp-color-text-muted);
   width: 28px;
   height: 28px;
-  border-radius: var(--nxp-radius-2xl);
+  border-radius: var(--nxp-radius-3xl);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--nxp-dur-hover, 120ms) ease,
-              color     var(--nxp-dur-hover, 120ms) ease;
+  transition: background var(--nxp-dur-hover, .12s) ease, color var(--nxp-dur-hover, .12s) ease;
   flex-shrink: 0;
   padding: 0;
 }
