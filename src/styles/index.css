@@ -2812,13 +2812,13 @@ input.nxp-input--invalid:focus {
 .nxp-ftc__badge {
   display: inline-flex;
   align-items: center;
-  padding: var(--nxp-space-2) var(--nxp-space-8);
+  padding: var(--nxp-space-0) var(--nxp-space-4);
   border-radius: var(--nxp-radius-sm);
   font-size: var(--nxp-text-xs);
   font-weight: var(--nxp-font-bold);
-  letter-spacing: 0.05em;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  line-height: var(--nxp-font-lineHeight-relaxed);
+  line-height: var(--nxp-font-lineHeight-snug);
   background: var(--nxp-bg-alt);
   color: var(--nxp-text-muted);
 }
