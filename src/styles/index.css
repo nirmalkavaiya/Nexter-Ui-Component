@@ -2734,35 +2734,25 @@ input.nxp-input--invalid:focus {
   padding-top: 10px; /* makes room so plan badge can overlap card top */
 }
 
-/* ── Plan badge (PRO / FREEMIUM) — sits on top-left card edge ─────────── */
+/* ── Plan badge — sits on top-left card edge (single style for any label) ─ */
 .nxp-ftc-plan {
   position: absolute;
-  top: 0;
-  left: 14px;
+  top: -12px;
+  left: 18px;
   z-index: 1;
   display: inline-flex;
   align-items: center;
   padding: var(--nxp-space-2) var(--nxp-space-8);
-  border-radius: var(--nxp-radius-pill);
+  border-radius: var(--nxp-radius-xs);
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-xs);
-  font-weight: var(--nxp-font-bold);
-  letter-spacing: 0.07em;
+  font-weight: var(--nxp-font-medium);
   text-transform: uppercase;
-  line-height: var(--nxp-font-lineHeight-relaxed);
+  line-height: var(--nxp-font-lineHeight-none);
   white-space: nowrap;
-}
-/* PRO — outlined blue */
-.nxp-ftc-plan--pro {
-  background: var(--nxp-bg);
-  border: 1.5px solid var(--nxp-brand);
+  background: var(--nxp-wash-active);
+  border: 2px solid rgba(23, 23, 204, 0.102);
   color: var(--nxp-brand);
-}
-/* FREEMIUM — soft blue-gray fill */
-.nxp-ftc-plan--freemium {
-  background: #f0f4ff;
-  border: 1.5px solid #c7d4f5;
-  color: #4a6fa5;
 }
 
 /* ── Root card ───────────────────────────────────────────────────────── */

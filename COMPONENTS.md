@@ -816,7 +816,7 @@ import { FeatureToggleCard } from 'nexter-ui-component';
 
 <FeatureToggleCard
   title="Advanced SEO"
-  planType="pro"
+  planLabel="PRO"
   isLocked={!hasPro}
   isNew
   tooltip="Optimize meta titles and descriptions per post."
@@ -828,7 +828,7 @@ import { FeatureToggleCard } from 'nexter-ui-component';
 |------|------|---------|-------------|
 | `title` | `string` | — | Feature name |
 | `tooltip` | `ReactNode` | — | Info tooltip content |
-| `planType` | `'free' \| 'pro' \| 'freemium'` | `'free'` | Plan badge |
+| `planLabel` | `string` | — | Top plan pill text; omit to hide |
 | `isLocked` | `boolean` | `false` | Lock icon + disabled toggle |
 | `isNew` | `boolean` | `false` | "New" badge |
 | `onUpgradeClick` | `function` | — | Upgrade CTA callback |

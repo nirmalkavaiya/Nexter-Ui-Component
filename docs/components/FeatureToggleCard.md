@@ -1,6 +1,6 @@
 ﻿# FeatureToggleCard
 
-A settings-dashboard card combining a plan badge (PRO / FREEMIUM), feature title, optional inline badges (NEW, BETA, PRO…), tooltip, docs link, settings button, and a controlled toggle switch — or a lock button with upgrade CTA when the feature requires a higher plan.
+A settings-dashboard card combining an optional top plan pill (text you pass via `planLabel`), feature title, optional inline badges (NEW, BETA, PRO…), tooltip, docs link, settings button, and a controlled toggle switch — or a lock button with upgrade CTA when the feature requires a higher plan.
 
 ## Import
 
@@ -14,7 +14,7 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 |------|------|---------|-------------|
 | `title` | `string` | — | Feature name displayed in the card |
 | `tooltip` | `string` | — | Description shown on ⓘ icon hover |
-| `planType` | `'free' \| 'pro' \| 'freemium'` | `'free'` | Determines the top-left plan badge. `'free'` shows no badge |
+| `planLabel` | `string` | — | If non-empty (after trim), shows the top-left plan pill with this exact text (e.g. `__('PRO')`). Omit or leave empty to hide the pill |
 | `isLocked` | `boolean` | `false` | Replaces toggle with a lock button; disables interaction |
 | `isNew` | `boolean` | `false` | Shows a green **NEW** pill badge in the title row |
 | `isEnabled` | `boolean` | — | Controlled toggle state |
@@ -40,7 +40,6 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 <FeatureToggleCard
   title="Adobe Fonts"
   tooltip="Load fonts from Adobe Fonts CDN."
-  planType="free"
   isEnabled={enabled}
   onToggle={setEnabled}
   onSettingsClick={openSettings}
@@ -55,7 +54,7 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 <FeatureToggleCard
   title="SMTP Email"
   tooltip="Send emails via your own SMTP server."
-  planType="freemium"
+  planLabel="FREEMIUM"
   showBadge
   badgeText="BETA"
   badgeVariant="beta"
@@ -73,7 +72,7 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 <FeatureToggleCard
   title="White Label"
   tooltip="Remove all Nexter branding."
-  planType="pro"
+  planLabel="PRO"
   isLocked
   isEnabled={false}
   onToggle={() => {}}
@@ -89,7 +88,7 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 <FeatureToggleCard
   title="AI Content Assistant"
   tooltip="Generate SEO meta descriptions using AI."
-  planType="pro"
+  planLabel="PRO"
   isNew
   isLocked
   isEnabled={false}
@@ -106,7 +105,6 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 <FeatureToggleCard
   title="Advanced Cache"
   tooltip="Requires server write permissions."
-  planType="free"
   disabled
   isEnabled={false}
   onToggle={() => {}}
@@ -117,13 +115,9 @@ import { FeatureToggleCard } from 'nexter-ui-component'
 
 ---
 
-## Plan badge variants
+## Plan pill (`planLabel`)
 
-| `planType` | Appearance | Use case |
-|-----------|-----------|----------|
-| `'free'` | No badge rendered | Standard free features |
-| `'pro'` | Outlined blue pill — **PRO** | Paid/gated features |
-| `'freemium'` | Soft blue-gray pill — **FREEMIUM** | Features available with limits |
+The top-left pill uses one visual style for every label. Pass translated or branded strings from your app (for example `PRO`, `FREEMIUM`, `BETA`). Whitespace is trimmed; an empty or omitted `planLabel` hides the pill.
 
 ---
 
@@ -163,9 +157,7 @@ The `isNew` prop renders a separate **NEW** badge (green outlined) that is indep
 |-------|---------|
 | `.nxp-ftc-outer` | Wrapper that positions the plan badge |
 | `.nxp-ftc-outer--has-plan` | Adds `padding-top` when plan badge is shown |
-| `.nxp-ftc-plan` | Plan badge base |
-| `.nxp-ftc-plan--pro` | Outlined blue PRO badge |
-| `.nxp-ftc-plan--freemium` | Soft blue-gray FREEMIUM badge |
+| `.nxp-ftc-plan` | Top plan pill (outlined brand; any `planLabel` text) |
 | `.nxp-ftc` | Card root |
 | `.nxp-ftc--locked` | Locked card state (muted bg, muted title) |
 | `.nxp-ftc--disabled` | Disabled card state (opacity + pointer-events) |
@@ -196,7 +188,7 @@ The `isNew` prop renders a separate **NEW** badge (green outlined) that is indep
 | `--nxp-bg-alt` | Locked card background |
 | `--nxp-border` | Card border |
 | `--nxp-border-strong` | Settings/lock button border |
-| `--nxp-brand` | PRO badge border/text, docs link, info icon hover |
+| `--nxp-brand` | Plan pill border/text, docs link, info icon hover |
 | `--nxp-brand-soft` | Settings button hover background |
 | `--nxp-text` | Title colour |
 | `--nxp-text-muted` | Locked title, separator, icon colour |

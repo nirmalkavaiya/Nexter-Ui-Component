@@ -809,11 +809,11 @@ export default function App() {
       <Section eyebrow="Composite" title="Feature Toggle Card" description="Settings-dashboard card with plan badge (PRO/FREEMIUM), NEW badge, tooltip, locked state with upgrade CTA, and controlled toggle.">
         <DemoBox>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 540 }}>
-            <FeatureToggleCard title="Adobe Fonts" tooltip="Load fonts directly from Adobe Fonts CDN without hosting them locally." planType="free" docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.adobe} onToggle={() => ftcToggle('adobe')} onSettingsClick={() => {}} />
-            <FeatureToggleCard title="SMTP Email" tooltip="Send transactional emails via your own SMTP server." planType="freemium" showBadge badgeText="BETA" badgeVariant="beta" docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.smtp} onToggle={() => ftcToggle('smtp')} onSettingsClick={() => {}} />
-            <FeatureToggleCard title="Advanced Cache" tooltip="Full-page caching layer for faster page loads." planType="free" isNew docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.cache} onToggle={() => ftcToggle('cache')} onSettingsClick={() => {}} />
-            <FeatureToggleCard title="White Label" tooltip="Remove all Nexter branding from the admin interface." planType="pro" isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.wl} onToggle={() => ftcToggle('wl')} onUpgradeClick={() => {}} />
-            <FeatureToggleCard title="AI Content Assistant" tooltip="Generate SEO-optimised meta descriptions using AI." planType="pro" isNew isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.ai} onToggle={() => ftcToggle('ai')} onUpgradeClick={() => {}} />
+            <FeatureToggleCard title="Adobe Fonts" tooltip="Load fonts directly from Adobe Fonts CDN without hosting them locally." docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.adobe} onToggle={() => ftcToggle('adobe')} onSettingsClick={() => {}} />
+            <FeatureToggleCard title="SMTP Email" tooltip="Send transactional emails via your own SMTP server." planLabel="FREEMIUM" showBadge badgeText="BETA" badgeVariant="beta" docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.smtp} onToggle={() => ftcToggle('smtp')} onSettingsClick={() => {}} />
+            <FeatureToggleCard title="Advanced Cache" tooltip="Full-page caching layer for faster page loads." isNew docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.cache} onToggle={() => ftcToggle('cache')} onSettingsClick={() => {}} />
+            <FeatureToggleCard title="White Label" tooltip="Remove all Nexter branding from the admin interface." planLabel="PRO" isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.wl} onToggle={() => ftcToggle('wl')} onUpgradeClick={() => {}} />
+            <FeatureToggleCard title="AI Content Assistant" tooltip="Generate SEO-optimised meta descriptions using AI." planLabel="PRO" isNew isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.ai} onToggle={() => ftcToggle('ai')} onUpgradeClick={() => {}} />
           </div>
         </DemoBox>
       </Section>
@@ -909,9 +909,12 @@ export default function App() {
       <Section eyebrow="Feedback" title="Banners" description="Prominent section-level announcements with optional CTA actions.">
         <DemoBox>
           <div className="nxp-u-stack--sm">
-            <Banner title="Upgrade to Nexter SEO Pro" text="Unlock schema templates, advanced redirects, and priority indexing with the Pro plan." actions={<><Button variant="primary" size="sm">Upgrade now</Button><Button variant="ghost" size="sm">Learn more</Button></>} />
+            <Banner title="Upgrade to Nexter SEO Pro" text="Unlock schema templates, advanced redirects, and priority indexing with the Pro plan." size="lg" actions={<><Button variant="primary" size="sm">Upgrade now</Button><Button variant="ghost" size="sm">Learn more</Button></>} />
             <Banner variant="success" title="Plugin updated successfully" text="Nexter Extension has been updated to v2.4.0. All features are working correctly." />
+            <p style={{ fontSize: 12, color: 'var(--nxp-text-muted)', margin: '8px 0 0' }}>Warning — sizes</p>
+            <Banner variant="warning" size="sm" title="Canonical URLs not configured" text="Dense row: conflicting canonical tags detected." actions={<Button variant="secondary" size="sm">Fix</Button>} />
             <Banner variant="warning" title="Canonical URLs not configured" text="Some pages have conflicting canonical tags. Review the canonical settings panel." actions={<Button variant="secondary" size="sm">Review now</Button>} />
+            <Banner variant="warning" size="lg" title="Canonical URLs not configured" text="Highlighted callout: review canonical settings before publishing bulk changes." actions={<Button variant="secondary" size="sm">Review now</Button>} />
             <Banner variant="error" title="IndexNow API key missing" text="Add your IndexNow API key to enable instant URL submission to search engines." actions={<Button variant="destructive" size="sm">Add key</Button>} />
           </div>
         </DemoBox>

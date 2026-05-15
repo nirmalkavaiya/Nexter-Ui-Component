@@ -9,12 +9,12 @@ export default {
     docs: {
       description: {
         component:
-          'Settings-dashboard card with plan badge (PRO/FREEMIUM), title, NEW badge, tooltip, docs link, upgrade link, settings button, and a controlled toggle — or a lock button when the feature requires upgrade.',
+          'Settings-dashboard card with optional top plan pill (`planLabel` text you pass), title, NEW badge, tooltip, docs link, upgrade link, settings button, and a controlled toggle — or a lock button when the feature requires upgrade.',
       },
     },
   },
   argTypes: {
-    planType:    { control: 'select', options: ['free', 'pro', 'freemium'] },
+    planLabel:   { control: 'text', description: 'Top plan pill text; leave empty to hide the pill' },
     isEnabled:   { control: 'boolean' },
     isLocked:    { control: 'boolean' },
     isNew:       { control: 'boolean' },
@@ -56,7 +56,6 @@ export const FreeEnabled = {
   args: {
     title:           'Adobe Fonts',
     tooltip:         'Load fonts directly from Adobe Fonts CDN.',
-    planType:        'free',
     isEnabled:       true,
     docsLabel:       'Read Docs',
     onDocsClick:     () => {},
@@ -71,7 +70,6 @@ export const FreeDisabled = {
   args: {
     title:           'Image Optimisation',
     tooltip:         'Compress and lazy-load images automatically.',
-    planType:        'free',
     isEnabled:       false,
     docsLabel:       'Read Docs',
     onDocsClick:     () => {},
@@ -86,7 +84,7 @@ export const ProLocked = {
   args: {
     title:           'White Label',
     tooltip:         'Remove all Nexter branding from the admin interface.',
-    planType:        'pro',
+    planLabel:       'PRO',
     isEnabled:       false,
     isLocked:        true,
     docsLabel:       'Read Docs',
@@ -102,7 +100,7 @@ export const ProUnlocked = {
   args: {
     title:           'White Label',
     tooltip:         'Remove all Nexter branding from the admin interface.',
-    planType:        'pro',
+    planLabel:       'PRO',
     isEnabled:       true,
     isLocked:        false,
     docsLabel:       'Read Docs',
@@ -118,13 +116,47 @@ export const FreemiumUnlocked = {
   args: {
     title:           'SMTP Email',
     tooltip:         'Send transactional emails via your own SMTP server.',
-    planType:        'freemium',
+    planLabel:       'FREEMIUM',
     showBadge:       true,
     badgeText:       'BETA',
     badgeVariant:    'beta',
     isEnabled:       false,
     docsLabel:       'Read Docs',
     onDocsClick:     () => {},
+    onSettingsClick: () => {},
+  },
+};
+
+/** BETA plan — top plan pill (distinct from inline feature `showBadge`) */
+export const BetaPlanUnlocked = {
+  name: 'BETA plan — Unlocked',
+  render: Card,
+  args: {
+    title:           'Experimental API',
+    tooltip:         'Early-access REST endpoints; subject to change.',
+    planLabel:       'BETA',
+    isEnabled:       true,
+    isLocked:        false,
+    docsLabel:       'Read Docs',
+    onDocsClick:     () => {},
+    onSettingsClick: () => {},
+  },
+};
+
+/** Custom top pill copy (e.g. i18n) */
+export const CustomPlanLabel = {
+  name: 'Custom planLabel',
+  render: Card,
+  args: {
+    title:       'SMTP Email',
+    tooltip:     'Send transactional emails via your own SMTP server.',
+    planLabel:   'Free+',
+    showBadge:   true,
+    badgeText:   'New',
+    badgeVariant: 'primary',
+    isEnabled:   true,
+    docsLabel:   'Read Docs',
+    onDocsClick: () => {},
     onSettingsClick: () => {},
   },
 };
@@ -136,7 +168,6 @@ export const NewFeature = {
   args: {
     title:           'AI Content Assistant',
     tooltip:         'Generate SEO-optimised meta descriptions using AI.',
-    planType:        'free',
     isNew:           true,
     isEnabled:       false,
     docsLabel:       'Read Docs',
@@ -152,7 +183,6 @@ export const CardDisabled = {
   args: {
     title:           'Advanced Cache',
     tooltip:         'Full-page caching requires server write permissions.',
-    planType:        'free',
     isEnabled:       false,
     disabled:        true,
     docsLabel:       'Read Docs',
@@ -181,14 +211,13 @@ export const FeatureList = {
         id: 'adobe',
         title: 'Adobe Fonts',
         tooltip: 'Load fonts from Adobe Fonts CDN.',
-        planType: 'free',
         onSettingsClick: () => {},
       },
       {
         id: 'smtp',
         title: 'SMTP Email',
         tooltip: 'Send emails via your own SMTP server.',
-        planType: 'freemium',
+        planLabel: 'FREEMIUM',
         showBadge: true,
         badgeText: 'BETA',
         badgeVariant: 'beta',
@@ -198,7 +227,6 @@ export const FeatureList = {
         id: 'cache',
         title: 'Advanced Cache',
         tooltip: 'Full-page caching layer.',
-        planType: 'free',
         isNew: true,
         onSettingsClick: () => {},
       },
@@ -206,7 +234,7 @@ export const FeatureList = {
         id: 'wl',
         title: 'White Label',
         tooltip: 'Remove Nexter branding.',
-        planType: 'pro',
+        planLabel: 'PRO',
         isLocked: true,
         onUpgradeClick: () => alert('Upgrade to PRO'),
       },
@@ -214,7 +242,7 @@ export const FeatureList = {
         id: 'ai',
         title: 'AI Content Assistant',
         tooltip: 'Generate SEO meta descriptions using AI.',
-        planType: 'pro',
+        planLabel: 'PRO',
         isNew: true,
         isLocked: true,
         onUpgradeClick: () => alert('Upgrade to PRO'),

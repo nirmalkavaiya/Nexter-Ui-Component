@@ -43,13 +43,6 @@ const FEATURE_BADGE = {
   pro:     'nxp-ftc__badge nxp-ftc__badge--pro',
 };
 
-/* ─── Plan badge labels ─────────────────────────────────────────────────── */
-
-const PLAN_LABEL = {
-  pro:      'PRO',
-  freemium: 'FREEMIUM',
-};
-
 /* ─── Component ─────────────────────────────────────────────────────────── */
 
 function FeatureToggleCard({
@@ -57,8 +50,8 @@ function FeatureToggleCard({
   title,
   tooltip,
 
-  /* plan */
-  planType = 'free',         // 'free' | 'pro' | 'freemium'
+  /* plan — top pill: pass `planLabel` text only (no built-in defaults) */
+  planLabel,
   isLocked = false,
   isNew    = false,
   onUpgradeClick,
@@ -82,7 +75,8 @@ function FeatureToggleCard({
   redirectLink,
   className = '',
 }) {
-  const hasPlanBadge = planType && planType !== 'free';
+  const planLabelTrimmed = typeof planLabel === 'string' ? planLabel.trim() : '';
+  const hasPlanBadge = Boolean(planLabelTrimmed);
   const isInteractionLocked = isLocked || disabled;
 
   function handleToggle(newValue) {
@@ -135,8 +129,8 @@ function FeatureToggleCard({
 
       {/* ── Plan badge — slightly overlaps card top edge ── */}
       {hasPlanBadge && (
-        <span className={`nxp-ftc-plan nxp-ftc-plan--${planType}`}>
-          {PLAN_LABEL[planType]}
+        <span className="nxp-ftc-plan">
+          {planLabelTrimmed}
         </span>
       )}
 
@@ -149,7 +143,7 @@ function FeatureToggleCard({
 
             {/* NEW badge */}
             {isNew && (
-              <span className="nxp-ftc__badge nxp-ftc__badge--new" aria-label="New feature">
+              <span className="nxp-ftc__badge nxp-ftc__badge--new" aria-label="New">
                 NEW
               </span>
             )}

@@ -17,7 +17,6 @@ import type {
 
 export type NxpSize = 'sm' | 'md' | 'lg';
 export type NxpVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
-export type NxpPlanType = 'free' | 'pro' | 'freemium';
 export type NxpBadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'beta' | 'pro';
 
 // ─── Accordion ────────────────────────────────────────────────────────────────
@@ -452,7 +451,8 @@ export declare const EmptyState: React.FC<EmptyStateProps>;
 export interface FeatureToggleCardProps {
   title: string;
   tooltip?: string;
-  planType?: NxpPlanType;
+  /** Non-empty string shows the top plan pill with this text (caller supplies copy, e.g. i18n). */
+  planLabel?: string;
   isLocked?: boolean;
   isNew?: boolean;
   onUpgradeClick?: () => void;
