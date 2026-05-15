@@ -79,6 +79,8 @@ function FeatureToggleCard({
   const planLabelTrimmed = typeof planLabel === 'string' ? planLabel.trim() : '';
   const hasPlanBadge = Boolean(planLabelTrimmed);
   const isInteractionLocked = isLocked || disabled;
+  const isDescriptionHtml =
+    typeof description === 'string' && /<[a-z][\s\S]*>/i.test(description);
 
   function handleToggle(newValue) {
     // Wrap boolean in a synthetic event so consumers using `e.target.checked`
@@ -99,20 +101,6 @@ function FeatureToggleCard({
     disabled  ? 'nxp-ftc--disabled' : '',
     className,
   ].filter(Boolean).join(' ');
-
-  /* docs link element */
-  const DocsLink = docsHref 
-    && (
-      <a
-        href={docsHref}
-        className="nxp-body nxp-btn--underline nxp-ftc__link"
-        target="_blank"
-        rel="noopener noreferrer"
-        tabIndex={isInteractionLocked ? -1 : 0}
-      >
-        {docsLabel}
-      </a>
-    );
 
   return (
     <div className={outerClass}>
@@ -210,7 +198,16 @@ function FeatureToggleCard({
         {/* Bottom links row */}
         <div className="nxp-ftc__links">
           {description && (
-            <p className="nxp-body nxp-mt-12 nxp-lh-22">{description}</p>
+            isDescriptionHtml ? (
+              <div
+                className="nxp-body nxp-mt-12 nxp-lh-22"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            ) : (
+              <div className="nxp-body nxp-mt-12 nxp-lh-22">
+                {description}
+              </div>
+            )
           )}
           {docsHref && (
             <a

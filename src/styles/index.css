@@ -2729,6 +2729,7 @@ input.nxp-input--invalid:focus {
 /* ── Outer wrapper (holds plan badge + card) ─────────────────────────── */
 .nxp-ftc-outer {
   position: relative;
+  display: grid;
 }
 
 /* ── Plan badge — sits on top-left card edge (single style for any label) ─ */
