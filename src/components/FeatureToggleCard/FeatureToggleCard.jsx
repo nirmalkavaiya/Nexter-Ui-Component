@@ -90,7 +90,6 @@ function FeatureToggleCard({
   /* root classes */
   const outerClass = [
     'nxp-ftc-outer',
-    hasPlanBadge ? 'nxp-ftc-outer--has-plan' : '',
   ].filter(Boolean).join(' ');
 
   const cardClass = [

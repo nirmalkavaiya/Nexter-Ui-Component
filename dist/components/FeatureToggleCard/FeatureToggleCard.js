@@ -17,7 +17,7 @@ const D = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "
       strokeLinecap: "round"
     }
   )
-] }), R = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), k = {
+] }), R = () => /* @__PURE__ */ e("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 5.5h7M6 3l3 2.5L6 8", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }) }), m = {
   default: "nxp-ftc__badge",
   primary: "nxp-ftc__badge nxp-ftc__badge--primary",
   success: "nxp-ftc__badge nxp-ftc__badge--success",
@@ -33,16 +33,16 @@ function P({
   /* plan — top pill: pass `planLabel` text only (no built-in defaults) */
   planLabel: h,
   isLocked: c = !1,
-  isNew: v = !1,
+  isNew: k = !1,
   onUpgradeClick: i,
   /* feature-level badge (backward compat) */
-  showBadge: w = !1,
+  showBadge: v = !1,
   badgeText: s = "BETA",
-  badgeVariant: N = "beta",
+  badgeVariant: w = "beta",
   /* docs */
   docsLabel: f = "Read Docs",
   docsHref: _,
-  onDocsClick: y,
+  onDocsClick: N,
   /* interaction */
   isEnabled: a,
   onToggle: d,
@@ -50,21 +50,20 @@ function P({
   onSettingsClick: x,
   disabled: r = !1,
   redirectLink: u,
-  className: C = ""
+  className: y = ""
 }) {
-  const b = typeof h == "string" ? h.trim() : "", g = !!b, o = c || r;
-  function B(m) {
-    const j = { target: { checked: m } };
-    l == null || l(j), d == null || d(m);
+  const b = typeof h == "string" ? h.trim() : "", C = !!b, o = c || r;
+  function B(g) {
+    const j = { target: { checked: g } };
+    l == null || l(j), d == null || d(g);
   }
   const I = [
-    "nxp-ftc-outer",
-    g ? "nxp-ftc-outer--has-plan" : ""
+    "nxp-ftc-outer"
   ].filter(Boolean).join(" "), M = [
     "nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md",
     c ? "nxp-ftc--locked" : "",
     r ? "nxp-ftc--disabled" : "",
-    C
+    y
   ].filter(Boolean).join(" "), A = _ ? /* @__PURE__ */ e(
     "a",
     {
@@ -80,23 +79,23 @@ function P({
     {
       type: "button",
       className: "nxp-ftc__link nxp-ftc__link--btn",
-      onClick: y,
+      onClick: N,
       disabled: o,
       tabIndex: o ? -1 : 0,
       children: f
     }
   );
   return /* @__PURE__ */ n("div", { className: I, children: [
-    g && /* @__PURE__ */ e("span", { className: "nxp-ftc-plan", children: b }),
+    C && /* @__PURE__ */ e("span", { className: "nxp-ftc-plan", children: b }),
     /* @__PURE__ */ n("div", { className: M, children: [
       /* @__PURE__ */ n("div", { className: "nxp-ftc__body", children: [
         /* @__PURE__ */ n("div", { className: "nxp-ftc__title-row", children: [
           /* @__PURE__ */ e("span", { className: "nxp-title-label nxp-cursor-pointer", children: t }),
-          v && /* @__PURE__ */ e("span", { className: "nxp-ftc__badge nxp-ftc__badge--new", "aria-label": "New", children: "NEW" }),
-          w && s && /* @__PURE__ */ e(
+          k && /* @__PURE__ */ e("span", { className: "nxp-ftc__badge nxp-ftc__badge--new", "aria-label": "New", children: "NEW" }),
+          v && s && /* @__PURE__ */ e(
             "span",
             {
-              className: k[N] ?? k.default,
+              className: m[w] ?? m.default,
               "aria-label": `${s} feature`,
               children: s
             }
