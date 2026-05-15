@@ -49,6 +49,7 @@ function FeatureToggleCard({
   /* content */
   title,
   tooltip,
+  description,
 
   /* plan — top pill: pass `planLabel` text only (no built-in defaults) */
   planLabel,
@@ -100,8 +101,8 @@ function FeatureToggleCard({
   ].filter(Boolean).join(' ');
 
   /* docs link element */
-  const DocsLink = docsHref
-    ? (
+  const DocsLink = docsHref 
+    && (
       <a
         href={docsHref}
         className="nxp-body nxp-btn--underline nxp-ftc__link"
@@ -111,16 +112,6 @@ function FeatureToggleCard({
       >
         {docsLabel}
       </a>
-    ) : (
-      <button
-        type="button"
-        className="nxp-ftc__link nxp-ftc__link--btn"
-        onClick={onDocsClick}
-        disabled={isInteractionLocked}
-        tabIndex={isInteractionLocked ? -1 : 0}
-      >
-        {docsLabel}
-      </button>
     );
 
   return (
@@ -218,7 +209,20 @@ function FeatureToggleCard({
         
         {/* Bottom links row */}
         <div className="nxp-ftc__links">
-          {DocsLink}
+          {description && (
+            <p className="nxp-body">{description}</p>
+          )}
+          {docsHref && (
+            <a
+              href={docsHref}
+              className="nxp-body nxp-btn--underline nxp-ftc__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={isInteractionLocked ? -1 : 0}
+            >
+              {docsLabel}
+            </a>
+          )}
           {isLocked && onUpgradeClick && (
             <>
               <span className="nxp-ftc__links-sep" aria-hidden="true">·</span>
