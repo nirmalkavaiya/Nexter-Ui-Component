@@ -2730,9 +2730,6 @@ input.nxp-input--invalid:focus {
 .nxp-ftc-outer {
   position: relative;
 }
-.nxp-ftc-outer--has-plan {
-  padding-top: 10px; /* makes room so plan badge can overlap card top */
-}
 
 /* ── Plan badge — sits on top-left card edge (single style for any label) ─ */
 .nxp-ftc-plan {
@@ -2805,7 +2802,7 @@ input.nxp-input--invalid:focus {
   padding: var(--nxp-space-0) var(--nxp-space-4);
   border-radius: var(--nxp-radius-sm);
   font-size: var(--nxp-text-xs);
-  font-weight: var(--nxp-font-bold);
+  font-weight: var(--nxp-font-medium);
   letter-spacing: .05em;
   text-transform: uppercase;
   line-height: var(--nxp-font-lineHeight-snug);
