@@ -210,7 +210,7 @@ function FeatureToggleCard({
         {/* Bottom links row */}
         <div className="nxp-ftc__links">
           {description && (
-            <p className="nxp-body">{description}</p>
+            <p className="nxp-body nxp-mt-12 nxp-lh-22">{description}</p>
           )}
           {docsHref && (
             <a

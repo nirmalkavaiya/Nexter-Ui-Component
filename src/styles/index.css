@@ -4986,6 +4986,17 @@ input.nxp-input--invalid:focus {
 .nxp-text-3xl { font-size: var(--nxp-font-size-3xl); }
 
 /* ============================================================
+  UTILITY — LINE HEIGHT
+   ============================================================ */
+.nxp-lh-16  { line-height: var(--nxp-font-lineHeight-none); }
+.nxp-lh-17  { line-height: var(--nxp-font-lineHeight-tight); }
+.nxp-lh-18  { line-height: var(--nxp-font-lineHeight-snug); }
+.nxp-lh-22  { line-height: 22px; }
+.nxp-lh-24  { line-height: var(--nxp-font-lineHeight-normal); }
+.nxp-lh-26  { line-height: var(--nxp-font-lineHeight-relaxed); }
+.nxp-lh-32  { line-height: var(--nxp-font-lineHeight-loose); }
+
+/* ============================================================
    UTILITY — FONT WEIGHT
    ============================================================ */
 .nxp-weight-regular  { font-weight: var(--nxp-font-regular); }
