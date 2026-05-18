@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "2.1.42",
+  "version": "2.1.43",
   "description": "Nexter Design System — React component library. 64 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
@@ -190,10 +190,6 @@
       "import": "./dist/components/NumberInput/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./OTPInput": {
-      "import": "./dist/components/OTPInput/index.js",
-      "types": "./dist/index.d.ts"
-    },
     "./Pagination": {
       "import": "./dist/components/Pagination/index.js",
       "types": "./dist/index.d.ts"
@@ -248,10 +244,6 @@
     },
     "./Spinner": {
       "import": "./dist/components/Spinner/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./SortableList": {
-      "import": "./dist/components/SortableList/index.js",
       "types": "./dist/index.d.ts"
     },
     "./CountCard": {

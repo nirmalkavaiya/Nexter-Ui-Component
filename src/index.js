@@ -47,8 +47,6 @@ export { default as CopyInput }        from './components/CopyInput';
 export { default as Breadcrumb }       from './components/Breadcrumb';
 export { default as ConfirmButton }    from './components/ConfirmButton';
 export { default as NumberInput }      from './components/NumberInput';
-export { default as OTPInput }         from './components/OTPInput';
-export { default as SortableList }     from './components/SortableList';
 export { default as FileUpload }       from './components/FileUpload';
 export { default as ColorPicker }      from './components/ColorPicker';
 export { default as DatePicker }       from './components/DatePicker';

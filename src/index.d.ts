@@ -632,19 +632,6 @@ export interface NumberInputProps {
 
 export declare const NumberInput: React.FC<NumberInputProps>;
 
-// ─── OTPInput ────────────────────────────────────────────────────────────────
-
-export interface OTPInputProps {
-  length?: number;
-  value?: string;
-  onChange?: (value: string) => void;
-  disabled?: boolean;
-  invalid?: boolean;
-  className?: string;
-}
-
-export declare const OTPInput: React.FC<OTPInputProps>;
-
 // ─── Pagination ──────────────────────────────────────────────────────────────
 
 export interface PaginationProps {
@@ -831,24 +818,6 @@ export interface SpinnerProps {
 }
 
 export declare const Spinner: React.FC<SpinnerProps>;
-
-// ─── SortableList ────────────────────────────────────────────────────────────
-
-export interface SortableListItem {
-  id: string | number;
-  label?: ReactNode;
-  [key: string]: unknown;
-}
-
-export interface SortableListProps {
-  items?: SortableListItem[];
-  onChange?: (items: SortableListItem[]) => void;
-  renderItem?: (item: SortableListItem) => ReactNode;
-  disabled?: boolean;
-  className?: string;
-}
-
-export declare const SortableList: React.FC<SortableListProps>;
 
 // ─── StatCard ────────────────────────────────────────────────────────────────
 
