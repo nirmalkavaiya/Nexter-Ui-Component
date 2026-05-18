@@ -5042,11 +5042,11 @@ input.nxp-input--invalid:focus {
 
 /* ── Card ───────────────────────────────────────────────────── */
 .nxp-pp {
-  background: #2C3EEF;
-  border-radius: var(--nxp-radius-lg);
+  background: var(--nxp-brand);
+  border-radius: var(--nxp-radius-md);
   width: 100%;
   max-width: 420px;
-  padding: var(--nxp-space-24) var(--nxp-space-24) var(--nxp-space-20);
+  padding: var(--nxp-space-20);
   position: relative;
   animation: nxp-pp-in 0.18s ease;
   overflow: hidden;
@@ -5061,8 +5061,8 @@ input.nxp-input--invalid:focus {
   border: none;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.65);
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: var(--nxp-radius-full);
   display: flex;
   align-items: center;

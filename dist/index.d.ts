@@ -1161,9 +1161,22 @@ export declare const rtlSupport: 'CSS-driven — add dir="rtl" to any ancestor e
 
 // ─── ProPopup ────────────────────────────────────────────────────────────────
 
+export interface ProPopupDetails {
+  title?: ReactNode;
+  list?: string[];
+  buttonText?: string;
+  buttonLink?: string;
+  onButtonClick?: () => void;
+  buttonIcon?: ReactNode;
+  bottomText?: ReactNode;
+  closeOnOverlay?: boolean;
+}
+
 export interface ProPopupProps {
   /** Show / hide the popup. */
   open?: boolean;
+  /** Grouped popup content; individual props override these when both are set. */
+  details?: ProPopupDetails;
   /** Heading text. */
   title?: ReactNode;
   /** Feature bullet items — checkmark icon is added automatically. */

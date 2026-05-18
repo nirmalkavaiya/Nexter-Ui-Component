@@ -33,6 +33,7 @@ const CrownIcon = () => (
  *
  * Props:
  *   open            {boolean}            — show / hide
+ *   details         {object}             — optional grouped content (title, list, buttonText, …)
  *   title           {string|ReactNode}   — heading
  *   list            {string[]}           — feature bullet items (checkmark auto-added)
  *   buttonText      {string}             — CTA label (default "Upgrade Now")
@@ -46,17 +47,26 @@ const CrownIcon = () => (
  */
 function ProPopup({
   open           = false,
+  details,
   title,
-  list           = [],
-  buttonText     = 'Upgrade Now',
+  list,
+  buttonText,
   buttonLink,
   onButtonClick,
   buttonIcon,
   bottomText,
   onClose,
-  closeOnOverlay = true,
+  closeOnOverlay,
   className      = '',
 }) {
+  const resolvedTitle = title ?? details?.title;
+  const resolvedList = list ?? details?.list ?? [];
+  const resolvedButtonText = buttonText ?? details?.buttonText ?? 'Upgrade Now';
+  const resolvedButtonLink = buttonLink ?? details?.buttonLink;
+  const resolvedOnButtonClick = onButtonClick ?? details?.onButtonClick;
+  const resolvedButtonIcon = buttonIcon !== undefined ? buttonIcon : details?.buttonIcon;
+  const resolvedBottomText = bottomText ?? details?.bottomText;
+  const resolvedCloseOnOverlay = closeOnOverlay ?? details?.closeOnOverlay ?? true;
   /* ── Scroll lock ── */
   useEffect(() => {
     if (open) {
@@ -82,27 +92,27 @@ function ProPopup({
 
   /* ── HTML-aware bottomText ── */
   const isBottomHtml =
-    typeof bottomText === 'string' && /<[a-z][\s\S]*>/i.test(bottomText);
+    typeof resolvedBottomText === 'string' && /<[a-z][\s\S]*>/i.test(resolvedBottomText);
 
   /* ── CTA handler ── */
   const handleCta = (e) => {
-    if (onButtonClick) onButtonClick(e);
-    if (buttonLink) {
-      window.open(buttonLink, '_blank', 'noopener,noreferrer');
+    if (resolvedOnButtonClick) resolvedOnButtonClick(e);
+    if (resolvedButtonLink) {
+      window.open(resolvedButtonLink, '_blank', 'noopener,noreferrer');
     }
   };
 
-  const icon = buttonIcon !== undefined ? buttonIcon : <CrownIcon />;
+  const icon = resolvedButtonIcon !== undefined ? resolvedButtonIcon : <CrownIcon />;
 
   return createPortal(
     <div
       className="nxp-pp-backdrop"
       onMouseDown={(e) => {
-        if (closeOnOverlay && e.target === e.currentTarget && onClose) onClose();
+        if (resolvedCloseOnOverlay && e.target === e.currentTarget && onClose) onClose();
       }}
       role="dialog"
       aria-modal="true"
-      aria-label={typeof title === 'string' ? title : 'Upgrade popup'}
+      aria-label={typeof resolvedTitle === 'string' ? resolvedTitle : 'Upgrade popup'}
     >
       <div className={cn('nxp-pp', className)}>
 
@@ -119,14 +129,14 @@ function ProPopup({
         )}
 
         {/* ── Title ── */}
-        {title && (
-          <div className="nxp-pp__title">{title}</div>
+        {resolvedTitle && (
+          <div className="nxp-pp__title">{resolvedTitle}</div>
         )}
 
         {/* ── Feature list ── */}
-        {list.length > 0 && (
+        {resolvedList.length > 0 && (
           <ul className="nxp-pp__list" role="list">
-            {list.map((item, i) => (
+            {resolvedList.map((item, i) => (
               <li key={i} className="nxp-pp__list-item">
                 <span className="nxp-pp__check" aria-hidden="true">
                   <CheckIcon />
@@ -138,26 +148,26 @@ function ProPopup({
         )}
 
         {/* ── CTA Button ── */}
-        {(buttonLink || onButtonClick) && (
+        {(resolvedButtonLink || resolvedOnButtonClick) && (
           <button
             type="button"
             className="nxp-pp__btn"
             onClick={handleCta}
           >
             {icon && <span className="nxp-pp__btn-icon">{icon}</span>}
-            {buttonText}
+            {resolvedButtonText}
           </button>
         )}
 
         {/* ── Bottom note ── */}
-        {bottomText && (
+        {resolvedBottomText && (
           isBottomHtml ? (
             <p
               className="nxp-pp__bottom"
-              dangerouslySetInnerHTML={{ __html: bottomText }}
+              dangerouslySetInnerHTML={{ __html: resolvedBottomText }}
             />
           ) : (
-            <p className="nxp-pp__bottom">{bottomText}</p>
+            <p className="nxp-pp__bottom">{resolvedBottomText}</p>
           )
         )}
 

@@ -1,94 +1,96 @@
-import { jsx as e, jsxs as c } from "react/jsx-runtime";
-import { useEffect as u, useCallback as x } from "react";
-import { createPortal as g } from "react-dom";
-import { cn as k } from "../../lib/utils.js";
-const N = () => /* @__PURE__ */ e("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M11 3L3 11M3 3l8 8", stroke: "currentColor", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }), b = () => /* @__PURE__ */ e("svg", { width: "11", height: "9", viewBox: "0 0 11 9", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M1 4.5L4 7.5L10 1", stroke: "currentColor", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }), L = () => /* @__PURE__ */ c("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "currentColor", "aria-hidden": "true", children: [
-  /* @__PURE__ */ e("path", { d: "M2 19h20v2H2v-2zm2-3l3-9 4 6 3-9 3 9 3-6v9H4v-0z" }),
-  /* @__PURE__ */ e("path", { d: "M4 7l3 9h10l3-9-4 6-4-6-4 6-4-6z", fillOpacity: "0.85" }),
-  /* @__PURE__ */ e("circle", { cx: "12", cy: "5", r: "2" }),
-  /* @__PURE__ */ e("circle", { cx: "3", cy: "8", r: "2" }),
-  /* @__PURE__ */ e("circle", { cx: "21", cy: "8", r: "2" })
+import { jsx as n, jsxs as i } from "react/jsx-runtime";
+import { useEffect as v, useCallback as T } from "react";
+import { createPortal as O } from "react-dom";
+import { cn as I } from "../../lib/utils.js";
+const j = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ n("path", { d: "M11 3L3 11M3 3l8 8", stroke: "currentColor", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }), z = () => /* @__PURE__ */ n("svg", { width: "11", height: "9", viewBox: "0 0 11 9", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ n("path", { d: "M1 4.5L4 7.5L10 1", stroke: "currentColor", strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" }) }), E = () => /* @__PURE__ */ i("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "currentColor", "aria-hidden": "true", children: [
+  /* @__PURE__ */ n("path", { d: "M2 19h20v2H2v-2zm2-3l3-9 4 6 3-9 3 9 3-6v9H4v-0z" }),
+  /* @__PURE__ */ n("path", { d: "M4 7l3 9h10l3-9-4 6-4-6-4 6-4-6z", fillOpacity: "0.85" }),
+  /* @__PURE__ */ n("circle", { cx: "12", cy: "5", r: "2" }),
+  /* @__PURE__ */ n("circle", { cx: "3", cy: "8", r: "2" }),
+  /* @__PURE__ */ n("circle", { cx: "21", cy: "8", r: "2" })
 ] });
-function H({
-  open: i = !1,
-  title: o,
-  list: d = [],
-  buttonText: m = "Upgrade Now",
-  buttonLink: a,
-  onButtonClick: l,
-  buttonIcon: s,
-  bottomText: t,
-  onClose: n,
-  closeOnOverlay: f = !0,
-  className: v = ""
+function W({
+  open: t = !1,
+  details: o,
+  title: f,
+  list: x,
+  buttonText: k,
+  buttonLink: y,
+  onButtonClick: _,
+  buttonIcon: h,
+  bottomText: b,
+  onClose: r,
+  closeOnOverlay: w,
+  className: g = ""
 }) {
-  u(() => {
-    if (i) {
-      const r = document.body.style.overflow;
+  const p = f ?? (o == null ? void 0 : o.title), m = x ?? (o == null ? void 0 : o.list) ?? [], L = k ?? (o == null ? void 0 : o.buttonText) ?? "Upgrade Now", l = y ?? (o == null ? void 0 : o.buttonLink), u = _ ?? (o == null ? void 0 : o.onButtonClick), d = h !== void 0 ? h : o == null ? void 0 : o.buttonIcon, c = b ?? (o == null ? void 0 : o.bottomText), N = w ?? (o == null ? void 0 : o.closeOnOverlay) ?? !0;
+  v(() => {
+    if (t) {
+      const e = document.body.style.overflow;
       return document.body.style.overflow = "hidden", () => {
-        document.body.style.overflow = r;
+        document.body.style.overflow = e;
       };
     }
-  }, [i]);
-  const p = x(
-    (r) => {
-      r.key === "Escape" && n && n();
+  }, [t]);
+  const s = T(
+    (e) => {
+      e.key === "Escape" && r && r();
     },
-    [n]
+    [r]
   );
-  if (u(() => {
-    if (i)
-      return document.addEventListener("keydown", p), () => document.removeEventListener("keydown", p);
-  }, [i, p]), !i) return null;
-  const _ = typeof t == "string" && /<[a-z][\s\S]*>/i.test(t), y = (r) => {
-    l && l(r), a && window.open(a, "_blank", "noopener,noreferrer");
-  }, h = s !== void 0 ? s : /* @__PURE__ */ e(L, {});
-  return g(
-    /* @__PURE__ */ e(
+  if (v(() => {
+    if (t)
+      return document.addEventListener("keydown", s), () => document.removeEventListener("keydown", s);
+  }, [t, s]), !t) return null;
+  const B = typeof c == "string" && /<[a-z][\s\S]*>/i.test(c), C = (e) => {
+    u && u(e), l && window.open(l, "_blank", "noopener,noreferrer");
+  }, a = d !== void 0 ? d : /* @__PURE__ */ n(E, {});
+  return O(
+    /* @__PURE__ */ n(
       "div",
       {
         className: "nxp-pp-backdrop",
-        onMouseDown: (r) => {
-          f && r.target === r.currentTarget && n && n();
+        onMouseDown: (e) => {
+          N && e.target === e.currentTarget && r && r();
         },
         role: "dialog",
         "aria-modal": "true",
-        "aria-label": typeof o == "string" ? o : "Upgrade popup",
-        children: /* @__PURE__ */ c("div", { className: k("nxp-pp", v), children: [
-          n && /* @__PURE__ */ e(
+        "aria-label": typeof p == "string" ? p : "Upgrade popup",
+        children: /* @__PURE__ */ i("div", { className: I("nxp-pp", g), children: [
+          r && /* @__PURE__ */ n(
             "button",
             {
               type: "button",
               className: "nxp-pp__close",
               "aria-label": "Close popup",
-              onClick: n,
-              children: /* @__PURE__ */ e(N, {})
+              onClick: r,
+              children: /* @__PURE__ */ n(j, {})
             }
           ),
-          o && /* @__PURE__ */ e("div", { className: "nxp-pp__title", children: o }),
-          d.length > 0 && /* @__PURE__ */ e("ul", { className: "nxp-pp__list", role: "list", children: d.map((r, w) => /* @__PURE__ */ c("li", { className: "nxp-pp__list-item", children: [
-            /* @__PURE__ */ e("span", { className: "nxp-pp__check", "aria-hidden": "true", children: /* @__PURE__ */ e(b, {}) }),
-            /* @__PURE__ */ e("span", { children: r })
-          ] }, w)) }),
-          (a || l) && /* @__PURE__ */ c(
+          p && /* @__PURE__ */ n("div", { className: "nxp-pp__title", children: p }),
+          m.length > 0 && /* @__PURE__ */ n("ul", { className: "nxp-pp__list", role: "list", children: m.map((e, M) => /* @__PURE__ */ i("li", { className: "nxp-pp__list-item", children: [
+            /* @__PURE__ */ n("span", { className: "nxp-pp__check", "aria-hidden": "true", children: /* @__PURE__ */ n(z, {}) }),
+            /* @__PURE__ */ n("span", { children: e })
+          ] }, M)) }),
+          (l || u) && /* @__PURE__ */ i(
             "button",
             {
               type: "button",
               className: "nxp-pp__btn",
-              onClick: y,
+              onClick: C,
               children: [
-                h && /* @__PURE__ */ e("span", { className: "nxp-pp__btn-icon", children: h }),
-                m
+                a && /* @__PURE__ */ n("span", { className: "nxp-pp__btn-icon", children: a }),
+                L
               ]
             }
           ),
-          t && (_ ? /* @__PURE__ */ e(
+          c && (B ? /* @__PURE__ */ n(
             "p",
             {
               className: "nxp-pp__bottom",
-              dangerouslySetInnerHTML: { __html: t }
+              dangerouslySetInnerHTML: { __html: c }
             }
-          ) : /* @__PURE__ */ e("p", { className: "nxp-pp__bottom", children: t }))
+          ) : /* @__PURE__ */ n("p", { className: "nxp-pp__bottom", children: c }))
         ] })
       }
     ),
@@ -96,6 +98,6 @@ function H({
   );
 }
 export {
-  H as ProPopup,
-  H as default
+  W as ProPopup,
+  W as default
 };
