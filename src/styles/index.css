@@ -5043,13 +5043,16 @@ input.nxp-input--invalid:focus {
 /* ── Card ───────────────────────────────────────────────────── */
 .nxp-pp {
   background: var(--nxp-brand);
-  border-radius: var(--nxp-radius-md);
+  border-radius: var(--nxp-radius-sm);
   width: 100%;
   max-width: 420px;
-  padding: var(--nxp-space-20);
+  padding: var(--nxp-space-32);
   position: relative;
   animation: nxp-pp-in 0.18s ease;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nxp-space-20);
 }
 
 /* ── Close button ───────────────────────────────────────────── */
@@ -5072,29 +5075,29 @@ input.nxp-input--invalid:focus {
   flex-shrink: 0;
 }
 .nxp-pp__close:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--nxp-color-info-dark);
+  color: var(--nxp-color-text-white);
 }
 .nxp-pp__close:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.6);
-  outline-offset: 1px;
+  outline: none;
+  outline-offset: 0;
 }
 
 /* ── Title ──────────────────────────────────────────────────── */
 .nxp-pp__title {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-lg);
-  font-weight: var(--nxp-font-bold);
-  color: #fff;
-  line-height: 1.45;
-  margin: 0 0 var(--nxp-space-16) 0;
+  font-weight: var(--nxp-font-medium);
+  color: var(--nxp-color-text-white);
+  line-height: var(--nxp-font-lineHeight-snug);
+  margin: 0;
   padding-right: var(--nxp-space-20);
 }
 
 /* ── Feature list ───────────────────────────────────────────── */
 .nxp-pp__list {
   list-style: none;
-  margin: 0 0 var(--nxp-space-20) 0;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -5106,16 +5109,17 @@ input.nxp-input--invalid:focus {
   align-items: center;
   gap: var(--nxp-space-10);
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-md);
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.4;
+  font-size: var(--nxp-text-sm);
+  color: #ffffffe0;
+  line-height: var(--nxp-leading-sm);
+  margin: 0;
 }
 
 /* Checkmark circle */
 .nxp-pp__check {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border-radius: var(--nxp-radius-full);
   background: rgba(255, 255, 255, 0.22);
   display: flex;
@@ -5130,32 +5134,31 @@ input.nxp-input--invalid:focus {
   align-items: center;
   justify-content: center;
   gap: var(--nxp-space-8);
-  width: 100%;
+  width: auto;
   padding: var(--nxp-space-12) var(--nxp-space-24);
-  background: linear-gradient(135deg, #e03131 0%, #f4532a 100%);
+  background: var(--nxp-color-secondary);
   border: none;
   border-radius: var(--nxp-radius-sm);
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-md);
-  font-weight: var(--nxp-font-semibold);
+  font-weight: var(--nxp-font-medium);
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: var(--nxp-space-15);
-  transition: opacity 0.15s ease, transform 0.12s ease;
+  margin-bottom: 0;
+  transition: opacity .15s ease, transform .12s ease;
   line-height: 1;
+  max-width: max-content;
 }
 .nxp-pp__btn:hover {
-  opacity: 0.90;
-  transform: translateY(-1px);
+  background: var(--nxp-color-secondary-dark);
 }
 .nxp-pp__btn:active {
-  transform: translateY(0);
-  opacity: 1;
+  background: var(--nxp-color-secondary-dark);
 }
 .nxp-pp__btn:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.7);
-  outline-offset: 2px;
+  outline: none;
+  outline-offset: 0;
 }
 .nxp-pp__btn-icon {
   display: flex;
@@ -5167,10 +5170,10 @@ input.nxp-input--invalid:focus {
 .nxp-pp__bottom {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-sm);
-  color: rgba(255, 255, 255, 0.55);
+  color: #ffffffe0;
   font-style: italic;
-  text-align: center;
-  line-height: 1.45;
+  text-align: left;
+  line-height: var(--nxp-leading-sm);
   margin: 0;
 }
 

@@ -11,7 +11,7 @@ const CloseIcon = () => (
 );
 
 const CheckIcon = () => (
-  <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
+  <svg width="9" height="8" viewBox="0 0 11 9" fill="none" aria-hidden="true">
     <path d="M1 4.5L4 7.5L10 1" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
