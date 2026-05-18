@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "2.1.41",
+  "version": "2.1.42",
   "description": "Nexter Design System — React component library. 64 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
@@ -312,6 +312,10 @@
     },
     "./VerticalNavigationMenu": {
       "import": "./dist/components/VerticalNavigationMenu/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./ProPopup": {
+      "import": "./dist/components/ProPopup/index.js",
       "types": "./dist/index.d.ts"
     },
     "./lib/utils": {

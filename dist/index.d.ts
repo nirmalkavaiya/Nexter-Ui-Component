@@ -1190,6 +1190,35 @@ export declare function useTheme(): NxpThemeContext;
  */
 export declare const rtlSupport: 'CSS-driven — add dir="rtl" to any ancestor element';
 
+// ─── ProPopup ────────────────────────────────────────────────────────────────
+
+export interface ProPopupProps {
+  /** Show / hide the popup. */
+  open?: boolean;
+  /** Heading text. */
+  title?: ReactNode;
+  /** Feature bullet items — checkmark icon is added automatically. */
+  list?: string[];
+  /** CTA button label (default "Upgrade Now"). */
+  buttonText?: string;
+  /** URL opened in a new tab when CTA is clicked. */
+  buttonLink?: string;
+  /** JS callback fired on CTA click (use instead of or alongside buttonLink). */
+  onButtonClick?: () => void;
+  /** Icon rendered inside the CTA button (default: Crown SVG). Pass null to hide. */
+  buttonIcon?: ReactNode;
+  /** Small italic note rendered below the CTA button. HTML strings are auto-detected and rendered safely. */
+  bottomText?: ReactNode;
+  /** Called when the X button or backdrop is clicked. */
+  onClose?: () => void;
+  /** Click backdrop to close (default true). */
+  closeOnOverlay?: boolean;
+  /** Extra classes on the popup card. */
+  className?: string;
+}
+
+export declare const ProPopup: React.FC<ProPopupProps>;
+
 // ─── tokens (informational export) ───────────────────────────────────────────
 
 /** CSS tokens and component styles are auto-injected into the JS bundle. */

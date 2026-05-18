@@ -1,0 +1,171 @@
+import React, { useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import { cn } from '../../lib/utils';
+
+/* ── Icons ───────────────────────────────────────────────────── */
+const CloseIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
+    <path d="M1 4.5L4 7.5L10 1" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const CrownIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M2 19h20v2H2v-2zm2-3l3-9 4 6 3-9 3 9 3-6v9H4v-0z" />
+    <path d="M4 7l3 9h10l3-9-4 6-4-6-4 6-4-6z" fillOpacity="0.85" />
+    <circle cx="12" cy="5" r="2" />
+    <circle cx="3"  cy="8" r="2" />
+    <circle cx="21" cy="8" r="2" />
+  </svg>
+);
+
+/**
+ * ProPopup
+ *
+ * A branded upgrade / upsell popup with a deep-blue card, feature list,
+ * a prominent CTA button, and an optional bottom note.
+ *
+ * Props:
+ *   open            {boolean}            — show / hide
+ *   title           {string|ReactNode}   — heading
+ *   list            {string[]}           — feature bullet items (checkmark auto-added)
+ *   buttonText      {string}             — CTA label (default "Upgrade Now")
+ *   buttonLink      {string}             — URL opened in new tab
+ *   onButtonClick   {() => void}         — JS callback on CTA click (use instead of or alongside buttonLink)
+ *   buttonIcon      {ReactNode}          — icon inside CTA (default Crown SVG)
+ *   bottomText      {string|ReactNode}   — small italic note below button (HTML-aware)
+ *   onClose         {() => void}         — called when X or backdrop is clicked
+ *   closeOnOverlay  {boolean}            — click backdrop to close (default true)
+ *   className       {string}             — extra classes on the card
+ */
+function ProPopup({
+  open           = false,
+  title,
+  list           = [],
+  buttonText     = 'Upgrade Now',
+  buttonLink,
+  onButtonClick,
+  buttonIcon,
+  bottomText,
+  onClose,
+  closeOnOverlay = true,
+  className      = '',
+}) {
+  /* ── Scroll lock ── */
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [open]);
+
+  /* ── Esc to close ── */
+  const handleKey = useCallback(
+    (e) => { if (e.key === 'Escape' && onClose) onClose(); },
+    [onClose]
+  );
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('keydown', handleKey);
+      return () => document.removeEventListener('keydown', handleKey);
+    }
+  }, [open, handleKey]);
+
+  if (!open) return null;
+
+  /* ── HTML-aware bottomText ── */
+  const isBottomHtml =
+    typeof bottomText === 'string' && /<[a-z][\s\S]*>/i.test(bottomText);
+
+  /* ── CTA handler ── */
+  const handleCta = (e) => {
+    if (onButtonClick) onButtonClick(e);
+    if (buttonLink) {
+      window.open(buttonLink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const icon = buttonIcon !== undefined ? buttonIcon : <CrownIcon />;
+
+  return createPortal(
+    <div
+      className="nxp-pp-backdrop"
+      onMouseDown={(e) => {
+        if (closeOnOverlay && e.target === e.currentTarget && onClose) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+      aria-label={typeof title === 'string' ? title : 'Upgrade popup'}
+    >
+      <div className={cn('nxp-pp', className)}>
+
+        {/* ── Close ── */}
+        {onClose && (
+          <button
+            type="button"
+            className="nxp-pp__close"
+            aria-label="Close popup"
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </button>
+        )}
+
+        {/* ── Title ── */}
+        {title && (
+          <div className="nxp-pp__title">{title}</div>
+        )}
+
+        {/* ── Feature list ── */}
+        {list.length > 0 && (
+          <ul className="nxp-pp__list" role="list">
+            {list.map((item, i) => (
+              <li key={i} className="nxp-pp__list-item">
+                <span className="nxp-pp__check" aria-hidden="true">
+                  <CheckIcon />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* ── CTA Button ── */}
+        {(buttonLink || onButtonClick) && (
+          <button
+            type="button"
+            className="nxp-pp__btn"
+            onClick={handleCta}
+          >
+            {icon && <span className="nxp-pp__btn-icon">{icon}</span>}
+            {buttonText}
+          </button>
+        )}
+
+        {/* ── Bottom note ── */}
+        {bottomText && (
+          isBottomHtml ? (
+            <p
+              className="nxp-pp__bottom"
+              dangerouslySetInnerHTML={{ __html: bottomText }}
+            />
+          ) : (
+            <p className="nxp-pp__bottom">{bottomText}</p>
+          )
+        )}
+
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+export { ProPopup };
+export default ProPopup;

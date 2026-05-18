@@ -5022,3 +5022,160 @@ input.nxp-input--invalid:focus {
 .nxp-no-underline      { text-decoration: none; }
 .nxp-underline         { text-decoration: underline; }
 .nxp-font-family       { font-family: var(--nxp-font); }
+
+/* ============================================================
+   PRO POPUP
+   ============================================================ */
+
+/* ── Backdrop ───────────────────────────────────────────────── */
+.nxp-pp-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.60);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nxp-space-24);
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.nxp-pp {
+  background: #2C3EEF;
+  border-radius: var(--nxp-radius-lg);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--nxp-space-24) var(--nxp-space-24) var(--nxp-space-20);
+  position: relative;
+  animation: nxp-pp-in 0.18s ease;
+  overflow: hidden;
+}
+
+/* ── Close button ───────────────────────────────────────────── */
+.nxp-pp__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.65);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--nxp-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.12s ease, color 0.12s ease;
+  flex-shrink: 0;
+}
+.nxp-pp__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+.nxp-pp__close:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 1px;
+}
+
+/* ── Title ──────────────────────────────────────────────────── */
+.nxp-pp__title {
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-lg);
+  font-weight: var(--nxp-font-bold);
+  color: #fff;
+  line-height: 1.45;
+  margin: 0 0 var(--nxp-space-16) 0;
+  padding-right: var(--nxp-space-20);
+}
+
+/* ── Feature list ───────────────────────────────────────────── */
+.nxp-pp__list {
+  list-style: none;
+  margin: 0 0 var(--nxp-space-20) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nxp-space-10);
+}
+
+.nxp-pp__list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--nxp-space-10);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-md);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+}
+
+/* Checkmark circle */
+.nxp-pp__check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--nxp-radius-full);
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* ── CTA Button ─────────────────────────────────────────────── */
+.nxp-pp__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nxp-space-8);
+  width: 100%;
+  padding: var(--nxp-space-12) var(--nxp-space-24);
+  background: linear-gradient(135deg, #e03131 0%, #f4532a 100%);
+  border: none;
+  border-radius: var(--nxp-radius-sm);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-md);
+  font-weight: var(--nxp-font-semibold);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: var(--nxp-space-15);
+  transition: opacity 0.15s ease, transform 0.12s ease;
+  line-height: 1;
+}
+.nxp-pp__btn:hover {
+  opacity: 0.90;
+  transform: translateY(-1px);
+}
+.nxp-pp__btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+.nxp-pp__btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+.nxp-pp__btn-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Bottom note ────────────────────────────────────────────── */
+.nxp-pp__bottom {
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-sm);
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Enter animation ────────────────────────────────────────── */
+@keyframes nxp-pp-in {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}

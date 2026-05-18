@@ -72,6 +72,7 @@ export { default as Container }        from './components/Container';
 
 // v2.1.6 additions
 export { default as FeatureList } from './components/FeatureList';
+export { default as ProPopup }   from './components/ProPopup';
 
 // v1.8.0 additions
 export { VerticalNavigationMenu } from './components/VerticalNavigationMenu';
