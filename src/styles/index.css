@@ -5040,6 +5040,12 @@ input.nxp-input--invalid:focus {
   padding: var(--nxp-space-24);
 }
 
+/* Inline render (portal={false}) — covers positioned parent, not viewport */
+.nxp-pp-backdrop--inline {
+  position: absolute;
+  z-index: 11;
+}
+
 /* ── Card ───────────────────────────────────────────────────── */
 .nxp-pp {
   background: var(--nxp-brand);

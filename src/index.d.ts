@@ -1170,6 +1170,12 @@ export interface ProPopupDetails {
   buttonIcon?: ReactNode;
   bottomText?: ReactNode;
   closeOnOverlay?: boolean;
+  /** Portal to document.body (default true). */
+  portal?: boolean;
+  /** Custom portal mount node (default document.body). */
+  container?: Element;
+  /** Lock body scroll when open (default: same as portal). */
+  lockScroll?: boolean;
 }
 
 export interface ProPopupProps {
@@ -1195,6 +1201,12 @@ export interface ProPopupProps {
   onClose?: () => void;
   /** Click backdrop to close (default true). */
   closeOnOverlay?: boolean;
+  /** Portal to document.body (default true). Set false for inline render in the React tree. */
+  portal?: boolean;
+  /** Custom portal mount node (default document.body). */
+  container?: Element;
+  /** Lock body scroll when open (default: same as portal). */
+  lockScroll?: boolean;
   /** Extra classes on the popup card. */
   className?: string;
 }

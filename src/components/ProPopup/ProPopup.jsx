@@ -44,10 +44,16 @@ const CrownIcon = () => (
  *   bottomText      {string|ReactNode}   — small italic note below button (HTML-aware)
  *   onClose         {() => void}         — called when X or backdrop is clicked
  *   closeOnOverlay  {boolean}            — click backdrop to close (default true)
+ *   portal          {boolean}            — portal to document.body (default true); false = inline render
+ *   container       {Element}            — custom portal mount (default document.body)
+ *   lockScroll      {boolean}            — lock body scroll when open (default: same as portal)
  *   className       {string}             — extra classes on the card
  */
 function ProPopup({
   open           = false,
+  portal         = true,
+  container,
+  lockScroll,
   details,
   title,
   list,
@@ -68,14 +74,18 @@ function ProPopup({
   const resolvedButtonIcon = buttonIcon !== undefined ? buttonIcon : details?.buttonIcon;
   const resolvedBottomText = bottomText ?? details?.bottomText;
   const resolvedCloseOnOverlay = closeOnOverlay ?? details?.closeOnOverlay ?? true;
+  const resolvedPortal = portal ?? details?.portal ?? true;
+  const resolvedContainer = container ?? details?.container;
+  const resolvedLockScroll = lockScroll ?? details?.lockScroll ?? resolvedPortal;
+
   /* ── Scroll lock ── */
   useEffect(() => {
-    if (open) {
+    if (open && resolvedLockScroll) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => { document.body.style.overflow = prev; };
     }
-  }, [open]);
+  }, [open, resolvedLockScroll]);
 
   /* ── Esc to close ── */
   const handleKey = useCallback(
@@ -105,9 +115,9 @@ function ProPopup({
 
   const icon = resolvedButtonIcon !== undefined ? resolvedButtonIcon : <CrownIcon />;
 
-  return createPortal(
+  const popup = (
     <div
-      className="nxp-pp-backdrop"
+      className={cn('nxp-pp-backdrop', !resolvedPortal && 'nxp-pp-backdrop--inline')}
       onMouseDown={(e) => {
         if (resolvedCloseOnOverlay && e.target === e.currentTarget && onClose) onClose();
       }}
@@ -173,9 +183,15 @@ function ProPopup({
         )}
 
       </div>
-    </div>,
-    document.body
+    </div>
   );
+
+  if (!resolvedPortal) return popup;
+
+  const mountNode = resolvedContainer ?? (typeof document !== 'undefined' ? document.body : null);
+  if (!mountNode) return null;
+
+  return createPortal(popup, mountNode);
 }
 
 export { ProPopup };
