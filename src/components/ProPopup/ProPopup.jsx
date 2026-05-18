@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 /* ── Icons ───────────────────────────────────────────────────── */
 const CloseIcon = () => (
@@ -164,7 +165,7 @@ function ProPopup({
           isBottomHtml ? (
             <p
               className="nxp-pp__bottom"
-              dangerouslySetInnerHTML={{ __html: resolvedBottomText }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(resolvedBottomText) }}
             />
           ) : (
             <p className="nxp-pp__bottom">{resolvedBottomText}</p>

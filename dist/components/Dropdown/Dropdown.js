@@ -1,6 +1,6 @@
 import { jsxs as m, jsx as n } from "react/jsx-runtime";
-import { useState as x, useRef as y, useCallback as D, useEffect as F } from "react";
-function S({
+import { useState as x, useRef as y, useMemo as F, useCallback as D, useEffect as I } from "react";
+function B({
   options: a = [],
   value: k,
   onChange: l,
@@ -9,7 +9,7 @@ function S({
   className: E = ""
 }) {
   var b;
-  const d = k !== void 0, [L, M] = x(""), c = d ? k : L, [r, u] = x(!1), [f, t] = x(-1), p = y(null), j = y(null), $ = a.filter((e) => !e.divider), g = (b = a.find((e) => e.value === c)) == null ? void 0 : b.label, i = D(() => {
+  const d = k !== void 0, [L, M] = x(""), c = d ? k : L, [r, u] = x(!1), [f, t] = x(-1), p = y(null), j = y(null), $ = F(() => a.filter((e) => !e.divider), [a]), g = (b = a.find((e) => e.value === c)) == null ? void 0 : b.label, i = D(() => {
     u(!1), t(-1);
   }, []), h = D(
     (e) => {
@@ -17,7 +17,7 @@ function S({
     },
     [d, l, i]
   );
-  F(() => {
+  I(() => {
     if (!r) return;
     const e = (s) => {
       p.current && !p.current.contains(s.target) && i();
@@ -93,6 +93,6 @@ function S({
   );
 }
 export {
-  S as Dropdown,
-  S as default
+  B as Dropdown,
+  B as default
 };

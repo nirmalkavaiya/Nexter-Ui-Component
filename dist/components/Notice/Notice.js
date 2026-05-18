@@ -1,42 +1,46 @@
-import { jsxs as _, jsx as t } from "react/jsx-runtime";
-import { useState as n, useCallback as N } from "react";
-const a = {
+import { jsxs as N, jsx as i } from "react/jsx-runtime";
+import { useState as c, useRef as b, useEffect as h, useCallback as g } from "react";
+const r = {
   default: "ℹ",
   info: "ℹ",
   success: "✓",
   warning: "⚠",
   error: "✕"
 };
-function g({
-  variant: s = "default",
-  icon: i,
-  children: o,
-  onDismiss: e,
-  dismissible: c = !0,
-  className: l = ""
+function y({
+  variant: e = "default",
+  icon: n,
+  children: a,
+  onDismiss: s,
+  dismissible: l = !0,
+  className: o = ""
 }) {
-  const [r, d] = n(!1), [u, m] = n(!1), f = N(() => {
-    d(!0), setTimeout(() => {
-      m(!0), e && e();
+  const [u, d] = c(!1), [f, m] = c(!1), t = b(null);
+  h(() => () => {
+    t.current && clearTimeout(t.current);
+  }, []);
+  const p = g(() => {
+    d(!0), t.current = setTimeout(() => {
+      m(!0), s && s();
     }, 220);
-  }, [e]);
-  if (u) return null;
-  const p = i !== void 0 ? i : a[s] || a.default, x = s !== "default" ? ` nxp-notice--${s}` : "";
-  return /* @__PURE__ */ _(
+  }, [s]);
+  if (f) return null;
+  const x = n !== void 0 ? n : r[e] || r.default, _ = e !== "default" ? ` nxp-notice--${e}` : "";
+  return /* @__PURE__ */ N(
     "div",
     {
-      className: `nxp-notice${x}${r ? " is-dismissing" : ""} ${l}`,
+      className: `nxp-notice${_}${u ? " is-dismissing" : ""} ${o}`,
       role: "status",
       children: [
-        /* @__PURE__ */ t("span", { className: "nxp-notice__icon", "aria-hidden": "true", children: p }),
-        /* @__PURE__ */ t("div", { className: "nxp-notice__body", children: o }),
-        c && /* @__PURE__ */ t(
+        /* @__PURE__ */ i("span", { className: "nxp-notice__icon", "aria-hidden": "true", children: x }),
+        /* @__PURE__ */ i("div", { className: "nxp-notice__body", children: a }),
+        l && /* @__PURE__ */ i(
           "button",
           {
             type: "button",
             className: "nxp-notice__close",
             "aria-label": "Dismiss",
-            onClick: f,
+            onClick: p,
             children: "×"
           }
         )
@@ -45,6 +49,6 @@ function g({
   );
 }
 export {
-  g as Notice,
-  g as default
+  y as Notice,
+  y as default
 };

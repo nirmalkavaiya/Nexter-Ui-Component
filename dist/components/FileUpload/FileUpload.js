@@ -1,5 +1,5 @@
 import { jsxs as c, jsx as e } from "react/jsx-runtime";
-import { useRef as Z, useState as j, useCallback as $ } from "react";
+import { useRef as Z, useState as W, useCallback as j } from "react";
 const q = () => /* @__PURE__ */ c("svg", { width: "28", height: "28", viewBox: "0 0 28 28", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("path", { d: "M14 18V10M14 10l-3.5 3.5M14 10l3.5 3.5", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round" }),
   /* @__PURE__ */ e("rect", { x: "2", y: "2", width: "24", height: "24", rx: "6", stroke: "currentColor", strokeWidth: "1.4", strokeDasharray: "4 3" })
@@ -48,11 +48,11 @@ function rt({
   wpMediaText: F = "Media Library",
   maxSizeText: f,
   removeFileLabel: R = "Remove file",
-  errorSizeText: y = (p, g) => `"${p}" exceeds the ${b(g)} limit`,
-  errorMaxText: B = (p) => `Maximum ${p} file(s) allowed`,
+  errorSizeText: $ = (d, g) => `"${d}" exceeds the ${b(g)} limit`,
+  errorMaxText: y = (d) => `Maximum ${d} file(s) allowed`,
   className: U = ""
 }) {
-  const p = Z(null), [g, v] = j(!1), [z, O] = j([]), P = $(() => {
+  const d = Z(null), [g, v] = W(!1), [z, O] = W([]), P = j(() => {
     var o;
     if (!((o = window.wp) != null && o.media)) return;
     const r = window.wp.media({
@@ -65,15 +65,15 @@ function rt({
       const s = r.state().get("selection").toJSON(), u = l ? [...t, ...s].slice(0, i ?? 1 / 0) : [s[0]];
       n == null || n(u);
     }), r.open();
-  }, [t, l, i, w, N, k, n]), L = $((r) => {
-    const o = Array.from(r), s = [], u = o.filter((W) => m && W.size > m ? (s.push(y(W.name, m)), !1) : !0), d = l ? [...t, ...u] : [u[0]].filter(Boolean), h = i ? d.slice(0, i) : d;
-    i && d.length > i && s.push(B(i)), O(s), h.length && (n == null || n(h));
-  }, [t, l, i, m, y, B, n]), V = (r) => {
+  }, [t, l, i, w, N, k, n]), B = j((r) => {
+    const o = Array.from(r), s = [], u = o.filter((L) => m && L.size > m ? (s.push($(L.name, m)), !1) : !0), p = l ? [...t, ...u] : [u[0]].filter(Boolean), h = i ? p.slice(0, i) : p;
+    i && p.length > i && s.push(y(i)), O(s), h.length && (n == null || n(h));
+  }, [t, l, i, m, $, y, n]), V = (r) => {
     r.preventDefault(), v(!0);
   }, A = () => v(!1), E = (r) => {
-    r.preventDefault(), v(!1), a || L(r.dataTransfer.files);
+    r.preventDefault(), v(!1), a || B(r.dataTransfer.files);
   }, H = (r) => {
-    L(r.target.files), r.target.value = "";
+    B(r.target.files), r.target.value = "";
   }, J = (r) => n == null ? void 0 : n(t.filter((o, s) => s !== r)), K = [
     "nxp-upload__zone",
     g ? "nxp-upload__zone--over" : "",
@@ -89,7 +89,7 @@ function rt({
         onDrop: E,
         onClick: () => {
           var r;
-          return !a && !x && ((r = p.current) == null ? void 0 : r.click());
+          return !a && !x && ((r = d.current) == null ? void 0 : r.click());
         },
         "aria-label": "File upload area",
         children: [
@@ -118,7 +118,7 @@ function rt({
                 className: "nxp-upload__browse",
                 onClick: (r) => {
                   var o;
-                  r.stopPropagation(), a || (o = p.current) == null || o.click();
+                  r.stopPropagation(), a || (o = d.current) == null || o.click();
                 },
                 disabled: a,
                 children: I
@@ -129,7 +129,7 @@ function rt({
           /* @__PURE__ */ e(
             "input",
             {
-              ref: p,
+              ref: d,
               type: "file",
               accept: _,
               multiple: l,
@@ -141,13 +141,13 @@ function rt({
         ]
       }
     ),
-    z.map((r, o) => /* @__PURE__ */ e("p", { className: "nxp-upload__error", role: "alert", children: r }, o)),
+    z.map((r, o) => /* @__PURE__ */ e("p", { className: "nxp-upload__error", role: "alert", children: r }, `err-${o}-${r}`)),
     M && t.length > 0 && /* @__PURE__ */ e("div", { className: "nxp-upload__preview", children: t.map((r, o) => {
-      const s = Y(r), u = C(r), d = S(r), h = r instanceof File ? b(r.size) : null;
+      const s = Y(r), u = C(r), p = S(r), h = r instanceof File ? b(r.size) : null;
       return /* @__PURE__ */ c("div", { className: "nxp-upload__item", children: [
-        /* @__PURE__ */ e("div", { className: "nxp-upload__item-thumb", children: s ? /* @__PURE__ */ e("img", { src: u, alt: d, className: "nxp-upload__item-img" }) : /* @__PURE__ */ e(G, {}) }),
+        /* @__PURE__ */ e("div", { className: "nxp-upload__item-thumb", children: s ? /* @__PURE__ */ e("img", { src: u, alt: p, className: "nxp-upload__item-img" }) : /* @__PURE__ */ e(G, {}) }),
         /* @__PURE__ */ c("div", { className: "nxp-upload__item-info", children: [
-          /* @__PURE__ */ e("span", { className: "nxp-upload__item-name", children: d }),
+          /* @__PURE__ */ e("span", { className: "nxp-upload__item-name", children: p }),
           h && /* @__PURE__ */ e("span", { className: "nxp-upload__item-size", children: h })
         ] }),
         !a && /* @__PURE__ */ e(
@@ -156,11 +156,11 @@ function rt({
             type: "button",
             className: "nxp-upload__item-remove",
             onClick: () => J(o),
-            "aria-label": `${R}: ${d}`,
+            "aria-label": `${R}: ${p}`,
             children: /* @__PURE__ */ e(Q, {})
           }
         )
-      ] }, o);
+      ] }, `${p}-${o}`);
     }) })
   ] });
 }

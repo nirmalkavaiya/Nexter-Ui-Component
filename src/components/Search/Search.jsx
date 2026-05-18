@@ -8,15 +8,17 @@ function Search({ value, onChange, placeholder = 'Search…', onClear, className
   const handleChange = useCallback(
     (e) => {
       const v = e.target.value;
-      if (isControlled) {
-        onChange && onChange(v);
-      } else {
-        setInternal(v);
-        onChange && onChange(v);
-      }
+      if (!isControlled) setInternal(v);
+      onChange && onChange(v);
     },
     [isControlled, onChange]
   );
+
+  const handleClear = useCallback(() => {
+    if (!isControlled) setInternal('');
+    onChange && onChange('');
+    onClear && onClear();
+  }, [isControlled, onChange, onClear]);
 
   return (
     <div className={`nxp-search ${className}`}>
@@ -29,6 +31,16 @@ function Search({ value, onChange, placeholder = 'Search…', onClear, className
         placeholder={placeholder}
         aria-label={placeholder}
       />
+      {current && onClear && (
+        <button
+          type="button"
+          className="nxp-search__clear"
+          aria-label="Clear search"
+          onClick={handleClear}
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 }

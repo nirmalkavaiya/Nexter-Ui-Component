@@ -1,21 +1,25 @@
 import { jsxs as r, jsx as e } from "react/jsx-runtime";
-import { useState as x, useCallback as m } from "react";
-const C = () => /* @__PURE__ */ r("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+import { useState as x, useRef as C, useEffect as f, useCallback as k } from "react";
+const _ = () => /* @__PURE__ */ r("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("rect", { x: "4.5", y: "1.5", width: "8", height: "9", rx: "1.5", stroke: "currentColor", strokeWidth: "1.4" }),
   /* @__PURE__ */ e("path", { d: "M1.5 4.5H3v7A1.5 1.5 0 0 0 4.5 13H10", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round" })
-] }), f = () => /* @__PURE__ */ e("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 7l4 4 6-6", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
-function w({
+] }), w = () => /* @__PURE__ */ e("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 7l4 4 6-6", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
+function g({
   value: o = "",
-  label: i,
-  hint: a,
+  label: c,
+  hint: s,
   disabled: n = !1,
   /* translatable */
-  copyText: l = "Copy",
-  copiedText: d = "Copied!",
+  copyText: d = "Copy",
+  copiedText: u = "Copied!",
   copyLabel: p = "Copy to clipboard",
   className: h = ""
 }) {
-  const [c, s] = x(!1), y = m(async () => {
+  const [i, l] = x(!1), a = C(null);
+  f(() => () => {
+    a.current && clearTimeout(a.current);
+  }, []);
+  const y = k(async () => {
     if (!(n || !o)) {
       try {
         await navigator.clipboard.writeText(o);
@@ -23,15 +27,15 @@ function w({
         const t = document.createElement("textarea");
         t.value = o, t.style.position = "fixed", t.style.opacity = "0", document.body.appendChild(t), t.select(), document.execCommand("copy"), document.body.removeChild(t);
       }
-      s(!0), setTimeout(() => s(!1), 2e3);
+      l(!0), a.current = setTimeout(() => l(!1), 2e3);
     }
-  }, [n, o]), u = [
+  }, [n, o]), m = [
     "nxp-copy",
     n ? "nxp-copy--disabled" : "",
     h
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ r("div", { className: u, children: [
-    i && /* @__PURE__ */ e("label", { className: "nxp-copy__label", children: i }),
+  return /* @__PURE__ */ r("div", { className: m, children: [
+    c && /* @__PURE__ */ e("label", { className: "nxp-copy__label", children: c }),
     /* @__PURE__ */ r("div", { className: "nxp-copy__wrap", children: [
       /* @__PURE__ */ e(
         "input",
@@ -40,7 +44,7 @@ function w({
           className: "nxp-copy__input",
           value: o,
           readOnly: !0,
-          "aria-label": i ?? "Copy value",
+          "aria-label": c ?? "Copy value",
           disabled: n
         }
       ),
@@ -48,22 +52,22 @@ function w({
         "button",
         {
           type: "button",
-          className: `nxp-copy__btn${c ? " nxp-copy__btn--copied" : ""}`,
+          className: `nxp-copy__btn${i ? " nxp-copy__btn--copied" : ""}`,
           onClick: y,
           disabled: n,
           "aria-label": p,
           title: p,
           children: [
-            c ? /* @__PURE__ */ e(f, {}) : /* @__PURE__ */ e(C, {}),
-            /* @__PURE__ */ e("span", { children: c ? d : l })
+            i ? /* @__PURE__ */ e(w, {}) : /* @__PURE__ */ e(_, {}),
+            /* @__PURE__ */ e("span", { children: i ? u : d })
           ]
         }
       )
     ] }),
-    a && /* @__PURE__ */ e("span", { className: "nxp-copy__hint", children: a })
+    s && /* @__PURE__ */ e("span", { className: "nxp-copy__hint", children: s })
   ] });
 }
 export {
-  w as CopyInput,
-  w as default
+  g as CopyInput,
+  g as default
 };

@@ -1,63 +1,63 @@
-import { jsxs as p, jsx as e } from "react/jsx-runtime";
-import { useState as m, useCallback as D } from "react";
+import { jsxs as m, jsx as e } from "react/jsx-runtime";
+import { useState as h, useCallback as D } from "react";
 const q = () => /* @__PURE__ */ e("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 6h8", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }) }), z = () => /* @__PURE__ */ e("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M6 2v8M2 6h8", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }) });
 function J({
-  value: h,
+  value: _,
   defaultValue: B = 0,
-  onChange: l,
-  min: s,
-  max: r,
-  step: a = 1,
+  onChange: c,
+  min: a,
+  max: i,
+  step: s = 1,
   precision: C,
   // decimal places — inferred from step if omitted
-  label: c,
-  prefix: _,
-  suffix: f,
-  hint: x,
-  error: i,
+  label: u,
+  prefix: f,
+  suffix: x,
+  hint: N,
+  error: r,
   disabled: o = !1,
-  readOnly: u = !1,
+  readOnly: d = !1,
   className: F = "",
   /* translatable */
   increaseLabel: S = "Increase",
   decreaseLabel: j = "Decrease"
 }) {
   var I;
-  const N = h !== void 0, [A, K] = m(B), [v, b] = m(""), [L, w] = m(!1), t = N ? h : A, k = C ?? (a % 1 !== 0 ? ((I = String(a).split(".")[1]) == null ? void 0 : I.length) ?? 0 : 0);
+  const v = _ !== void 0, [A, K] = h(B), [b, w] = h(""), [L, k] = h(!1), t = v ? _ : A, l = C ?? (s % 1 !== 0 ? ((I = String(s).split(".")[1]) == null ? void 0 : I.length) ?? 0 : 0);
   function W(n) {
-    return isNaN(n) ? t : (s !== void 0 && (n = Math.max(s, n)), r !== void 0 && (n = Math.min(r, n)), k > 0 ? parseFloat(n.toFixed(k)) : Math.round(n));
+    return isNaN(n) ? t : (a !== void 0 && (n = Math.max(a, n)), i !== void 0 && (n = Math.min(i, n)), l > 0 ? parseFloat(n.toFixed(l)) : Math.round(n));
   }
-  function d(n) {
+  function p(n) {
     const y = W(n);
-    N || K(y), l == null || l(y);
+    v || K(y), c == null || c(y);
   }
-  const M = D(() => d(Number(t) + a), [t, a]), g = D(() => d(Number(t) - a), [t, a]);
+  const M = D(() => p(Number(t) + s), [t, s, a, i, l]), g = D(() => p(Number(t) - s), [t, s, a, i, l]);
   function E(n) {
     n.key === "ArrowUp" && (n.preventDefault(), M()), n.key === "ArrowDown" && (n.preventDefault(), g());
   }
-  const P = s !== void 0 && Number(t) <= s, R = r !== void 0 && Number(t) >= r, U = [
+  const P = a !== void 0 && Number(t) <= a, R = i !== void 0 && Number(t) >= i, U = [
     "nxp-num",
-    i ? "nxp-num--error" : "",
+    r ? "nxp-num--error" : "",
     o ? "nxp-num--disabled" : "",
     F
-  ].filter(Boolean).join(" "), V = L ? v : String(t ?? "");
-  return /* @__PURE__ */ p("div", { className: U, children: [
-    c && /* @__PURE__ */ e("label", { className: "nxp-num__label", children: c }),
-    /* @__PURE__ */ p("div", { className: "nxp-num__wrap", children: [
+  ].filter(Boolean).join(" "), V = L ? b : String(t ?? "");
+  return /* @__PURE__ */ m("div", { className: U, children: [
+    u && /* @__PURE__ */ e("label", { className: "nxp-num__label", children: u }),
+    /* @__PURE__ */ m("div", { className: "nxp-num__wrap", children: [
       /* @__PURE__ */ e(
         "button",
         {
           type: "button",
           className: "nxp-num__step nxp-num__step--dec",
           onClick: g,
-          disabled: o || u || P,
+          disabled: o || d || P,
           "aria-label": j,
           tabIndex: -1,
           children: /* @__PURE__ */ e(q, {})
         }
       ),
-      /* @__PURE__ */ p("div", { className: "nxp-num__field", children: [
-        _ && /* @__PURE__ */ e("span", { className: "nxp-num__prefix", children: _ }),
+      /* @__PURE__ */ m("div", { className: "nxp-num__field", children: [
+        f && /* @__PURE__ */ e("span", { className: "nxp-num__prefix", children: f }),
         /* @__PURE__ */ e(
           "input",
           {
@@ -66,22 +66,22 @@ function J({
             className: "nxp-num__input",
             value: V,
             disabled: o,
-            readOnly: u,
-            "aria-label": c ?? "Number input",
-            "aria-invalid": !!i,
+            readOnly: d,
+            "aria-label": u ?? "Number input",
+            "aria-invalid": !!r,
             onFocus: () => {
-              w(!0), b(String(t ?? ""));
+              k(!0), w(String(t ?? ""));
             },
-            onChange: (n) => b(n.target.value),
+            onChange: (n) => w(n.target.value),
             onBlur: () => {
-              w(!1);
-              const n = parseFloat(v);
-              d(isNaN(n) ? t : n);
+              k(!1);
+              const n = parseFloat(b);
+              p(isNaN(n) ? t : n);
             },
             onKeyDown: E
           }
         ),
-        f && /* @__PURE__ */ e("span", { className: "nxp-num__suffix", children: f })
+        x && /* @__PURE__ */ e("span", { className: "nxp-num__suffix", children: x })
       ] }),
       /* @__PURE__ */ e(
         "button",
@@ -89,15 +89,15 @@ function J({
           type: "button",
           className: "nxp-num__step nxp-num__step--inc",
           onClick: M,
-          disabled: o || u || R,
+          disabled: o || d || R,
           "aria-label": S,
           tabIndex: -1,
           children: /* @__PURE__ */ e(z, {})
         }
       )
     ] }),
-    x && !i && /* @__PURE__ */ e("span", { className: "nxp-num__hint", children: x }),
-    i && /* @__PURE__ */ e("span", { className: "nxp-num__error", role: "alert", children: i })
+    N && !r && /* @__PURE__ */ e("span", { className: "nxp-num__hint", children: N }),
+    r && /* @__PURE__ */ e("span", { className: "nxp-num__error", role: "alert", children: r })
   ] });
 }
 export {

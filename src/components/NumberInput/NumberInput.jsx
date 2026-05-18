@@ -61,8 +61,8 @@ function NumberInput({
     onChange?.(clamped);
   }
 
-  const increment = useCallback(() => commit(Number(current) + step), [current, step]);
-  const decrement = useCallback(() => commit(Number(current) - step), [current, step]);
+  const increment = useCallback(() => commit(Number(current) + step), [current, step, min, max, decimals]); // eslint-disable-line react-hooks/exhaustive-deps
+  const decrement = useCallback(() => commit(Number(current) - step), [current, step, min, max, decimals]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleKeyDown(e) {
     if (e.key === 'ArrowUp')   { e.preventDefault(); increment(); }

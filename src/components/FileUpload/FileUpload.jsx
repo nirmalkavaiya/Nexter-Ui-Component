@@ -213,7 +213,7 @@ function FileUpload({
 
       {/* ── Errors ── */}
       {errors.map((err, i) => (
-        <p key={i} className="nxp-upload__error" role="alert">{err}</p>
+        <p key={`err-${i}-${err}`} className="nxp-upload__error" role="alert">{err}</p>
       ))}
 
       {/* ── Preview list ── */}
@@ -226,7 +226,7 @@ function FileUpload({
             const size  = file instanceof File ? formatBytes(file.size) : null;
 
             return (
-              <div key={i} className="nxp-upload__item">
+              <div key={`${name}-${i}`} className="nxp-upload__item">
                 <div className="nxp-upload__item-thumb">
                   {isImg
                     ? <img src={url} alt={name} className="nxp-upload__item-img" />

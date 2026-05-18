@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 
 const DEFAULT_ICONS = {
   default: 'ℹ',
@@ -18,10 +18,13 @@ function Notice({
 }) {
   const [dismissing, setDismissing] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   const handleDismiss = useCallback(() => {
     setDismissing(true);
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setDismissed(true);
       onDismiss && onDismiss();
     }, 220);

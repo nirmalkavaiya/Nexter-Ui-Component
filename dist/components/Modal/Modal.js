@@ -1,7 +1,8 @@
-import { jsx as e, jsxs as m, Fragment as H } from "react/jsx-runtime";
+import { jsx as e, jsxs as c, Fragment as E } from "react/jsx-runtime";
 import { useEffect as x, useCallback as $ } from "react";
 import { createPortal as F } from "react-dom";
 import { cn as S } from "../../lib/utils.js";
+import { sanitizeHtml as z } from "../../lib/sanitize.js";
 import { Button as f } from "../Button/Button.js";
 const I = () => /* @__PURE__ */ e(
   "svg",
@@ -24,7 +25,7 @@ const I = () => /* @__PURE__ */ e(
     )
   }
 );
-function D({
+function R({
   open: n = !1,
   onClose: t,
   size: p = "md",
@@ -32,9 +33,9 @@ function D({
   title: o,
   byline: r,
   children: v,
-  footer: d,
+  footer: l,
   footerClassName: y,
-  doclink: l,
+  doclink: d,
   doclinkText: _,
   buttonText: w,
   onClick: s,
@@ -48,7 +49,7 @@ function D({
       };
     }
   }, [n]);
-  const c = $(
+  const i = $(
     (a) => {
       a.key === "Escape" && t && t();
     },
@@ -56,11 +57,11 @@ function D({
   );
   x(() => {
     if (n)
-      return document.addEventListener("keydown", c), () => document.removeEventListener("keydown", c);
-  }, [n, c]);
-  const u = !!(l || s), i = d != null && d !== !0 && d !== !1, b = i || u, L = !i && u ? l && s ? "nxp-flex-between" : s ? "nxp-flex-end" : "nxp-flex-start" : "";
+      return document.addEventListener("keydown", i), () => document.removeEventListener("keydown", i);
+  }, [n, i]);
+  const u = !!(d || s), m = l != null && l !== !0 && l !== !1, b = m || u, L = !m && u ? d && s ? "nxp-flex-between" : s ? "nxp-flex-end" : "nxp-flex-start" : "";
   if (!n) return null;
-  const N = p !== "md" ? ` nxp-modal--${p}` : "", k = h === "center" ? " nxp-modal--center" : "", M = o || r || t, j = _ ?? "Read How it Works", B = w ?? "Save", E = typeof r == "string" && /<[a-z][\s\S]*>/i.test(r);
+  const N = p !== "md" ? ` nxp-modal--${p}` : "", k = h === "center" ? " nxp-modal--center" : "", H = o || r || t, M = _ ?? "Read How it Works", j = w ?? "Save", B = typeof r == "string" && /<[a-z][\s\S]*>/i.test(r);
   return F(
     /* @__PURE__ */ e(
       "div",
@@ -72,7 +73,7 @@ function D({
         role: "dialog",
         "aria-modal": "true",
         "aria-label": typeof o == "string" ? o : void 0,
-        children: /* @__PURE__ */ m("div", { className: `nxp-modal${N}${k} ${g}`.trim(), children: [
+        children: /* @__PURE__ */ c("div", { className: `nxp-modal${N}${k} ${g}`.trim(), children: [
           t && /* @__PURE__ */ e(
             "button",
             {
@@ -83,13 +84,13 @@ function D({
               children: /* @__PURE__ */ e(I, {})
             }
           ),
-          M && /* @__PURE__ */ m("div", { className: "nxp-flex nxp-flex-col-center nxp-justify-center nxp-modal__head", children: [
+          H && /* @__PURE__ */ c("div", { className: "nxp-flex nxp-flex-col-center nxp-justify-center nxp-modal__head", children: [
             o && /* @__PURE__ */ e("div", { className: "nxp-modal__title", children: o }),
-            r && (E ? /* @__PURE__ */ e(
+            r && (B ? /* @__PURE__ */ e(
               "div",
               {
                 className: "nxp-modal__byline",
-                dangerouslySetInnerHTML: { __html: r }
+                dangerouslySetInnerHTML: { __html: z(r) }
               }
             ) : /* @__PURE__ */ e("div", { className: "nxp-modal__byline", children: r }))
           ] }),
@@ -98,19 +99,19 @@ function D({
             "div",
             {
               className: S("nxp-modal__foot", L, y),
-              children: i ? d : /* @__PURE__ */ m(H, { children: [
-                l && /* @__PURE__ */ e(
+              children: m ? l : /* @__PURE__ */ c(E, { children: [
+                d && /* @__PURE__ */ e(
                   f,
                   {
                     className: "nxp-text-primary nxp-weight-regular nxp-text-hover",
                     variant: "underline",
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    href: l,
-                    children: j
+                    href: d,
+                    children: M
                   }
                 ),
-                s && /* @__PURE__ */ e(f, { type: "button", variant: "primary", onClick: s, children: B })
+                s && /* @__PURE__ */ e(f, { type: "button", variant: "primary", onClick: s, children: j })
               ] })
             }
           )
@@ -121,6 +122,6 @@ function D({
   );
 }
 export {
-  D as Modal,
-  D as default
+  R as Modal,
+  R as default
 };

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 function Combobox({ options = [], value, onChange, placeholder = 'Type to search…', className = '' }) {
   const isControlled = value !== undefined;
@@ -8,8 +8,9 @@ function Combobox({ options = [], value, onChange, placeholder = 'Type to search
   const inputRef = useRef(null);
   const containerRef = useRef(null);
 
-  const filtered = options.filter((o) =>
-    o.label.toLowerCase().includes(query.toLowerCase())
+  const filtered = useMemo(
+    () => options.filter((o) => o.label.toLowerCase().includes(query.toLowerCase())),
+    [options, query]
   );
 
   const selectedLabel = isControlled
@@ -26,16 +27,12 @@ function Combobox({ options = [], value, onChange, placeholder = 'Type to search
 
   const select = useCallback(
     (opt) => {
-      if (isControlled) {
-        onChange && onChange(opt.value);
-      } else {
-        onChange && onChange(opt.value);
-      }
+      onChange && onChange(opt.value);
       setQuery(opt.label);
       setOpen(false);
       setFocused(-1);
     },
-    [isControlled, onChange]
+    [onChange]
   );
 
   // Close on outside click

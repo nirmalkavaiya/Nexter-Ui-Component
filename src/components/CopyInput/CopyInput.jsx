@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 
 const CopyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -25,6 +25,9 @@ function CopyInput({
   className    = '',
 }) {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   const handleCopy = useCallback(async () => {
     if (disabled || !value) return;
@@ -42,7 +45,7 @@ function CopyInput({
       document.body.removeChild(el);
     }
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    timerRef.current = setTimeout(() => setCopied(false), 2000);
   }, [disabled, value]);
 
   const rootClass = [

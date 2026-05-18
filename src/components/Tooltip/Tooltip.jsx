@@ -1,4 +1,5 @@
 import React from 'react';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 /**
  * Tooltip — CSS-only show/hide (no JS events).
@@ -74,7 +75,7 @@ function Tooltip({
         <div
           className="nxp-tooltip"
           role="tooltip"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
         />
       ) : (
         <div className="nxp-tooltip" role="tooltip">

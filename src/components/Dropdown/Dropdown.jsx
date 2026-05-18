@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 function Dropdown({
   options = [],
@@ -17,7 +17,7 @@ function Dropdown({
   const containerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const visibleOptions = options.filter((o) => !o.divider);
+  const visibleOptions = useMemo(() => options.filter((o) => !o.divider), [options]);
   const selectedLabel = options.find((o) => o.value === selected)?.label;
 
   const close = useCallback(() => {

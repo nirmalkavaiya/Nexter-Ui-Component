@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
+import { sanitizeHtml } from '../../lib/sanitize';
 import Button from '../Button';
 
 /* ── SVG close icon ──────────────────────────────────────────── */
@@ -126,7 +127,7 @@ function Modal({
               isBylineHtml ? (
                 <div
                   className="nxp-modal__byline"
-                  dangerouslySetInnerHTML={{ __html: byline }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(byline) }}
                 />
               ) : (
                 <div className="nxp-modal__byline">{byline}</div>

@@ -63,13 +63,17 @@ function Drawer({
   /* ── Focus trap: move focus into panel on open ── */
   useEffect(() => {
     if (!open) return;
-    const t = setTimeout(() => {
-      const el = panelRef.current?.querySelector(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      el?.focus();
-    }, 50);
-    return () => clearTimeout(t);
+    // double rAF: first frame paints, second ensures layout is stable
+    let raf1, raf2;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        const el = panelRef.current?.querySelector(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        el?.focus();
+      });
+    });
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
   }, [open]);
 
   if (!open) return null;

@@ -34,7 +34,7 @@ function Breadcrumb({
           const icon      = item.icon ?? (showHome && isFirst ? <HomeIcon /> : null);
 
           return (
-            <li key={idx} className="nxp-bc__item">
+            <li key={`${item.label}-${idx}`} className="nxp-bc__item">
               {/* Link / button */}
               {!isCurrent && (
                 item.href
