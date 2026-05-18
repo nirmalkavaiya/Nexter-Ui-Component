@@ -28,6 +28,7 @@ const CloseIcon = () => (
  *
  * Props:
  *   open, onClose, size, align, title, byline, children, className
+ *   byline            {string|ReactNode} — plain text, HTML string, or JSX
  *   footer            {ReactNode} — custom footer content (wins over preset actions)
  *   footerClassName   {string}    — extra classes on .nxp-modal__foot
  *   Preset footer (used when `footer` is omitted and at least one is set):
@@ -94,6 +95,8 @@ function Modal({
 
   const docLabel = doclinkText ?? 'Read How it Works';
   const primaryLabel = buttonText ?? 'Save';
+  const isBylineHtml =
+    typeof byline === 'string' && /<[a-z][\s\S]*>/i.test(byline);
 
   return createPortal(
     <div
@@ -119,7 +122,16 @@ function Modal({
         {hasHead && (
           <div className="nxp-flex nxp-flex-col-center nxp-justify-center nxp-modal__head">
             {title  && <div className="nxp-modal__title">{title}</div>}
-            {byline && <div className="nxp-modal__byline">{byline}</div>}
+            {byline && (
+              isBylineHtml ? (
+                <div
+                  className="nxp-modal__byline"
+                  dangerouslySetInnerHTML={{ __html: byline }}
+                />
+              ) : (
+                <div className="nxp-modal__byline">{byline}</div>
+              )
+            )}
           </div>
         )}
 
