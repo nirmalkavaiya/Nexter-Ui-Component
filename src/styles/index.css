@@ -5075,8 +5075,8 @@ input.nxp-input--invalid:focus {
   flex-shrink: 0;
 }
 .nxp-pp__close:hover {
-  background: var(--nxp-color-info-dark);
-  color: var(--nxp-color-text-white);
+  background: var(--nxp-color-primary-dark);
+  color: var(--nxp-bg);
 }
 .nxp-pp__close:focus-visible {
   outline: none;
@@ -5088,8 +5088,8 @@ input.nxp-input--invalid:focus {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-lg);
   font-weight: var(--nxp-font-medium);
-  color: var(--nxp-color-text-white);
-  line-height: var(--nxp-font-lineHeight-snug);
+  color: var(--nxp-bg);
+  line-height: var(--nxp-font-lineHeight-normal);
   margin: 0;
   padding-right: var(--nxp-space-20);
 }
