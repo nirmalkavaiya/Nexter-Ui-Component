@@ -3341,7 +3341,7 @@ input.nxp-input--invalid:focus {
    FILE UPLOAD
    ============================================================ */
 .nxp-upload { display: flex; flex-direction: column; gap: var(--nxp-space-10); font-family: var(--nxp-font); }
-.nxp-upload__zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--nxp-space-8); padding: var(--nxp-space-24) var(--nxp-space-20); border: 2px dashed var(--nxp-border); border-radius: var(--nxp-radius-lg); background: var(--nxp-bg-alt); text-align: center; cursor: pointer; transition: border-color var(--nxp-dur-hover) var(--nxp-ease), background var(--nxp-dur-hover) var(--nxp-ease); }
+.nxp-upload__zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--nxp-space-12); padding: var(--nxp-space-24) var(--nxp-space-20); border: 1px dashed var(--nxp-border); border-radius: var(--nxp-radius-md); background: var(--nxp-bg-alt); text-align: center; cursor: pointer; transition: border-color var(--nxp-dur-hover) var(--nxp-ease), background var(--nxp-dur-hover) var(--nxp-ease); }
 .nxp-upload__zone:hover, .nxp-upload__zone--over { border-color: var(--nxp-brand); background: var(--nxp-brand-soft); }
 .nxp-upload__zone--disabled { opacity: .55; pointer-events: none; }
 .nxp-upload__zone svg { color: var(--nxp-text-faint); }
@@ -5044,6 +5044,7 @@ input.nxp-input--invalid:focus {
 .nxp-pp-backdrop--inline {
   position: absolute;
   z-index: 11;
+  border-radius: var(--nxp-radius-md);
 }
 
 /* ── Card ───────────────────────────────────────────────────── */
