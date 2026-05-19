@@ -657,7 +657,7 @@ input.nxp-input--invalid:focus {
   display: inline-flex;
   align-items: center;
   gap: var(--nxp-space-6);
-  height: 40px;
+  height: 44px;
   padding: 0 var(--nxp-space-10);
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
