@@ -4251,6 +4251,7 @@ input.nxp-input--invalid:focus {
   /* Focus ring when scrolled via keyboard */
   outline: none;
   border-radius: var(--nxp-radius);
+  padding-right: 10px;
 }
 .nxp-scroll-area:focus-visible {
   box-shadow: var(--nxp-ring);
