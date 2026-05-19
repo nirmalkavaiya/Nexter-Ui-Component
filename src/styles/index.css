@@ -2288,13 +2288,16 @@ input.nxp-input--invalid:focus {
 }
 .nxp-table thead th {
   padding: var(--nxp-space-10) var(--nxp-space-15);
-  background: var(--nxp-bg-alt);
+  background: var(--nxp-color-border-subtle);
   border-bottom: 1px solid var(--nxp-border);
   text-align: left;
   font-size: var(--nxp-text-sm);
   font-weight: var(--nxp-font-semibold);
   color: var(--nxp-text-muted);
   white-space: nowrap;
+}
+.nxp-table thead th.nxp-text-right {
+  text-align: right;
 }
 .nxp-table tbody td {
   padding: var(--nxp-space-10) var(--nxp-space-15);
@@ -3283,7 +3286,8 @@ input.nxp-input--invalid:focus {
   cursor: pointer;
   transition: opacity var(--nxp-dur-hover) var(--nxp-ease);
 }
-.nxp-confirm__ok--error   { background: var(--nxp-color-error);   color: #fff; }
+.nxp-confirm__ok--error,
+.nxp-confirm__ok--link    { background: var(--nxp-color-error);   color: #fff; }
 .nxp-confirm__ok--warning { background: var(--nxp-color-warning); color: #fff; }
 .nxp-confirm__ok--primary { background: var(--nxp-color-primary); color: #fff; }
 .nxp-confirm__ok:hover { opacity: .86; }
