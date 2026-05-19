@@ -2399,7 +2399,7 @@ input.nxp-input--invalid:focus {
 }
 .nxp-tooltip-wrap__icon:hover,
 .nxp-tooltip-wrap__icon:focus-visible {
-  color: var(--nxp-brand);
+  /* color: var(--nxp-brand); */
 }
 
 /* ── Bubble ──────────────────────────────────────────────────── */
