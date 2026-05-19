@@ -657,14 +657,14 @@ input.nxp-input--invalid:focus {
   display: inline-flex;
   align-items: center;
   gap: var(--nxp-space-6);
-  height: var(--nxp-h-md);
+  height: 40px;
   padding: 0 var(--nxp-space-10);
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
   background: var(--nxp-bg);
   color: var(--nxp-text);
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-sm);
+  font-size: var(--nxp-text-md);
   cursor: pointer;
   white-space: nowrap;
   min-width: 160px;
