@@ -712,13 +712,14 @@ input.nxp-input--invalid:focus {
   display: flex;
   align-items: center;
   gap: var(--nxp-space-8);
-  padding: var(--nxp-space-8) var(--nxp-space-10);
+  padding: var(--nxp-space-4) var(--nxp-space-10);
   border-radius: var(--nxp-radius-sm);
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-md);
   color: var(--nxp-text);
   cursor: pointer;
   transition: background var(--nxp-dur-hover) var(--nxp-ease);
+  -webkit-user-select: none;
   user-select: none;
 }
 .nxp-dropdown__item:hover,
