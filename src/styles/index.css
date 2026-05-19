@@ -3146,7 +3146,7 @@ input.nxp-input--invalid:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--nxp-text);
+  color: var(--nxp-text-muted);
   cursor: pointer;
   border-radius: 50%;
   padding: var(--nxp-space-2);
