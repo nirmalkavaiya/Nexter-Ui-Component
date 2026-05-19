@@ -664,7 +664,7 @@ input.nxp-input--invalid:focus {
   background: var(--nxp-bg);
   color: var(--nxp-text);
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-md);
+  font-size: var(--nxp-text-sm);
   cursor: pointer;
   white-space: nowrap;
   min-width: 160px;
@@ -715,7 +715,7 @@ input.nxp-input--invalid:focus {
   padding: var(--nxp-space-4) var(--nxp-space-10);
   border-radius: var(--nxp-radius-sm);
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-md);
+  font-size: var(--nxp-text-sm);
   color: var(--nxp-text);
   cursor: pointer;
   transition: background var(--nxp-dur-hover) var(--nxp-ease);
