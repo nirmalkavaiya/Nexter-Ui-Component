@@ -22,6 +22,7 @@ export { default as Pagination } from './components/Pagination';
 export { default as Popover } from './components/Popover';
 export { default as Progress } from './components/Progress';
 export { default as Radio } from './components/Radio';
+export { default as RadioGroup } from './components/RadioGroup';
 export { default as Search } from './components/Search';
 export { default as Segmented } from './components/Segmented';
 export { default as Select } from './components/Select';

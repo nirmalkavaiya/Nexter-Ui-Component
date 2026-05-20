@@ -685,6 +685,26 @@ export interface RadioProps {
 
 export declare const Radio: React.FC<RadioProps>;
 
+// ─── RadioGroup ───────────────────────────────────────────────────────────────
+
+export interface RadioGroupOption {
+  value: string;
+  label: string;
+  tooltip?: string;
+  disabled?: boolean;
+}
+
+export interface RadioGroupProps {
+  options?: RadioGroupOption[];
+  value?: string;
+  onChange?: (value: string) => void;
+  name?: string;
+  disabled?: boolean;
+  className?: string;
+}
+
+export declare const RadioGroup: React.FC<RadioGroupProps>;
+
 // ─── Search ──────────────────────────────────────────────────────────────────
 
 export interface SearchProps extends ComponentPropsWithoutRef<'input'> {

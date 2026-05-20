@@ -647,6 +647,47 @@ input.nxp-input--invalid:focus {
 }
 
 /* ============================================================
+   RADIO GROUP
+   ============================================================ */
+.nxp-radio-group {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-sm);
+  width: 100%;
+  overflow: hidden;
+  transition: border-color var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-radio-group:hover {
+  border-color: var(--nxp-brand);
+}
+.nxp-radio-group__item {
+  display: flex;
+  align-items: center;
+  gap: var(--nxp-space-6);
+  padding: var(--nxp-space-8) var(--nxp-space-12);
+  flex: 1;
+  border-right: 1px solid var(--nxp-border);
+  cursor: pointer;
+  transition: border-color var(--nxp-dur-hover) var(--nxp-ease),
+              background var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-radio-group__item:last-child {
+  border-right: none;
+}
+.nxp-radio-group__item:hover {
+  background: var(--nxp-wash);
+}
+.nxp-radio-group__item.is-checked {
+  background: var(--nxp-wash-active);
+}
+.nxp-radio-group__item.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================================
    DROPDOWN
    ============================================================ */
 .nxp-dropdown {
