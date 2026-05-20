@@ -1,44 +1,45 @@
-import { jsx as e, jsxs as m } from "react/jsx-runtime";
-import { useId as p } from "react";
-import { Radio as f } from "../Radio/Radio.js";
-import { Tooltip as b } from "../Tooltip/Tooltip.js";
-function j({
+import { jsx as i, jsxs as f } from "react/jsx-runtime";
+import { useId as b } from "react";
+import { Radio as v } from "../Radio/Radio.js";
+import { Tooltip as h } from "../Tooltip/Tooltip.js";
+function N({
   options: l = [],
   value: r,
   onChange: s,
-  name: d,
-  disabled: n = !1,
-  className: t = ""
+  name: t,
+  disabled: d = !1,
+  tooltipPosition: n = "top",
+  className: c = ""
 }) {
-  const c = p(), u = d || c;
-  return /* @__PURE__ */ e(
+  const u = b(), m = t || u;
+  return /* @__PURE__ */ i(
     "div",
     {
-      className: ["nxp-radio-group", t].filter(Boolean).join(" "),
+      className: ["nxp-radio-group", c].filter(Boolean).join(" "),
       role: "radiogroup",
       children: l.map((o) => {
-        const i = r === o.value, a = n || !!o.disabled;
-        return /* @__PURE__ */ m(
+        const e = r === o.value, a = d || !!o.disabled, p = o.tooltipPosition ?? n;
+        return /* @__PURE__ */ f(
           "div",
           {
             className: [
               "nxp-radio-group__item",
-              i ? "is-checked" : "",
+              e ? "is-checked" : "",
               a ? "is-disabled" : ""
             ].filter(Boolean).join(" "),
             children: [
-              /* @__PURE__ */ e(
-                f,
+              /* @__PURE__ */ i(
+                v,
                 {
-                  name: u,
+                  name: m,
                   value: o.value,
-                  checked: i,
+                  checked: e,
                   onChange: s,
                   disabled: a,
                   label: o.label
                 }
               ),
-              o.tooltip && /* @__PURE__ */ e(b, { content: o.tooltip, position: "top" })
+              o.tooltip && /* @__PURE__ */ i(h, { content: o.tooltip, position: p })
             ]
           },
           o.value
@@ -48,6 +49,6 @@ function j({
   );
 }
 export {
-  j as RadioGroup,
-  j as default
+  N as RadioGroup,
+  N as default
 };

@@ -8,20 +8,23 @@ import Tooltip from '../Tooltip/Tooltip';
  * A horizontal bordered group of radio buttons with optional per-item tooltips.
  *
  * Props:
- *   options    { value, label, tooltip?, disabled? }[]  — items to render
- *   value      string        — currently selected value
- *   onChange   (val) => void — called when selection changes
- *   name       string        — shared radio name (auto-generated if omitted)
- *   disabled   boolean       — disables all items (default false)
- *   className  string        — extra classes on the wrapper
+ *   options          { value, label, tooltip?, tooltipPosition?, disabled? }[]
+ *                    — items to render; tooltipPosition on each item overrides the group default
+ *   value            string                              — currently selected value
+ *   onChange         (val) => void                       — called when selection changes
+ *   name             string                              — shared radio name (auto-generated if omitted)
+ *   disabled         boolean                             — disables all items (default false)
+ *   tooltipPosition  'top'|'bottom'|'left'|'right'       — default tooltip position for all items (default 'top')
+ *   className        string                              — extra classes on the wrapper
  */
 function RadioGroup({
-  options   = [],
+  options          = [],
   value,
   onChange,
   name,
-  disabled  = false,
-  className = '',
+  disabled         = false,
+  tooltipPosition  = 'top',
+  className        = '',
 }) {
   const autoId    = useId();
   const groupName = name || autoId;
@@ -34,6 +37,7 @@ function RadioGroup({
       {options.map((opt) => {
         const isChecked  = value === opt.value;
         const isDisabled = disabled || !!opt.disabled;
+        const tipPos     = opt.tooltipPosition ?? tooltipPosition;
 
         return (
           <div
@@ -53,7 +57,7 @@ function RadioGroup({
               label={opt.label}
             />
             {opt.tooltip && (
-              <Tooltip content={opt.tooltip} position="top" />
+              <Tooltip content={opt.tooltip} position={tipPos} />
             )}
           </div>
         );

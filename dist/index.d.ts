@@ -687,10 +687,13 @@ export declare const Radio: React.FC<RadioProps>;
 
 // ─── RadioGroup ───────────────────────────────────────────────────────────────
 
+export type NxpTooltipPosition = 'top' | 'bottom' | 'left' | 'right';
+
 export interface RadioGroupOption {
   value: string;
   label: string;
   tooltip?: string;
+  tooltipPosition?: NxpTooltipPosition;
   disabled?: boolean;
 }
 
@@ -700,6 +703,7 @@ export interface RadioGroupProps {
   onChange?: (value: string) => void;
   name?: string;
   disabled?: boolean;
+  tooltipPosition?: NxpTooltipPosition;
   className?: string;
 }
 
