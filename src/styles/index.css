@@ -655,7 +655,6 @@ input.nxp-input--invalid:focus {
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
   width: 100%;
-  overflow: hidden;
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease);
 }
 .nxp-radio-group:hover {
@@ -675,12 +674,7 @@ input.nxp-input--invalid:focus {
 .nxp-radio-group__item:last-child {
   border-right: none;
 }
-.nxp-radio-group__item:hover {
-  background: var(--nxp-wash);
-}
-.nxp-radio-group__item.is-checked {
-  background: var(--nxp-wash-active);
-}
+
 .nxp-radio-group__item.is-disabled {
   opacity: 0.55;
   cursor: not-allowed;
