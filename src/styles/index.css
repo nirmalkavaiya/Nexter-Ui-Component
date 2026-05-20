@@ -4992,6 +4992,8 @@ input.nxp-input--invalid:focus {
 /* ============================================================
   UTILITY — LINE HEIGHT
    ============================================================ */
+.nxp-lh-0   { line-height: 0; }
+.nxp-lh-1   { line-height: 1; }
 .nxp-lh-16  { line-height: var(--nxp-font-lineHeight-none); }
 .nxp-lh-17  { line-height: var(--nxp-font-lineHeight-tight); }
 .nxp-lh-18  { line-height: var(--nxp-font-lineHeight-snug); }
