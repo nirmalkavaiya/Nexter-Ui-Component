@@ -428,6 +428,7 @@ export interface DropdownProps {
   value?: string | number;
   onChange?: (value: string | number) => void;
   placeholder?: string;
+  size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   className?: string;
 }

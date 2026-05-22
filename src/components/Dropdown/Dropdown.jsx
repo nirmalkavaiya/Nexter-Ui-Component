@@ -5,7 +5,8 @@ function Dropdown({
   value,
   onChange,
   placeholder = 'Select…',
-  disabled = false,
+  size      = 'md',   // 'sm' | 'md' | 'lg'
+  disabled  = false,
   className = '',
 }) {
   const isControlled = value !== undefined;
@@ -90,7 +91,7 @@ function Dropdown({
     >
       <button
         type="button"
-        className="nxp-dropdown__trigger"
+        className={`nxp-dropdown__trigger nxp-dropdown__trigger--${size}`}
         disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={open}

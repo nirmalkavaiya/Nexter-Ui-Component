@@ -702,11 +702,15 @@ input.nxp-input--invalid:focus {
   font-size: var(--nxp-text-md);
   cursor: pointer;
   white-space: nowrap;
-  min-width: 160px;
+  min-width: 140px;
   justify-content: space-between;
   transition: background var(--nxp-dur-hover) var(--nxp-ease), border-color var(--nxp-dur-hover) var(--nxp-ease);
   width: 100%;
 }
+/* Size variants */
+.nxp-dropdown__trigger--sm { height: 36px; }
+.nxp-dropdown__trigger--md { height: 44px; }
+.nxp-dropdown__trigger--lg { height: 48px; }
 .nxp-dropdown__trigger:hover {
   background: var(--nxp-wash-active);
 }
