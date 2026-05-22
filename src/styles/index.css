@@ -1839,34 +1839,40 @@ input.nxp-input--invalid:focus {
    SEGMENTED CONTROL
    ============================================================ */
 .nxp-segmented {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  background: var(--nxp-bg-alt);
-  border: 1px solid var(--nxp-border);
-  border-radius: var(--nxp-radius-lg);
-  padding: var(--nxp-space-4);
-  gap: var(--nxp-space-2);
+  justify-content: center;
 }
 .nxp-segmented__option {
-  padding: var(--nxp-space-4) var(--nxp-space-15);
-  border-radius: calc(var(--nxp-radius-lg) - 3px);
+  padding: var(--nxp-space-8) var(--nxp-space-10);
+  border-radius: 0;
   font-family: var(--nxp-font);
-  font-size: var(--nxp-text-md);
-  font-weight: var(--nxp-font-medium);
-  color: var(--nxp-text-muted);
+  font-size: var(--nxp-text-sm);
+  font-weight: var(--nxp-font-regular);
+  color: var(--nxp-text-strong);
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--nxp-border);
   background: transparent;
-  transition: background var(--nxp-dur-hover) var(--nxp-ease), color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
+  transition: background var(--nxp-dur-hover) var(--nxp-ease),
+              color var(--nxp-dur-hover) var(--nxp-ease),
+              box-shadow var(--nxp-dur-hover) var(--nxp-ease),
+              border var(--nxp-dur-hover) var(--nxp-ease);
   white-space: nowrap;
+  flex-basis: 50%;
 }
 .nxp-segmented__option:hover {
   color: var(--nxp-text);
 }
 .nxp-segmented__option.is-selected {
-  background: var(--nxp-bg);
-  color: var(--nxp-text-strong);
-  box-shadow: var(--nxp-shadow-sm);
+  background: var(--nxp-brand);
+  color: var(--nxp-bg);
+  border-color: var(--nxp-brand);
+}
+.nxp-segmented .nxp-segmented__option:first-child {
+  border-radius: var(--nxp-radius-sm) 0 0 var(--nxp-radius-sm);
+}
+.nxp-segmented .nxp-segmented__option:last-child {
+  border-radius: 0 var(--nxp-radius-sm) var(--nxp-radius-sm) 0;
 }
 
 /* ============================================================
