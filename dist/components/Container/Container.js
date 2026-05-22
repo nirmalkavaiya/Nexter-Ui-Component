@@ -6,6 +6,7 @@ const M = {
   sm: "var(--nxp-space-8)",
   md: "var(--nxp-space-12)",
   lg: "var(--nxp-space-16)",
+  10: "var(--nxp-space-10)",
   20: "var(--nxp-space-20)",
   xl: "var(--nxp-space-24)",
   "2xl": "var(--nxp-space-32)"
@@ -55,9 +56,9 @@ function h(...e) {
 }
 function A({
   containerType: e = "flex",
-  gap: f = "sm",
+  gap: c = "sm",
   gapX: r,
-  gapY: c,
+  gapY: f,
   direction: a,
   justify: s,
   align: x,
@@ -69,11 +70,11 @@ function A({
   children: _,
   ...p
 }) {
-  const i = {}, o = j(f);
+  const i = {}, o = j(c);
   o && (i.gap = o);
   const m = j(r);
   m && (i.columnGap = m);
-  const d = j(c);
+  const d = j(f);
   d && (i.rowGap = d);
   const t = {};
   if (e === "grid" && n !== void 0)
@@ -102,9 +103,9 @@ function A({
 }
 function P({
   grow: e,
-  shrink: f,
+  shrink: c,
   order: r,
-  alignSelf: c,
+  alignSelf: f,
   justifySelf: a,
   colSpan: s,
   rowSpan: x,
@@ -128,7 +129,7 @@ function P({
         i = "nxp-container__item--span", p["--nxp-c-span"] = s;
     x !== void 0 && (o = "nxp-container__item--row-span", p["--nxp-c-row-span"] = x);
   }
-  const m = e === 1 ? "nxp-grow" : e === 0 ? "nxp-grow-0" : "", d = f === 1 ? "nxp-shrink" : f === 0 ? "nxp-shrink-0" : "";
+  const m = e === 1 ? "nxp-grow" : e === 0 ? "nxp-grow-0" : "", d = c === 1 ? "nxp-shrink" : c === 0 ? "nxp-shrink-0" : "";
   let t = "";
   r === "first" ? t = "nxp-order-first" : r === "last" ? t = "nxp-order-last" : r === 0 ? t = "nxp-order-none" : typeof r == "number" && r >= 1 && r <= 5 && (t = `nxp-order-${r}`);
   const w = h(
@@ -137,7 +138,7 @@ function P({
     m,
     d,
     t,
-    c && O[c],
+    f && O[f],
     a && T[a],
     l
   ), g = Object.keys(p).length > 0;
