@@ -68,6 +68,9 @@ function FeatureToggleCard({
   docsHref,
   onDocsClick,
 
+  /* tooltip */
+  tooltipPosition = 'top',
+
   /* interaction */
   isEnabled,
   onToggle,
@@ -139,7 +142,7 @@ function FeatureToggleCard({
 
             {/* Info tooltip */}
             {tooltip && (
-              <Tooltip content={tooltip}>
+              <Tooltip content={tooltip} position={tooltipPosition}>
                 <span
                   className="nxp-ftc__info-icon"
                   tabIndex={isInteractionLocked ? -1 : 0}

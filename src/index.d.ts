@@ -451,6 +451,7 @@ export declare const EmptyState: React.FC<EmptyStateProps>;
 export interface FeatureToggleCardProps {
   title: string;
   tooltip?: string;
+  tooltipPosition?: NxpTooltipPosition;
   /** Plain text, HTML string, or React node (HTML detected via tag pattern, same as Tooltip). */
   description?: ReactNode;
   /** Non-empty string shows the top plan pill with this text (caller supplies copy, e.g. i18n). */
