@@ -17,18 +17,23 @@ function Field({
   required = false,
   htmlFor,
   children,
+  extraContent,
   className = '',
 }) {
+  const showLabelRow = Boolean(label || tooltip || extraContent);
+
   return (
     <div className={`nxp-field${error ? ' nxp-field--error' : ''} ${className}`}>
-      {label && (
+      {showLabelRow && (
         <div className="nxp-field__label-row">
-          <label className="nxp-field__label" htmlFor={htmlFor}>
-            {label}
-            {required && (
-              <span className="nxp-field__required" aria-hidden="true"> *</span>
-            )}
-          </label>
+          {label && (
+            <label className="nxp-field__label" htmlFor={htmlFor}>
+              {label}
+              {required && (
+                <span className="nxp-field__required" aria-hidden="true"> *</span>
+              )}
+            </label>
+          )}
           {tooltip && (
             <Tooltip content={tooltip}>
               <span
@@ -40,6 +45,9 @@ function Field({
                 <InfoIcon />
               </span>
             </Tooltip>
+          )}
+          {extraContent && (
+              extraContent
           )}
         </div>
       )}
