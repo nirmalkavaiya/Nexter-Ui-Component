@@ -981,6 +981,7 @@ export interface ToggleGridItem {
   label: ReactNode;
   value?: boolean;
   tooltip?: string;
+  tooltipPosition?: NxpTooltipPosition;
 }
 
 export interface ToggleGridProps {
@@ -991,6 +992,8 @@ export interface ToggleGridProps {
   /** Controlled map: { [key]: boolean } */
   valueMap?: Record<string, boolean>;
   disabled?: boolean;
+  /** Default tooltip position for all items; item.tooltipPosition overrides (default 'top') */
+  tooltipPosition?: NxpTooltipPosition;
   className?: string;
 }
 

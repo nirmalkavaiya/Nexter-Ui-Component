@@ -1,37 +1,37 @@
-import { jsxs as o, jsx as e } from "react/jsx-runtime";
-import { memo as s } from "react";
-import { Toggle as m } from "../Toggle/Toggle.js";
-import { Tooltip as d } from "../Tooltip/Tooltip.js";
-const h = () => /* @__PURE__ */ o("svg", { width: "13", height: "13", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+import { jsxs as r, jsx as e } from "react/jsx-runtime";
+import { memo as m } from "react";
+import { Toggle as d } from "../Toggle/Toggle.js";
+import { Tooltip as p } from "../Tooltip/Tooltip.js";
+const h = () => /* @__PURE__ */ r("svg", { width: "13", height: "13", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("circle", { cx: "7", cy: "7", r: "6.25", stroke: "currentColor", strokeWidth: "1.5" }),
   /* @__PURE__ */ e("path", { d: "M7 6.5v3.5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }),
   /* @__PURE__ */ e("circle", { cx: "7", cy: "4.25", r: "0.875", fill: "currentColor" })
-] }), _ = s(function({ itemKey: n, label: r, value: i, tooltip: t, onToggle: c, disabled: l }) {
-  return /* @__PURE__ */ o("div", { className: "nxp-tg__item", children: [
-    /* @__PURE__ */ o("div", { className: "nxp-tg__item-label-row", children: [
-      /* @__PURE__ */ e("span", { className: "nxp-tg__item-label nxp-body", children: r }),
-      t && /* @__PURE__ */ e(d, { content: t, children: /* @__PURE__ */ e(
+] }), b = m(function({ itemKey: n, label: o, value: i, tooltip: t, tooltipPosition: c = "top", onToggle: l, disabled: a }) {
+  return /* @__PURE__ */ r("div", { className: "nxp-tg__item", children: [
+    /* @__PURE__ */ r("div", { className: "nxp-tg__item-label-row", children: [
+      /* @__PURE__ */ e("span", { className: "nxp-tg__item-label nxp-body", children: o }),
+      t && /* @__PURE__ */ e(p, { content: t, position: c, children: /* @__PURE__ */ e(
         "span",
         {
           className: "nxp-tg__item-info",
           tabIndex: 0,
           role: "button",
-          "aria-label": `About ${r}`,
+          "aria-label": `About ${o}`,
           children: /* @__PURE__ */ e(h, {})
         }
       ) })
     ] }),
     /* @__PURE__ */ e(
-      m,
+      d,
       {
         checked: i,
-        onChange: (a) => c(n, a),
-        disabled: l,
-        "aria-label": `Enable ${r}`
+        onChange: (s) => l(n, s),
+        disabled: a,
+        "aria-label": `Enable ${o}`
       }
     )
   ] });
 });
 export {
-  _ as ToggleItem
+  b as ToggleItem
 };

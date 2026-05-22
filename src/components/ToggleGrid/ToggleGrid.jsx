@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { ToggleItem } from './ToggleItem';
 
 function ToggleGrid({
-  items = [],
-  columns = 2,
+  items           = [],
+  columns         = 2,
   onChange,
   valueMap,
-  disabled = false,
-  className = '',
+  disabled        = false,
+  tooltipPosition = 'top',   // 'top'|'bottom'|'left'|'right' — group default; item.tooltipPosition overrides
+  className       = '',
 }) {
   const isControlled = valueMap !== undefined;
   const [internal, setInternal] = useState(() =>
@@ -51,6 +52,7 @@ function ToggleGrid({
           label={item.label}
           value={values[item.key] ?? item.value ?? false}
           tooltip={item.tooltip}
+          tooltipPosition={item.tooltipPosition ?? tooltipPosition}
           onToggle={handleToggle}
           disabled={disabled}
         />

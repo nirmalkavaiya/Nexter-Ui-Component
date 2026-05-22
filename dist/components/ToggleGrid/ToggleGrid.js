@@ -1,43 +1,46 @@
 import { jsx as c } from "react/jsx-runtime";
-import { useState as k } from "react";
-import { ToggleItem as T } from "./ToggleItem.js";
+import { useState as T } from "react";
+import { ToggleItem as j } from "./ToggleItem.js";
 function E({
   items: l = [],
-  columns: f = 2,
-  onChange: o,
+  columns: i = 2,
+  onChange: t,
   valueMap: s,
   disabled: p = !1,
+  tooltipPosition: f = "top",
+  // 'top'|'bottom'|'left'|'right' — group default; item.tooltipPosition overrides
   className: d = ""
 }) {
-  const a = s !== void 0, [i, m] = k(
-    () => Object.fromEntries(l.map((e) => [e.key, e.value ?? !1]))
+  const a = s !== void 0, [g, m] = T(
+    () => Object.fromEntries(l.map((o) => [o.key, o.value ?? !1]))
   );
-  function r() {
-    return a ? s : i;
+  function n() {
+    return a ? s : g;
   }
-  function g(e, n) {
-    const u = { ...r(), [e]: n }, b = l.map((t) => ({
-      ...t,
-      value: u[t.key] ?? t.value ?? !1
+  function v(o, r) {
+    const u = { ...n(), [o]: r }, k = l.map((e) => ({
+      ...e,
+      value: u[e.key] ?? e.value ?? !1
     }));
-    a || m(u), o == null || o(e, n, b);
+    a || m(u), t == null || t(o, r, k);
   }
-  const v = Math.min(Math.max(Number(f) || 2, 1), 4), x = r(), y = [
+  const x = Math.min(Math.max(Number(i) || 2, 1), 4), y = n(), b = [
     "nxp-tg",
-    `nxp-tg--cols-${v}`,
+    `nxp-tg--cols-${x}`,
     d
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ c("div", { className: y, role: "group", children: l.map((e) => /* @__PURE__ */ c(
-    T,
+  return /* @__PURE__ */ c("div", { className: b, role: "group", children: l.map((o) => /* @__PURE__ */ c(
+    j,
     {
-      itemKey: e.key,
-      label: e.label,
-      value: x[e.key] ?? e.value ?? !1,
-      tooltip: e.tooltip,
-      onToggle: g,
+      itemKey: o.key,
+      label: o.label,
+      value: y[o.key] ?? o.value ?? !1,
+      tooltip: o.tooltip,
+      tooltipPosition: o.tooltipPosition ?? f,
+      onToggle: v,
       disabled: p
     },
-    e.key
+    o.key
   )) });
 }
 export {
