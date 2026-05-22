@@ -1645,10 +1645,11 @@ input.nxp-input--invalid:focus {
 /* ── Root ── */
 .nxp-slider {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   gap: var(--nxp-space-8);
   font-family: var(--nxp-font);
   width: 100%;
+  align-items: center;
 }
 .nxp-slider--disabled {
   opacity: 0.55;
@@ -1715,7 +1716,7 @@ input.nxp-input--invalid:focus {
 }
 
 /* Numeric input */
-.nxp-slider__input {
+input.nxp-slider__input {
   width: 52px;
   height: 28px;
   padding: 0 var(--nxp-space-6);
@@ -1729,8 +1730,12 @@ input.nxp-input--invalid:focus {
   outline: none;
   -moz-appearance: textfield;
 }
-.nxp-slider__input::-webkit-outer-spin-button,
-.nxp-slider__input::-webkit-inner-spin-button {
+input.nxp-slider__input:focus {
+  border: none;
+  box-shadow: none;
+}
+input.nxp-slider__input::-webkit-outer-spin-button,
+input.nxp-slider__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
