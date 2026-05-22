@@ -35,7 +35,7 @@ import Modal            from '../components/Modal';
 import MultiSelect      from '../components/MultiSelect';
 import Notice           from '../components/Notice';
 import NumberInput      from '../components/NumberInput';
-import OTPInput         from '../components/OTPInput';
+import RadioGroup       from '../components/RadioGroup';
 import Pagination       from '../components/Pagination';
 import Popover          from '../components/Popover';
 import Progress         from '../components/Progress';
@@ -48,7 +48,7 @@ import Separator        from '../components/Separator';
 import Sheet            from '../components/Sheet';
 import Skeleton         from '../components/Skeleton';
 import Slider           from '../components/Slider';
-import SortableList     from '../components/SortableList';
+import ProPopup         from '../components/ProPopup';
 import Spinner          from '../components/Spinner';
 import StatCard         from '../components/StatCard';
 import Status           from '../components/Status';
@@ -170,13 +170,24 @@ export default function App() {
   const [date,      setDate]     = useState('');
   const [range,     setRange]    = useState({ start: '', end: '' });
   const [numVal,    setNumVal]   = useState(12);
-  const [otp,       setOtp]      = useState('');
   const [files,     setFiles]    = useState([]);
-  const [sortItems, setSortItems] = useState([
-    { id: '1', label: '301 Redirect: /old-page → /new-page' },
-    { id: '2', label: '302 Redirect: /promo → /sale' },
-    { id: '3', label: '307 Redirect: /temp → /landing' },
-  ]);
+
+  /* RadioGroup */
+  const [radioGroupVal, setRadioGroupVal] = useState('monthly');
+  const radioGroupOptions = [
+    { value: 'monthly',  label: 'Monthly',  tooltip: 'Billed every month. Cancel anytime.' },
+    { value: 'yearly',   label: 'Yearly',   tooltip: 'Save 30% with annual billing.' },
+    { value: 'lifetime', label: 'Lifetime', tooltip: 'One-time payment, lifetime access.' },
+  ];
+  const radioGroupIndexing = [
+    { value: 'index',   label: 'Index',   tooltip: 'Allow search engines to index this page.' },
+    { value: 'noindex', label: 'No Index', tooltip: 'Prevent search engines from indexing.' },
+    { value: 'auto',    label: 'Auto',    tooltip: 'Follow global site setting.' },
+  ];
+  const [radioGroupIndex, setRadioGroupIndex] = useState('index');
+
+  /* ProPopup */
+  const [proPopupOpen, setProPopupOpen] = useState(false);
 
   /* MultiSelect */
   const [msValue, setMsValue] = useState(['entire', 'singulars', 'archives']);
@@ -348,7 +359,7 @@ export default function App() {
           <h1 style={{ fontFamily: 'var(--nxp-font)', fontSize: 24, fontWeight: 800, color: 'var(--nxp-text-strong)', margin: 0 }}>
             Nexter UI Components
           </h1>
-          <Badge variant="gradient">v2.1.7</Badge>
+          <Badge variant="gradient">v2.1.72</Badge>
         </div>
         <p style={{ color: 'var(--nxp-text-muted)', fontSize: 14, margin: 0 }}>
           Design system component library — interactive demo
@@ -539,6 +550,13 @@ export default function App() {
             </Field>
             <Field label="Meta description" error="Meta description is required.">
               <Input placeholder="Describe the page…" invalid />
+            </Field>
+            <Field
+              label="Forms Support"
+              tooltip="Add reCAPTCHA on third-party forms."
+              extraContent={<Badge variant="warning">Coming Soon</Badge>}
+            >
+              <Input placeholder="Disabled until available…" disabled />
             </Field>
             <Field label="Post type" hint="Select the content type.">
               <Select
@@ -751,25 +769,50 @@ export default function App() {
       {/* ══════════════════════════════════════════════════════
           DROPDOWN
       ══════════════════════════════════════════════════════ */}
-      <Section eyebrow="Selection" title="Dropdown" description="Fully accessible custom listbox with keyboard navigation, sub-labels, and dividers.">
+      <Section eyebrow="Selection" title="Dropdown" description="Fully accessible custom listbox with keyboard navigation, sub-labels, dividers, and three height sizes.">
         <DemoBox>
-          <div className="nxp-u-row">
-            <Dropdown options={dropOptions} value={dropVal} onChange={setDropVal} placeholder="Post status…" />
-            <Dropdown
-              options={[
-                { value: 'en', label: 'English' },
-                { value: 'es', label: 'Español' },
-                { value: 'fr', label: 'Français' },
-              ]}
-              placeholder="Language…"
-            />
-            <Dropdown options={[{ value: 'x', label: 'Option' }]} placeholder="Disabled" disabled />
+          <div className="nxp-u-stack">
+            <div>
+              <DemoLabel>Default (md) — with sub-labels & divider</DemoLabel>
+              <div className="nxp-u-row">
+                <Dropdown options={dropOptions} value={dropVal} onChange={setDropVal} placeholder="Post status…" />
+                <Dropdown
+                  options={[
+                    { value: 'en', label: 'English' },
+                    { value: 'es', label: 'Español' },
+                    { value: 'fr', label: 'Français' },
+                  ]}
+                  placeholder="Language…"
+                />
+                <Dropdown options={[{ value: 'x', label: 'Option' }]} placeholder="Disabled" disabled />
+              </div>
+              {dropVal && (
+                <p style={{ marginTop: 10, fontSize: 13, color: 'var(--nxp-text-muted)' }}>
+                  Selected: <strong>{dropVal}</strong>
+                </p>
+              )}
+            </div>
+            <div>
+              <DemoLabel>Size variants — sm (36px) · md (44px) · lg (48px)</DemoLabel>
+              <div className="nxp-u-row" style={{ alignItems: 'center' }}>
+                <Dropdown
+                  size="sm"
+                  options={[{ value: 'asc', label: 'A → Z' }, { value: 'desc', label: 'Z → A' }]}
+                  placeholder="Sort (sm)…"
+                />
+                <Dropdown
+                  size="md"
+                  options={[{ value: 'published', label: 'Published' }, { value: 'draft', label: 'Draft' }]}
+                  placeholder="Status (md)…"
+                />
+                <Dropdown
+                  size="lg"
+                  options={[{ value: 'article', label: 'Article' }, { value: 'product', label: 'Product' }, { value: 'faq', label: 'FAQ' }]}
+                  placeholder="Schema type (lg)…"
+                />
+              </div>
+            </div>
           </div>
-          {dropVal && (
-            <p style={{ marginTop: 12, fontSize: 13, color: 'var(--nxp-text-muted)' }}>
-              Selected: <strong>{dropVal}</strong>
-            </p>
-          )}
         </DemoBox>
       </Section>
 
@@ -813,7 +856,7 @@ export default function App() {
             <FeatureToggleCard title="SMTP Email" tooltip="Send transactional emails via your own SMTP server." planLabel="FREEMIUM" showBadge badgeText="BETA" badgeVariant="beta" docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.smtp} onToggle={() => ftcToggle('smtp')} onSettingsClick={() => {}} />
             <FeatureToggleCard title="Advanced Cache" tooltip="Full-page caching layer for faster page loads." isNew docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.cache} onToggle={() => ftcToggle('cache')} onSettingsClick={() => {}} />
             <FeatureToggleCard title="White Label" tooltip="Remove all Nexter branding from the admin interface." planLabel="PRO" isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.wl} onToggle={() => ftcToggle('wl')} onUpgradeClick={() => {}} />
-            <FeatureToggleCard title="AI Content Assistant" tooltip="Generate SEO-optimised meta descriptions using AI." planLabel="PRO" isNew isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.ai} onToggle={() => ftcToggle('ai')} onUpgradeClick={() => {}} />
+            <FeatureToggleCard title="AI Content Assistant" tooltip="Generate SEO-optimised meta descriptions using AI." planLabel="PRO" isNew isLocked docsLabel="Read Docs" onDocsClick={() => {}} isEnabled={ftcStates.ai} onToggle={() => ftcToggle('ai')} onUpgradeClick={() => {}} tooltipPosition="bottom" />
           </div>
         </DemoBox>
       </Section>
@@ -1253,7 +1296,7 @@ export default function App() {
       {/* ══════════════════════════════════════════════════════
           TOGGLE GRID
       ══════════════════════════════════════════════════════ */}
-      <Section eyebrow="Controls" title="Toggle Grid" description="Compact grid of labeled toggles — controlled via valueMap or uncontrolled with internal state.">
+      <Section eyebrow="Controls" title="Toggle Grid" description="Compact grid of labeled toggles — controlled via valueMap, with PRO badges, tooltipPosition support, and responsive columns.">
         <DemoBox>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <div>
@@ -1261,8 +1304,19 @@ export default function App() {
               <ToggleGrid items={tgItems} columns={2} valueMap={tgValues} onChange={(key, newValue) => setTgValues((v) => ({ ...v, [key]: newValue }))} />
             </div>
             <div>
-              <DemoLabel>3 Columns (Uncontrolled)</DemoLabel>
-              <ToggleGrid items={tgItems.map((it) => ({ ...it, value: false }))} columns={3} />
+              <DemoLabel>3 Columns with PRO badges</DemoLabel>
+              <ToggleGrid
+                columns={3}
+                tooltipPosition="bottom"
+                items={[
+                  { key: 'canonical', label: 'Canonical URL',   value: true,  tooltip: 'Output canonical link tags.' },
+                  { key: 'og',        label: 'Open Graph',       value: false, tooltip: 'Emit og: meta tags.',       isPro: true },
+                  { key: 'schema',    label: 'JSON-LD Schema',   value: true,  tooltip: 'Structured data output.',   isPro: true, proText: 'PRO' },
+                  { key: 'sitemap',   label: 'XML Sitemap',      value: false, tooltip: 'Auto-generate sitemap.xml.' },
+                  { key: 'indexnow',  label: 'IndexNow',         value: false, tooltip: 'Instant URL submission.',   isPro: true, proText: 'PRO' },
+                  { key: 'llms',      label: 'LLMs.txt',         value: false, tooltip: 'Generate LLMs.txt file.' },
+                ]}
+              />
             </div>
             <div>
               <DemoLabel>1 Column</DemoLabel>
@@ -1324,39 +1378,101 @@ export default function App() {
       </Section>
 
       {/* ══════════════════════════════════════════════════════
-          OTP INPUT
+          RADIO GROUP
       ══════════════════════════════════════════════════════ */}
-      <Section eyebrow="Form Controls" title="OTPInput" description="Segmented input for license codes — auto-advances on type, handles paste, arrow-key navigation.">
+      <Section eyebrow="Controls" title="RadioGroup" description="Horizontal bordered radio group with per-item tooltips and tooltipPosition support — shared name auto-generated if omitted.">
         <DemoBox>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div className="nxp-u-stack">
             <div>
-              <DemoLabel>6-digit OTP</DemoLabel>
-              <OTPInput length={6} value={otp} onChange={setOtp} />
-              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 11, color: 'var(--nxp-text-faint)', marginTop: 8 }}>Value: "{otp}"</p>
+              <DemoLabel>Billing period (tooltip position: top)</DemoLabel>
+              <RadioGroup
+                options={radioGroupOptions}
+                value={radioGroupVal}
+                onChange={setRadioGroupVal}
+                tooltipPosition="top"
+              />
+              <p style={{ fontFamily: 'var(--nxp-font)', fontSize: 12, color: 'var(--nxp-text-muted)', marginTop: 10 }}>
+                Selected: <strong>{radioGroupVal}</strong>
+              </p>
             </div>
             <div>
-              <DemoLabel>License key — 4+4 with separator</DemoLabel>
-              <OTPInput length={8} type="text" separator={4} separatorChar="–" />
+              <DemoLabel>Indexing directive (tooltip position: bottom)</DemoLabel>
+              <RadioGroup
+                options={radioGroupIndexing}
+                value={radioGroupIndex}
+                onChange={setRadioGroupIndex}
+                tooltipPosition="bottom"
+              />
+            </div>
+            <div>
+              <DemoLabel>Disabled group</DemoLabel>
+              <RadioGroup
+                options={radioGroupOptions}
+                value="yearly"
+                onChange={() => {}}
+                disabled
+              />
+            </div>
+            <div>
+              <DemoLabel>Per-item disabled + mixed tooltipPosition</DemoLabel>
+              <RadioGroup
+                options={[
+                  { value: 'auto',   label: 'Auto',   tooltip: 'Follow global settings.',     tooltipPosition: 'right' },
+                  { value: 'manual', label: 'Manual', tooltip: 'Override per page.',           tooltipPosition: 'bottom' },
+                  { value: 'off',    label: 'Off',    tooltip: 'Disabled option.', disabled: true },
+                ]}
+                value="auto"
+                onChange={() => {}}
+              />
             </div>
           </div>
         </DemoBox>
       </Section>
 
       {/* ══════════════════════════════════════════════════════
-          SORTABLE LIST
+          PRO POPUP
       ══════════════════════════════════════════════════════ */}
-      <Section eyebrow="Layout" title="SortableList" description="Drag-to-reorder list using HTML5 DnD — no external dependencies.">
+      <Section eyebrow="Overlay" title="ProPopup" description="Branded upgrade upsell modal with feature list, Crown CTA, and optional bottom note. Supports portal, scroll lock, and Esc-to-close.">
         <DemoBox>
-          <SortableList
-            items={sortItems}
-            onChange={setSortItems}
-            renderItem={(item) => (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: 'var(--nxp-font)', fontSize: 13 }}>{item.label}</span>
-                <Badge variant="primary" style={{ fontSize: 10 }}>Active</Badge>
+          <div className="nxp-u-stack">
+            <div className="nxp-u-row">
+              <Button variant="grad" onClick={() => setProPopupOpen(true)}>Open Upgrade Popup</Button>
+            </div>
+            <ProPopup
+              open={proPopupOpen}
+              onClose={() => setProPopupOpen(false)}
+              title="Unlock Nexter SEO Pro"
+              list={[
+                'Advanced schema templates (Article, Product, FAQ)',
+                'Redirect manager with 301/302/307/308 support',
+                '404 monitor with bot-filtering & bulk-delete',
+                'IndexNow bulk URL submission',
+                'White-label branding options',
+                'Priority email support',
+              ]}
+              buttonText="Upgrade to Pro"
+              onButtonClick={() => setProPopupOpen(false)}
+              bottomText='Already have a license? <a href="#">Enter key →</a>'
+            />
+            <div>
+              <DemoLabel>Inline (portal=false) — always visible</DemoLabel>
+              <div style={{ position: 'relative', minHeight: 280 }}>
+                <ProPopup
+                  open
+                  portal={false}
+                  title="Unlock White Label"
+                  list={[
+                    'Remove all Nexter branding',
+                    'Custom admin menu label',
+                    'Branded client dashboards',
+                  ]}
+                  buttonText="Upgrade Now"
+                  onButtonClick={() => {}}
+                  bottomText="30-day money-back guarantee"
+                />
               </div>
-            )}
-          />
+            </div>
+          </div>
         </DemoBox>
       </Section>
 
@@ -1480,11 +1596,11 @@ export default function App() {
         gap: 12,
       }}>
         <p style={{ fontSize: 12.5, color: 'var(--nxp-text-muted)', margin: 0 }}>
-          Nexter UI Components v2.1.7 — Nexter Design System
+          Nexter UI Components v2.1.72 — Nexter Design System
         </p>
         <div className="nxp-u-row--sm">
           <Badge variant="primary">React 18</Badge>
-          <Badge variant="success">65 Components</Badge>
+          <Badge variant="success">66 Components</Badge>
           <Badge variant="gradient">WCAG 2.2 AA</Badge>
         </div>
       </div>

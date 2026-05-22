@@ -486,6 +486,8 @@ export interface FieldProps {
   required?: boolean;
   htmlFor?: string;
   children?: ReactNode;
+  /** Rendered in the label row after the tooltip (e.g. Status, Badge). */
+  extraContent?: ReactNode;
   className?: string;
 }
 

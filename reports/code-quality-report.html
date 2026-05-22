@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nexter UI — Code Quality Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 60%, #2d1b69 100%);
+    color: #fff;
+    padding: 36px 48px 32px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+  }
+  .header .meta {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+  .header .badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-critical { background: #7f1d1d; color: #fca5a5; }
+  .badge-high     { background: #7c2d12; color: #fdba74; }
+  .badge-medium   { background: #713f12; color: #fde68a; }
+  .badge-low      { background: #1e3a5f; color: #93c5fd; }
+
+  /* ── Main layout ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  /* ── Summary table ── */
+  .summary-section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #0f0f23;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .summary-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    border-top: 4px solid transparent;
+    text-align: center;
+  }
+  .summary-card.critical { border-top-color: #ef4444; }
+  .summary-card.high     { border-top-color: #f97316; }
+  .summary-card.medium   { border-top-color: #eab308; }
+  .summary-card.low      { border-top-color: #3b82f6; }
+  .summary-card .count   { font-size: 40px; font-weight: 800; line-height: 1; }
+  .summary-card.critical .count { color: #ef4444; }
+  .summary-card.high     .count { color: #f97316; }
+  .summary-card.medium   .count { color: #eab308; }
+  .summary-card.low      .count { color: #3b82f6; }
+  .summary-card .label   { font-size: 13px; color: #64748b; margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── Category distribution table ── */
+  .dist-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    margin-top: 16px;
+  }
+  .dist-table th, .dist-table td {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .dist-table th { background: #f8fafc; font-weight: 600; color: #475569; }
+  .dist-table tr:last-child td { border-bottom: none; }
+
+  /* ── Finding groups ── */
+  .findings-section { margin-bottom: 40px; }
+  .findings-group-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .severity-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .severity-dot.critical { background: #ef4444; }
+  .severity-dot.high     { background: #f97316; }
+  .severity-dot.medium   { background: #eab308; }
+  .severity-dot.low      { background: #3b82f6; }
+
+  /* ── Finding card ── */
+  .finding-card {
+    background: #fff;
+    border-radius: 10px;
+    border-left: 5px solid transparent;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    margin-bottom: 14px;
+    padding: 18px 22px;
+    overflow: hidden;
+  }
+  .finding-card.critical { border-left-color: #ef4444; }
+  .finding-card.high     { border-left-color: #f97316; }
+  .finding-card.medium   { border-left-color: #eab308; }
+  .finding-card.low      { border-left-color: #3b82f6; }
+
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .chip-component {
+    background: #ede9fe;
+    color: #5b21b6;
+  }
+  .chip-file {
+    background: #f1f5f9;
+    color: #475569;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+  }
+  .chip-category {
+    background: #ecfdf5;
+    color: #065f46;
+  }
+  .chip-category.perf    { background: #fef3c7; color: #92400e; }
+  .chip-category.dead    { background: #f0fdf4; color: #166534; }
+  .chip-category.error   { background: #fff1f2; color: #9f1239; }
+  .chip-category.react   { background: #eff6ff; color: #1e40af; }
+  .chip-category.bundle  { background: #fdf4ff; color: #7e22ce; }
+  .chip-category.complex { background: #fff7ed; color: #c2410c; }
+  .chip-category.security { background: #fef2f2; color: #b91c1c; }
+
+  .finding-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 6px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .finding-desc {
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .fix-block {
+    background: #0f1629;
+    border-radius: 6px;
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+  .fix-block pre {
+    margin: 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: #e2e8f0;
+    white-space: pre;
+    line-height: 1.5;
+  }
+  .fix-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  /* ── Footer ── */
+  .report-footer {
+    background: #0f0f23;
+    color: #94a3b8;
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    margin-top: 48px;
+  }
+  .report-footer strong { color: #e2e8f0; }
+
+  /* ── Table of contents ── */
+  .toc {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    margin-bottom: 32px;
+  }
+  .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; }
+  .toc a { color: #4f46e5; text-decoration: none; font-size: 13px; }
+  .toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <h1>Nexter UI — Code Quality Report</h1>
+  <div class="meta">Generated: 2026-05-18 &nbsp;·&nbsp; Components audited: 67 files across 65 components &nbsp;·&nbsp; Scope: Dead code, Complexity, Performance, Error handling, React best practices, Bundle size</div>
+  <div class="badges">
+    <span class="badge badge-critical">● 4 Critical</span>
+    <span class="badge badge-high">● 12 High</span>
+    <span class="badge badge-medium">● 21 Medium</span>
+    <span class="badge badge-low">● 14 Low</span>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="container">
+
+  <!-- Summary -->
+  <div class="summary-section">
+    <div class="section-title">Summary</div>
+    <div class="summary-grid">
+      <div class="summary-card critical"><div class="count">4</div><div class="label">Critical</div></div>
+      <div class="summary-card high"><div class="count">12</div><div class="label">High</div></div>
+      <div class="summary-card medium"><div class="count">21</div><div class="label">Medium</div></div>
+      <div class="summary-card low"><div class="count">14</div><div class="label">Low</div></div>
+    </div>
+
+    <table class="dist-table">
+      <thead><tr><th>Category</th><th>Critical</th><th>High</th><th>Medium</th><th>Low</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Security (XSS / dangerouslySetInnerHTML)</td><td>4</td><td>0</td><td>0</td><td>0</td><td>4</td></tr>
+        <tr><td>Performance (missing memo / callbacks / inline objects)</td><td>0</td><td>5</td><td>8</td><td>3</td><td>16</td></tr>
+        <tr><td>React Best Practices (keys, useEffect deps, cleanup)</td><td>0</td><td>4</td><td>5</td><td>3</td><td>12</td></tr>
+        <tr><td>Error Handling (null guards, unguarded maps)</td><td>0</td><td>2</td><td>4</td><td>2</td><td>8</td></tr>
+        <tr><td>Dead Code (unused vars, unreachable branches)</td><td>0</td><td>1</td><td>2</td><td>3</td><td>6</td></tr>
+        <tr><td>Bundle Size (duplicate SVGs, large inline SVG)</td><td>0</td><td>0</td><td>2</td><td>3</td><td>5</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>4</strong></td><td><strong>12</strong></td><td><strong>21</strong></td><td><strong>14</strong></td><td><strong>51</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <strong>Jump to:</strong>
+    <ul>
+      <li><a href="#critical">Critical (4)</a></li>
+      <li><a href="#high">High (12)</a></li>
+      <li><a href="#medium">Medium (21)</a></li>
+      <li><a href="#low">Low (14)</a></li>
+    </ul>
+  </div>
+
+  <!-- ── CRITICAL ── -->
+  <div class="findings-section" id="critical">
+    <div class="section-title">
+      <div class="findings-group-title">
+        <span class="severity-dot critical"></span>Critical Findings — 4
+      </div>
+    </div>
+
+    <!-- C-1 -->
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <span class="chip chip-component">FeatureToggleCard</span>
+        <span class="chip chip-file">FeatureToggleCard/FeatureToggleCard.jsx : 202</span>
+        <span class="chip chip-category security">Security · XSS</span>
+      </div>
+      <div class="finding-title">dangerouslySetInnerHTML with unsanitized description prop</div>
+      <div class="finding-desc">
+        When <code>description</code> contains HTML tags it is injected directly via <code>dangerouslySetInnerHTML</code> with no sanitisation step.
+        Any caller passing user-generated or API-sourced data can execute arbitrary JavaScript (stored XSS).
+        The regex check <code>/&lt;[a-z][\s\S]*&gt;/i</code> only decides the render path — it performs zero sanitisation.
+      </div>
+      <div class="fix-label">Suggested fix — sanitise before injection</div>
+      <div class="fix-block"><pre>import DOMPurify from 'dompurify';
+
+// Replace the dangerouslySetInnerHTML block at line ~202:
+&lt;div
+  className="nxp-body nxp-mt-12 nxp-lh-22"
+  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+/&gt;</pre></div>
+    </div>
+
+    <!-- C-2 -->
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <span class="chip chip-component">Modal</span>
+        <span class="chip chip-file">Modal/Modal.jsx : 127</span>
+        <span class="chip chip-category security">Security · XSS</span>
+      </div>
+      <div class="finding-title">dangerouslySetInnerHTML with unsanitized byline prop</div>
+      <div class="finding-desc">
+        The <code>byline</code> prop is injected verbatim when it contains HTML tags.
+        An attacker controlling the <code>byline</code> value (e.g., from a settings store or REST API) can inject script tags.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>import DOMPurify from 'dompurify';
+
+dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(byline) }}</pre></div>
+    </div>
+
+    <!-- C-3 -->
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <span class="chip chip-component">ProPopup</span>
+        <span class="chip chip-file">ProPopup/ProPopup.jsx : 165</span>
+        <span class="chip chip-category security">Security · XSS</span>
+      </div>
+      <div class="finding-title">dangerouslySetInnerHTML with unsanitized bottomText prop</div>
+      <div class="finding-desc">
+        <code>resolvedBottomText</code> (sourced from either <code>bottomText</code> or <code>details.bottomText</code>) is inserted as raw HTML
+        with no sanitisation. Pro-popup content commonly originates from license API responses, making this a realistic injection vector.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>import DOMPurify from 'dompurify';
+
+dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(resolvedBottomText) }}</pre></div>
+    </div>
+
+    <!-- C-4 -->
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <span class="chip chip-component">Tooltip</span>
+        <span class="chip chip-file">Tooltip/Tooltip.jsx : 74</span>
+        <span class="chip chip-category security">Security · XSS</span>
+      </div>
+      <div class="finding-title">dangerouslySetInnerHTML with unsanitized content prop in Tooltip</div>
+      <div class="finding-desc">
+        Tooltip is used extensively across at least 4 other components (Field, FeatureToggleCard, ToggleItem, Collapsible).
+        Any of those consumers that pass API-derived content strings will propagate XSS through this shared component.
+        The blast radius is the largest of the four XSS findings.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>import DOMPurify from 'dompurify';
+
+// In Tooltip.jsx — the isHtml branch:
+&lt;div
+  className="nxp-tooltip"
+  role="tooltip"
+  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+/&gt;</pre></div>
+    </div>
+
+  </div><!-- /critical -->
+
+
+  <!-- ── HIGH ── -->
+  <div class="findings-section" id="high">
+    <div class="section-title">
+      <div class="findings-group-title">
+        <span class="severity-dot high"></span>High Findings — 12
+      </div>
+    </div>
+
+    <!-- H-1 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Table</span>
+        <span class="chip chip-file">Table/Table.jsx : 18–19</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index used as key for both rows and columns</div>
+      <div class="finding-desc">
+        Both the <code>&lt;tr key={rIdx}&gt;</code> and the nested <code>&lt;td key={col.key}&gt;</code> use positional indexes.
+        Sorting, filtering, or inserting rows causes React to reuse the wrong DOM nodes, corrupting component state and breaking animations.
+        Rows must use a stable identity from the data.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Pass a rowKey prop or derive from data:
+{rows.map((row) => (
+  &lt;tr key={row.id ?? row.key ?? JSON.stringify(row)}&gt;
+    {columns.map((col) =&gt; (
+      &lt;td key={col.key}&gt;{row[col.key]}&lt;/td&gt;
+    ))}
+  &lt;/tr&gt;
+))}</pre></div>
+    </div>
+
+    <!-- H-2 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">FileUpload</span>
+        <span class="chip chip-file">FileUpload/FileUpload.jsx : 222</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index used as key for file preview list</div>
+      <div class="finding-desc">
+        <code>value.map((file, i) =&gt; … key={i})</code> — when a file is removed mid-list the remaining items shift indexes.
+        React reuses stale DOM nodes, causing the wrong image preview or remove handler to fire.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Use filename + size as stable key:
+{value.map((file) => {
+  const key = typeof file === 'string' ? file : (file.name ?? file.url ?? file.id);
+  return &lt;div key={key} className="nxp-upload__item"&gt;…&lt;/div&gt;;
+})}</pre></div>
+    </div>
+
+    <!-- H-3 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Breadcrumb</span>
+        <span class="chip chip-file">Breadcrumb/Breadcrumb.jsx : 37</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index used as key for breadcrumb items</div>
+      <div class="finding-desc">
+        <code>items.map((item, idx) =&gt; … key={idx})</code>. Breadcrumb items can be reordered or spliced (multi-step wizards, dynamic routes).
+        Using index as key breaks diffing when items are inserted or removed.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>items.map((item) =&gt; (
+  &lt;li key={item.href ?? item.label} className="nxp-bc__item"&gt;…&lt;/li&gt;
+))</pre></div>
+    </div>
+
+    <!-- H-4 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Carousel</span>
+        <span class="chip chip-file">Carousel/Carousel.jsx : 128–132</span>
+        <span class="chip chip-category react">React · useEffect deps</span>
+      </div>
+      <div class="finding-title">Missing dependency in Carousel useEffect (activeIndex sync)</div>
+      <div class="finding-desc">
+        The <code>useEffect</code> that syncs the controlled <code>activeIndex</code> to Splide has only <code>[activeIndex]</code> in its dep array.
+        The <code>splideRef</code> is accessed inside but not listed, which is stale if the ref ever points to a new Splide instance (e.g., on re-mount after key change).
+        More critically, the Splide <code>go()</code> call is not guarded — if <code>splideRef.current</code> is null during SSR or before mount, it throws.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>useEffect(() => {
+  if (activeIndex === undefined) return;
+  const sp = splideRef.current?.splide;
+  if (sp && sp.index !== activeIndex) {
+    sp.go(activeIndex);
+  }
+}, [activeIndex]); // splideRef is a stable ref object — intentionally omitted</pre></div>
+    </div>
+
+    <!-- H-5 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">FeatureToggleCard</span>
+        <span class="chip chip-file">FeatureToggleCard/FeatureToggleCard.jsx : 15</span>
+        <span class="chip chip-category security">Security · HTML attribute</span>
+      </div>
+      <div class="finding-title">Invalid HTML attribute fill-rule in inline SVG (GearIcon)</div>
+      <div class="finding-desc">
+        The <code>GearIcon</code> SVG uses the HTML attribute <code>fill-rule</code> and <code>clip-rule</code> instead of the React camelCase equivalents
+        <code>fillRule</code> and <code>clipRule</code>. React silently drops unknown props in strict mode and generates console warnings in production.
+        The icon will not render the fill rule at all, causing visual corruption of the gear shape.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Change in GearIcon SVG path attributes:
+&lt;path fillRule="evenodd" clipRule="evenodd" ... /&gt;</pre></div>
+    </div>
+
+    <!-- H-6 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">NumberInput</span>
+        <span class="chip chip-file">NumberInput/NumberInput.jsx : 64–65</span>
+        <span class="chip chip-category react">React · useCallback deps</span>
+      </div>
+      <div class="finding-title">increment / decrement useCallback missing commit in dependency array</div>
+      <div class="finding-desc">
+        <code>increment</code> and <code>decrement</code> are memoised with <code>[current, step]</code> but call <code>commit()</code> which closes over
+        <code>isControlled</code>, <code>min</code>, <code>max</code>, <code>decimals</code>, and <code>onChange</code>.
+        When those change (e.g., <code>max</code> is adjusted), <code>increment</code> / <code>decrement</code> remain stale and apply the wrong clamp bounds.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Lift commit into useCallback with all deps, then reference it:
+const commit = useCallback((n) => {
+  const clamped = clamp(n);
+  if (!isControlled) setInternal(clamped);
+  onChange?.(clamped);
+}, [isControlled, onChange, min, max, decimals, current]);
+
+const increment = useCallback(() => commit(Number(current) + step), [commit, current, step]);
+const decrement = useCallback(() => commit(Number(current) - step), [commit, current, step]);</pre></div>
+    </div>
+
+    <!-- H-7 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Combobox</span>
+        <span class="chip chip-file">Combobox/Combobox.jsx : 11–13</span>
+        <span class="chip chip-category perf">Performance · Missing useMemo</span>
+      </div>
+      <div class="finding-title">Filtered options recalculated on every render without useMemo</div>
+      <div class="finding-desc">
+        The <code>filtered</code> array is computed inline on every render: <code>const filtered = options.filter(…)</code>.
+        In a Combobox with hundreds of options this runs a full filter pass on every keystroke, state update, and parent re-render.
+        There is also no memoisation of <code>selectedLabel</code>.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const filtered = useMemo(
+  () => options.filter((o) => o.label.toLowerCase().includes(query.toLowerCase())),
+  [options, query]
+);
+
+const selectedLabel = useMemo(
+  () => isControlled ? options.find((o) => o.value === value)?.label ?? '' : '',
+  [isControlled, options, value]
+);</pre></div>
+    </div>
+
+    <!-- H-8 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Dropdown</span>
+        <span class="chip chip-file">Dropdown/Dropdown.jsx : 20–21</span>
+        <span class="chip chip-category perf">Performance · Missing useMemo</span>
+      </div>
+      <div class="finding-title">visibleOptions and selectedLabel recomputed on every render</div>
+      <div class="finding-desc">
+        <code>visibleOptions</code> filters the <code>options</code> array and <code>selectedLabel</code> searches it every render — both without
+        <code>useMemo</code>. For dropdowns with dozens of options this can stutter when any parent state changes.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const visibleOptions = useMemo(
+  () => options.filter((o) => !o.divider),
+  [options]
+);
+const selectedLabel = useMemo(
+  () => options.find((o) => o.value === selected)?.label,
+  [options, selected]
+);</pre></div>
+    </div>
+
+    <!-- H-9 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">ColorPicker</span>
+        <span class="chip chip-file">ColorPicker/ColorPicker.jsx : 86–92</span>
+        <span class="chip chip-category react">React · useEffect deps</span>
+      </div>
+      <div class="finding-title">Controlled value sync useEffect suppresses lint with eslint-disable comment</div>
+      <div class="finding-desc">
+        The sync effect at line 86 has <code>// eslint-disable-line</code> hiding a missing dependency: <code>currentHex</code>.
+        The stale <code>currentHex</code> inside the effect means the guard comparison <code>value.toLowerCase() !== currentHex.toLowerCase()</code>
+        can use a stale value, allowing redundant HSV state updates that fire spurious <code>onChange</code> calls.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Remove the eslint-disable comment and rewrite the guard to
+// compare against value directly:
+useEffect(() => {
+  if (!isControlled || !isValidHex(value)) return;
+  const newHex = hsvToHex(...hsv);
+  if (value.toLowerCase() !== newHex.toLowerCase()) {
+    setHsv(hexToHsv(value));
+    setHexIn(value);
+  }
+}, [isControlled, value, hsv]);</pre></div>
+    </div>
+
+    <!-- H-10 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">VerticalNavigationMenu</span>
+        <span class="chip chip-file">VerticalNavigationMenu/VerticalNavigationMenu.jsx : 257</span>
+        <span class="chip chip-category react">React · useEffect deps</span>
+      </div>
+      <div class="finding-title">useEffect for auto-opening groups suppresses exhaustive-deps lint rule</div>
+      <div class="finding-desc">
+        <code>// eslint-disable-line react-hooks/exhaustive-deps</code> hides the missing <code>menuItems</code> dependency.
+        If <code>menuItems</code> changes (dynamic nav) but <code>activeKey</code> stays the same, the effect will not run and
+        previously active parents will not be expanded. Bug manifests in dynamically loaded plugin menus.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>useEffect(() => {
+  if (!activeKey) return;
+  setOpenGroups((prev) => {
+    const next = new Set(prev);
+    menuItems.forEach((item) => {
+      if (Array.isArray(item.children) &&
+          item.children.some((c) => hasActiveDescendant(c, activeKey))) {
+        next.add(item.key);
+      }
+    });
+    return next;
+  });
+}, [activeKey, menuItems]); // no eslint-disable needed</pre></div>
+    </div>
+
+    <!-- H-11 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">DateRangePicker</span>
+        <span class="chip chip-file">DateRangePicker/DateRangePicker.jsx : 153</span>
+        <span class="chip chip-category react">React · useEffect deps</span>
+      </div>
+      <div class="finding-title">Controlled sync useEffect suppresses deps lint (DateRangePicker)</div>
+      <div class="finding-desc">
+        Line 153 has <code>// eslint-disable-line</code> on the useEffect that syncs <code>value.start</code> and <code>value.end</code>.
+        The <code>isControlled</code> flag is used inside but not declared in deps. If the component switches from uncontrolled to controlled (a misuse, but possible), the effect will not re-run correctly.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>useEffect(() => {
+  if (!isControlled) return;
+  setStart(parseISO(value?.start ?? null));
+  setEnd(parseISO(value?.end ?? null));
+}, [isControlled, value?.start, value?.end]);</pre></div>
+    </div>
+
+    <!-- H-12 -->
+    <div class="finding-card high">
+      <div class="finding-header">
+        <span class="chip chip-component">Combobox</span>
+        <span class="chip chip-file">Combobox/Combobox.jsx : 27–38</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">Unreachable branch — isControlled checked but both branches do the same thing</div>
+      <div class="finding-desc">
+        Inside <code>select</code> callback: both the <code>if (isControlled)</code> branch and the <code>else</code> branch call
+        <code>onChange &amp;&amp; onChange(opt.value)</code>. The <code>isControlled</code> check is dead — the code is identical in both paths.
+        This hides the fact that an uncontrolled Combobox never updates its own query display after selection (query is always driven by external <code>value</code> sync via the useEffect).
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const select = useCallback((opt) => {
+  onChange?.(opt.value);
+  // Only update query if uncontrolled (controlled query is synced via useEffect)
+  if (!isControlled) {
+    setQuery(opt.label);
+  }
+  setOpen(false);
+  setFocused(-1);
+}, [isControlled, onChange]);</pre></div>
+    </div>
+
+  </div><!-- /high -->
+
+
+  <!-- ── MEDIUM ── -->
+  <div class="findings-section" id="medium">
+    <div class="section-title">
+      <div class="findings-group-title">
+        <span class="severity-dot medium"></span>Medium Findings — 21
+      </div>
+    </div>
+
+    <!-- M-1 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Button</span>
+        <span class="chip chip-file">Button/Button.jsx : 130–132</span>
+        <span class="chip chip-category perf">Performance · Inline handler</span>
+      </div>
+      <div class="finding-title">handleClick creates a new function on every render when isDisabled is false</div>
+      <div class="finding-desc">
+        <code>const handleClick = isDisabled ? (e) =&gt; { … } : onClick</code> — the arrow function for the disabled guard is re-created
+        every render. Button is used pervasively across the UI; if it is wrapped in React.memo by parent components the unstable reference will defeat memoisation.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const handleClick = useCallback(
+  (e) => {
+    if (isDisabled) { e.preventDefault(); e.stopPropagation(); return; }
+    onClick?.(e);
+  },
+  [isDisabled, onClick]
+);</pre></div>
+    </div>
+
+    <!-- M-2 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Accordion</span>
+        <span class="chip chip-file">Accordion/Accordion.jsx : 34</span>
+        <span class="chip chip-category perf">Performance · Inline handler</span>
+      </div>
+      <div class="finding-title">Inline arrow function in onClick inside .map() — new ref every render</div>
+      <div class="finding-desc">
+        <code>onClick={() =&gt; toggle(item.id)}</code> inside <code>items.map()</code> creates a new function for each item on every render.
+        If items are stable and the list is long (e.g., 50+ accordion items) this generates GC pressure.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Bind id with data attribute + single handler:
+&lt;button
+  data-id={item.id}
+  onClick={handleClick}   // single stable ref
+&gt;
+// Then:
+const handleClick = useCallback((e) =&gt; toggle(e.currentTarget.dataset.id), [toggle]);</pre></div>
+    </div>
+
+    <!-- M-3 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Tabs</span>
+        <span class="chip chip-file">Tabs/Tabs.jsx : 15</span>
+        <span class="chip chip-category perf">Performance · Unused state</span>
+      </div>
+      <div class="finding-title">activeSubTab state initialized but never properly managed — causes wasted renders</div>
+      <div class="finding-desc">
+        <code>const [activeSubTab, setActiveSubTab] = useState({})</code> stores per-tab sub-tab selections in an ever-growing object.
+        When any subtab is clicked the entire <code>activeSubTab</code> object is replaced via spread, causing all sibling sub-tabs to re-render
+        even if their selection did not change. Also, subTab content is never rendered — the panel only shows <code>activeTabObj.content</code>.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Either remove activeSubTab if subtab content is unused,
+// or use a Map/ref instead of spread to avoid cascading renders:
+const activeSubTabRef = useRef({});
+// update: activeSubTabRef.current[tab.id] = sub.id;</pre></div>
+    </div>
+
+    <!-- M-4 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Notice</span>
+        <span class="chip chip-file">Notice/Notice.jsx : 25</span>
+        <span class="chip chip-category react">React · Missing cleanup</span>
+      </div>
+      <div class="finding-title">setTimeout in handleDismiss not cleared if component unmounts during animation</div>
+      <div class="finding-desc">
+        <code>handleDismiss</code> calls <code>setTimeout(() =&gt; { setDismissed(true); onDismiss?.(); }, 220)</code> with no cleanup.
+        If the Notice is unmounted (e.g., parent navigates away) before the 220ms window closes,
+        React will attempt to set state on an unmounted component and call the <code>onDismiss</code> handler after the parent is gone.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const timerRef = useRef(null);
+
+const handleDismiss = useCallback(() => {
+  setDismissing(true);
+  timerRef.current = setTimeout(() => {
+    setDismissed(true);
+    onDismiss?.();
+  }, 220);
+}, [onDismiss]);
+
+useEffect(() => () => clearTimeout(timerRef.current), []);</pre></div>
+    </div>
+
+    <!-- M-5 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">CopyInput</span>
+        <span class="chip chip-file">CopyInput/CopyInput.jsx : 44</span>
+        <span class="chip chip-category react">React · Missing cleanup</span>
+      </div>
+      <div class="finding-title">setTimeout for reset not cleared on unmount</div>
+      <div class="finding-desc">
+        <code>setTimeout(() =&gt; setCopied(false), 2000)</code> has no cleanup. If the input is unmounted within 2 seconds of copying
+        (e.g., modal closes), React will warn about setting state on unmounted component.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const timerRef = useRef(null);
+
+const handleCopy = useCallback(async () => {
+  // …copy logic…
+  setCopied(true);
+  clearTimeout(timerRef.current);
+  timerRef.current = setTimeout(() => setCopied(false), 2000);
+}, [disabled, value]);
+
+useEffect(() => () => clearTimeout(timerRef.current), []);</pre></div>
+    </div>
+
+    <!-- M-6 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">ColorPicker</span>
+        <span class="chip chip-file">ColorPicker/ColorPicker.jsx : 111–129</span>
+        <span class="chip chip-category perf">Performance · Inline handlers in JSX</span>
+      </div>
+      <div class="finding-title">onBoxPointerDown / onBoxPointerMove / onBoxPointerUp are inline functions (recreated every render)</div>
+      <div class="finding-desc">
+        Three pointer-event handlers declared as plain <code>function</code> declarations inside the component body are re-created on every render.
+        These are attached to the gradient box, which re-renders on every HSV change (i.e., every mouse move during drag).
+        Wrapping in <code>useCallback</code> removes the allocation overhead during the tight drag loop.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const onBoxPointerDown = useCallback((e) => {
+  draggingBox.current = true;
+  e.currentTarget.setPointerCapture(e.pointerId);
+  const [s, v] = calcBoxSV(e);
+  emit(hsv[0], s, v);
+}, [hsv, emit, calcBoxSV]);
+
+const onBoxPointerMove = useCallback((e) => {
+  if (!draggingBox.current) return;
+  const [s, v] = calcBoxSV(e);
+  emit(hsv[0], s, v);
+}, [hsv, emit, calcBoxSV]);
+
+const onBoxPointerUp = useCallback(() => { draggingBox.current = false; }, []);</pre></div>
+    </div>
+
+    <!-- M-7 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">DatePicker</span>
+        <span class="chip chip-file">DatePicker/DatePicker.jsx : 116</span>
+        <span class="chip chip-category perf">Performance · Inline computation</span>
+      </div>
+      <div class="finding-title">startOfDay(new Date()) recalculated on every render, not memoized</div>
+      <div class="finding-desc">
+        <code>const today = startOfDay(new Date())</code> is declared inside the function body without <code>useMemo</code>.
+        Although <code>new Date()</code> is cheap, this value is used in the calendar cell render loop for 42 comparisons and should be stable within a session.
+        The same pattern exists in DateRangePicker's CalendarPanel sub-component.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Hoist to module level (never changes within a page load):
+const TODAY = startOfDay(new Date());
+
+// Or if SSR safe memoization is needed:
+const today = useMemo(() => startOfDay(new Date()), []);</pre></div>
+    </div>
+
+    <!-- M-8 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">FeatureList</span>
+        <span class="chip chip-file">FeatureList/FeatureList.jsx : 162</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index used as key for feature list items</div>
+      <div class="finding-desc">
+        <code>&lt;li key={index}&gt;</code> — FeatureList items are pure strings with no inherent ID.
+        When the <code>items</code> array is filtered or sorted (e.g., search-driven feature lists in a settings panel), React will reuse DOM nodes incorrectly.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Use item text as key (assumed unique within a list):
+const text = typeof item === 'string' ? item : item.text;
+return &lt;li key={text} className="nxp-feature-list__item"&gt;…&lt;/li&gt;;</pre></div>
+    </div>
+
+    <!-- M-9 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">ProPopup</span>
+        <span class="chip chip-file">ProPopup/ProPopup.jsx : 139</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index as key in ProPopup feature list</div>
+      <div class="finding-desc">
+        <code>resolvedList.map((item, i) =&gt; … key={i})</code> — the resolved list can come from a license API response.
+        If items change between renders (license tier upgrade), diffing will be incorrect.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>{resolvedList.map((item) => (
+  &lt;li key={typeof item === 'string' ? item : item.id ?? item.text} …&gt;</pre></div>
+    </div>
+
+    <!-- M-10 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Dropdown</span>
+        <span class="chip chip-file">Dropdown/Dropdown.jsx : 117</span>
+        <span class="chip chip-category react">React · Keys</span>
+      </div>
+      <div class="finding-title">Array index used as key for divider items in Dropdown</div>
+      <div class="finding-desc">
+        Divider items use <code>key={idx}</code>. When a divider is added or removed, all subsequent option keys shift, causing React to reconcile the wrong elements.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Use a stable divider key derived from position in the option schema,
+// e.g., add a required 'key' field to each option:
+if (opt.divider) return &lt;div key={opt.key ?? `divider-${idx}`} className="nxp-dropdown__divider" /&gt;;</pre></div>
+    </div>
+
+    <!-- M-11 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Pagination</span>
+        <span class="chip chip-file">Pagination/Pagination.jsx : 21</span>
+        <span class="chip chip-category perf">Performance · Inline array</span>
+      </div>
+      <div class="finding-title">New Array.from() allocation on every render regardless of totalPages changes</div>
+      <div class="finding-desc">
+        <code>const pages = Array.from({ length: totalPages }, …)</code> — a new array is created on every render even when <code>totalPages</code>
+        has not changed. Wrap in <code>useMemo</code>.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const pages = useMemo(
+  () => Array.from({ length: totalPages }, (_, i) => i + 1),
+  [totalPages]
+);</pre></div>
+    </div>
+
+    <!-- M-12 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Sidebar</span>
+        <span class="chip chip-file">Sidebar/Sidebar.jsx : 167–171</span>
+        <span class="chip chip-category perf">Performance · Inline object in JSX</span>
+      </div>
+      <div class="finding-title">style object with CSS vars recreated on every render</div>
+      <div class="finding-desc">
+        The <code>style</code> object <code>{ '--nxp-sb-width': width, … }</code> is created inline in the render body.
+        Since <code>style</code> references change every render, React always applies the style even when props have not changed,
+        preventing React.memo from helping if Sidebar is ever memoised.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const sidebarStyle = useMemo(() => ({
+  '--nxp-sb-width': width,
+  '--nxp-sb-col-width': collapsedWidth,
+  width: isCollapsed ? collapsedWidth : width,
+}), [width, collapsedWidth, isCollapsed]);</pre></div>
+    </div>
+
+    <!-- M-13 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Dialog</span>
+        <span class="chip chip-file">Dialog/Dialog.jsx : 3–35</span>
+        <span class="chip chip-category error">Error Handling · Missing overlay</span>
+      </div>
+      <div class="finding-title">Dialog has no backdrop / overlay and no close mechanism</div>
+      <div class="finding-desc">
+        Unlike Modal/Drawer/Drawer which use <code>createPortal</code> + backdrop, Dialog renders as an inline <code>div</code> with <code>role="alertdialog"</code> but no backdrop, no focus trap, and no Escape handler.
+        Screen readers and keyboard users cannot dismiss it. The component must be wrapped by caller in a backdrop — this pattern is a documentation gap that leads to inaccessible usage.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Add a backdrop wrapper and Escape handler similar to Modal:
+import { createPortal } from 'react-dom';
+
+return createPortal(
+  &lt;div className="nxp-dialog-backdrop" role="presentation"
+       onMouseDown={(e) =&gt; e.target === e.currentTarget &amp;&amp; onClose?.()}&gt;
+    &lt;div className="nxp-dialog" role="alertdialog" aria-modal="true" …&gt;
+      …
+    &lt;/div&gt;
+  &lt;/div&gt;,
+  document.body
+);</pre></div>
+    </div>
+
+    <!-- M-14 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Slider</span>
+        <span class="chip chip-file">Slider/Slider.jsx : 107</span>
+        <span class="chip chip-category error">Error Handling · Fragile ID generation</span>
+      </div>
+      <div class="finding-title">sliderId generated from label with manual string replace — not guaranteed unique</div>
+      <div class="finding-desc">
+        <code>const sliderId = label ? `nxp-slider-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined</code> — two sliders with the same label
+        (e.g., two "Width" sliders in a form) will have the same <code>id</code>, breaking the <code>htmlFor</code> association and violating HTML uniqueness.
+        Use <code>useId()</code> instead.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>import { useId } from 'react';
+
+const uid = useId();
+const sliderId = `nxp-slider-${uid}`;</pre></div>
+    </div>
+
+    <!-- M-15 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Combobox</span>
+        <span class="chip chip-file">Combobox/Combobox.jsx : 53</span>
+        <span class="chip chip-category perf">Performance · Missing useCallback</span>
+      </div>
+      <div class="finding-title">handleKeyDown in Combobox is a plain function, recreated every render</div>
+      <div class="finding-desc">
+        <code>function handleKeyDown(e) { … }</code> is declared as a plain function that references <code>filtered</code>, <code>focused</code>,
+        and <code>select</code>. It is passed directly to the <code>onKeyDown</code> prop. Wrap it in <code>useCallback</code> to stabilise the reference.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const handleKeyDown = useCallback((e) => {
+  // …existing logic…
+}, [open, filtered, focused, select]);</pre></div>
+    </div>
+
+    <!-- M-16 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Dropdown</span>
+        <span class="chip chip-file">Dropdown/Dropdown.jsx : 53</span>
+        <span class="chip chip-category perf">Performance · Missing useCallback</span>
+      </div>
+      <div class="finding-title">handleKeyDown in Dropdown is a plain function, recreated every render</div>
+      <div class="finding-desc">
+        Same pattern as Combobox — <code>handleKeyDown</code> closes over <code>open</code>, <code>focused</code>, <code>visibleOptions</code>, and <code>select</code>, but is not wrapped in <code>useCallback</code>.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const handleKeyDown = useCallback((e) => { … }, [open, focused, visibleOptions, select, close]);</pre></div>
+    </div>
+
+    <!-- M-17 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">FileUpload</span>
+        <span class="chip chip-file">FileUpload/FileUpload.jsx : 135–140</span>
+        <span class="chip chip-category perf">Performance · Inline handlers</span>
+      </div>
+      <div class="finding-title">onDragOver, onDragLeave, onDrop, onFileInput, removeFile — all inline, not memoised</div>
+      <div class="finding-desc">
+        Five event handlers attached to the drop zone are plain arrow functions or inline functions declared in the component body.
+        <code>removeFile</code> in particular is passed to N remove buttons inside the preview list — a new function per render per file.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const onDragOver  = useCallback((e) => { e.preventDefault(); setDragging(true); }, []);
+const onDragLeave = useCallback(() => setDragging(false), []);
+const onDrop = useCallback((e) => {
+  e.preventDefault(); setDragging(false);
+  if (!disabled) processFiles(e.dataTransfer.files);
+}, [disabled, processFiles]);
+// Use data-idx + single removeFile callback for preview buttons</pre></div>
+    </div>
+
+    <!-- M-18 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">FeatureToggleCard</span>
+        <span class="chip chip-file">FeatureToggleCard/FeatureToggleCard.jsx : 171</span>
+        <span class="chip chip-category error">Error Handling · Missing rel on external link</span>
+      </div>
+      <div class="finding-title">redirectLink anchor opens _blank without rel="noopener noreferrer"</div>
+      <div class="finding-desc">
+        Line 170: <code>&lt;a href={redirectLink} target="_blank" className="…"&gt;</code> — missing <code>rel="noopener noreferrer"</code>.
+        This allows the opened tab to access <code>window.opener</code>, a well-known phishing / tab-napping vector.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>&lt;a href={redirectLink} target="_blank" rel="noopener noreferrer" className="nxp-ftc__redirect-link"&gt;</pre></div>
+    </div>
+
+    <!-- M-19 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">Checkbox / Radio / Toggle</span>
+        <span class="chip chip-file">Checkbox/Checkbox.jsx : 51 · Radio/Radio.jsx : 47 · Toggle/Toggle.jsx : 51</span>
+        <span class="chip chip-category react">React · Accessibility</span>
+      </div>
+      <div class="finding-title">Custom controls fire handleChange on both onClick and onKeyDown — double-fire on Enter</div>
+      <div class="finding-desc">
+        Checkbox and Radio attach <code>onClick</code> to the visual div and also handle <code>Space</code> via <code>onKeyDown</code>.
+        For a standard button element, pressing Enter fires a click event automatically — but since these use <code>&lt;div role="checkbox"&gt;</code>,
+        the Enter key is not handled. Space is handled but so is the browser's synthetic click. Result: clicking triggers both handlers simultaneously, causing a double-toggle in some browser/AT combinations.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// In the visual div — use only onKeyDown; remove the onClick duplicate:
+&lt;div
+  role="checkbox"
+  aria-checked={isChecked}
+  tabIndex={disabled ? -1 : 0}
+  onKeyDown={(e) => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handleChange(); }
+  }}
+/&gt;
+// The parent &lt;label&gt; already handles mouse click via htmlFor — no need for onClick on the div.</pre></div>
+    </div>
+
+    <!-- M-20 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">InfoIcon (duplicated)</span>
+        <span class="chip chip-file">Field/Field.jsx · FeatureToggleCard/FeatureToggleCard.jsx · ToggleItem/ToggleItem.jsx · Tooltip/Tooltip.jsx</span>
+        <span class="chip chip-category bundle">Bundle Size · Duplicated SVG</span>
+      </div>
+      <div class="finding-title">InfoIcon SVG defined independently in 4 separate component files</div>
+      <div class="finding-desc">
+        The same circular info-circle SVG icon is copy-pasted into Field, FeatureToggleCard, ToggleItem, and Tooltip — each with slightly different dimensions (14×14, 16×16, 13×13).
+        This bloats the bundle and creates maintenance divergence. Extract to a shared icon component.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Create src/components/icons/InfoIcon.jsx:
+export const InfoIcon = ({ size = 14 }) => (
+  &lt;svg width={size} height={size} viewBox="0 0 14 14" fill="none" aria-hidden="true"&gt;
+    &lt;circle cx="7" cy="7" r="6.25" stroke="currentColor" strokeWidth="1.5" /&gt;
+    &lt;path d="M7 6.5v3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /&gt;
+    &lt;circle cx="7" cy="4.25" r="0.875" fill="currentColor" /&gt;
+  &lt;/svg&gt;
+);
+
+// Import in all 4 files:
+import { InfoIcon } from '../icons/InfoIcon';</pre></div>
+    </div>
+
+    <!-- M-21 -->
+    <div class="finding-card medium">
+      <div class="finding-header">
+        <span class="chip chip-component">CloseIcon (duplicated)</span>
+        <span class="chip chip-file">Drawer/Drawer.jsx · Modal/Modal.jsx · ProPopup/ProPopup.jsx</span>
+        <span class="chip chip-category bundle">Bundle Size · Duplicated SVG</span>
+      </div>
+      <div class="finding-title">CloseIcon (×) SVG defined independently in 3 overlay components</div>
+      <div class="finding-desc">
+        Drawer, Modal, and ProPopup each define their own <code>CloseIcon</code> component with slightly different stroke widths (1.6, 1.75, 1.75).
+        Centralise into a shared icon with a <code>strokeWidth</code> prop.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// src/components/icons/CloseIcon.jsx
+export const CloseIcon = ({ size = 14, strokeWidth = 1.75 }) => (
+  &lt;svg width={size} height={size} viewBox="0 0 14 14" fill="none" aria-hidden="true"&gt;
+    &lt;path d="M11 3L3 11M3 3l8 8" stroke="currentColor"
+          strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" /&gt;
+  &lt;/svg&gt;
+);</pre></div>
+    </div>
+
+  </div><!-- /medium -->
+
+
+  <!-- ── LOW ── -->
+  <div class="findings-section" id="low">
+    <div class="section-title">
+      <div class="findings-group-title">
+        <span class="severity-dot low"></span>Low Findings — 14
+      </div>
+    </div>
+
+    <!-- L-1 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">ThemeProvider</span>
+        <span class="chip chip-file">ThemeProvider/ThemeProvider.jsx : 53–59</span>
+        <span class="chip chip-category react">React · useCallback deps</span>
+      </div>
+      <div class="finding-title">setTheme useCallback depends on theme but does not need to</div>
+      <div class="finding-desc">
+        <code>setTheme</code> is memoised with <code>[theme, storageSync]</code>. It accesses <code>theme</code> only in the functional-updater path
+        <code>typeof next === 'function' ? next(theme) : next</code>. The functional updater already receives the previous value from React,
+        so <code>theme</code> in the closure is unnecessary and causes <code>setTheme</code> to be recreated on every theme change.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const setTheme = useCallback((next) => {
+  setThemeState((prev) => {
+    const value = typeof next === 'function' ? next(prev) : next;
+    if (storageSync && typeof window !== 'undefined') {
+      window.localStorage.setItem(STORAGE_KEY, value);
+    }
+    return value;
+  });
+}, [storageSync]); // theme removed from deps</pre></div>
+    </div>
+
+    <!-- L-2 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">ToggleGrid</span>
+        <span class="chip chip-file">ToggleGrid/ToggleGrid.jsx : 17</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">getValues() helper function is unnecessary — inline usage would be clearer</div>
+      <div class="finding-desc">
+        <code>function getValues() { return isControlled ? valueMap : internal; }</code> is called in exactly 2 places.
+        Inlining the ternary at each call site removes one layer of indirection and makes the controlled/uncontrolled pattern explicit.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Remove getValues(); use directly:
+const values = isControlled ? valueMap : internal;
+
+// In handleToggle:
+const updatedValues = { ...values, [key]: newValue };</pre></div>
+    </div>
+
+    <!-- L-3 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Carousel</span>
+        <span class="chip chip-file">Carousel/Carousel.jsx : 185</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">slides guard redundant — already checked above with hasDataSlides</div>
+      <div class="finding-desc">
+        Line 185: <code>{(slides || []).map(…)}</code> — <code>slides</code> defaults to <code>[]</code> in the prop destructure, so <code>slides || []</code> can never be falsy.
+        The guard was copied from a pre-defaultProps era. It is dead code that adds visual noise.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>{slides.map((slide, i) => (
+  &lt;SplideSlide key={`data-${i}`}&gt;…&lt;/SplideSlide&gt;
+))}</pre></div>
+    </div>
+
+    <!-- L-4 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Search</span>
+        <span class="chip chip-file">Search/Search.jsx : 3</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">onClear prop accepted but never used</div>
+      <div class="finding-desc">
+        <code>Search</code> accepts an <code>onClear</code> prop in its signature but it is never referenced in the component body.
+        There is no clear button rendered and the prop is not forwarded. Either implement the clear button or remove the prop from the interface.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Option A — implement it:
+{current && (
+  &lt;button type="button" className="nxp-search__clear"
+          onClick={() => { handleChange({ target: { value: '' } }); onClear?.(); }}
+          aria-label="Clear search"&gt;×&lt;/button&gt;
+)}
+
+// Option B — remove the prop from the signature.</pre></div>
+    </div>
+
+    <!-- L-5 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">DateRangePicker</span>
+        <span class="chip chip-file">DateRangePicker/DateRangePicker.jsx : 182</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">Empty if-block in onDayClick — dead code leftover</div>
+      <div class="finding-desc">
+        Line 182: <code>if (!isControlled) {}</code> — empty block left after a refactor. Has no effect.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Remove the empty block entirely.</pre></div>
+    </div>
+
+    <!-- L-6 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Avatar</span>
+        <span class="chip chip-file">Avatar/Avatar.jsx : 11</span>
+        <span class="chip chip-category error">Error Handling · aria-label</span>
+      </div>
+      <div class="finding-title">aria-label falls back to children which may be a ReactNode (not a string)</div>
+      <div class="finding-desc">
+        <code>aria-label={alt || children}</code> — if <code>children</code> is a React element (e.g., an SVG icon) the aria-label becomes <code>[object Object]</code>.
+        The attribute should only accept strings.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>aria-label={alt || (typeof children === 'string' ? children : undefined)}</pre></div>
+    </div>
+
+    <!-- L-7 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Popover</span>
+        <span class="chip chip-file">Popover/Popover.jsx : 5</span>
+        <span class="chip chip-category error">Error Handling · ARIA role</span>
+      </div>
+      <div class="finding-title">Popover uses role="tooltip" but has no anchor/trigger — role is misleading</div>
+      <div class="finding-desc">
+        <code>role="tooltip"</code> is intended for elements that describe another element (referenced via <code>aria-describedby</code>).
+        The Popover component is a standalone informational card with title, description, and footer slots — it is not anchored to a trigger.
+        The role should be <code>role="dialog"</code> (if interactive) or removed entirely.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>&lt;div className={`nxp-popover ${className}`} role="region" aria-label={title}&gt;</pre></div>
+    </div>
+
+    <!-- L-8 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Textarea</span>
+        <span class="chip chip-file">Textarea/Textarea.jsx : 42</span>
+        <span class="chip chip-category error">Error Handling · aria-invalid</span>
+      </div>
+      <div class="finding-title">aria-invalid passes boolean true instead of string "true"</div>
+      <div class="finding-desc">
+        <code>aria-invalid={invalid || undefined}</code> — when <code>invalid</code> is <code>true</code> this passes a boolean rather than the
+        ARIA-compliant string <code>"true"</code>. React serialises booleans on native elements so the rendered attribute is correct, but it is inconsistent
+        with the <code>Input</code> component which explicitly passes <code>aria-invalid={invalid ? 'true' : undefined}</code>.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>aria-invalid={invalid ? 'true' : undefined}</pre></div>
+    </div>
+
+    <!-- L-9 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Slider</span>
+        <span class="chip chip-file">Slider/Slider.jsx : 40–45</span>
+        <span class="chip chip-category perf">Performance · useEffect for CSS var</span>
+      </div>
+      <div class="finding-title">useEffect to set --val CSS custom property is unnecessary — already set via inline style</div>
+      <div class="finding-desc">
+        Lines 41–45: a <code>useEffect</code> imperatively sets <code>style.setProperty('--val', percent)</code> on the range input's DOM node.
+        But line 155 already passes <code>style={{ '--val': percent }}</code> as a JSX prop, making the effect redundant.
+        Two code paths setting the same property creates confusion.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Remove the useEffect block entirely (lines 41–45).
+// The inline style prop on the range input is sufficient:
+&lt;input … style={{ '--val': percent }} /&gt;</pre></div>
+    </div>
+
+    <!-- L-10 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">ChevronIcon (duplicated)</span>
+        <span class="chip chip-file">Breadcrumb · Collapsible · DatePicker · DateRangePicker · Dropdown · MultiSelect · Sidebar · VerticalNavigationMenu</span>
+        <span class="chip chip-category bundle">Bundle Size · Duplicated SVG</span>
+      </div>
+      <div class="finding-title">ChevronIcon SVG defined in 8 separate components</div>
+      <div class="finding-desc">
+        Every component that needs an arrow defines its own <code>ChevronIcon</code> / <code>ChevronDown</code> / <code>ChevLeft</code> / <code>ChevRight</code>.
+        Across 8 files this adds ~100 LOC of duplicated SVG markup. Centralise into a shared icon set with a <code>direction</code> prop.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// src/components/icons/ChevronIcon.jsx
+export const ChevronIcon = ({ direction = 'down', size = 14 }) => {
+  const rotate = { up: 180, down: 0, left: 270, right: 90 }[direction] ?? 0;
+  return (
+    &lt;svg width={size} height={size} viewBox="0 0 14 14" fill="none"
+         aria-hidden="true" style={{ transform: `rotate(${rotate}deg)` }}&gt;
+      &lt;path d="M3 5l4 4 4-4" stroke="currentColor"
+            strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/&gt;
+    &lt;/svg&gt;
+  );
+};</pre></div>
+    </div>
+
+    <!-- L-11 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">FeatureToggleCard</span>
+        <span class="chip chip-file">FeatureToggleCard/FeatureToggleCard.jsx : 94–96</span>
+        <span class="chip chip-category dead">Dead Code</span>
+      </div>
+      <div class="finding-title">outerClass built as an array with .filter(Boolean) but always produces a single value</div>
+      <div class="finding-desc">
+        <code>const outerClass = ['nxp-ftc-outer'].filter(Boolean).join(' ')</code> — the array always has exactly one element and <code>filter(Boolean)</code>
+        on string literals always passes. The array pattern is a leftover from when additional conditional classes existed here.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>const outerClass = 'nxp-ftc-outer';</pre></div>
+    </div>
+
+    <!-- L-12 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Sidebar</span>
+        <span class="chip chip-file">Sidebar/Sidebar.jsx : 223</span>
+        <span class="chip chip-category bundle">Bundle Size · Tailwind class leak</span>
+      </div>
+      <div class="finding-title">Tailwind utility classes used inside the nxp- component system</div>
+      <div class="finding-desc">
+        The collapse toggle SVG uses <code>className="transition-transform duration-200 ease-in-out…"</code> — these are Tailwind CSS class names,
+        not nxp- tokens. If the consumer's project does not include Tailwind (the library itself does not depend on it), the animation will be silently absent.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Replace with inline style or a nxp- CSS class:
+&lt;svg
+  style={{ transition: 'transform 200ms ease-in-out',
+           transform: isCollapsed ? 'rotate(180deg)' : 'none' }}
+/&gt;</pre></div>
+    </div>
+
+    <!-- L-13 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">Drawer</span>
+        <span class="chip chip-file">Drawer/Drawer.jsx : 64–72</span>
+        <span class="chip chip-category perf">Performance · setTimeout in useEffect</span>
+      </div>
+      <div class="finding-title">Focus trap uses a 50ms setTimeout — fragile timing assumption</div>
+      <div class="finding-desc">
+        The focus trap defers focus by 50ms to allow the DOM to settle after portal insertion.
+        This is a timing hack. If CSS transitions exceed 50ms or a slow device pauses between renders, focus will be moved before the element is visible, confusing screen readers.
+        Use <code>requestAnimationFrame</code> or a <code>ResizeObserver</code> instead.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>useEffect(() => {
+  if (!open) return;
+  // Two rAF cycles ensure browser has painted:
+  let raf1 = requestAnimationFrame(() => {
+    let raf2 = requestAnimationFrame(() => {
+      const el = panelRef.current?.querySelector(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      el?.focus();
+    });
+    return () => cancelAnimationFrame(raf2);
+  });
+  return () => cancelAnimationFrame(raf1);
+}, [open]);</pre></div>
+    </div>
+
+    <!-- L-14 -->
+    <div class="finding-card low">
+      <div class="finding-header">
+        <span class="chip chip-component">All modal/overlay components</span>
+        <span class="chip chip-file">Modal · Drawer · ProPopup · Dialog</span>
+        <span class="chip chip-category react">React · Error Boundary</span>
+      </div>
+      <div class="finding-title">No error boundary around portal-rendered overlay components</div>
+      <div class="finding-desc">
+        Modal, Drawer, and ProPopup render via <code>createPortal</code> directly to <code>document.body</code>.
+        If a render error occurs inside (e.g., <code>children</code> throws), it will bubble to the nearest error boundary — which may be the application root,
+        crashing the entire page. A local error boundary around portal content would contain failures.
+      </div>
+      <div class="fix-label">Suggested fix</div>
+      <div class="fix-block"><pre>// Wrap portal content in a simple error boundary:
+import { ErrorBoundary } from 'react-error-boundary';
+
+return createPortal(
+  &lt;ErrorBoundary fallback={&lt;div className="nxp-modal-error"&gt;Something went wrong.&lt;/div&gt;}&gt;
+    &lt;div className="nxp-modal-backdrop" …&gt;{/* … */}&lt;/div&gt;
+  &lt;/ErrorBoundary&gt;,
+  document.body
+);</pre></div>
+    </div>
+
+  </div><!-- /low -->
+
+</div><!-- /container -->
+
+<!-- ── FOOTER ── -->
+<div class="report-footer">
+  <strong>Nexter UI Component Library — Code Quality Report</strong> &nbsp;·&nbsp;
+  Components audited: <strong>65</strong> &nbsp;·&nbsp;
+  JSX files scanned: <strong>67</strong> &nbsp;·&nbsp;
+  Total findings: <strong>51</strong> &nbsp;·&nbsp;
+  Generated: <strong>2026-05-18</strong> by Claude Code (Sonnet 4.6)
+</div>
+
+</body>
+</html>
