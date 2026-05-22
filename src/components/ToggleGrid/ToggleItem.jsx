@@ -10,11 +10,26 @@ const InfoIcon = () => (
   </svg>
 );
 
-const ToggleItem = memo(function ToggleItem({ itemKey, label, value, tooltip, tooltipPosition = 'top', onToggle, disabled }) {
+const ToggleItem = memo(function ToggleItem({
+  itemKey,
+  label,
+  value,
+  tooltip,
+  tooltipPosition = 'top',
+  isPro    = false,
+  proText  = 'PRO',
+  onToggle,
+  disabled,
+}) {
   return (
     <div className="nxp-tg__item">
       <div className="nxp-tg__item-label-row">
         <span className="nxp-tg__item-label nxp-body">{label}</span>
+        {isPro && (
+          <span className="nxp-absolute nxp-flex-center nxp-tg-item-pro nxp-weight-medium">
+            {proText}
+          </span>
+        )}
         {tooltip && (
           <Tooltip content={tooltip} position={tooltipPosition}>
             <span

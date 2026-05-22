@@ -3163,7 +3163,20 @@ input.nxp-input--invalid:focus {
   border: 1px solid var(--nxp-border);
   border-radius: var(--nxp-radius-sm);
   min-width: 0;
+  position: relative;
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-tg-item-pro {
+  background: var(--nxp-brand-soft);
+  border: 1px solid rgba(23, 23, 204, .102);
+  border-radius: var(--nxp-radius-xs);
+  color: var(--nxp-brand);
+  font-size: var(--nxp-text-xs);
+  letter-spacing: .3px;
+  padding: var(--nxp-space-4) var(--nxp-space-8);
+  line-height: 10px;
+  text-transform: uppercase;
+  top: -10px;
 }
 
 .nxp-tg__item:hover {

@@ -982,6 +982,10 @@ export interface ToggleGridItem {
   value?: boolean;
   tooltip?: string;
   tooltipPosition?: NxpTooltipPosition;
+  /** Show the PRO badge on this item (default false) */
+  isPro?: boolean;
+  /** Badge label text (default 'PRO') */
+  proText?: string;
 }
 
 export interface ToggleGridProps {

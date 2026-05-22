@@ -1,49 +1,51 @@
-import { jsx as c } from "react/jsx-runtime";
-import { useState as T } from "react";
-import { ToggleItem as j } from "./ToggleItem.js";
-function E({
+import { jsx as p } from "react/jsx-runtime";
+import { useState as b } from "react";
+import { ToggleItem as k } from "./ToggleItem.js";
+function B({
   items: l = [],
-  columns: i = 2,
+  columns: c = 2,
   onChange: t,
   valueMap: s,
-  disabled: p = !1,
+  disabled: i = !1,
   tooltipPosition: f = "top",
   // 'top'|'bottom'|'left'|'right' — group default; item.tooltipPosition overrides
   className: d = ""
 }) {
-  const a = s !== void 0, [g, m] = T(
+  const a = s !== void 0, [g, v] = b(
     () => Object.fromEntries(l.map((o) => [o.key, o.value ?? !1]))
   );
-  function n() {
+  function r() {
     return a ? s : g;
   }
-  function v(o, r) {
-    const u = { ...n(), [o]: r }, k = l.map((e) => ({
+  function m(o, n) {
+    const u = { ...r(), [o]: n }, P = l.map((e) => ({
       ...e,
       value: u[e.key] ?? e.value ?? !1
     }));
-    a || m(u), t == null || t(o, r, k);
+    a || v(u), t == null || t(o, n, P);
   }
-  const x = Math.min(Math.max(Number(i) || 2, 1), 4), y = n(), b = [
+  const x = Math.min(Math.max(Number(c) || 2, 1), 4), T = r(), y = [
     "nxp-tg",
     `nxp-tg--cols-${x}`,
     d
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ c("div", { className: b, role: "group", children: l.map((o) => /* @__PURE__ */ c(
-    j,
+  return /* @__PURE__ */ p("div", { className: y, role: "group", children: l.map((o) => /* @__PURE__ */ p(
+    k,
     {
       itemKey: o.key,
       label: o.label,
-      value: y[o.key] ?? o.value ?? !1,
+      value: T[o.key] ?? o.value ?? !1,
       tooltip: o.tooltip,
       tooltipPosition: o.tooltipPosition ?? f,
-      onToggle: v,
-      disabled: p
+      isPro: o.isPro ?? !1,
+      proText: o.proText ?? "PRO",
+      onToggle: m,
+      disabled: i
     },
     o.key
   )) });
 }
 export {
-  E as ToggleGrid,
-  E as default
+  B as ToggleGrid,
+  B as default
 };

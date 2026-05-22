@@ -53,6 +53,8 @@ function ToggleGrid({
           value={values[item.key] ?? item.value ?? false}
           tooltip={item.tooltip}
           tooltipPosition={item.tooltipPosition ?? tooltipPosition}
+          isPro={item.isPro ?? false}
+          proText={item.proText ?? 'PRO'}
           onToggle={handleToggle}
           disabled={disabled}
         />
