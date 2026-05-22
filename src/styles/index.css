@@ -393,6 +393,7 @@ input.nxp-input {
   line-height: var(--nxp-font-lineHeight-snug);
   transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
   outline: none;
+  margin: 0;
 }
 input.nxp-input::placeholder {
   color: var(--nxp-text-faint);
