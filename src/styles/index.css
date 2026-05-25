@@ -3255,7 +3255,7 @@ input.nxp-slider__input::-webkit-inner-spin-button {
 .nxp-copy__label { font-size: var(--nxp-text-md); font-weight: var(--nxp-font-medium); color: var(--nxp-text); }
 .nxp-copy__wrap { display: flex; align-items: stretch; border: 1.5px solid var(--nxp-border); border-radius: var(--nxp-radius); overflow: hidden; background: var(--nxp-bg); transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease); }
 .nxp-copy__wrap:focus-within { border-color: var(--nxp-brand); box-shadow: 0 0 0 3px var(--nxp-brand-soft); }
-.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); height: 36px; border: none; background: transparent; font-family: var(--nxp-font); font-size: var(--nxp-text-md); color: var(--nxp-text-muted); outline: none; cursor: default; }
+input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); height: 36px; border: none; background: transparent; font-family: var(--nxp-font); font-size: var(--nxp-text-md); color: var(--nxp-text-muted); outline: none; cursor: default; min-height: auto; }
 .nxp-copy__btn { display: inline-flex; align-items: center; gap: var(--nxp-space-4); padding: 0 var(--nxp-space-15); height: 36px; border: none; border-left: 1.5px solid var(--nxp-border); background: var(--nxp-bg-alt); font-family: var(--nxp-font); font-size: var(--nxp-text-sm); font-weight: var(--nxp-font-medium); color: var(--nxp-text-muted); cursor: pointer; white-space: nowrap; transition: background var(--nxp-dur-hover) var(--nxp-ease), color var(--nxp-dur-hover) var(--nxp-ease); flex-shrink: 0; }
 .nxp-copy__btn:hover { background: var(--nxp-wash-hover); color: var(--nxp-text); }
 .nxp-copy__btn--copied { color: var(--nxp-success); background: #f0fdf4; }
