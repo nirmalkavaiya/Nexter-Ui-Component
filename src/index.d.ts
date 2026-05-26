@@ -41,8 +41,10 @@ export declare const Accordion: React.FC<AccordionProps>;
 
 export interface AlertProps {
   variant?: 'info' | 'success' | 'warning' | 'error';
-  /** Override default icon. Pass `null` to hide. */
+  /** Override the default SVG icon with any ReactNode. */
   icon?: ReactNode;
+  /** Set to false to hide the icon entirely. Default: true. */
+  showIcon?: boolean;
   children?: ReactNode;
   className?: string;
 }

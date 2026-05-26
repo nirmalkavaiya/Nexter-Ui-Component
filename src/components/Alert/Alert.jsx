@@ -38,7 +38,7 @@ const DEFAULT_ICONS = {
   error:   <ErrorIcon />,
 };
 
-function Alert({ variant = 'info', icon, children, className = '' }) {
+function Alert({ variant = 'info', icon, showIcon = true, children, className = '' }) {
   const displayIcon = icon !== undefined ? icon : (DEFAULT_ICONS[variant] ?? DEFAULT_ICONS.info);
 
   return (
@@ -46,9 +46,11 @@ function Alert({ variant = 'info', icon, children, className = '' }) {
       className={`nxp-alert nxp-alert--${variant} ${className}`}
       role="alert"
     >
-      <span className="nxp-alert__icon" aria-hidden="true">
-        {displayIcon}
-      </span>
+      {showIcon && (
+        <span className="nxp-alert__icon" aria-hidden="true">
+          {displayIcon}
+        </span>
+      )}
       <div className="nxp-alert__body">{children}</div>
     </div>
   );
