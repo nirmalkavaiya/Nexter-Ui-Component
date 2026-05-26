@@ -1893,6 +1893,7 @@ input.nxp-slider__input::-webkit-inner-spin-button {
 .nxp-search__icon {
   position: absolute;
   left: 10px;
+  top: 10px;
   color: var(--nxp-text-faint);
   font-size: var(--nxp-text-lg);
   pointer-events: none;
