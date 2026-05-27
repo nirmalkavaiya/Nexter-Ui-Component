@@ -873,6 +873,8 @@ export declare const Slider: React.FC<SliderProps>;
 
 export interface SpinnerProps {
   size?: NxpSize;
+  /** Empty = default ring; `wdk` = WDesignKit dual-ring loader */
+  type?: '' | 'wdk';
   className?: string;
 }
 

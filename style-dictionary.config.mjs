@@ -231,6 +231,14 @@ const css = `/* ============================================================
   --nxp-color-info-dark:   #111193;
   --nxp-color-info-subtle: #f5f7fe;
 
+  /* WDesignKit brand (dual-ring loader, accents) */
+  --nxp-wdk:                      #C22076;
+  --nxp-wdk-loader-outer-size:    92px;
+  --nxp-wdk-loader-inner-size:    62px;
+  --nxp-wdk-loader-border-width:  4px;
+  --nxp-wdk-loader-duration-outer: 1.2s;
+  --nxp-wdk-loader-duration-inner: 0.6s;
+
   /* ══ SPACING  (scale = pixel value) ══════════════════════ */
 ${L(spacing)}
   --nxp-space-25: 25px;
