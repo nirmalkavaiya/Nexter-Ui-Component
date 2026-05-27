@@ -455,6 +455,29 @@ export interface EmptyStateProps {
 
 export declare const EmptyState: React.FC<EmptyStateProps>;
 
+// ─── FeatureList ─────────────────────────────────────────────────────────────
+
+export type FeatureListItem = string | { text: string; icon?: ReactNode | null };
+
+export interface FeatureListProps {
+  items?: FeatureListItem[];
+  icon?: ReactNode | null;
+  layout?: 'vertical' | 'horizontal';
+  iconSize?: number | string;
+  iconTextGap?: number | string;
+  itemGap?: number | string;
+  layoutGap?: number | string;
+  align?: 'start' | 'center' | 'end';
+  wrap?: boolean;
+  divider?: boolean;
+  fullWidth?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  textClassName?: string;
+}
+
+export declare const FeatureList: React.FC<FeatureListProps>;
+
 // ─── FeatureToggleCard ───────────────────────────────────────────────────────
 
 export interface FeatureToggleCardProps {

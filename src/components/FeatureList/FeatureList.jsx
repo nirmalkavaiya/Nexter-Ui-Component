@@ -51,12 +51,15 @@ import { cn } from '../../lib/utils';
  *  layout       'vertical' (default) | 'horizontal'
  *  iconSize     number | string  — px value (default 16). Sets --nxpl-icon-size.
  *  iconTextGap  number | string  — gap between icon and text. Sets --nxpl-icon-text-gap.
- *  itemGap      number | string  — gap between list items.   Sets --nxpl-item-gap.
+ *  itemGap      number | string  — gap between list items. Sets --nxpl-item-gap.
+ *               In horizontal layout, also sets --nxpl-layout-gap when layoutGap is omitted.
+ *  layoutGap    number | string  — horizontal row/column gap only. Sets --nxpl-layout-gap.
  *  align        'start' (default) | 'center' | 'end'
  *  wrap         boolean (default true) — wraps items in horizontal layout.
  *  divider      boolean (default false) — renders a separator between vertical items.
  *  fullWidth    boolean (default false) — stretches list to 100% width.
- *  className     string  — extra classes on the root <ul>.
+ *  className    string  — extra classes on the root <ul>.
+ *  style        object  — inline styles merged with --nxpl-* CSS variable overrides.
  *  textClassName string  — extra classes on every nxp-feature-list__text <span>.
  */
 
@@ -98,6 +101,7 @@ function FeatureList({
   /* spacing */
   iconTextGap,
   itemGap,
+  layoutGap,
 
   /* alignment */
   align     = 'start',
@@ -109,6 +113,7 @@ function FeatureList({
 
   /* passthrough */
   className     = '',
+  style: styleProp,
   textClassName = '',
 }) {
   /* ── Root class list ───────────────────────────────────────── */
@@ -122,22 +127,41 @@ function FeatureList({
     className,
   );
 
-  /* ── Inline CSS variable overrides ────────────────────────── */
-  const style = {};
+  const toCssSize = (value) =>
+    typeof value === 'number' ? `${value}px` : value;
+
+  /* ── Inline CSS variable overrides + consumer style ───────── */
+  const cssVars = {};
   if (iconSize !== 16) {
-    style['--nxpl-icon-size'] = typeof iconSize === 'number' ? `${iconSize}px` : iconSize;
+    cssVars['--nxpl-icon-size'] = toCssSize(iconSize);
   }
   if (iconTextGap !== undefined) {
-    style['--nxpl-icon-text-gap'] = typeof iconTextGap === 'number' ? `${iconTextGap}px` : iconTextGap;
+    cssVars['--nxpl-icon-text-gap'] = toCssSize(iconTextGap);
   }
   if (itemGap !== undefined) {
-    style['--nxpl-item-gap'] = typeof itemGap === 'number' ? `${itemGap}px` : itemGap;
+    cssVars['--nxpl-item-gap'] = toCssSize(itemGap);
   }
+
+  const resolvedLayoutGap =
+    layoutGap !== undefined
+      ? layoutGap
+      : layout === 'horizontal' && itemGap !== undefined
+        ? itemGap
+        : undefined;
+
+  if (resolvedLayoutGap !== undefined) {
+    cssVars['--nxpl-layout-gap'] = toCssSize(resolvedLayoutGap);
+  }
+
+  const mergedStyle =
+    styleProp || Object.keys(cssVars).length
+      ? { ...cssVars, ...styleProp }
+      : undefined;
 
   return (
     <ul
       className={rootClass}
-      style={Object.keys(style).length ? style : undefined}
+      style={mergedStyle}
       role="list"
     >
       {items.map((item, index) => {
