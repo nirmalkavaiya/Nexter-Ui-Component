@@ -61,7 +61,7 @@ function R({
   }, [n, i]);
   const u = !!(d || s), m = l != null && l !== !0 && l !== !1, b = m || u, L = !m && u ? d && s ? "nxp-flex-between" : s ? "nxp-flex-end" : "nxp-flex-start" : "";
   if (!n) return null;
-  const N = p !== "md" ? ` nxp-modal--${p}` : "", k = h === "center" ? " nxp-modal--center" : "", H = o || r || t, M = _ ?? "Read How it Works", j = w ?? "Save", B = typeof r == "string" && /<[a-z][\s\S]*>/i.test(r);
+  const N = p !== "md" ? ` nxp-modal--${p}` : "", k = h === "center" ? " nxp-modal--center" : "", H = o || r, M = _ ?? "Read How it Works", j = w ?? "Save", B = typeof r == "string" && /<[a-z][\s\S]*>/i.test(r);
   return F(
     /* @__PURE__ */ e(
       "div",

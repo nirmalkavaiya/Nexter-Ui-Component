@@ -92,7 +92,7 @@ function Modal({
 
   const sizeClass   = size !== 'md' ? ` nxp-modal--${size}` : '';
   const alignClass  = align === 'center' ? ' nxp-modal--center' : '';
-  const hasHead     = title || byline || onClose;
+  const hasHead     = title || byline;
 
   const docLabel = doclinkText ?? 'Read How it Works';
   const primaryLabel = buttonText ?? 'Save';
