@@ -546,7 +546,12 @@ input.nxp-input--invalid:focus {
 .nxp-toggle.is-checked .nxp-toggle__thumb {
   transform: translateX(23px);
 }
-
+.nxp-pro-lock {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 0;
+}
 
 /* ============================================================
    CHECKBOX
