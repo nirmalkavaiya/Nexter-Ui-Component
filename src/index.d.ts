@@ -980,6 +980,10 @@ export interface ToggleProps {
   variant?: string;
   label?: ReactNode;
   className?: string;
+  /** Show PRO lock UI; click runs `onProClick` instead of toggling */
+  isPro?: boolean;
+  /** Called when a locked PRO toggle is clicked (opens upgrade modal, etc.) */
+  onProClick?: (event?: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
 export declare const Toggle: React.FC<ToggleProps>;
