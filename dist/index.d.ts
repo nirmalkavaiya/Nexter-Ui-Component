@@ -443,8 +443,14 @@ export interface EmptyStateProps {
   icon?: ReactNode;
   title?: ReactNode;
   description?: ReactNode;
-  action?: ReactNode;
+  desc?: ReactNode;
+  action?: ReactNode | { label: string; onClick?: () => void };
   className?: string;
+  iconClassName?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  descClassName?: string;
+  actionClassName?: string;
 }
 
 export declare const EmptyState: React.FC<EmptyStateProps>;

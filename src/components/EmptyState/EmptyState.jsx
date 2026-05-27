@@ -1,20 +1,39 @@
 import React from 'react';
+import { cn } from '../../lib/utils';
 
 /**
  * EmptyState
  *
  * Props
  * ─────
- * icon        ReactNode        — illustration / emoji / SVG
- * title       string           — heading text
- * description string           — body text  (alias: desc)
- * desc        string           — alias for description
- * action      ReactNode        — rendered as-is  (e.g. <Button>)
- *           | { label, onClick } — rendered as a primary button
- * className   string
+ * icon                 ReactNode        — illustration / emoji / SVG
+ * title                string           — heading text
+ * description          string           — body text  (alias: desc)
+ * desc                 string           — alias for description
+ * action               ReactNode        — rendered as-is  (e.g. <Button>)
+ *                    | { label, onClick } — rendered as a primary button
+ * className            string           — root wrapper
+ * iconClassName        string           — icon slot
+ * titleClassName       string           — title slot
+ * descriptionClassName string           — body text slot (alias: descClassName)
+ * descClassName        string           — alias for descriptionClassName
+ * actionClassName      string           — action slot
  */
-function EmptyState({ icon, title, description, desc, action, className = '' }) {
+function EmptyState({
+  icon,
+  title,
+  description,
+  desc,
+  action,
+  className,
+  iconClassName,
+  titleClassName,
+  descriptionClassName,
+  descClassName,
+  actionClassName,
+}) {
   const bodyText = description || desc;
+  const bodyClassName = descriptionClassName || descClassName;
 
   /* action: ReactNode → render directly; object {label,onClick} → button */
   let actionNode = null;
@@ -35,11 +54,15 @@ function EmptyState({ icon, title, description, desc, action, className = '' }) 
   }
 
   return (
-    <div className={`nxp-empty ${className}`} role="status">
-      {icon  && <div className="nxp-empty__icon"  aria-hidden="true">{icon}</div>}
-      {title && <div className="nxp-empty__title">{title}</div>}
-      {bodyText && <p className="nxp-empty__desc">{bodyText}</p>}
-      {actionNode && <div className="nxp-empty__action">{actionNode}</div>}
+    <div className={cn('nxp-empty', className)} role="status">
+      {icon && (
+        <div className={cn('nxp-empty__icon', iconClassName)} aria-hidden="true">
+          {icon}
+        </div>
+      )}
+      {title && <div className={cn('nxp-empty__title', titleClassName)}>{title}</div>}
+      {bodyText && <p className={cn('nxp-empty__desc', bodyClassName)}>{bodyText}</p>}
+      {actionNode && <div className={cn('nxp-empty__action', actionClassName)}>{actionNode}</div>}
     </div>
   );
 }
