@@ -533,6 +533,9 @@ input.nxp-input--invalid:focus {
 .nxp-toggle--success.is-checked .nxp-toggle__track {
   background: var(--nxp-success);
 }
+.nxp-toggle--wdk.is-checked .nxp-toggle__track {
+  background: var(--nxp-wdk);
+}
 .nxp-toggle__thumb {
   position: absolute;
   top: 5px;
