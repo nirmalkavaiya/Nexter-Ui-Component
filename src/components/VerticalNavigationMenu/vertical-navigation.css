@@ -172,6 +172,10 @@
   color: var(--nxp-text);
   text-decoration: none;
 }
+.nxp-nav__link:focus {
+  box-shadow: none;
+  outline: none;
+}
 
 .nxp-nav__link:focus-visible {
   outline: 2px solid var(--nxp-color-border-focus);
