@@ -1,7 +1,7 @@
-import { jsxs as _, jsx as e } from "react/jsx-runtime";
-import { useState as g, useEffect as y, useCallback as k } from "react";
+import { jsxs as x, jsx as e, Fragment as W } from "react/jsx-runtime";
+import { useState as D, useCallback as b, useEffect as F } from "react";
 /* empty css                        */
-const C = () => /* @__PURE__ */ e(
+const G = () => /* @__PURE__ */ e(
   "svg",
   {
     width: "14",
@@ -22,7 +22,7 @@ const C = () => /* @__PURE__ */ e(
       }
     )
   }
-), A = () => /* @__PURE__ */ e(
+), q = () => /* @__PURE__ */ e(
   "svg",
   {
     width: "22",
@@ -44,157 +44,251 @@ const C = () => /* @__PURE__ */ e(
     )
   }
 );
-function b(n, l) {
-  return n.key === l ? !0 : Array.isArray(n.children) ? n.children.some((s) => b(s, l)) : !1;
+function S(n, r, l) {
+  return (l ? l(n, r) : n.key === r) ? !0 : Array.isArray(n.children) ? n.children.some((t) => S(t, r, l)) : !1;
 }
-function w({ item: n, activeKey: l, onChange: s, depth: o, openGroups: t, toggleGroup: p }) {
-  const i = Array.isArray(n.children) && n.children.length > 0, u = l === n.key, d = t.has(n.key), h = i && b(n, l), v = k(
-    (a) => {
-      n.disabled || (i ? p(n.key) : typeof n.onClick == "function" ? n.onClick(a) : typeof s == "function" && s(n.key));
-    },
-    [i, n, s, p]
-  ), f = k(
-    (a) => {
-      (a.key === "Enter" || a.key === " ") && (a.preventDefault(), v(a));
-    },
-    [v]
-  ), x = [
-    "nxp-nav__link",
-    o > 0 ? "nxp-nav__link--child" : "",
-    u || h ? "nxp-nav__link--active" : "",
-    n.disabled ? "nxp-nav__link--disabled" : ""
-  ].filter(Boolean).join(" "), r = n.href ? "a" : "span", c = n.href ? {
-    href: n.href,
-    target: n.target || void 0,
-    rel: n.target === "_blank" ? "noopener noreferrer" : void 0
-  } : {
-    role: "button",
-    tabIndex: n.disabled ? -1 : 0,
-    onKeyDown: f,
-    "aria-disabled": n.disabled || void 0
-  };
-  return (
-    /* nxtext_navlink parent <div> */
-    /* @__PURE__ */ _("div", { className: `nxp-nav__item-wrap${o > 0 ? " nxp-nav__item-wrap--child" : ""}`, children: [
-      /* @__PURE__ */ _(
-        r,
-        {
-          className: x,
-          onClick: v,
-          "aria-current": u ? "page" : void 0,
-          "aria-expanded": i ? d : void 0,
-          "aria-haspopup": i ? "true" : void 0,
-          ...c,
-          children: [
-            n.icon && /* @__PURE__ */ e("span", { className: "nxp-nav__icon", "aria-hidden": "true", children: n.icon }),
-            /* @__PURE__ */ e("span", { className: "nxp-nav__label", children: n.label }),
-            n.badge && /* @__PURE__ */ e("span", { className: "nxp-nav__badge", children: n.badge }),
-            i && /* @__PURE__ */ e(
-              "span",
-              {
-                className: `nxp-nav__toggle-icon${d ? " nxp-nav__toggle-icon--open" : ""}`,
-                "aria-hidden": "true",
-                children: /* @__PURE__ */ e(C, {})
-              }
-            )
-          ]
-        }
-      ),
-      i && /* @__PURE__ */ e(
-        "div",
-        {
-          className: `nxp-nav__children${d ? " nxp-nav__children--open" : ""}`,
-          role: "list",
-          "aria-label": `${n.label} submenu`,
-          children: /* @__PURE__ */ e("div", { className: "nxp-nav__children-inner", children: n.children.map((a) => (
-            /* nxtext_nav_dropdown_links */
-            /* @__PURE__ */ e("div", { className: "nxp-nav__child-wrap", role: "listitem", children: /* @__PURE__ */ e(
-              w,
-              {
-                item: a,
-                activeKey: l,
-                onChange: s,
-                depth: o + 1,
-                openGroups: t,
-                toggleGroup: p
-              }
-            ) }, a.key)
-          )) })
-        }
-      )
-    ] })
+function $(n = []) {
+  return n.filter((r) => r.visible !== !1).map(
+    (r) => Array.isArray(r.children) ? { ...r, children: $(r.children) } : r
   );
 }
-function O({
-  menuItems: n = [],
-  activeKey: l,
-  onChange: s,
-  logo: o,
-  footer: t,
-  theme: p = "light",
-  className: i = ""
+function z(n, r, l) {
+  return typeof l == "function" ? l(n, r) : r === n.key;
+}
+function A({ item: n, hasChildren: r, isOpen: l }) {
+  return /* @__PURE__ */ x(W, { children: [
+    n.icon && /* @__PURE__ */ e("span", { className: "nxp-nav__icon", "aria-hidden": "true", children: n.icon }),
+    /* @__PURE__ */ e("span", { className: "nxp-nav__label", children: n.label }),
+    n.badge && /* @__PURE__ */ e("span", { className: "nxp-nav__badge", children: n.badge }),
+    n.suffix && /* @__PURE__ */ e("span", { className: "nxp-nav__suffix", "aria-hidden": "true", children: n.suffix }),
+    r && /* @__PURE__ */ e(
+      "span",
+      {
+        className: `nxp-nav__toggle-icon${l ? " nxp-nav__toggle-icon--open" : ""}`,
+        "aria-hidden": "true",
+        children: /* @__PURE__ */ e(G, {})
+      }
+    )
+  ] });
+}
+function H({
+  item: n,
+  activeKey: r,
+  onChange: l,
+  depth: t,
+  openGroups: g,
+  toggleGroup: k,
+  linkComponent: p,
+  isActive: h
 }) {
-  const [u, d] = g(/* @__PURE__ */ new Set()), [h, v] = g(!1);
-  y(() => {
-    l && d((r) => {
-      const c = new Set(r);
-      return n.forEach((a) => {
-        Array.isArray(a.children) && a.children.some((N) => b(N, l)) && c.add(a.key);
-      }), c;
+  const i = Array.isArray(n.children) && n.children.length > 0, y = z(n, r, h), N = g.has(n.key), C = i && S(n, r, h), v = b(
+    (s) => {
+      n.disabled || (typeof n.onClick == "function" && n.onClick(s), typeof l == "function" && l(n.key, n));
+    },
+    [n, l]
+  ), c = b(
+    (s) => {
+      if (!n.disabled) {
+        if (i) {
+          k(n.key);
+          return;
+        }
+        v(s);
+      }
+    },
+    [i, n.disabled, n.key, k, v]
+  ), I = b(
+    (s) => {
+      (s.key === "Enter" || s.key === " ") && (s.preventDefault(), c(s));
+    },
+    [c]
+  ), u = [
+    "nxp-nav__link",
+    t > 0 ? "nxp-nav__link--child" : "",
+    y || C ? "nxp-nav__link--active" : "",
+    n.disabled ? "nxp-nav__link--disabled" : ""
+  ].filter(Boolean).join(" "), _ = {
+    "aria-current": y ? "page" : void 0,
+    "aria-expanded": i ? N : void 0,
+    "aria-haspopup": i ? "true" : void 0
+  };
+  let f;
+  return i ? f = /* @__PURE__ */ e(
+    "span",
+    {
+      className: u,
+      role: "button",
+      tabIndex: n.disabled ? -1 : 0,
+      onClick: c,
+      onKeyDown: I,
+      "aria-disabled": n.disabled || void 0,
+      ..._,
+      children: /* @__PURE__ */ e(A, { item: n, hasChildren: i, isOpen: N })
+    }
+  ) : n.to && p ? f = /* @__PURE__ */ e(
+    p,
+    {
+      to: n.to,
+      className: u,
+      onClick: v,
+      ..._,
+      children: /* @__PURE__ */ e(A, { item: n, hasChildren: !1, isOpen: !1 })
+    }
+  ) : n.href ? f = /* @__PURE__ */ e(
+    "a",
+    {
+      href: n.href,
+      target: n.target || void 0,
+      rel: n.target === "_blank" ? "noopener noreferrer" : void 0,
+      className: u,
+      onClick: v,
+      ..._,
+      children: /* @__PURE__ */ e(A, { item: n, hasChildren: !1, isOpen: !1 })
+    }
+  ) : f = /* @__PURE__ */ e(
+    "span",
+    {
+      className: u,
+      role: "button",
+      tabIndex: n.disabled ? -1 : 0,
+      onClick: c,
+      onKeyDown: I,
+      "aria-disabled": n.disabled || void 0,
+      ..._,
+      children: /* @__PURE__ */ e(A, { item: n, hasChildren: !1, isOpen: !1 })
+    }
+  ), /* @__PURE__ */ x(
+    "div",
+    {
+      className: `nxp-nav__item-wrap${t > 0 ? " nxp-nav__item-wrap--child" : ""}`,
+      children: [
+        f,
+        i && /* @__PURE__ */ e(
+          "div",
+          {
+            className: `nxp-nav__children${N ? " nxp-nav__children--open" : ""}`,
+            role: "list",
+            "aria-label": `${n.label} submenu`,
+            children: /* @__PURE__ */ e("div", { className: "nxp-nav__children-inner", children: n.children.map((s) => /* @__PURE__ */ e("div", { className: "nxp-nav__child-wrap", role: "listitem", children: /* @__PURE__ */ e(
+              H,
+              {
+                item: s,
+                activeKey: r,
+                onChange: l,
+                depth: t + 1,
+                openGroups: g,
+                toggleGroup: k,
+                linkComponent: p,
+                isActive: h
+              }
+            ) }, s.key)) })
+          }
+        )
+      ]
+    }
+  );
+}
+function T({
+  menuItems: n = [],
+  activeKey: r,
+  defaultActiveKey: l,
+  onChange: t,
+  openGroups: g,
+  defaultOpenGroups: k = [],
+  onOpenGroupsChange: p,
+  logo: h,
+  headerBadge: i,
+  footer: y,
+  linkComponent: N,
+  isActive: C,
+  mobileOpen: v,
+  onMobileOpenChange: c,
+  theme: I = "light",
+  className: u = ""
+}) {
+  const [_, f] = D(
+    () => new Set(k)
+  ), [s, E] = D(!1), L = g ?? _, w = v ?? s, M = b(
+    (a) => {
+      const o = typeof a == "function" ? a(L) : a;
+      p ? p(o) : f(o);
+    },
+    [L, p]
+  ), m = b(
+    (a) => {
+      const o = typeof a == "function" ? a(w) : a;
+      c ? c(o) : E(o);
+    },
+    [w, c]
+  ), O = r ?? l, j = $(n);
+  F(() => {
+    O && M((a) => {
+      const o = new Set(a);
+      return j.forEach((d) => {
+        d.defaultOpen && o.add(d.key), Array.isArray(d.children) && d.children.some(
+          (V) => S(V, O, C)
+        ) && o.add(d.key);
+      }), o;
     });
-  }, [l]);
-  const f = k((r) => {
-    d((c) => {
-      const a = new Set(c);
-      return a.has(r) ? a.delete(r) : a.add(r), a;
-    });
-  }, []), x = [
+  }, [O]);
+  const B = b(
+    (a) => {
+      M((o) => {
+        const d = new Set(o);
+        return d.has(a) ? d.delete(a) : d.add(a), d;
+      });
+    },
+    [M]
+  ), P = [
     "nxp-nav",
-    p === "dark" ? "nxp-nav--dark" : "",
-    i
+    I === "dark" ? "nxp-nav--dark" : "",
+    u
   ].filter(Boolean).join(" ");
-  return (
-    /* nxtext_navigation_cover */
-    /* @__PURE__ */ _("nav", { className: x, "aria-label": "Sidebar navigation", children: [
-      o && /* @__PURE__ */ _("div", { className: "nxp-nav__logo-strip", children: [
-        /* @__PURE__ */ e("div", { className: "nxp-nav__logo-wrap", children: o }),
+  return /* @__PURE__ */ x("nav", { className: P, "aria-label": "Sidebar navigation", children: [
+    (h || i) && /* @__PURE__ */ x("div", { className: "nxp-nav__logo-strip", children: [
+      h && /* @__PURE__ */ e("div", { className: "nxp-nav__logo-wrap", children: h }),
+      /* @__PURE__ */ x("div", { className: "nxp-nav__mobile-menu", children: [
+        i && /* @__PURE__ */ e("div", { className: "nxp-nav__header-badge", children: i }),
         /* @__PURE__ */ e(
           "button",
           {
             type: "button",
             className: "nxp-nav__mobile-toggle",
-            "aria-label": h ? "Close menu" : "Open menu",
-            "aria-expanded": h,
+            "aria-label": w ? "Close menu" : "Open menu",
+            "aria-expanded": w,
             "aria-controls": "nxp-nav-cover",
-            onClick: () => v((r) => !r),
-            children: /* @__PURE__ */ e(A, {})
+            onClick: () => m((a) => !a),
+            children: /* @__PURE__ */ e(q, {})
           }
         )
-      ] }),
-      /* @__PURE__ */ _(
-        "div",
-        {
-          id: "nxp-nav-cover",
-          className: `nxp-nav__cover${h ? " nxp-nav__cover--open" : ""}`,
-          children: [
-            /* @__PURE__ */ e("div", { className: "nxp-nav__inner", role: "list", children: n.map((r) => r.type === "divider" ? /* @__PURE__ */ e("div", { className: "nxp-nav__divider", role: "separator" }, r.key) : r.type === "section" ? /* @__PURE__ */ e("div", { className: "nxp-nav__section-label", "aria-hidden": "true", children: r.label }, r.key) : /* @__PURE__ */ e("div", { role: "listitem", children: /* @__PURE__ */ e(
-              w,
-              {
-                item: r,
-                activeKey: l,
-                onChange: s,
-                depth: 0,
-                openGroups: u,
-                toggleGroup: f
-              }
-            ) }, r.key)) }),
-            t && /* @__PURE__ */ e("div", { className: "nxp-nav__footer", children: t })
-          ]
-        }
-      )
-    ] })
-  );
+      ] })
+    ] }),
+    /* @__PURE__ */ x(
+      "div",
+      {
+        id: "nxp-nav-cover",
+        className: `nxp-nav__cover${w ? " nxp-nav__cover--open" : ""}`,
+        children: [
+          /* @__PURE__ */ e("div", { className: "nxp-nav__inner", role: "list", children: j.map((a) => a.type === "divider" ? /* @__PURE__ */ e("div", { className: "nxp-nav__divider", role: "separator" }, a.key) : a.type === "section" ? /* @__PURE__ */ e("div", { className: "nxp-nav__section-label", "aria-hidden": "true", children: a.label }, a.key) : /* @__PURE__ */ e("div", { role: "listitem", children: /* @__PURE__ */ e(
+            H,
+            {
+              item: a,
+              activeKey: O,
+              onChange: t,
+              depth: 0,
+              openGroups: L,
+              toggleGroup: B,
+              linkComponent: N,
+              isActive: C
+            }
+          ) }, a.key)) }),
+          y && /* @__PURE__ */ e("div", { className: "nxp-nav__footer", children: y })
+        ]
+      }
+    )
+  ] });
 }
 export {
-  O as VerticalNavigationMenu
+  T as VerticalNavigationMenu,
+  $ as filterVisibleMenuItems
 };

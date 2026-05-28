@@ -106,6 +106,32 @@
   display: block;
 }
 
+/* ── Mobile menu row — nxtext-mobile-menu ──────────────────── */
+.nxp-nav__mobile-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+/* ── Header badge — nxtext_hint_text ───────────────────────── */
+.nxp-nav__header-badge {
+  font-family: var(--nxp-nav-font-family);
+  color: #fff;
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
 /* ── Mobile toggle — nxtext-menu-btn ───────────────────────── */
 .nxp-nav__mobile-toggle {
   display: none;
@@ -267,6 +293,15 @@
   text-overflow: ellipsis;
 }
 
+/* ── Suffix slot (premium icon, checkmark, etc.) ────────────── */
+.nxp-nav__suffix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
 /* ── Badge ──────────────────────────────────────────────────── */
 .nxp-nav__badge {
   display: inline-flex;
@@ -353,6 +388,153 @@
 }
 .nxp-nav__footer a:hover {
   text-decoration: underline;
+}
+
+/* ── Dashboard variant — matches nxtext_navigation_cover / navbox.scss ─ */
+.nxp-nav--dashboard {
+  width: 100%;
+  min-height: auto;
+  border-right: none;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--nxtext-white, #ffffff);
+}
+
+.nxp-nav--dashboard .nxp-nav__logo-strip {
+  height: auto;
+  min-height: var(--nxp-nav-logo-height);
+  padding: 20px;
+  background: var(--nxtext-blue-gradient, linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%));
+}
+
+.nxp-nav--dashboard .nxp-nav__logo-wrap img,
+.nxp-nav--dashboard .nxp-nav__logo-img {
+  max-width: 100px;
+  max-height: 40px;
+  width: 100%;
+  height: auto;
+}
+
+.nxp-nav--dashboard .nxp-nav__cover {
+  padding: 20px 10px;
+}
+
+.nxp-nav--dashboard .nxp-nav__inner {
+  gap: 12px;
+  padding: 0;
+}
+
+.nxp-nav--dashboard .nxp-nav__link {
+  font-size: 15px;
+  line-height: 11px;
+  font-weight: 500;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  color: var(--nxtext-heading, var(--nxp-nav-text-color));
+}
+
+.nxp-nav--dashboard .nxp-nav__link:hover,
+.nxp-nav--dashboard .nxp-nav__link--active {
+  color: var(--nxtext-blue, var(--nxp-nav-text-active));
+  background-color: var(--nxtext-nav-strip-bg-light, var(--nxp-nav-bg-active));
+}
+
+.nxp-nav--dashboard .nxp-nav__link--active::before {
+  display: none;
+}
+
+.nxp-nav--dashboard .nxp-nav__link--child {
+  font-size: 14px;
+  padding-left: 15px;
+}
+
+.nxp-nav--dashboard .nxp-nav__children-inner {
+  margin: 10px 0 0 19px;
+  border-left: 1px solid #dcdcdc;
+  padding-left: 0;
+}
+
+.nxp-nav--dashboard .nxp-nav__child-wrap {
+  margin: 0 0 10px 12px;
+}
+
+.nxp-nav--dashboard .nxp-nav__link--child.nxp-nav__link--active::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  background-color: var(--nxtext-blue, var(--nxp-nav-active-bar-color));
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.nxp-nav--dashboard .nxp-nav__footer {
+  border-top: none;
+  padding: 15px;
+  font-size: 12px;
+  color: var(--nxtext-gray-primary-normal, var(--nxp-nav-footer-color));
+}
+
+.nxp-nav--dashboard .nxp-nav__footer a {
+  color: var(--nxtext-gray-primary-normal, var(--nxp-nav-footer-color));
+  text-decoration: none;
+}
+
+@media (max-width: 1440px) {
+  .nxp-nav--dashboard .nxp-nav__logo-strip {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 1290px) {
+  .nxp-nav--dashboard .nxp-nav__cover {
+    padding: 15px;
+  }
+  .nxp-nav--dashboard .nxp-nav__link {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nxp-nav--dashboard .nxp-nav__header-badge {
+    padding: 5px 8px;
+  }
+  .nxp-nav--dashboard .nxp-nav__inner {
+    gap: 0;
+  }
+  .nxp-nav--dashboard .nxp-nav__link {
+    padding: 8px;
+  }
+  .nxp-nav--dashboard .nxp-nav__footer {
+    padding: 9px;
+    gap: 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nxp-nav--dashboard .nxp-nav__header-badge img {
+    width: 12px;
+  }
+  .nxp-nav--dashboard .nxp-nav__cover {
+    padding: 0 15px;
+    height: 0;
+    overflow: hidden;
+    transition: 0.3s linear;
+  }
+  .nxp-nav--dashboard .nxp-nav__cover--open {
+    padding: 10px 15px;
+    height: max-content;
+    overflow: visible;
+  }
+  .nxp-nav--dashboard .nxp-nav__footer {
+    gap: 7px;
+    padding: 9px;
+  }
 }
 
 /* ── Dark theme variant ──────────────────────────────────────── */

@@ -1932,38 +1932,63 @@ import { Typography } from 'nexter-ui-component';
 
 ## VerticalNavigationMenu
 
-Hierarchical vertical nav menu (mirrors Nexter dashboard structure).
+Hierarchical vertical nav menu (mirrors Nexter dashboard `navbox.jsx` structure).
 
 ```jsx
 import { VerticalNavigationMenu } from 'nexter-ui-component';
+import { Link } from 'react-router-dom';
 
 <VerticalNavigationMenu
-  items={[
+  menuItems={[
+    { key: 'welcome', label: 'Welcome', to: '/' },
     {
-      key: 'dashboard',
-      label: 'Dashboard',
-      icon: <DashboardIcon />,
-    },
-    {
-      key: 'settings',
-      label: 'Settings',
-      icon: <SettingsIcon />,
+      key: 'extensions',
+      label: 'Extensions',
       children: [
-        { key: 'general',  label: 'General'  },
-        { key: 'advanced', label: 'Advanced' },
+        { key: 'utilities', label: 'Utilities', to: '/utilities' },
+        { key: 'performance', label: 'Performance', to: '/performance' },
       ],
     },
+    {
+      key: 'upgrade',
+      label: 'Upgrade Now',
+      href: 'https://example.com/pricing',
+      target: '_blank',
+      visible: !isPro,
+    },
   ]}
-  activeKey={current}
-  onChange={setCurrent}
+  activeKey={currentKey}
+  onChange={(key, item) => navigate(item.to)}
+  linkComponent={Link}
+  logo={<img src="/logo.svg" alt="Brand" />}
+  headerBadge="Pro"
+  footer={<span>Version 1.0</span>}
+  className="nxp-nav--dashboard"
 />
 ```
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `Array<{key, label, icon?, children?}>` | `[]` | Menu items (recursive) |
-| `activeKey` | `string` | — | Active item key |
-| `onChange` | `function` | — | `(key) => void` |
+| `menuItems` | `NavMenuItem[]` | `[]` | Navigation tree (recursive) |
+| `activeKey` | `string` | — | Controlled active item key |
+| `defaultActiveKey` | `string` | — | Initial active key (uncontrolled) |
+| `onChange` | `function` | — | `(key, item) => void` on leaf click |
+| `openGroups` | `Set<string>` | — | Controlled expanded parent keys |
+| `defaultOpenGroups` | `string[]` | `[]` | Initial expanded groups |
+| `onOpenGroupsChange` | `function` | — | `(keys: Set<string>) => void` |
+| `logo` | `ReactNode` | — | Logo strip content |
+| `headerBadge` | `ReactNode` | — | Mobile header badge (e.g. Pro/Free) |
+| `footer` | `ReactNode` | — | Footer slot (version, links) |
+| `linkComponent` | `Component` | — | Router link component (e.g. React Router `Link`) |
+| `isActive` | `function` | — | `(item, activeKey) => boolean` custom matcher |
+| `mobileOpen` | `boolean` | — | Controlled mobile drawer state |
+| `onMobileOpenChange` | `function` | — | Mobile drawer toggle callback |
+| `theme` | `'light' \| 'dark'` | `'light'` | Color scheme |
+| `className` | `string` | `''` | Extra root class (use `nxp-nav--dashboard` for Nexter styling) |
+
+**NavMenuItem shape:** `{ key, label, to?, href?, onClick?, icon?, suffix?, badge?, visible?, disabled?, children?, type?: 'divider'|'section' }`
+
+**Helper:** `filterVisibleMenuItems(items)` removes items with `visible: false`.
 
 ---
 

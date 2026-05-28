@@ -74,7 +74,7 @@ export { default as FeatureList } from './components/FeatureList';
 export { default as ProPopup }   from './components/ProPopup';
 
 // v1.8.0 additions
-export { VerticalNavigationMenu } from './components/VerticalNavigationMenu';
+export { VerticalNavigationMenu, filterVisibleMenuItems } from './components/VerticalNavigationMenu';
 
 // v1.7.0 theming utilities
 export { cn }                          from './lib/utils';

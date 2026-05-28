@@ -837,6 +837,47 @@ export interface SidebarProps {
 
 export declare const Sidebar: React.FC<SidebarProps>;
 
+// ─── VerticalNavigationMenu ──────────────────────────────────────────────────
+
+export interface NavMenuItemDef {
+  key: string;
+  label: ReactNode;
+  type?: 'item' | 'divider' | 'section';
+  visible?: boolean;
+  to?: string;
+  href?: string;
+  target?: '_blank' | '_self' | string;
+  onClick?: (e: React.MouseEvent) => void;
+  icon?: ReactNode;
+  suffix?: ReactNode;
+  badge?: ReactNode;
+  disabled?: boolean;
+  children?: NavMenuItemDef[];
+  defaultOpen?: boolean;
+}
+
+export interface VerticalNavigationMenuProps {
+  menuItems?: NavMenuItemDef[];
+  activeKey?: string;
+  defaultActiveKey?: string;
+  onChange?: (key: string, item: NavMenuItemDef) => void;
+  openGroups?: Set<string>;
+  defaultOpenGroups?: string[];
+  onOpenGroupsChange?: (keys: Set<string>) => void;
+  logo?: ReactNode;
+  headerBadge?: ReactNode;
+  footer?: ReactNode;
+  linkComponent?: React.ElementType;
+  isActive?: (item: NavMenuItemDef, activeKey: string) => boolean;
+  mobileOpen?: boolean;
+  onMobileOpenChange?: (open: boolean) => void;
+  theme?: 'light' | 'dark';
+  className?: string;
+}
+
+export declare const VerticalNavigationMenu: React.FC<VerticalNavigationMenuProps>;
+export declare function filterVisibleMenuItems(items?: NavMenuItemDef[]): NavMenuItemDef[];
+
 // ─── Skeleton ────────────────────────────────────────────────────────────────
 
 export interface SkeletonProps {

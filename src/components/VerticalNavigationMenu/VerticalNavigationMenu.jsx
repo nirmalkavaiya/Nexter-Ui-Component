@@ -14,7 +14,7 @@
  *   nxtext_nav_dropdown_links     → .nxp-nav__child-wrap
  *   nxtext_version_and_system_info → .nxp-nav__footer
  */
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './vertical-navigation.css';
 
 /* ── Inline SVG chevron (replaces chevron_right_icon.svg) ──── */
@@ -60,42 +60,100 @@ const HamburgerIcon = () => (
 );
 
 /* ────────────────────────────────────────────────────────────── */
-/*  Helper — check if item or any of its children is the active key */
+/*  Helpers                                                       */
 /* ────────────────────────────────────────────────────────────── */
-function hasActiveDescendant(item, activeKey) {
-  if (item.key === activeKey) return true;
+function hasActiveDescendant(item, activeKey, isActive) {
+  if (isActive ? isActive(item, activeKey) : item.key === activeKey) return true;
   if (Array.isArray(item.children)) {
-    return item.children.some((c) => hasActiveDescendant(c, activeKey));
+    return item.children.some((c) => hasActiveDescendant(c, activeKey, isActive));
   }
   return false;
 }
 
+/** Remove items with visible === false; recurse into children. */
+function filterVisibleMenuItems(items = []) {
+  return items
+    .filter((item) => item.visible !== false)
+    .map((item) =>
+      Array.isArray(item.children)
+        ? { ...item, children: filterVisibleMenuItems(item.children) }
+        : item
+    );
+}
+
+function itemIsActive(item, activeKey, isActive) {
+  if (typeof isActive === 'function') return isActive(item, activeKey);
+  return activeKey === item.key;
+}
+
+/* ────────────────────────────────────────────────────────────── */
+/*  NavLinkContent — shared inner content for all link types     */
+/* ────────────────────────────────────────────────────────────── */
+function NavLinkContent({ item, hasChildren, isOpen }) {
+  return (
+    <>
+      {item.icon && (
+        <span className="nxp-nav__icon" aria-hidden="true">
+          {item.icon}
+        </span>
+      )}
+      <span className="nxp-nav__label">{item.label}</span>
+      {item.badge && <span className="nxp-nav__badge">{item.badge}</span>}
+      {item.suffix && (
+        <span className="nxp-nav__suffix" aria-hidden="true">
+          {item.suffix}
+        </span>
+      )}
+      {hasChildren && (
+        <span
+          className={`nxp-nav__toggle-icon${isOpen ? ' nxp-nav__toggle-icon--open' : ''}`}
+          aria-hidden="true"
+        >
+          <ChevronIcon />
+        </span>
+      )}
+    </>
+  );
+}
+
 /* ────────────────────────────────────────────────────────────── */
 /*  NavItem — single nav entry (recursive for children)          */
-/*  Mirrors a single <div> + nxtext_navlink block in navbox.jsx  */
 /* ────────────────────────────────────────────────────────────── */
-function NavItem({ item, activeKey, onChange, depth, openGroups, toggleGroup }) {
+function NavItem({
+  item,
+  activeKey,
+  onChange,
+  depth,
+  openGroups,
+  toggleGroup,
+  linkComponent: LinkComponent,
+  isActive,
+}) {
   const hasChildren = Array.isArray(item.children) && item.children.length > 0;
-  const isActive    = activeKey === item.key;
-  const isOpen      = openGroups.has(item.key);
-  const isParentOfActive = hasChildren && hasActiveDescendant(item, activeKey);
+  const isActiveItem = itemIsActive(item, activeKey, isActive);
+  const isOpen = openGroups.has(item.key);
+  const isParentOfActive =
+    hasChildren && hasActiveDescendant(item, activeKey, isActive);
 
-  /* nxtext_navlink click handler */
+  const handleLeafAction = useCallback(
+    (e) => {
+      if (item.disabled) return;
+      if (typeof item.onClick === 'function') item.onClick(e);
+      if (typeof onChange === 'function') onChange(item.key, item);
+    },
+    [item, onChange]
+  );
+
   const handleClick = useCallback(
     (e) => {
       if (item.disabled) return;
       if (hasChildren) {
-        /* mirrors toggleExtensionsOpen / toggleExtraOptions */
         toggleGroup(item.key);
-      } else {
-        if (typeof item.onClick === 'function') {
-          item.onClick(e);
-        } else if (typeof onChange === 'function') {
-          onChange(item.key);
-        }
+        return;
       }
+      handleLeafAction(e);
     },
-    [hasChildren, item, onChange, toggleGroup]
+    [hasChildren, item.disabled, item.key, toggleGroup, handleLeafAction]
   );
 
   const handleKeyDown = useCallback(
@@ -108,78 +166,91 @@ function NavItem({ item, activeKey, onChange, depth, openGroups, toggleGroup }) 
     [handleClick]
   );
 
-  /* Class string — mirrors nxtext_navlink + nxtext_active_tab */
   const linkClass = [
     'nxp-nav__link',
-    depth > 0                        ? 'nxp-nav__link--child'  : '',
-    (isActive || isParentOfActive)   ? 'nxp-nav__link--active' : '',
-    item.disabled                    ? 'nxp-nav__link--disabled' : '',
-  ].filter(Boolean).join(' ');
+    depth > 0 ? 'nxp-nav__link--child' : '',
+    isActiveItem || isParentOfActive ? 'nxp-nav__link--active' : '',
+    item.disabled ? 'nxp-nav__link--disabled' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  /* Render as <a> when href provided, else <span> (navbox.jsx pattern) */
-  const Tag = item.href ? 'a' : 'span';
-  const anchorProps = item.href
-    ? {
-        href:   item.href,
-        target: item.target  || undefined,
-        rel:    item.target === '_blank' ? 'noopener noreferrer' : undefined,
-      }
-    : {
-        role:        'button',
-        tabIndex:    item.disabled ? -1 : 0,
-        onKeyDown:   handleKeyDown,
-        'aria-disabled': item.disabled || undefined,
-      };
+  const ariaProps = {
+    'aria-current': isActiveItem ? 'page' : undefined,
+    'aria-expanded': hasChildren ? isOpen : undefined,
+    'aria-haspopup': hasChildren ? 'true' : undefined,
+  };
+
+  let linkNode;
+
+  if (hasChildren) {
+    linkNode = (
+      <span
+        className={linkClass}
+        role="button"
+        tabIndex={item.disabled ? -1 : 0}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        aria-disabled={item.disabled || undefined}
+        {...ariaProps}
+      >
+        <NavLinkContent item={item} hasChildren={hasChildren} isOpen={isOpen} />
+      </span>
+    );
+  } else if (item.to && LinkComponent) {
+    linkNode = (
+      <LinkComponent
+        to={item.to}
+        className={linkClass}
+        onClick={handleLeafAction}
+        {...ariaProps}
+      >
+        <NavLinkContent item={item} hasChildren={false} isOpen={false} />
+      </LinkComponent>
+    );
+  } else if (item.href) {
+    linkNode = (
+      <a
+        href={item.href}
+        target={item.target || undefined}
+        rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+        className={linkClass}
+        onClick={handleLeafAction}
+        {...ariaProps}
+      >
+        <NavLinkContent item={item} hasChildren={false} isOpen={false} />
+      </a>
+    );
+  } else {
+    linkNode = (
+      <span
+        className={linkClass}
+        role="button"
+        tabIndex={item.disabled ? -1 : 0}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        aria-disabled={item.disabled || undefined}
+        {...ariaProps}
+      >
+        <NavLinkContent item={item} hasChildren={false} isOpen={false} />
+      </span>
+    );
+  }
 
   return (
-    /* nxtext_navlink parent <div> */
-    <div className={`nxp-nav__item-wrap${depth > 0 ? ' nxp-nav__item-wrap--child' : ''}`}>
-      {/* nxtext_navlink */}
-      <Tag
-        className={linkClass}
-        onClick={handleClick}
-        aria-current={isActive ? 'page' : undefined}
-        aria-expanded={hasChildren ? isOpen : undefined}
-        aria-haspopup={hasChildren ? 'true' : undefined}
-        {...anchorProps}
-      >
-        {/* Optional icon slot */}
-        {item.icon && (
-          <span className="nxp-nav__icon" aria-hidden="true">
-            {item.icon}
-          </span>
-        )}
+    <div
+      className={`nxp-nav__item-wrap${depth > 0 ? ' nxp-nav__item-wrap--child' : ''}`}
+    >
+      {linkNode}
 
-        {/* Label text */}
-        <span className="nxp-nav__label">{item.label}</span>
-
-        {/* Optional badge (e.g. "Pro", count) */}
-        {item.badge && (
-          <span className="nxp-nav__badge">{item.badge}</span>
-        )}
-
-        {/* Chevron — mirrors nxtext_navlink_icon + nxtext-icon-down */}
-        {hasChildren && (
-          <span
-            className={`nxp-nav__toggle-icon${isOpen ? ' nxp-nav__toggle-icon--open' : ''}`}
-            aria-hidden="true"
-          >
-            <ChevronIcon />
-          </span>
-        )}
-      </Tag>
-
-      {/* Children — mirrors nxtext_extra_options_inner_tabs */}
       {hasChildren && (
         <div
           className={`nxp-nav__children${isOpen ? ' nxp-nav__children--open' : ''}`}
           role="list"
           aria-label={`${item.label} submenu`}
         >
-          {/* Grid-row collapse wrapper — needs inner div for 0fr trick */}
           <div className="nxp-nav__children-inner">
             {item.children.map((child) => (
-              /* nxtext_nav_dropdown_links */
               <div key={child.key} className="nxp-nav__child-wrap" role="listitem">
                 <NavItem
                   item={child}
@@ -188,6 +259,8 @@ function NavItem({ item, activeKey, onChange, depth, openGroups, toggleGroup }) 
                   depth={depth + 1}
                   openGroups={openGroups}
                   toggleGroup={toggleGroup}
+                  linkComponent={LinkComponent}
+                  isActive={isActive}
                 />
               </div>
             ))}
@@ -201,110 +274,127 @@ function NavItem({ item, activeKey, onChange, depth, openGroups, toggleGroup }) 
 /* ────────────────────────────────────────────────────────────── */
 /*  VerticalNavigationMenu — main export                          */
 /* ────────────────────────────────────────────────────────────── */
-/**
- * @param {object[]}        menuItems   - Navigation tree
- * @param {string}          activeKey   - Currently active item key
- * @param {function}        onChange    - Called with key when a leaf is clicked
- * @param {ReactNode}       logo        - Logo slot (mirrors nxtext_logo_strip content)
- * @param {ReactNode}       footer      - Footer slot (mirrors nxtext_version_and_system_info)
- * @param {'light'|'dark'}  theme       - Color scheme (default 'light')
- * @param {string}          className   - Extra class on root .nxp-nav
- *
- * menuItem shape:
- * {
- *   key:       string           — unique identifier
- *   label:     string|ReactNode — display text
- *   icon?:     ReactNode        — optional leading icon
- *   badge?:    string|number    — optional badge text
- *   href?:     string           — renders <a> instead of <span>
- *   target?:   string           — link target (e.g. '_blank')
- *   onClick?:  function         — custom click handler for leaf items
- *   disabled?: boolean
- *   children?: menuItem[]       — nested items (multi-level supported)
- *   type?:     'divider'|'section' — special separator/header rows
- * }
- */
 function VerticalNavigationMenu({
-  menuItems  = [],
+  menuItems = [],
   activeKey,
+  defaultActiveKey,
   onChange,
+  openGroups: controlledOpenGroups,
+  defaultOpenGroups = [],
+  onOpenGroupsChange,
   logo,
+  headerBadge,
   footer,
-  theme      = 'light',
-  className  = '',
+  linkComponent,
+  isActive,
+  mobileOpen: controlledMobileOpen,
+  onMobileOpenChange,
+  theme = 'light',
+  className = '',
 }) {
-  /* Which groups are expanded — mirrors extensionsOpen / extraOptionsOpen */
-  const [openGroups, setOpenGroups] = useState(new Set());
-  /* Mobile drawer toggle — mirrors menuToggle */
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [internalOpenGroups, setInternalOpenGroups] = useState(
+    () => new Set(defaultOpenGroups)
+  );
+  const [internalMobileOpen, setInternalMobileOpen] = useState(false);
 
-  /* Auto-open groups that contain the active item
-     Mirrors the useEffect that calls setExtensionsOpen / setExtraOptionsOpen */
+  const openGroups = controlledOpenGroups ?? internalOpenGroups;
+  const mobileOpen = controlledMobileOpen ?? internalMobileOpen;
+
+  const setOpenGroups = useCallback(
+    (updater) => {
+      const next = typeof updater === 'function' ? updater(openGroups) : updater;
+      if (onOpenGroupsChange) onOpenGroupsChange(next);
+      else setInternalOpenGroups(next);
+    },
+    [openGroups, onOpenGroupsChange]
+  );
+
+  const setMobileOpen = useCallback(
+    (value) => {
+      const next = typeof value === 'function' ? value(mobileOpen) : value;
+      if (onMobileOpenChange) onMobileOpenChange(next);
+      else setInternalMobileOpen(next);
+    },
+    [mobileOpen, onMobileOpenChange]
+  );
+
+  const resolvedActiveKey = activeKey ?? defaultActiveKey;
+  const visibleItems = filterVisibleMenuItems(menuItems);
+
   useEffect(() => {
-    if (!activeKey) return;
+    if (!resolvedActiveKey) return;
     setOpenGroups((prev) => {
       const next = new Set(prev);
-      menuItems.forEach((item) => {
+      visibleItems.forEach((item) => {
+        if (item.defaultOpen) next.add(item.key);
         if (
           Array.isArray(item.children) &&
-          item.children.some((c) => hasActiveDescendant(c, activeKey))
+          item.children.some((c) =>
+            hasActiveDescendant(c, resolvedActiveKey, isActive)
+          )
         ) {
           next.add(item.key);
         }
       });
       return next;
     });
-  }, [activeKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [resolvedActiveKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* mirrors toggleExtensionsOpen */
-  const toggleGroup = useCallback((key) => {
-    setOpenGroups((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
-  }, []);
+  const toggleGroup = useCallback(
+    (key) => {
+      setOpenGroups((prev) => {
+        const next = new Set(prev);
+        if (next.has(key)) next.delete(key);
+        else next.add(key);
+        return next;
+      });
+    },
+    [setOpenGroups]
+  );
 
   const navClass = [
     'nxp-nav',
     theme === 'dark' ? 'nxp-nav--dark' : '',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const showLogoStrip = logo || headerBadge;
 
   return (
-    /* nxtext_navigation_cover */
     <nav className={navClass} aria-label="Sidebar navigation">
-
-      {/* nxtext_logo_strip */}
-      {logo && (
+      {showLogoStrip && (
         <div className="nxp-nav__logo-strip">
-          <div className="nxp-nav__logo-wrap">{logo}</div>
-          {/* nxtext-mobile-menu */}
-          <button
-            type="button"
-            className="nxp-nav__mobile-toggle"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileOpen}
-            aria-controls="nxp-nav-cover"
-            onClick={() => setMobileOpen((p) => !p)}
-          >
-            <HamburgerIcon />
-          </button>
+          {logo && <div className="nxp-nav__logo-wrap">{logo}</div>}
+          <div className="nxp-nav__mobile-menu">
+            {headerBadge && (
+              <div className="nxp-nav__header-badge">{headerBadge}</div>
+            )}
+            <button
+              type="button"
+              className="nxp-nav__mobile-toggle"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+              aria-controls="nxp-nav-cover"
+              onClick={() => setMobileOpen((p) => !p)}
+            >
+              <HamburgerIcon />
+            </button>
+          </div>
         </div>
       )}
 
-      {/* nxtext_navlinks_cover + tpae_open_menu */}
       <div
         id="nxp-nav-cover"
         className={`nxp-nav__cover${mobileOpen ? ' nxp-nav__cover--open' : ''}`}
       >
-        {/* nxtext_navlinks_inner_cover */}
         <div className="nxp-nav__inner" role="list">
-          {menuItems.map((item) => {
-            /* Special row types */
+          {visibleItems.map((item) => {
             if (item.type === 'divider') {
-              return <div key={item.key} className="nxp-nav__divider" role="separator" />;
+              return (
+                <div key={item.key} className="nxp-nav__divider" role="separator" />
+              );
             }
             if (item.type === 'section') {
               return (
@@ -317,23 +407,24 @@ function VerticalNavigationMenu({
               <div key={item.key} role="listitem">
                 <NavItem
                   item={item}
-                  activeKey={activeKey}
+                  activeKey={resolvedActiveKey}
                   onChange={onChange}
                   depth={0}
                   openGroups={openGroups}
                   toggleGroup={toggleGroup}
+                  linkComponent={linkComponent}
+                  isActive={isActive}
                 />
               </div>
             );
           })}
         </div>
 
-        {/* nxtext_version_and_system_info */}
         {footer && <div className="nxp-nav__footer">{footer}</div>}
       </div>
     </nav>
   );
 }
 
-export { VerticalNavigationMenu };
+export { VerticalNavigationMenu, filterVisibleMenuItems };
 export default VerticalNavigationMenu;

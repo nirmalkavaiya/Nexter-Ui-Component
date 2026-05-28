@@ -1,1 +1,1 @@
-export { default, VerticalNavigationMenu } from './VerticalNavigationMenu';
+export { default, VerticalNavigationMenu, filterVisibleMenuItems } from './VerticalNavigationMenu';
