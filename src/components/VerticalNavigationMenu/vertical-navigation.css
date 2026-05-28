@@ -1,244 +1,195 @@
 /* ============================================================
    Nexter UI — VerticalNavigationMenu
-   Mirrors navbox.jsx DOM structure:
-     nxtext_navigation_cover   → .nxp-nav
-     nxtext_logo_strip         → .nxp-nav__logo-strip
-     nxtext_navlinks_cover     → .nxp-nav__cover
-     nxtext_navlinks_inner_cover → .nxp-nav__inner
-     nxtext_navlink            → .nxp-nav__link
-     nxtext_active_tab         → .nxp-nav__link--active
-     nxtext_navlink_icon       → .nxp-nav__toggle-icon
-     nxtext-icon-down          → .nxp-nav__toggle-icon--open
-     nxtext_extra_options_inner_tabs → .nxp-nav__children
-     nxtext_nav_dropdown_links → .nxp-nav__child-wrap
-     nxtext_version_and_system_info  → .nxp-nav__footer
+   Tokens: theme.css --nxp-* only (no local :root overrides)
    ============================================================ */
 
-/* ── Design Tokens ──────────────────────────────────────────── */
-:root {
-  /* Layout */
-  --nxp-nav-width:              220px;
-  --nxp-nav-bg:                 #ffffff;
-
-  /* Item spacing (matches nxtext_navlink padding) */
-  --nxp-nav-item-padding-y:     10px;
-  --nxp-nav-item-padding-x:     16px;
-  --nxp-nav-border-radius:      8px;
-  --nxp-nav-gap:                2px;
-
-  /* Typography */
-  --nxp-nav-font-size:          14px;
-  --nxp-nav-font-weight:        500;
-  --nxp-nav-font-family:        var(--nxp-font, Inter, system-ui, sans-serif);
-  --nxp-nav-line-height:        1.4;
-
-  /* Colors — default (light) */
-  --nxp-nav-text-color:         #1f2937;
-  --nxp-nav-text-muted:         #6b7280;
-  --nxp-nav-text-active:        #2563eb;
-  --nxp-nav-bg-hover:           #f5f7fb;
-  --nxp-nav-bg-active:          #e9eefc;
-  --nxp-nav-border-color:       #e5e7eb;
-  --nxp-nav-active-bar-color:   #2563eb;
-
-  /* Indentation for child items */
-  --nxp-nav-indent:             20px;
-
-  /* Icon */
-  --nxp-nav-icon-size:          16px;
-  --nxp-nav-toggle-icon-size:   14px;
-
-  /* Badge */
-  --nxp-nav-badge-bg:           #dbeafe;
-  --nxp-nav-badge-color:        #1d4ed8;
-  --nxp-nav-badge-font-size:    11px;
-
-  /* Logo strip */
-  --nxp-nav-logo-height:        56px;
-  --nxp-nav-logo-bg:            #1a1f37;
-
-  /* Footer */
-  --nxp-nav-footer-font-size:   12px;
-  --nxp-nav-footer-color:       var(--nxp-nav-text-muted);
-
-  /* Animation */
-  --nxp-nav-transition:         160ms ease;
-  --nxp-nav-collapse-duration:  220ms;
-}
-
-/* ── Shell — nxtext_navigation_cover ───────────────────────── */
+/* ── Shell ─────────────────────────────────────────────────── */
 .nxp-nav {
   display: flex;
   flex-direction: column;
-  width: var(--nxp-nav-width);
+  width: 220px;
   min-height: 100%;
-  background: var(--nxp-nav-bg);
-  border-right: 1px solid var(--nxp-nav-border-color);
-  font-family: var(--nxp-nav-font-family);
-  font-size: var(--nxp-nav-font-size);
+  background: var(--nxp-bg);
+  border-right: 1px solid var(--nxp-border);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-md);
   box-sizing: border-box;
 }
+
 .nxp-nav *,
 .nxp-nav *::before,
 .nxp-nav *::after {
   box-sizing: inherit;
 }
 
-/* ── Logo strip — nxtext_logo_strip ────────────────────────── */
+/* ── Logo strip ────────────────────────────────────────────── */
 .nxp-nav__logo-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nxp-nav-logo-height);
-  padding: 0 var(--nxp-nav-item-padding-x);
-  background: var(--nxp-nav-logo-bg);
+  min-height: var(--nxp-h-lg);
+  padding: 0 var(--nxp-space-16);
+  background: var(--nxp-color-primary-dark);
   flex-shrink: 0;
 }
+
 .nxp-nav__logo-wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nxp-space-8);
   overflow: hidden;
 }
-.nxp-nav__logo-wrap img {
-  max-height: 32px;
+
+.nxp-nav__logo-wrap img,
+.nxp-nav__logo-img {
+  max-height: var(--nxp-space-32);
   width: auto;
   display: block;
 }
 
-/* ── Mobile menu row — nxtext-mobile-menu ──────────────────── */
+/* ── Mobile menu row ───────────────────────────────────────── */
 .nxp-nav__mobile-menu {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12px;
+  gap: var(--nxp-space-12);
   margin-left: auto;
 }
 
-/* ── Header badge — nxtext_hint_text ───────────────────────── */
+/* ── Header badge ──────────────────────────────────────────── */
 .nxp-nav__header-badge {
-  font-family: var(--nxp-nav-font-family);
-  color: #fff;
-  font-size: 12px;
-  line-height: 17px;
-  font-weight: 400;
+  font-family: var(--nxp-font);
+  color: var(--nxp-color-text-inverse);
+  font-size: var(--nxp-text-sm);
+  line-height: var(--nxp-leading-md);
+  font-weight: var(--nxp-font-regular);
   text-transform: uppercase;
-  padding: 6px 10px;
+  padding: var(--nxp-space-6) var(--nxp-space-10);
   display: flex;
   align-items: center;
-  column-gap: 6px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  column-gap: var(--nxp-space-6);
+  background: color-mix(in srgb, var(--nxp-color-text-inverse) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nxp-color-text-inverse) 10%, transparent);
+  border-radius: var(--nxp-radius-xs);
 }
 
-/* ── Mobile toggle — nxtext-menu-btn ───────────────────────── */
+/* ── Mobile toggle ─────────────────────────────────────────── */
 .nxp-nav__mobile-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
-  color: rgba(255, 255, 255, 0.8);
-  border-radius: 4px;
+  padding: var(--nxp-space-4);
+  color: color-mix(in srgb, var(--nxp-color-text-inverse) 80%, transparent);
+  border-radius: var(--nxp-radius-xs);
   line-height: 1;
 }
+
 .nxp-nav__mobile-toggle:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-@media (max-width: 768px) {
-  .nxp-nav__mobile-toggle { display: flex; align-items: center; justify-content: center; }
+  color: var(--nxp-color-text-inverse);
+  background: color-mix(in srgb, var(--nxp-color-text-inverse) 10%, transparent);
 }
 
-/* ── Nav cover — nxtext_navlinks_cover ─────────────────────── */
+@media (max-width: 768px) {
+  .nxp-nav__mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ── Nav cover ─────────────────────────────────────────────── */
 .nxp-nav__cover {
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: hidden;
-  padding: 8px 0;
+  padding: var(--nxp-space-8) 0;
 }
+
 @media (max-width: 768px) {
   .nxp-nav__cover {
     display: none;
   }
+
   .nxp-nav__cover--open {
     display: flex;
   }
 }
 
-/* ── Inner nav list — nxtext_navlinks_inner_cover ───────────── */
+/* ── Inner nav list ────────────────────────────────────────── */
 .nxp-nav__inner {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--nxp-nav-gap);
-  padding: 0 8px;
+  gap: var(--nxp-space-2);
+  padding: 0 var(--nxp-space-8);
   overflow-y: auto;
   overflow-x: hidden;
 }
-/* ── Section label ──────────────────────────────────────────── */
+
+/* ── Section label ─────────────────────────────────────────── */
 .nxp-nav__section-label {
-  padding: 12px var(--nxp-nav-item-padding-x) 4px;
-  font-size: 10px;
-  font-weight: 600;
+  padding: var(--nxp-space-12) var(--nxp-space-16) var(--nxp-space-4);
+  font-size: var(--nxp-text-xs);
+  font-weight: var(--nxp-font-semibold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--nxp-nav-text-muted);
+  color: var(--nxp-text-muted);
   user-select: none;
 }
 
-/* ── Item wrapper — nxtext_navlink parent <div> ─────────────── */
+/* ── Item wrapper ──────────────────────────────────────────── */
 .nxp-nav__item-wrap {
   display: flex;
   flex-direction: column;
 }
-.nxp-nav__item-wrap--child {
-  /* children indented further inside .nxp-nav__child-wrap */
-}
 
-/* ── Nav link — nxtext_navlink ──────────────────────────────── */
+/* ── Nav link ────────────────────────────────────────────────── */
 .nxp-nav__link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: var(--nxp-nav-item-padding-y) var(--nxp-nav-item-padding-x);
-  border-radius: var(--nxp-nav-border-radius);
-  font-size: var(--nxp-nav-font-size);
-  font-weight: var(--nxp-nav-font-weight);
-  color: var(--nxp-nav-text-color);
+  gap: var(--nxp-space-8);
+  padding: var(--nxp-space-10) var(--nxp-space-16);
+  border-radius: var(--nxp-radius-md);
+  font-size: var(--nxp-text-md);
+  font-weight: var(--nxp-font-medium);
+  color: var(--nxp-text);
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  transition: background var(--nxp-nav-transition),
-              color     var(--nxp-nav-transition);
+  transition:
+    background var(--nxp-dur-hover) var(--nxp-ease),
+    color var(--nxp-dur-hover) var(--nxp-ease);
   position: relative;
-  line-height: var(--nxp-nav-line-height);
+  line-height: var(--nxp-font-lineHeight-snug);
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
+
 .nxp-nav__link:hover {
-  background: var(--nxp-nav-bg-hover);
-  color: var(--nxp-nav-text-color);
+  background: var(--nxp-wash-hover);
+  color: var(--nxp-text);
   text-decoration: none;
 }
+
 .nxp-nav__link:focus-visible {
-  outline: 2px solid var(--nxp-nav-active-bar-color);
+  outline: 2px solid var(--nxp-color-border-focus);
   outline-offset: -2px;
 }
 
-/* ── Active state — nxtext_active_tab ──────────────────────── */
+/* ── Active state ──────────────────────────────────────────── */
 .nxp-nav__link--active {
-  background: var(--nxp-nav-bg-active);
-  color: var(--nxp-nav-text-active);
-  font-weight: 600;
+  background: var(--nxp-wash-active);
+  color: var(--nxp-brand);
+  font-weight: var(--nxp-font-semibold);
 }
+
 .nxp-nav__link--active:hover {
-  background: var(--nxp-nav-bg-active);
-  color: var(--nxp-nav-text-active);
+  background: var(--nxp-wash-active);
+  color: var(--nxp-brand);
 }
-/* Active left bar */
+
 .nxp-nav__link--active::before {
   content: '';
   position: absolute;
@@ -246,45 +197,55 @@
   top: 20%;
   bottom: 20%;
   width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--nxp-nav-active-bar-color);
+  border-radius: 0 var(--nxp-radius-xs) var(--nxp-radius-xs) 0;
+  background: var(--nxp-brand);
 }
 
-/* ── Child link — nxtext_nav_dropdown_links .nxtext_navlink ─── */
+/* ── Child link ────────────────────────────────────────────── */
 .nxp-nav__link--child {
-  font-size: calc(var(--nxp-nav-font-size) - 0.5px);
-  font-weight: 400;
-  padding-left: calc(var(--nxp-nav-item-padding-x) + var(--nxp-nav-indent));
-  color: var(--nxp-nav-text-muted);
-}
-.nxp-nav__link--child:hover {
-  color: var(--nxp-nav-text-color);
-}
-.nxp-nav__link--child.nxp-nav__link--active {
-  color: var(--nxp-nav-text-active);
-  font-weight: 500;
-}
-.nxp-nav__link--child.nxp-nav__link--active::before {
-  display: none; /* no left bar on children */
+  font-size: var(--nxp-text-md);
+  font-weight: var(--nxp-font-regular);
+  padding-left: calc(var(--nxp-space-16) + var(--nxp-space-20));
+  color: var(--nxp-text-muted);
 }
 
-/* ── Icon — nxtext_navlink_icon (generic) ───────────────────── */
+.nxp-nav__link--child:hover {
+  color: var(--nxp-text);
+}
+
+.nxp-nav__link--child.nxp-nav__link--active {
+  color: var(--nxp-brand);
+  font-weight: var(--nxp-font-medium);
+}
+
+.nxp-nav__link--child.nxp-nav__link--active::before {
+  display: none;
+}
+
+.nxp-nav__link--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ── Icon ──────────────────────────────────────────────────── */
 .nxp-nav__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--nxp-nav-icon-size);
-  height: var(--nxp-nav-icon-size);
+  width: var(--nxp-space-16);
+  height: var(--nxp-space-16);
   flex-shrink: 0;
   color: inherit;
   opacity: 0.75;
 }
+
 .nxp-nav__link--active .nxp-nav__icon,
 .nxp-nav__link:hover .nxp-nav__icon {
   opacity: 1;
 }
 
-/* ── Label ──────────────────────────────────────────────────── */
+/* ── Label ─────────────────────────────────────────────────── */
 .nxp-nav__label {
   flex: 1;
   min-width: 0;
@@ -293,7 +254,7 @@
   text-overflow: ellipsis;
 }
 
-/* ── Suffix slot (premium icon, checkmark, etc.) ────────────── */
+/* ── Suffix slot ─────────────────────────────────────────────── */
 .nxp-nav__suffix {
   display: inline-flex;
   align-items: center;
@@ -302,61 +263,63 @@
   margin-left: auto;
 }
 
-/* ── Badge ──────────────────────────────────────────────────── */
+/* ── Badge ─────────────────────────────────────────────────── */
 .nxp-nav__badge {
   display: inline-flex;
   align-items: center;
-  padding: 1px 6px;
-  border-radius: 999px;
-  font-size: var(--nxp-nav-badge-font-size);
-  font-weight: 600;
-  background: var(--nxp-nav-badge-bg);
-  color: var(--nxp-nav-badge-color);
-  line-height: 1.6;
+  padding: var(--nxp-space-2) var(--nxp-space-6);
+  border-radius: var(--nxp-radius-pill);
+  font-size: var(--nxp-text-xs);
+  font-weight: var(--nxp-font-semibold);
+  background: var(--nxp-brand-soft);
+  color: var(--nxp-brand);
+  line-height: var(--nxp-font-lineHeight-none);
   flex-shrink: 0;
 }
 
-/* ── Toggle chevron — nxtext_navlink_icon ───────────────────── */
+/* ── Toggle chevron ──────────────────────────────────────────── */
 .nxp-nav__toggle-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--nxp-nav-toggle-icon-size);
-  height: var(--nxp-nav-toggle-icon-size);
+  width: var(--nxp-space-15);
+  height: var(--nxp-space-15);
   flex-shrink: 0;
-  color: var(--nxp-nav-text-muted);
-  transition: transform var(--nxp-nav-collapse-duration) ease,
-              color    var(--nxp-nav-transition);
-  /* points RIGHT by default, same as chevron_right_icon.svg */
+  color: var(--nxp-text-muted);
+  transition:
+    transform var(--nxp-dur-active) var(--nxp-ease),
+    color var(--nxp-dur-hover) var(--nxp-ease);
   transform: rotate(0deg);
 }
-/* nxtext-icon-down — rotates to point DOWN when open */
+
 .nxp-nav__toggle-icon--open {
   transform: rotate(90deg);
 }
+
 .nxp-nav__link--active .nxp-nav__toggle-icon,
 .nxp-nav__link:hover .nxp-nav__toggle-icon {
   color: inherit;
 }
 
-/* ── Children container — nxtext_extra_options_inner_tabs ───── */
+/* ── Children container ────────────────────────────────────── */
 .nxp-nav__children {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--nxp-nav-collapse-duration) ease;
+  transition: grid-template-rows var(--nxp-dur-active) var(--nxp-ease);
   overflow: hidden;
 }
+
 .nxp-nav__children--open {
   grid-template-rows: 1fr;
 }
-/* Inner overflow wrapper required for grid row trick */
+
 .nxp-nav__children-inner {
   overflow: hidden;
   min-height: 0;
-  padding-bottom: 2px;
+  padding-bottom: var(--nxp-space-2);
 }
 
-/* ── Child item wrapper — nxtext_nav_dropdown_links ─────────── */
+/* ── Child item wrapper ─────────────────────────────────────── */
 .nxp-nav__child-wrap {
   display: flex;
   flex-direction: column;
@@ -365,79 +328,82 @@
 /* ── Divider ─────────────────────────────────────────────────── */
 .nxp-nav__divider {
   height: 1px;
-  background: var(--nxp-nav-border-color);
-  margin: 6px 8px;
+  background: var(--nxp-border);
+  margin: var(--nxp-space-6) var(--nxp-space-8);
   flex-shrink: 0;
 }
 
-/* ── Footer — nxtext_version_and_system_info ────────────────── */
+/* ── Footer ──────────────────────────────────────────────────── */
 .nxp-nav__footer {
-  padding: 12px var(--nxp-nav-item-padding-x);
-  border-top: 1px solid var(--nxp-nav-border-color);
-  font-size: var(--nxp-nav-footer-font-size);
-  color: var(--nxp-nav-footer-color);
+  padding: var(--nxp-space-12) var(--nxp-space-16);
+  border-top: 1px solid var(--nxp-border);
+  font-size: var(--nxp-text-sm);
+  color: var(--nxp-text-muted);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--nxp-space-6);
   flex-wrap: wrap;
   flex-shrink: 0;
 }
+
 .nxp-nav__footer a {
-  color: var(--nxp-nav-text-active);
+  color: var(--nxp-color-text-link);
   text-decoration: none;
 }
+
 .nxp-nav__footer a:hover {
+  color: var(--nxp-color-text-link-hover);
   text-decoration: underline;
 }
 
-/* ── Dashboard variant — matches nxtext_navigation_cover / navbox.scss ─ */
+/* ── Dashboard variant (Nexter admin sidebar) ────────────────── */
 .nxp-nav--dashboard {
   width: 100%;
   min-height: auto;
   border-right: none;
-  border-radius: 8px;
+  border-radius: var(--nxp-radius-md);
   overflow: hidden;
-  background: var(--nxtext-white, #ffffff);
+  background: var(--nxp-bg);
 }
 
 .nxp-nav--dashboard .nxp-nav__logo-strip {
   height: auto;
-  min-height: var(--nxp-nav-logo-height);
-  padding: 20px;
-  background: var(--nxtext-blue-gradient, linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%));
+  min-height: var(--nxp-h-lg);
+  padding: var(--nxp-space-20);
+  background: var(--nxp-brand-grad);
 }
 
 .nxp-nav--dashboard .nxp-nav__logo-wrap img,
 .nxp-nav--dashboard .nxp-nav__logo-img {
-  max-width: 100px;
-  max-height: 40px;
+  max-width: var(--nxp-space-100);
+  max-height: var(--nxp-space-40);
   width: 100%;
   height: auto;
 }
 
 .nxp-nav--dashboard .nxp-nav__cover {
-  padding: 20px 10px;
+  padding: var(--nxp-space-20) var(--nxp-space-10);
 }
 
 .nxp-nav--dashboard .nxp-nav__inner {
-  gap: 12px;
+  gap: var(--nxp-space-12);
   padding: 0;
 }
 
 .nxp-nav--dashboard .nxp-nav__link {
-  font-size: 15px;
-  line-height: 11px;
-  font-weight: 500;
-  padding: 15px;
-  border-radius: 5px;
+  font-size: var(--nxp-text-lg);
+  line-height: var(--nxp-font-lineHeight-tight);
+  font-weight: var(--nxp-font-medium);
+  padding: var(--nxp-space-15);
+  border-radius: var(--nxp-radius-sm);
   border: 1px solid transparent;
-  color: var(--nxtext-heading, var(--nxp-nav-text-color));
+  color: var(--nxp-text);
 }
 
 .nxp-nav--dashboard .nxp-nav__link:hover,
 .nxp-nav--dashboard .nxp-nav__link--active {
-  color: var(--nxtext-blue, var(--nxp-nav-text-active));
-  background-color: var(--nxtext-nav-strip-bg-light, var(--nxp-nav-bg-active));
+  color: var(--nxp-brand);
+  background: var(--nxp-wash-active);
 }
 
 .nxp-nav--dashboard .nxp-nav__link--active::before {
@@ -445,28 +411,28 @@
 }
 
 .nxp-nav--dashboard .nxp-nav__link--child {
-  font-size: 14px;
-  padding-left: 15px;
+  font-size: var(--nxp-text-md);
+  padding-left: var(--nxp-space-15);
 }
 
 .nxp-nav--dashboard .nxp-nav__children-inner {
-  margin: 10px 0 0 19px;
-  border-left: 1px solid #dcdcdc;
+  margin: var(--nxp-space-10) 0 0 var(--nxp-space-20);
+  border-left: 1px solid var(--nxp-border);
   padding-left: 0;
 }
 
 .nxp-nav--dashboard .nxp-nav__child-wrap {
-  margin: 0 0 10px 12px;
+  margin: 0 0 var(--nxp-space-10) var(--nxp-space-12);
 }
 
 .nxp-nav--dashboard .nxp-nav__link--child.nxp-nav__link--active::after {
   content: '';
   width: 7px;
   height: 7px;
-  border-radius: 100%;
-  background-color: var(--nxtext-blue, var(--nxp-nav-active-bar-color));
+  border-radius: var(--nxp-radius-full);
+  background-color: var(--nxp-brand);
   position: absolute;
-  right: 20px;
+  right: var(--nxp-space-20);
   top: 0;
   bottom: 0;
   margin: auto 0;
@@ -474,81 +440,134 @@
 
 .nxp-nav--dashboard .nxp-nav__footer {
   border-top: none;
-  padding: 15px;
-  font-size: 12px;
-  color: var(--nxtext-gray-primary-normal, var(--nxp-nav-footer-color));
+  padding: var(--nxp-space-15);
+  font-size: var(--nxp-text-sm);
+  color: var(--nxp-text-muted);
 }
 
 .nxp-nav--dashboard .nxp-nav__footer a {
-  color: var(--nxtext-gray-primary-normal, var(--nxp-nav-footer-color));
+  color: var(--nxp-text-muted);
   text-decoration: none;
+}
+
+.nxp-nav--dashboard .nxp-nav__footer a:hover {
+  color: var(--nxp-color-text-link);
 }
 
 @media (max-width: 1440px) {
   .nxp-nav--dashboard .nxp-nav__logo-strip {
-    padding: 18px;
+    padding: var(--nxp-space-16);
   }
 }
 
 @media (max-width: 1290px) {
   .nxp-nav--dashboard .nxp-nav__cover {
-    padding: 15px;
+    padding: var(--nxp-space-15);
   }
+
   .nxp-nav--dashboard .nxp-nav__link {
-    font-size: 14px;
-    padding: 10px 15px;
+    font-size: var(--nxp-text-md);
+    padding: var(--nxp-space-10) var(--nxp-space-15);
   }
 }
 
 @media (max-width: 1024px) {
   .nxp-nav--dashboard .nxp-nav__header-badge {
-    padding: 5px 8px;
+    padding: var(--nxp-space-4) var(--nxp-space-8);
   }
+
   .nxp-nav--dashboard .nxp-nav__inner {
-    gap: 0;
+    gap: var(--nxp-space-0);
   }
+
   .nxp-nav--dashboard .nxp-nav__link {
-    padding: 8px;
+    padding: var(--nxp-space-8);
   }
+
   .nxp-nav--dashboard .nxp-nav__footer {
-    padding: 9px;
-    gap: 9px;
+    padding: var(--nxp-space-8);
+    gap: var(--nxp-space-8);
   }
 }
 
 @media (max-width: 768px) {
   .nxp-nav--dashboard .nxp-nav__header-badge img {
-    width: 12px;
+    width: var(--nxp-space-12);
   }
+
   .nxp-nav--dashboard .nxp-nav__cover {
-    padding: 0 15px;
+    padding: 0 var(--nxp-space-15);
     height: 0;
     overflow: hidden;
-    transition: 0.3s linear;
+    transition: var(--nxp-duration-slow) linear;
   }
+
   .nxp-nav--dashboard .nxp-nav__cover--open {
-    padding: 10px 15px;
+    padding: var(--nxp-space-10) var(--nxp-space-15);
     height: max-content;
     overflow: visible;
   }
+
   .nxp-nav--dashboard .nxp-nav__footer {
-    gap: 7px;
-    padding: 9px;
+    gap: var(--nxp-space-6);
+    padding: var(--nxp-space-8);
   }
 }
 
 /* ── Dark theme variant ──────────────────────────────────────── */
 .nxp-nav--dark {
-  --nxp-nav-bg:                 #1a1f37;
-  --nxp-nav-text-color:         rgba(255, 255, 255, 0.78);
-  --nxp-nav-text-muted:         rgba(255, 255, 255, 0.42);
-  --nxp-nav-text-active:        #ffffff;
-  --nxp-nav-bg-hover:           rgba(255, 255, 255, 0.07);
-  --nxp-nav-bg-active:          rgba(255, 255, 255, 0.13);
-  --nxp-nav-border-color:       rgba(255, 255, 255, 0.10);
-  --nxp-nav-active-bar-color:   #60a5fa;
-  --nxp-nav-badge-bg:           rgba(96, 165, 250, 0.2);
-  --nxp-nav-badge-color:        #93c5fd;
-  --nxp-nav-footer-color:       rgba(255, 255, 255, 0.35);
-  --nxp-nav-logo-bg:            #111827;
+  background: var(--nxp-color-primary-dark);
+  border-color: color-mix(in srgb, var(--nxp-color-text-inverse) 10%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__logo-strip {
+  background: var(--nxp-color-info-dark);
+}
+
+.nxp-nav--dark .nxp-nav__link {
+  color: color-mix(in srgb, var(--nxp-color-text-inverse) 78%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__link:hover {
+  background: color-mix(in srgb, var(--nxp-color-text-inverse) 7%, transparent);
+  color: var(--nxp-color-text-inverse);
+}
+
+.nxp-nav--dark .nxp-nav__link--active {
+  background: color-mix(in srgb, var(--nxp-color-text-inverse) 13%, transparent);
+  color: var(--nxp-color-text-inverse);
+}
+
+.nxp-nav--dark .nxp-nav__link--active::before {
+  background: var(--nxp-color-primary-light);
+}
+
+.nxp-nav--dark .nxp-nav__link--child {
+  color: color-mix(in srgb, var(--nxp-color-text-inverse) 42%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__link--child.nxp-nav__link--active {
+  color: var(--nxp-color-text-inverse);
+}
+
+.nxp-nav--dark .nxp-nav__toggle-icon {
+  color: color-mix(in srgb, var(--nxp-color-text-inverse) 42%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__badge {
+  background: color-mix(in srgb, var(--nxp-color-primary-light) 20%, transparent);
+  color: var(--nxp-color-primary-light);
+}
+
+.nxp-nav--dark .nxp-nav__divider {
+  background: color-mix(in srgb, var(--nxp-color-text-inverse) 10%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__footer {
+  border-color: color-mix(in srgb, var(--nxp-color-text-inverse) 10%, transparent);
+  color: color-mix(in srgb, var(--nxp-color-text-inverse) 35%, transparent);
+}
+
+.nxp-nav--dark .nxp-nav__footer a {
+  color: var(--nxp-color-primary-light);
 }
