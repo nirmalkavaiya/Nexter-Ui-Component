@@ -390,7 +390,7 @@
 }
 
 .nxp-nav--dashboard .nxp-nav__inner {
-  gap: var(--nxp-space-12);
+  gap: var(--nxp-space-8);
   padding: 0;
 }
 
@@ -398,7 +398,7 @@
   font-size: var(--nxp-text-lg);
   line-height: var(--nxp-font-lineHeight-tight);
   font-weight: var(--nxp-font-medium);
-  padding: var(--nxp-space-15);
+  padding: var(--nxp-space-12);
   border-radius: var(--nxp-radius-sm);
   border: 1px solid transparent;
   color: var(--nxp-text);
