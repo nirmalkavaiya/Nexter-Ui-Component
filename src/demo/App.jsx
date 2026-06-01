@@ -834,6 +834,7 @@ export default function App() {
               <Checkbox checked={checked1} onChange={setChecked1} label="Enable canonical URL" />
               <Checkbox checked={checked2} onChange={setChecked2} label="Override robots.txt" />
               <Checkbox checked={false} disabled label="Disabled option" />
+              <Checkbox lock label="Pro feature (locked)" onLockClick={() => window.alert('Upgrade to unlock')} />
             </div>
             <div className="nxp-u-stack--sm">
               <DemoLabel>Radio</DemoLabel>

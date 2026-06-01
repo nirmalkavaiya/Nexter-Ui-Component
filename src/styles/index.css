@@ -603,6 +603,31 @@ input.nxp-input--invalid:focus {
 .nxp-checkbox:focus-within .nxp-checkbox__box {
   box-shadow: var(--nxp-ring);
 }
+.nxp-checkbox.is-locked {
+  cursor: default;
+}
+.nxp-checkbox__lock {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background-color: var(--nxp-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-checkbox__lock:hover {
+  background-color: var(--nxp-text-faint);
+}
+.nxp-checkbox__lock:focus-visible {
+  box-shadow: var(--nxp-ring);
+}
+.nxp-checkbox.is-disabled .nxp-checkbox__lock {
+  cursor: not-allowed;
+}
 
 /* ============================================================
    RADIO

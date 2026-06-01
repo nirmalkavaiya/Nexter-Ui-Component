@@ -258,6 +258,10 @@ export interface CheckboxProps {
   disabled?: boolean;
   label?: ReactNode;
   className?: string;
+  /** When true, renders a lock icon instead of the checkbox control. */
+  lock?: boolean;
+  /** Click handler for the lock icon (e.g. open upgrade popup). */
+  onLockClick?: (event: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
 export declare const Checkbox: React.FC<CheckboxProps>;
