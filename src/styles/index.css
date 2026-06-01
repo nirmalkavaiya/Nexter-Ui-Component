@@ -2721,8 +2721,7 @@ input.nxp-search__input:focus {
 .nxp-iconbox__topline {
   font-size: var(--nxp-text-xs);
   font-weight: var(--nxp-font-semibold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: .06em;
   color: var(--nxp-brand);
 }
 .nxp-iconbox__icon {

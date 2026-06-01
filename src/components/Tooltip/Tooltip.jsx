@@ -9,6 +9,7 @@ import { sanitizeHtml } from '../../lib/sanitize';
  * content   string | ReactNode  — tooltip text, HTML string, or JSX
  * position  'top'|'bottom'|'left'|'right'  (default 'top')
  * className string  — extra classes on the wrapper span
+ * style     object  — inline styles on the wrapper span
  * children  ReactNode  — trigger element; falls back to ⓘ SVG icon
  *
  * Behaviour
@@ -44,6 +45,7 @@ function Tooltip({
   children,
   position = 'top',
   className = '',
+  style,
 }) {
   if (!content) return children ?? null;
 
@@ -68,6 +70,7 @@ function Tooltip({
     <span
       className={`nxp-tooltip-wrap${className ? ` ${className}` : ''}`}
       data-position={position}
+      style={style}
     >
       {trigger}
 
