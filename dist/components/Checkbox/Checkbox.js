@@ -1,13 +1,13 @@
 import { jsxs as p, jsx as t } from "react/jsx-runtime";
 import { useState as g, useId as D, useCallback as l } from "react";
-import { cn as V } from "../../lib/utils.js";
-function I() {
-  return /* @__PURE__ */ p("svg", { xmlns: "http://www.w3.org/2000/svg", width: "10", height: "10", fill: "none", viewBox: "0 0 10 10", "aria-hidden": "true", children: [
-    /* @__PURE__ */ t("path", { fill: "#fff", d: "M8.313 5.25V3.81A2.94 2.94 0 0 0 5.377.876h-.254a2.94 2.94 0 0 0-2.936 2.936V5.25A1.313 1.313 0 0 0 .875 6.563v4.068a2.498 2.498 0 0 0 2.494 2.494H7.13a2.498 2.498 0 0 0 2.494-2.494V6.562A1.313 1.313 0 0 0 8.312 5.25Zm-5.25-1.44a2.06 2.06 0 0 1 2.06-2.06h.254a2.06 2.06 0 0 1 2.06 2.06v1.44H3.063V3.81Zm5.687 6.821a1.619 1.619 0 0 1-1.619 1.619H3.37a1.619 1.619 0 0 1-1.619-1.619V6.562a.437.437 0 0 1 .438-.437h6.124a.437.437 0 0 1 .438.438v4.068Z" }),
-    /* @__PURE__ */ t("path", { fill: "#fff", d: "M5.688 9.065V10.5a.437.437 0 1 1-.875 0V9.065a.875.875 0 1 1 .875 0Z" })
+import { cn as I } from "../../lib/utils.js";
+function N() {
+  return /* @__PURE__ */ p("svg", { xmlns: "http://www.w3.org/2000/svg", width: "10", height: "16", fill: "none", "aria-hidden": "true", viewBox: "0 0 10 10", children: [
+    /* @__PURE__ */ t("path", { fill: "#fff", d: "M8.313 5.25V3.81A2.94 2.94 0 0 0 5.377.876h-.254a2.94 2.94 0 0 0-2.936 2.936V5.25A1.313 1.313 0 0 0 .875 6.563v4.068a2.5 2.5 0 0 0 2.494 2.494H7.13a2.5 2.5 0 0 0 2.494-2.494V6.562A1.313 1.313 0 0 0 8.312 5.25Zm-5.25-1.44a2.06 2.06 0 0 1 2.06-2.06h.254a2.06 2.06 0 0 1 2.06 2.06v1.44H3.063zm5.687 6.821a1.62 1.62 0 0 1-1.619 1.619H3.37a1.62 1.62 0 0 1-1.619-1.619V6.562a.437.437 0 0 1 .438-.437h6.124a.437.437 0 0 1 .438.438z" }),
+    /* @__PURE__ */ t("path", { fill: "#fff", d: "M5.688 9.065V10.5a.437.437 0 1 1-.875 0V9.065a.875.875 0 1 1 .875 0" })
   ] });
 }
-function Z({
+function j({
   checked: s,
   onChange: h,
   disabled: n = !1,
@@ -22,7 +22,7 @@ function Z({
     n || (e.preventDefault(), e.stopPropagation(), r == null || r(e));
   }, [n, r]), y = l((e) => {
     e.key !== " " && e.key !== "Enter" || (e.preventDefault(), !n && (r == null || r(e)));
-  }, [n, r]), x = V(
+  }, [n, r]), x = I(
     "nxp-checkbox",
     o && !a && "is-checked",
     n && "is-disabled",
@@ -40,7 +40,7 @@ function Z({
         "aria-label": "Upgrade to unlock",
         onClick: w,
         onKeyDown: y,
-        children: /* @__PURE__ */ t(I, {})
+        children: /* @__PURE__ */ t(N, {})
       }
     ),
     i && /* @__PURE__ */ t("span", { children: i })
@@ -79,6 +79,6 @@ function Z({
   ] });
 }
 export {
-  Z as Checkbox,
-  Z as default
+  j as Checkbox,
+  j as default
 };
