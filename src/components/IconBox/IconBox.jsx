@@ -1,8 +1,8 @@
 import React from 'react';
 
-function IconBox({ topline, icon, title, description, cta, href, step, className = '' }) {
+function IconBox({ topline, icon, title, description, cta, href, step, className = '', style }) {
   return (
-    <div className={`nxp-iconbox ${className}`}>
+    <div className={`nxp-iconbox ${className}`} style={style}>
       {topline && <div className="nxp-iconbox__topline">{topline}</div>}
       {step !== undefined && (
         <div className="nxp-iconbox__step">{step}</div>

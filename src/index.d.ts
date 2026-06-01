@@ -550,6 +550,7 @@ export interface IconBoxProps {
   /** Step number — shows a numeric step badge instead of icon */
   step?: number;
   className?: string;
+  style?: CSSProperties;
 }
 
 export declare const IconBox: React.FC<IconBoxProps>;
