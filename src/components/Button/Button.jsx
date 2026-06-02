@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -127,9 +127,14 @@ function Button({
   );
 
   /* ── Click guard for disabled state ─────────────────────── */
-  const handleClick = isDisabled
-    ? (e) => { e.preventDefault(); e.stopPropagation(); }
-    : onClick;
+  /* Single stable function — avoids a new arrow fn every render when isDisabled=true */
+  const handleClick = useCallback(
+    (e) => {
+      if (isDisabled) { e.preventDefault(); e.stopPropagation(); return; }
+      onClick?.(e);
+    },
+    [isDisabled, onClick]
+  );
 
   return (
     <Element

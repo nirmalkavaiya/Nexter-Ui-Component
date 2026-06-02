@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 const MinusIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -38,46 +39,67 @@ function NumberInput({
 }) {
   const isControlled = value !== undefined;
   const [internal, setInternal] = useState(defaultValue);
-  const [raw, setRaw] = useState('');           // raw string while typing
+  const [raw, setRaw] = useState('');
   const [editing, setEditing] = useState(false);
 
   const current = isControlled ? value : internal;
 
   /* infer decimal precision from step */
-  const decimals = precision ?? (
-    step % 1 !== 0 ? String(step).split('.')[1]?.length ?? 0 : 0
+  const decimals = useMemo(
+    () => precision ?? (step % 1 !== 0 ? String(step).split('.')[1]?.length ?? 0 : 0),
+    [precision, step]
   );
 
-  function clamp(n) {
-    if (isNaN(n)) return current;
-    if (min !== undefined) n = Math.max(min, n);
-    if (max !== undefined) n = Math.min(max, n);
-    return decimals > 0 ? parseFloat(n.toFixed(decimals)) : Math.round(n);
-  }
+  const clamp = useCallback(
+    (n) => {
+      if (isNaN(n)) return current;
+      if (min !== undefined) n = Math.max(min, n);
+      if (max !== undefined) n = Math.min(max, n);
+      return decimals > 0 ? parseFloat(n.toFixed(decimals)) : Math.round(n);
+    },
+    [current, min, max, decimals]
+  );
 
-  function commit(n) {
-    const clamped = clamp(n);
-    if (!isControlled) setInternal(clamped);
-    onChange?.(clamped);
-  }
+  const commit = useCallback(
+    (n) => {
+      const clamped = clamp(n);
+      if (!isControlled) setInternal(clamped);
+      onChange?.(clamped);
+    },
+    [clamp, isControlled, onChange]
+  );
 
-  const increment = useCallback(() => commit(Number(current) + step), [current, step, min, max, decimals]); // eslint-disable-line react-hooks/exhaustive-deps
-  const decrement = useCallback(() => commit(Number(current) - step), [current, step, min, max, decimals]); // eslint-disable-line react-hooks/exhaustive-deps
+  const increment = useCallback(() => commit(Number(current) + step), [commit, current, step]);
+  const decrement = useCallback(() => commit(Number(current) - step), [commit, current, step]);
 
-  function handleKeyDown(e) {
-    if (e.key === 'ArrowUp')   { e.preventDefault(); increment(); }
-    if (e.key === 'ArrowDown') { e.preventDefault(); decrement(); }
-  }
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowUp')   { e.preventDefault(); increment(); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); decrement(); }
+    },
+    [increment, decrement]
+  );
+
+  const handleFocus = useCallback(() => {
+    setEditing(true);
+    setRaw(String(current ?? ''));
+  }, [current]);
+
+  const handleChange = useCallback((e) => setRaw(e.target.value), []);
+
+  const handleBlur = useCallback(() => {
+    setEditing(false);
+    const n = parseFloat(raw);
+    commit(isNaN(n) ? current : n);
+  }, [raw, current, commit]);
 
   const atMin = min !== undefined && Number(current) <= min;
   const atMax = max !== undefined && Number(current) >= max;
 
-  const rootClass = [
-    'nxp-num',
-    error    ? 'nxp-num--error'    : '',
-    disabled ? 'nxp-num--disabled' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  const rootClass = useMemo(
+    () => cn('nxp-num', error && 'nxp-num--error', disabled && 'nxp-num--disabled', className),
+    [error, disabled, className]
+  );
 
   const displayVal = editing ? raw : String(current ?? '');
 
@@ -110,13 +132,9 @@ function NumberInput({
             readOnly={readOnly}
             aria-label={label ?? 'Number input'}
             aria-invalid={!!error}
-            onFocus={() => { setEditing(true); setRaw(String(current ?? '')); }}
-            onChange={(e) => setRaw(e.target.value)}
-            onBlur={() => {
-              setEditing(false);
-              const n = parseFloat(raw);
-              commit(isNaN(n) ? current : n);
-            }}
+            onFocus={handleFocus}
+            onChange={handleChange}
+            onBlur={handleBlur}
             onKeyDown={handleKeyDown}
           />
           {suffix && <span className="nxp-num__suffix">{suffix}</span>}

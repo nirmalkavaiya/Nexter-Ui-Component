@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 function ConfirmButton({
   children,
@@ -26,24 +26,24 @@ function ConfirmButton({
   const timerRef        = useRef(null);
   const wrapRef         = useRef(null);
 
-  function openConfirm() {
+  const handleCancel = useCallback(() => {
+    clearTimeout(timerRef.current);
+    setOpen(false);
+  }, []);
+
+  const handleConfirm = useCallback(() => {
+    clearTimeout(timerRef.current);
+    setOpen(false);
+    onConfirm?.();
+  }, [onConfirm]);
+
+  const openConfirm = useCallback(() => {
     if (disabled) return;
     setOpen(true);
     if (autoResetMs > 0) {
       timerRef.current = setTimeout(() => setOpen(false), autoResetMs);
     }
-  }
-
-  function handleConfirm() {
-    clearTimeout(timerRef.current);
-    setOpen(false);
-    onConfirm?.();
-  }
-
-  function handleCancel() {
-    clearTimeout(timerRef.current);
-    setOpen(false);
-  }
+  }, [disabled, autoResetMs]);
 
   /* close on outside click */
   useEffect(() => {
@@ -55,7 +55,7 @@ function ConfirmButton({
     }
     document.addEventListener('mousedown', onDown);
     return () => document.removeEventListener('mousedown', onDown);
-  }, [open]);
+  }, [open, handleCancel]);
 
   /* close on Escape */
   useEffect(() => {
@@ -63,7 +63,7 @@ function ConfirmButton({
     function onKey(e) { if (e.key === 'Escape') handleCancel(); }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [open]);
+  }, [open, handleCancel]);
 
   useEffect(() => () => clearTimeout(timerRef.current), []);
 

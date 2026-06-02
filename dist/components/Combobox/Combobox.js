@@ -1,67 +1,75 @@
-import { jsxs as M, jsx as b } from "react/jsx-runtime";
-import { useState as x, useRef as w, useMemo as g, useEffect as h, useCallback as C } from "react";
-function A({ options: s = [], value: a, onChange: c, placeholder: D = "Type to search…", className: k = "" }) {
-  var y;
-  const i = a !== void 0, [f, d] = x(""), [o, r] = x(!1), [u, n] = x(-1), E = w(null), m = w(null), l = g(
-    () => s.filter((e) => e.label.toLowerCase().includes(f.toLowerCase())),
-    [s, f]
+import { jsxs as M, jsx as x } from "react/jsx-runtime";
+import { useState as v, useRef as h, useMemo as w, useEffect as D, useCallback as y } from "react";
+function A({ options: l = [], value: s, onChange: i, placeholder: k = "Type to search…", className: E = "" }) {
+  const c = s !== void 0, [f, d] = v(""), [o, a] = v(!1), [u, n] = v(-1), _ = h(null), m = h(null), r = w(
+    () => l.filter((e) => e.label.toLowerCase().includes(f.toLowerCase())),
+    [l, f]
   );
-  i && ((y = s.find((e) => e.value === a)) != null && y.label), h(() => {
+  w(
+    () => {
+      var e;
+      return c && ((e = l.find((t) => t.value === s)) == null ? void 0 : e.label) || "";
+    },
+    [c, l, s]
+  ), D(() => {
     var e;
-    if (i && a) {
-      const t = ((e = s.find((p) => p.value === a)) == null ? void 0 : e.label) || "";
+    if (c && s) {
+      const t = ((e = l.find((b) => b.value === s)) == null ? void 0 : e.label) || "";
       d(t);
     }
-  }, [a, i, s]);
-  const v = C(
+  }, [s, c, l]);
+  const p = y(
     (e) => {
-      c && c(e.value), d(e.label), r(!1), n(-1);
+      i && i(e.value), d(e.label), a(!1), n(-1);
     },
-    [c]
+    [i]
   );
-  h(() => {
+  D(() => {
     if (!o) return;
     const e = (t) => {
-      m.current && !m.current.contains(t.target) && r(!1);
+      m.current && !m.current.contains(t.target) && a(!1);
     };
     return document.addEventListener("mousedown", e), () => document.removeEventListener("mousedown", e);
   }, [o]);
-  const _ = (e) => {
-    if (!o && (e.key === "ArrowDown" || e.key === "Enter")) {
-      r(!0), n(0);
-      return;
-    }
-    o && (e.key === "ArrowDown" ? (e.preventDefault(), n((t) => Math.min(t + 1, l.length - 1))) : e.key === "ArrowUp" ? (e.preventDefault(), n((t) => Math.max(t - 1, 0))) : e.key === "Home" ? (e.preventDefault(), n(0)) : e.key === "End" ? (e.preventDefault(), n(l.length - 1)) : e.key === "Enter" && u >= 0 && l[u] ? (e.preventDefault(), v(l[u])) : e.key === "Escape" && (r(!1), n(-1)));
-  };
-  return /* @__PURE__ */ M("div", { className: `nxp-combobox ${k}`, ref: m, children: [
-    /* @__PURE__ */ b(
+  const g = y(
+    (e) => {
+      if (!o && (e.key === "ArrowDown" || e.key === "Enter")) {
+        a(!0), n(0);
+        return;
+      }
+      o && (e.key === "ArrowDown" ? (e.preventDefault(), n((t) => Math.min(t + 1, r.length - 1))) : e.key === "ArrowUp" ? (e.preventDefault(), n((t) => Math.max(t - 1, 0))) : e.key === "Home" ? (e.preventDefault(), n(0)) : e.key === "End" ? (e.preventDefault(), n(r.length - 1)) : e.key === "Enter" && u >= 0 && r[u] ? (e.preventDefault(), p(r[u])) : e.key === "Escape" && (a(!1), n(-1)));
+    },
+    [o, r, u, p]
+  ), C = y((e) => {
+    d(e.target.value), a(!0), n(-1);
+  }, []);
+  return /* @__PURE__ */ M("div", { className: `nxp-combobox ${E}`, ref: m, children: [
+    /* @__PURE__ */ x(
       "input",
       {
-        ref: E,
+        ref: _,
         type: "text",
         className: "nxp-combobox__input",
         value: f,
-        placeholder: D,
-        onChange: (e) => {
-          d(e.target.value), r(!0), n(-1);
-        },
-        onFocus: () => r(!0),
-        onKeyDown: _,
+        placeholder: k,
+        onChange: C,
+        onFocus: () => a(!0),
+        onKeyDown: g,
         role: "combobox",
         "aria-autocomplete": "list",
         "aria-expanded": o,
         "aria-haspopup": "listbox"
       }
     ),
-    o && l.length > 0 && /* @__PURE__ */ b("div", { className: "nxp-combobox__list", role: "listbox", children: l.map((e, t) => /* @__PURE__ */ b(
+    o && r.length > 0 && /* @__PURE__ */ x("div", { className: "nxp-combobox__list", role: "listbox", children: r.map((e, t) => /* @__PURE__ */ x(
       "div",
       {
         className: `nxp-combobox__item${u === t ? " is-focused" : ""}`,
         role: "option",
         "aria-selected": u === t,
         onMouseEnter: () => n(t),
-        onMouseDown: (p) => {
-          p.preventDefault(), v(e);
+        onMouseDown: (b) => {
+          b.preventDefault(), p(e);
         },
         children: e.label
       },

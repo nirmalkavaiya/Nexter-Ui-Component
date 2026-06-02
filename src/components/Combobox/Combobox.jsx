@@ -13,9 +13,11 @@ function Combobox({ options = [], value, onChange, placeholder = 'Type to search
     [options, query]
   );
 
-  const selectedLabel = isControlled
-    ? options.find((o) => o.value === value)?.label || ''
-    : '';
+  /* Avoid .find() on every render */
+  const selectedLabel = useMemo(
+    () => (isControlled ? options.find((o) => o.value === value)?.label || '' : ''),
+    [isControlled, options, value]
+  );
 
   // Sync query with controlled value label
   useEffect(() => {
@@ -47,34 +49,45 @@ function Combobox({ options = [], value, onChange, placeholder = 'Type to search
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  const handleKeyDown = (e) => {
-    if (!open && (e.key === 'ArrowDown' || e.key === 'Enter')) {
-      setOpen(true);
-      setFocused(0);
-      return;
-    }
-    if (!open) return;
+  /* Stable keyboard handler — captures open/filtered/focused/select */
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (!open && (e.key === 'ArrowDown' || e.key === 'Enter')) {
+        setOpen(true);
+        setFocused(0);
+        return;
+      }
+      if (!open) return;
 
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setFocused((f) => Math.min(f + 1, filtered.length - 1));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setFocused((f) => Math.max(f - 1, 0));
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      setFocused(0);
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      setFocused(filtered.length - 1);
-    } else if (e.key === 'Enter' && focused >= 0 && filtered[focused]) {
-      e.preventDefault();
-      select(filtered[focused]);
-    } else if (e.key === 'Escape') {
-      setOpen(false);
-      setFocused(-1);
-    }
-  };
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setFocused((f) => Math.min(f + 1, filtered.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setFocused((f) => Math.max(f - 1, 0));
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        setFocused(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        setFocused(filtered.length - 1);
+      } else if (e.key === 'Enter' && focused >= 0 && filtered[focused]) {
+        e.preventDefault();
+        select(filtered[focused]);
+      } else if (e.key === 'Escape') {
+        setOpen(false);
+        setFocused(-1);
+      }
+    },
+    [open, filtered, focused, select]
+  );
+
+  /* Stable input change handler */
+  const handleInputChange = useCallback((e) => {
+    setQuery(e.target.value);
+    setOpen(true);
+    setFocused(-1);
+  }, []);
 
   return (
     <div className={`nxp-combobox ${className}`} ref={containerRef}>
@@ -84,11 +97,7 @@ function Combobox({ options = [], value, onChange, placeholder = 'Type to search
         className="nxp-combobox__input"
         value={query}
         placeholder={placeholder}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          setOpen(true);
-          setFocused(-1);
-        }}
+        onChange={handleInputChange}
         onFocus={() => setOpen(true)}
         onKeyDown={handleKeyDown}
         role="combobox"

@@ -20,7 +20,12 @@ function Dropdown({
   const menuRef = useRef(null);
 
   const visibleOptions = useMemo(() => options.filter((o) => !o.divider), [options]);
-  const selectedLabel = options.find((o) => o.value === selected)?.label;
+
+  /* Avoid .find() on every render */
+  const selectedLabel = useMemo(
+    () => options.find((o) => o.value === selected)?.label,
+    [options, selected]
+  );
 
   const close = useCallback(() => {
     setOpen(false);
@@ -52,36 +57,45 @@ function Dropdown({
     return () => document.removeEventListener('mousedown', handler);
   }, [open, close]);
 
-  const handleKeyDown = (e) => {
-    if (!open) {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        setOpen(true);
-        setFocused(0);
+  /* Stable keyboard handler */
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (!open) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          setOpen(true);
+          setFocused(0);
+        }
+        return;
       }
-      return;
-    }
-    const items = visibleOptions;
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setFocused((f) => Math.min(f + 1, items.length - 1));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setFocused((f) => Math.max(f - 1, 0));
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      setFocused(0);
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      setFocused(items.length - 1);
-    } else if (e.key === 'Enter' && focused >= 0) {
-      e.preventDefault();
-      select(items[focused]);
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      close();
-    }
-  };
+      const items = visibleOptions;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setFocused((f) => Math.min(f + 1, items.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setFocused((f) => Math.max(f - 1, 0));
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        setFocused(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        setFocused(items.length - 1);
+      } else if (e.key === 'Enter' && focused >= 0) {
+        e.preventDefault();
+        select(items[focused]);
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+      }
+    },
+    [open, visibleOptions, focused, select, close]
+  );
+
+  /* Stable trigger click */
+  const handleTriggerClick = useCallback(() => {
+    if (!disabled) setOpen((o) => !o);
+  }, [disabled]);
 
   let visIdx = -1;
 
@@ -96,7 +110,7 @@ function Dropdown({
         disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={open}
-        onClick={() => { if (!disabled) setOpen((o) => !o); }}
+        onClick={handleTriggerClick}
         onKeyDown={handleKeyDown}
       >
         <span className={selected ? 'text-nxp-text' : 'text-nxp-text-faint'}>
