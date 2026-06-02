@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Tag({ variant = 'default', children, className = '' }) {
-  const variantClass = variant !== 'default' ? ` nxp-tag--${variant}` : '';
-  return (
-    <span className={`nxp-tag${variantClass} ${className}`}>{children}</span>
+  const rootClass = useMemo(
+    () => cn('nxp-tag', variant !== 'default' && `nxp-tag--${variant}`, className),
+    [variant, className]
   );
+  return <span className={rootClass}>{children}</span>;
 }
 
-export { Tag };
-export default Tag;
+const TagMemoized = memo(Tag);
+export { TagMemoized as Tag };
+export default TagMemoized;

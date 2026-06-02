@@ -1,29 +1,30 @@
-import { jsx as a } from "react/jsx-runtime";
-import "react";
-function i({
+import { jsx as p } from "react/jsx-runtime";
+import { memo as n } from "react";
+function s({
   orientation: r = "horizontal",
-  label: n,
-  decorative: p = !0,
-  className: o = ""
+  label: a,
+  decorative: o = !0,
+  className: e = ""
 }) {
-  return n && r === "horizontal" ? /* @__PURE__ */ a(
+  return a && r === "horizontal" ? /* @__PURE__ */ p(
     "div",
     {
-      className: `nxp-sep nxp-sep--label ${o}`,
-      role: p ? "none" : "separator",
-      "aria-orientation": p ? void 0 : r,
-      children: n
+      className: `nxp-sep nxp-sep--label ${e}`,
+      role: o ? "none" : "separator",
+      "aria-orientation": o ? void 0 : r,
+      children: a
     }
-  ) : /* @__PURE__ */ a(
+  ) : /* @__PURE__ */ p(
     "div",
     {
-      role: p ? "none" : "separator",
-      "aria-orientation": p ? void 0 : r,
-      className: `nxp-sep nxp-sep--${r} ${o}`
+      role: o ? "none" : "separator",
+      "aria-orientation": o ? void 0 : r,
+      className: `nxp-sep nxp-sep--${r} ${e}`
     }
   );
 }
+const m = n(s);
 export {
-  i as Separator,
-  i as default
+  m as Separator,
+  m as default
 };

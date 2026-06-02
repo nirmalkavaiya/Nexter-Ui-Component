@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useMemo, useRef } from 'react';
+import { cn } from '../../lib/utils';
 import { createPortal } from 'react-dom';
 
 /* ─── Close icon ────────────────────────────────────────────── */
@@ -76,24 +77,29 @@ function Drawer({
     return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
   }, [open]);
 
-  if (!open) return null;
+  /* Stable backdrop click — inline fn was re-created every render */
+  const handleBackdropMouseDown = useCallback(
+    (e) => { if (closeOnBackdrop && e.target === e.currentTarget && onClose) onClose(); },
+    [closeOnBackdrop, onClose]
+  );
 
-  const cls = [
-    'nxp-drawer__panel',
-    `nxp-drawer__panel--${placement}`,
-    `nxp-drawer__panel--${size}`,
-    className,
-  ].filter(Boolean).join(' ');
+  /* Stable panel class */
+  const panelClass = useMemo(
+    () => cn('nxp-drawer__panel', `nxp-drawer__panel--${placement}`, `nxp-drawer__panel--${size}`, className),
+    [placement, size, className]
+  );
+
+  if (!open) return null;
 
   return createPortal(
     <div
       className={`nxp-drawer__backdrop nxp-drawer__backdrop--${placement}`}
-      onMouseDown={(e) => { if (closeOnBackdrop && e.target === e.currentTarget && onClose) onClose(); }}
+      onMouseDown={handleBackdropMouseDown}
       role="dialog"
       aria-modal="true"
       aria-label={typeof title === 'string' ? title : 'Drawer'}
     >
-      <div className={cls} ref={panelRef}>
+      <div className={panelClass} ref={panelRef}>
         {/* ── Header ── */}
         {(title || !hideClose) && (
           <div className="nxp-drawer__head">

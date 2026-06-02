@@ -1,6 +1,6 @@
-import { jsxs as i, jsx as o } from "react/jsx-runtime";
-import "react";
-function c({
+import { jsxs as o, jsx as i } from "react/jsx-runtime";
+import { memo as t } from "react";
+function d({
   htmlFor: e,
   required: l = !1,
   disabled: a = !1,
@@ -12,11 +12,12 @@ function c({
     a ? "nxp-label--disabled" : "",
     n
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ i("label", { htmlFor: e, className: r, children: [
+  return /* @__PURE__ */ o("label", { htmlFor: e, className: r, children: [
     s,
-    l && /* @__PURE__ */ o("span", { className: "nxp-label__required", "aria-hidden": "true", children: " *" })
+    l && /* @__PURE__ */ i("span", { className: "nxp-label__required", "aria-hidden": "true", children: " *" })
   ] });
 }
+const c = t(d);
 export {
   c as Label,
   c as default

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function Popover({ title, description, footer, className = '' }) {
   return (
@@ -10,5 +10,6 @@ function Popover({ title, description, footer, className = '' }) {
   );
 }
 
-export { Popover };
-export default Popover;
+const PopoverMemoized = memo(Popover);
+export { PopoverMemoized as Popover };
+export default PopoverMemoized;

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Textarea({
   value,
@@ -17,17 +18,20 @@ function Textarea({
   const [internal, setInternal] = useState(defaultValue ?? '');
   const current = isControlled ? value : internal;
 
-  function handleChange(e) {
-    if (!isControlled) setInternal(e.target.value);
-    onChange?.(e);
-  }
+  /* Stable handler — was a plain fn re-created every render */
+  const handleChange = useCallback(
+    (e) => {
+      if (!isControlled) setInternal(e.target.value);
+      onChange?.(e);
+    },
+    [isControlled, onChange]
+  );
 
-  const rootClass = [
-    'nxp-textarea',
-    invalid    ? 'nxp-textarea--invalid'  : '',
-    disabled   ? 'nxp-textarea--disabled' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  /* Stable root class */
+  const rootClass = useMemo(
+    () => cn('nxp-textarea', invalid && 'nxp-textarea--invalid', disabled && 'nxp-textarea--disabled', className),
+    [invalid, disabled, className]
+  );
 
   return (
     <div className={rootClass}>

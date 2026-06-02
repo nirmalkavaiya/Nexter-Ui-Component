@@ -1,32 +1,35 @@
-import { jsxs as s, jsx as a } from "react/jsx-runtime";
-import "react";
-function m({
-  open: d = !0,
-  onClose: c,
+import { jsxs as m, jsx as a } from "react/jsx-runtime";
+import { memo as c, useMemo as t } from "react";
+import { cn as g } from "../../lib/utils.js";
+function p({
+  open: n = !0,
+  onClose: _,
   icon: i,
-  iconVariant: n = "warning",
-  title: l,
-  description: e,
-  actions: r,
-  className: o = ""
+  iconVariant: d = "warning",
+  title: o,
+  description: l,
+  actions: e,
+  className: r = ""
 }) {
-  return d ? /* @__PURE__ */ s(
+  const s = t(() => g("nxp-dialog", r), [r]);
+  return n ? /* @__PURE__ */ m(
     "div",
     {
-      className: `nxp-dialog ${o}`,
+      className: s,
       role: "alertdialog",
       "aria-modal": "true",
-      "aria-label": l,
+      "aria-label": o,
       children: [
-        i && /* @__PURE__ */ a("div", { className: `nxp-dialog__icon nxp-dialog__icon--${n}`, "aria-hidden": "true", children: i }),
-        l && /* @__PURE__ */ a("div", { className: "nxp-dialog__title", children: l }),
-        e && /* @__PURE__ */ a("p", { className: "nxp-dialog__desc", children: e }),
-        r && /* @__PURE__ */ a("div", { className: "nxp-dialog__actions", children: r })
+        i && /* @__PURE__ */ a("div", { className: `nxp-dialog__icon nxp-dialog__icon--${d}`, "aria-hidden": "true", children: i }),
+        o && /* @__PURE__ */ a("div", { className: "nxp-dialog__title", children: o }),
+        l && /* @__PURE__ */ a("p", { className: "nxp-dialog__desc", children: l }),
+        e && /* @__PURE__ */ a("div", { className: "nxp-dialog__actions", children: e })
       ]
     }
   ) : null;
 }
+const h = c(p);
 export {
-  m as Dialog,
-  m as default
+  h as Dialog,
+  h as default
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -43,5 +43,6 @@ function Spinner({ size = 'md', type = '', className = '' }) {
   );
 }
 
-export { Spinner };
-export default Spinner;
+const SpinnerMemoized = memo(Spinner);
+export { SpinnerMemoized as Spinner };
+export default SpinnerMemoized;

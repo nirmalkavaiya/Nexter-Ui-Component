@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 /**
  * AspectRatio
@@ -28,5 +28,6 @@ function AspectRatio({ ratio = 16 / 9, children, className = '' }) {
   );
 }
 
-export { AspectRatio };
-export default AspectRatio;
+const AspectRatioMemoized = memo(AspectRatio);
+export { AspectRatioMemoized as AspectRatio };
+export default AspectRatioMemoized;

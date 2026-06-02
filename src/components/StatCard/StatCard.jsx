@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function StatCard({ label, value, meta, className = '' }) {
   return (
@@ -10,5 +10,6 @@ function StatCard({ label, value, meta, className = '' }) {
   );
 }
 
-export { StatCard };
-export default StatCard;
+const StatCardMemoized = memo(StatCard);
+export { StatCardMemoized as StatCard };
+export default StatCardMemoized;

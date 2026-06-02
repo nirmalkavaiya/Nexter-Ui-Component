@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function Toast({ variant = 'default', icon, title, description, onClose, className = '' }) {
   const defaultIcon = variant === 'error' ? '✕' : '✓';
@@ -22,5 +22,6 @@ function Toast({ variant = 'default', icon, title, description, onClose, classNa
   );
 }
 
-export { Toast };
-export default Toast;
+const ToastMemoized = memo(Toast);
+export { ToastMemoized as Toast };
+export default ToastMemoized;

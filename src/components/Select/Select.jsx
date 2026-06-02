@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Select({
   options = [],
@@ -9,9 +10,11 @@ function Select({
   className = '',
   ...rest
 }) {
+  const rootClass = useMemo(() => cn('nxp-select', className), [className]);
+
   return (
     <select
-      className={`nxp-select ${className}`}
+      className={rootClass}
       value={value}
       onChange={onChange}
       disabled={disabled}
@@ -31,5 +34,6 @@ function Select({
   );
 }
 
-export { Select };
-export default Select;
+const SelectMemoized = memo(Select);
+export { SelectMemoized as Select };
+export default SelectMemoized;

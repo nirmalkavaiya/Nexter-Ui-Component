@@ -1,6 +1,6 @@
-import { jsx as a } from "react/jsx-runtime";
-import "react";
-import { cn as h } from "../../lib/utils.js";
+import { jsx as c } from "react/jsx-runtime";
+import { memo as f } from "react";
+import { cn as m } from "../../lib/utils.js";
 const u = {
   h1: "h1",
   h2: "h2",
@@ -19,9 +19,9 @@ const u = {
   code: "code",
   blockquote: "blockquote"
 };
-function A({
+function b({
   variant: o,
-  prose: m = !1,
+  prose: h = !1,
   as: s,
   color: p,
   truncate: r = !1,
@@ -29,26 +29,27 @@ function A({
   children: l,
   className: n = "",
   style: e,
-  ...c
+  ...a
 }) {
-  if (m)
-    return /* @__PURE__ */ a(s || "div", { className: h("nxp-prose", n), style: e, ...c, children: l });
-  const d = s || (o ? u[o] : "p") || "p", x = p && p !== "default" ? `nxp-typo--color-${p}` : "", i = h(
+  if (h)
+    return /* @__PURE__ */ c(s || "div", { className: m("nxp-prose", n), style: e, ...a, children: l });
+  const y = s || (o ? u[o] : "p") || "p", d = p && p !== "default" ? `nxp-typo--color-${p}` : "", i = m(
     "nxp-typo",
     o ? `nxp-typo--${o}` : "",
-    x,
+    d,
     r ? "nxp-typo--truncate" : "",
     t ? "nxp-typo--clamp" : "",
     n
-  ), f = t ? {
+  ), x = t ? {
     display: "-webkit-box",
     WebkitLineClamp: t,
     WebkitBoxOrient: "vertical",
     overflow: "hidden",
     ...e
   } : e;
-  return /* @__PURE__ */ a(d, { className: i, style: f, ...c, children: l });
+  return /* @__PURE__ */ c(y, { className: i, style: x, ...a, children: l });
 }
+const A = f(b);
 export {
   A as Typography,
   A as default

@@ -1,10 +1,15 @@
-import { jsx as e } from "react/jsx-runtime";
-import "react";
-function r({ variant: a = "default", children: t, className: s = "" }) {
-  const n = a !== "default" ? ` nxp-tag--${a}` : "";
-  return /* @__PURE__ */ e("span", { className: `nxp-tag${n} ${s}`, children: t });
+import { jsx as s } from "react/jsx-runtime";
+import { memo as a, useMemo as r } from "react";
+import { cn as f } from "../../lib/utils.js";
+function n({ variant: o = "default", children: e, className: t = "" }) {
+  const m = r(
+    () => f("nxp-tag", o !== "default" && `nxp-tag--${o}`, t),
+    [o, t]
+  );
+  return /* @__PURE__ */ s("span", { className: m, children: e });
 }
+const c = a(n);
 export {
-  r as Tag,
-  r as default
+  c as Tag,
+  c as default
 };

@@ -1,9 +1,10 @@
-import { jsx as o } from "react/jsx-runtime";
-import "react";
-function e({ children: r, className: t = "" }) {
-  return /* @__PURE__ */ o("kbd", { className: `nxp-kbd ${t}`, children: r });
+import { jsx as d } from "react/jsx-runtime";
+import { memo as e } from "react";
+function r({ children: o, className: m = "" }) {
+  return /* @__PURE__ */ d("kbd", { className: `nxp-kbd ${m}`, children: o });
 }
+const a = e(r);
 export {
-  e as Kbd,
-  e as default
+  a as Kbd,
+  a as default
 };

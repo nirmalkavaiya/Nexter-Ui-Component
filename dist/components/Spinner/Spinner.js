@@ -1,11 +1,11 @@
 import { jsx as s } from "react/jsx-runtime";
-import "react";
-import { cn as a } from "../../lib/utils.js";
-function o({ size: n = "md", type: e = "", className: r = "" }) {
-  return e === "wdk" ? /* @__PURE__ */ s(
+import { memo as p } from "react";
+import { cn as r } from "../../lib/utils.js";
+function i({ size: n = "md", type: a = "", className: e = "" }) {
+  return a === "wdk" ? /* @__PURE__ */ s(
     "span",
     {
-      className: a("nxp-spinner-wdk", n === "sm" ? "nxp-spinner-wdk--sm" : n === "lg" ? "nxp-spinner-wdk--lg" : "", r),
+      className: r("nxp-spinner-wdk", n === "sm" ? "nxp-spinner-wdk--sm" : n === "lg" ? "nxp-spinner-wdk--lg" : "", e),
       role: "status",
       "aria-label": "Loading",
       children: /* @__PURE__ */ s("span", { className: "nxp-spinner-wdk__outer", children: /* @__PURE__ */ s("span", { className: "nxp-spinner-wdk__inner" }) })
@@ -13,13 +13,14 @@ function o({ size: n = "md", type: e = "", className: r = "" }) {
   ) : /* @__PURE__ */ s(
     "span",
     {
-      className: a("nxp-spinner", n === "sm" ? "nxp-spinner--sm" : n === "lg" ? "nxp-spinner--lg" : "", r),
+      className: r("nxp-spinner", n === "sm" ? "nxp-spinner--sm" : n === "lg" ? "nxp-spinner--lg" : "", e),
       role: "status",
       "aria-label": "Loading"
     }
   );
 }
+const c = p(i);
 export {
-  o as Spinner,
-  o as default
+  c as Spinner,
+  c as default
 };

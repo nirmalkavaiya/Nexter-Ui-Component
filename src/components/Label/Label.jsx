@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 /**
  * Label
@@ -42,5 +42,6 @@ function Label({
   );
 }
 
-export { Label };
-export default Label;
+const LabelMemoized = memo(Label);
+export { LabelMemoized as Label };
+export default LabelMemoized;

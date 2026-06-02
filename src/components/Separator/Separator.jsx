@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 /**
  * Separator
@@ -37,5 +37,6 @@ function Separator({
   );
 }
 
-export { Separator };
-export default Separator;
+const SeparatorMemoized = memo(Separator);
+export { SeparatorMemoized as Separator };
+export default SeparatorMemoized;

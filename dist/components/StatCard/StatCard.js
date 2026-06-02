@@ -1,13 +1,14 @@
-import { jsxs as e, jsx as a } from "react/jsx-runtime";
-import "react";
-function c({ label: s, value: t, meta: i, className: d = "" }) {
-  return /* @__PURE__ */ e("div", { className: `nxp-stat ${d}`, children: [
-    s && /* @__PURE__ */ a("div", { className: "nxp-stat__label", children: s }),
-    t !== void 0 && /* @__PURE__ */ a("div", { className: "nxp-stat__value", children: t }),
-    i && /* @__PURE__ */ a("div", { className: "nxp-stat__meta", children: i })
+import { jsxs as r, jsx as a } from "react/jsx-runtime";
+import { memo as i } from "react";
+function n({ label: t, value: s, meta: d, className: e = "" }) {
+  return /* @__PURE__ */ r("div", { className: `nxp-stat ${e}`, children: [
+    t && /* @__PURE__ */ a("div", { className: "nxp-stat__label", children: t }),
+    s !== void 0 && /* @__PURE__ */ a("div", { className: "nxp-stat__value", children: s }),
+    d && /* @__PURE__ */ a("div", { className: "nxp-stat__meta", children: d })
   ] });
 }
+const o = i(n);
 export {
-  c as StatCard,
-  c as default
+  o as StatCard,
+  o as default
 };

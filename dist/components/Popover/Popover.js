@@ -1,13 +1,14 @@
-import { jsxs as l, jsx as e } from "react/jsx-runtime";
-import "react";
-function c({ title: o, description: p, footer: r, className: s = "" }) {
-  return /* @__PURE__ */ l("div", { className: `nxp-popover ${s}`, role: "tooltip", children: [
-    o && /* @__PURE__ */ e("div", { className: "nxp-popover__title", children: o }),
-    p && /* @__PURE__ */ e("p", { className: "nxp-popover__desc", children: p }),
-    r && /* @__PURE__ */ e("div", { className: "nxp-popover__footer", children: r })
+import { jsxs as a, jsx as o } from "react/jsx-runtime";
+import { memo as l } from "react";
+function m({ title: e, description: p, footer: r, className: s = "" }) {
+  return /* @__PURE__ */ a("div", { className: `nxp-popover ${s}`, role: "tooltip", children: [
+    e && /* @__PURE__ */ o("div", { className: "nxp-popover__title", children: e }),
+    p && /* @__PURE__ */ o("p", { className: "nxp-popover__desc", children: p }),
+    r && /* @__PURE__ */ o("div", { className: "nxp-popover__footer", children: r })
   ] });
 }
+const i = l(m);
 export {
-  c as Popover,
-  c as default
+  i as Popover,
+  i as default
 };

@@ -1,4 +1,5 @@
-import React, { useId } from 'react';
+import React, { useId, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Radio({
   checked = false,
@@ -11,18 +12,28 @@ function Radio({
 }) {
   const id = useId();
 
-  const classes = [
-    'nxp-radio',
-    checked ? 'is-checked' : '',
-    disabled ? 'is-disabled' : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  /* Stable class — was filter/join array every render */
+  const classes = useMemo(
+    () => cn('nxp-radio', checked && 'is-checked', disabled && 'is-disabled', className),
+    [checked, disabled, className]
+  );
 
-  const handleChange = () => {
+  /* Stable change handler */
+  const handleChange = useCallback(() => {
     if (!disabled) onChange && onChange(value);
-  };
+  }, [disabled, onChange, value]);
+
+  /* Stable keyboard handler — was an inline fn in onKeyDown */
+  const handleKeyDown = useCallback(
+    (e) => { if (e.key === ' ') { e.preventDefault(); handleChange(); } },
+    [handleChange]
+  );
+
+  /* Stable click handler on dot — was an inline fn in onClick */
+  const handleDotClick = useCallback(
+    (e) => { e.preventDefault(); handleChange(); },
+    [handleChange]
+  );
 
   return (
     <label className={classes} htmlFor={id}>
@@ -44,8 +55,8 @@ function Radio({
         aria-checked={checked}
         aria-disabled={disabled}
         tabIndex={disabled ? -1 : 0}
-        onKeyDown={(e) => { if (e.key === ' ') { e.preventDefault(); handleChange(); } }}
-        onClick={(e) => { e.preventDefault(); handleChange(); }}
+        onKeyDown={handleKeyDown}
+        onClick={handleDotClick}
       >
         <span className="nxp-radio__inner" />
       </div>

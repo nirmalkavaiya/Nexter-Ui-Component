@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -104,5 +104,6 @@ function Typography({
   );
 }
 
-export { Typography };
-export default Typography;
+const TypographyMemoized = memo(Typography);
+export { TypographyMemoized as Typography };
+export default TypographyMemoized;

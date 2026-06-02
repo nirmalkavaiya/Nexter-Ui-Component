@@ -1,33 +1,42 @@
-import { jsxs as f, jsx as e } from "react/jsx-runtime";
-import { useId as m } from "react";
-function u({
-  checked: r = !1,
-  onChange: o,
-  disabled: a = !1,
+import { jsxs as u, jsx as e } from "react/jsx-runtime";
+import { useId as h, useMemo as y, useCallback as i } from "react";
+import { cn as D } from "../../lib/utils.js";
+function I({
+  checked: o = !1,
+  onChange: s,
+  disabled: n = !1,
   name: d,
-  value: s,
-  label: t,
+  value: t,
+  label: l,
   className: c = ""
 }) {
-  const l = m(), p = [
-    "nxp-radio",
-    r ? "is-checked" : "",
-    a ? "is-disabled" : "",
-    c
-  ].filter(Boolean).join(" "), i = () => {
-    a || o && o(s);
-  };
-  return /* @__PURE__ */ f("label", { className: p, htmlFor: l, children: [
+  const p = h(), f = y(
+    () => D("nxp-radio", o && "is-checked", n && "is-disabled", c),
+    [o, n, c]
+  ), a = i(() => {
+    n || s && s(t);
+  }, [n, s, t]), m = i(
+    (r) => {
+      r.key === " " && (r.preventDefault(), a());
+    },
+    [a]
+  ), x = i(
+    (r) => {
+      r.preventDefault(), a();
+    },
+    [a]
+  );
+  return /* @__PURE__ */ u("label", { className: f, htmlFor: p, children: [
     /* @__PURE__ */ e(
       "input",
       {
-        id: l,
+        id: p,
         type: "radio",
         name: d,
-        value: s,
-        checked: r,
-        onChange: i,
-        disabled: a,
+        value: t,
+        checked: o,
+        onChange: a,
+        disabled: n,
         className: "nxp-sr-only",
         "aria-hidden": "true",
         tabIndex: -1
@@ -38,22 +47,18 @@ function u({
       {
         className: "nxp-radio__dot",
         role: "radio",
-        "aria-checked": r,
-        "aria-disabled": a,
-        tabIndex: a ? -1 : 0,
-        onKeyDown: (n) => {
-          n.key === " " && (n.preventDefault(), i());
-        },
-        onClick: (n) => {
-          n.preventDefault(), i();
-        },
+        "aria-checked": o,
+        "aria-disabled": n,
+        tabIndex: n ? -1 : 0,
+        onKeyDown: m,
+        onClick: x,
         children: /* @__PURE__ */ e("span", { className: "nxp-radio__inner" })
       }
     ),
-    t && /* @__PURE__ */ e("span", { children: t })
+    l && /* @__PURE__ */ e("span", { children: l })
   ] });
 }
 export {
-  u as Radio,
-  u as default
+  I as Radio,
+  I as default
 };

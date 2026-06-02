@@ -1,15 +1,16 @@
 import { jsx as t } from "react/jsx-runtime";
-import "react";
-function n({ ratio: e = 16 / 9, children: a, className: s = "" }) {
+import { memo as o } from "react";
+function i({ ratio: e = 16 / 9, children: s, className: a = "" }) {
   return /* @__PURE__ */ t(
     "div",
     {
-      className: `nxp-aspect ${s}`,
+      className: `nxp-aspect ${a}`,
       style: { "--nxp-aspect-ratio": e },
-      children: /* @__PURE__ */ t("div", { className: "nxp-aspect__inner", children: a })
+      children: /* @__PURE__ */ t("div", { className: "nxp-aspect__inner", children: s })
     }
   );
 }
+const n = o(i);
 export {
   n as AspectRatio,
   n as default

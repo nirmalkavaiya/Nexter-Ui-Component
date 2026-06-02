@@ -1,51 +1,51 @@
-import { jsxs as i, jsx as N } from "react/jsx-runtime";
-import { useState as B } from "react";
-function T({
-  value: e,
-  defaultValue: c,
+import { jsxs as x, jsx as N } from "react/jsx-runtime";
+import { useState as k, useCallback as I, useMemo as M } from "react";
+import { cn as S } from "../../lib/utils.js";
+function w({
+  value: l,
+  defaultValue: i,
   onChange: t,
-  placeholder: x,
-  rows: f = 4,
-  disabled: r = !1,
-  invalid: n = !1,
-  maxLength: a,
-  showCount: d = !1,
-  className: p = "",
-  ...u
+  placeholder: p,
+  rows: u = 4,
+  disabled: e = !1,
+  invalid: a = !1,
+  maxLength: r,
+  showCount: f = !1,
+  className: n = "",
+  ...m
 }) {
-  const l = e !== void 0, [m, v] = B(c ?? ""), s = l ? e : m;
-  function _(o) {
-    l || v(o.target.value), t == null || t(o);
-  }
-  const j = [
-    "nxp-textarea",
-    n ? "nxp-textarea--invalid" : "",
-    r ? "nxp-textarea--disabled" : "",
-    p
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ i("div", { className: j, children: [
+  const s = l !== void 0, [d, v] = k(i ?? ""), o = s ? l : d, _ = I(
+    (c) => {
+      s || v(c.target.value), t == null || t(c);
+    },
+    [s, t]
+  ), j = M(
+    () => S("nxp-textarea", a && "nxp-textarea--invalid", e && "nxp-textarea--disabled", n),
+    [a, e, n]
+  );
+  return /* @__PURE__ */ x("div", { className: j, children: [
     /* @__PURE__ */ N(
       "textarea",
       {
         className: "nxp-textarea__control",
-        value: s,
+        value: o,
         onChange: _,
-        placeholder: x,
-        rows: f,
-        disabled: r,
-        maxLength: a,
-        "aria-invalid": n || void 0,
-        ...u
+        placeholder: p,
+        rows: u,
+        disabled: e,
+        maxLength: r,
+        "aria-invalid": a || void 0,
+        ...m
       }
     ),
-    d && a != null && /* @__PURE__ */ i("span", { className: "nxp-textarea__count", children: [
-      s.length,
+    f && r != null && /* @__PURE__ */ x("span", { className: "nxp-textarea__count", children: [
+      o.length,
       "/",
-      a
+      r
     ] })
   ] });
 }
 export {
-  T as Textarea,
-  T as default
+  w as Textarea,
+  w as default
 };

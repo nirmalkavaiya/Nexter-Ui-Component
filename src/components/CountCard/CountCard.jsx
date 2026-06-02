@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 /**
  * CountCard
@@ -25,5 +25,6 @@ function CountCard({ value, label, badge, className = '' }) {
   );
 }
 
-export { CountCard };
-export default CountCard;
+const CountCardMemoized = memo(CountCard);
+export { CountCardMemoized as CountCard };
+export default CountCardMemoized;

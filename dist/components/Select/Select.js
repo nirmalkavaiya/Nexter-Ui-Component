@@ -1,30 +1,33 @@
-import { jsxs as c, jsx as a } from "react/jsx-runtime";
-import "react";
-function m({
+import { jsxs as m, jsx as t } from "react/jsx-runtime";
+import { memo as u, useMemo as d } from "react";
+import { cn as f } from "../../lib/utils.js";
+function p({
   options: s = [],
-  value: t,
-  onChange: i,
-  disabled: n = !1,
+  value: r,
+  onChange: n,
+  disabled: a = !1,
   placeholder: l,
-  className: r = "",
-  ...u
+  className: o = "",
+  ...c
 }) {
-  return /* @__PURE__ */ c(
+  const i = d(() => f("nxp-select", o), [o]);
+  return /* @__PURE__ */ m(
     "select",
     {
-      className: `nxp-select ${r}`,
-      value: t,
-      onChange: i,
-      disabled: n,
-      ...u,
+      className: i,
+      value: r,
+      onChange: n,
+      disabled: a,
+      ...c,
       children: [
-        l && /* @__PURE__ */ a("option", { value: "", disabled: !0, children: l }),
-        s.map((e) => /* @__PURE__ */ a("option", { value: e.value, children: e.label }, e.value))
+        l && /* @__PURE__ */ t("option", { value: "", disabled: !0, children: l }),
+        s.map((e) => /* @__PURE__ */ t("option", { value: e.value, children: e.label }, e.value))
       ]
     }
   );
 }
+const b = u(p);
 export {
-  m as Select,
-  m as default
+  b as Select,
+  b as default
 };

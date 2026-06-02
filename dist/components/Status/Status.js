@@ -1,10 +1,15 @@
 import { jsx as e } from "react/jsx-runtime";
-import "react";
-function o({ variant: t = "default", children: s, className: a = "" }) {
-  const u = t !== "default" ? ` nxp-status--${t}` : "";
-  return /* @__PURE__ */ e("span", { className: `nxp-status${u} ${a}`, "aria-label": `Status: ${t}`, children: s });
+import { memo as a, useMemo as m } from "react";
+import { cn as r } from "../../lib/utils.js";
+function f({ variant: t = "default", children: o, className: s = "" }) {
+  const u = m(
+    () => r("nxp-status", t !== "default" && `nxp-status--${t}`, s),
+    [t, s]
+  );
+  return /* @__PURE__ */ e("span", { className: u, "aria-label": `Status: ${t}`, children: o });
 }
+const c = a(f);
 export {
-  o as Status,
-  o as default
+  c as Status,
+  c as default
 };

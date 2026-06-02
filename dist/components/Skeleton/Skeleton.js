@@ -1,18 +1,31 @@
-import { jsx as r } from "react/jsx-runtime";
-import "react";
-function c({ variant: e = "line", width: t, style: n = {}, className: l = "" }) {
-  const o = e === "circle" ? " nxp-skeleton--circle" : e === "title" ? " nxp-skeleton--title" : "", s = { ...t ? { width: t } : {}, ...n };
-  return /* @__PURE__ */ r(
+import { jsx as m } from "react/jsx-runtime";
+import { memo as c, useMemo as l } from "react";
+import { cn as i } from "../../lib/utils.js";
+function p({ variant: e = "line", width: o, style: t = {}, className: n = "" }) {
+  const r = l(
+    () => i(
+      "nxp-skeleton",
+      e === "circle" && "nxp-skeleton--circle",
+      e === "title" && "nxp-skeleton--title",
+      n
+    ),
+    [e, n]
+  ), s = l(
+    () => ({ ...o ? { width: o } : {}, ...t }),
+    [o, t]
+  );
+  return /* @__PURE__ */ m(
     "span",
     {
-      className: `nxp-skeleton${o} ${l}`,
+      className: r,
       style: s,
       "aria-hidden": "true",
       role: "presentation"
     }
   );
 }
+const x = c(p);
 export {
-  c as Skeleton,
-  c as default
+  x as Skeleton,
+  x as default
 };

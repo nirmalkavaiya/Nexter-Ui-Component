@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Dialog({
   open = true,
@@ -10,11 +11,13 @@ function Dialog({
   actions,
   className = '',
 }) {
+  const rootClass = useMemo(() => cn('nxp-dialog', className), [className]);
+
   if (!open) return null;
 
   return (
     <div
-      className={`nxp-dialog ${className}`}
+      className={rootClass}
       role="alertdialog"
       aria-modal="true"
       aria-label={title}
@@ -31,5 +34,6 @@ function Dialog({
   );
 }
 
-export { Dialog };
-export default Dialog;
+const DialogMemoized = memo(Dialog);
+export { DialogMemoized as Dialog };
+export default DialogMemoized;

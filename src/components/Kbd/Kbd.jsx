@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function Kbd({ children, className = '' }) {
   return (
@@ -6,5 +6,6 @@ function Kbd({ children, className = '' }) {
   );
 }
 
-export { Kbd };
-export default Kbd;
+const KbdMemoized = memo(Kbd);
+export { KbdMemoized as Kbd };
+export default KbdMemoized;
