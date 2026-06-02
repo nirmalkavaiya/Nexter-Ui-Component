@@ -5108,7 +5108,7 @@ input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); h
 .nxp-border-l      { border-left: 1px solid var(--nxp-color-border); }
 .nxp-border-r      { border-right: 1px solid var(--nxp-color-border); }
 .nxp-border-brand  { border: 1px solid var(--nxp-brand); }
-.nxp-border-hover:hover {border-color : var(--nxp-color-bg-default)}
+input.nxp-border-hover:hover, div.nxp-border-hover:hover {border-color : var(--nxp-color-bg-default)}
 .nxp-border-hover-brand:hover {border-color : var(--nxp-brand)}
 
 /* ============================================================
