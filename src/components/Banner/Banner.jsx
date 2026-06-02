@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const DEFAULT_ICONS = {
   default: '🚀',
@@ -27,5 +27,6 @@ function Banner({ variant = 'default', size = 'md', icon, title, text, actions, 
   );
 }
 
-export { Banner };
-export default Banner;
+const BannerMemoized = memo(Banner);
+export { BannerMemoized as Banner };
+export default BannerMemoized;

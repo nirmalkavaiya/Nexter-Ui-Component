@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { cn } from '../../lib/utils';
 
 function Slider({
   /* numeric value */
@@ -100,11 +101,16 @@ function Slider({
       </select>
     ) : null;
 
-  /* ── Root class ── */
-  const rootClass = ['nxp-slider', disabled ? 'nxp-slider--disabled' : '', className]
-    .filter(Boolean).join(' ');
+  /* ── Root class + sliderId — stable, not recomputed every render ── */
+  const rootClass = useMemo(
+    () => cn('nxp-slider', disabled && 'nxp-slider--disabled', className),
+    [disabled, className]
+  );
 
-  const sliderId = label ? `nxp-slider-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined;
+  const sliderId = useMemo(
+    () => (label ? `nxp-slider-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined),
+    [label]
+  );
 
   return (
     <div className={rootClass}>
@@ -152,7 +158,7 @@ function Slider({
         value={current === '' ? min : current}
         onChange={handleRange}
         disabled={disabled}
-        style={{ '--val': percent }}
+        /* '--val' is already set imperatively via useEffect above — no inline style needed */
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={current === '' ? min : current}

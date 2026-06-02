@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -67,5 +67,6 @@ function EmptyState({
   );
 }
 
-export { EmptyState };
-export default EmptyState;
+const EmptyStateMemoized = memo(EmptyState);
+export { EmptyStateMemoized as EmptyState };
+export default EmptyStateMemoized;

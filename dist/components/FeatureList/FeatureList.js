@@ -1,7 +1,7 @@
-import { jsx as s, jsxs as v } from "react/jsx-runtime";
-import "react";
+import { jsx as r, jsxs as v } from "react/jsx-runtime";
+import { memo as N } from "react";
 import { cn as h } from "../../lib/utils.js";
-const N = ({ size: i = 16 }) => /* @__PURE__ */ v(
+const z = ({ size: i = 16 }) => /* @__PURE__ */ v(
   "svg",
   {
     width: i,
@@ -11,8 +11,8 @@ const N = ({ size: i = 16 }) => /* @__PURE__ */ v(
     "aria-hidden": "true",
     focusable: "false",
     children: [
-      /* @__PURE__ */ s("circle", { cx: "8", cy: "8", r: "8", fill: "var(--nxpl-icon-bg, var(--nxp-color-primary))" }),
-      /* @__PURE__ */ s(
+      /* @__PURE__ */ r("circle", { cx: "8", cy: "8", r: "8", fill: "var(--nxpl-icon-bg, var(--nxp-color-primary))" }),
+      /* @__PURE__ */ r(
         "path",
         {
           d: "M4.75 8.25 7 10.5l4.25-4.25",
@@ -25,13 +25,13 @@ const N = ({ size: i = 16 }) => /* @__PURE__ */ v(
     ]
   }
 );
-function I({
+function C({
   /* data */
   items: i = [],
   /* icon */
   icon: c,
   /* layout */
-  layout: o = "vertical",
+  layout: l = "vertical",
   /* sizing */
   iconSize: a = 16,
   /* spacing */
@@ -41,45 +41,46 @@ function I({
   /* alignment */
   align: p = "start",
   /* behaviour */
-  wrap: g = !0,
-  divider: k = !1,
-  fullWidth: m = !1,
+  wrap: m = !0,
+  divider: g = !1,
+  fullWidth: k = !1,
   /* passthrough */
   className: y = "",
   style: x,
-  textClassName: _ = ""
+  textClassName: L = ""
 }) {
-  const b = h(
+  const _ = h(
     "nxp-feature-list",
-    `nxp-feature-list--${o}`,
+    `nxp-feature-list--${l}`,
     p !== "start" ? `nxp-feature-list--align-${p}` : "",
-    o === "horizontal" && g ? "nxp-feature-list--wrap" : "",
-    k ? "nxp-feature-list--divider" : "",
-    m ? "nxp-feature-list--full-width" : "",
+    l === "horizontal" && m ? "nxp-feature-list--wrap" : "",
+    g ? "nxp-feature-list--divider" : "",
+    k ? "nxp-feature-list--full-width" : "",
     y
-  ), l = (e) => typeof e == "number" ? `${e}px` : e, t = {};
-  a !== 16 && (t["--nxpl-icon-size"] = l(a)), f !== void 0 && (t["--nxpl-icon-text-gap"] = l(f)), n !== void 0 && (t["--nxpl-item-gap"] = l(n));
-  const u = d !== void 0 ? d : o === "horizontal" && n !== void 0 ? n : void 0;
-  u !== void 0 && (t["--nxpl-layout-gap"] = l(u));
-  const j = x || Object.keys(t).length ? { ...t, ...x } : void 0;
-  return /* @__PURE__ */ s(
+  ), o = (e) => typeof e == "number" ? `${e}px` : e, t = {};
+  a !== 16 && (t["--nxpl-icon-size"] = o(a)), f !== void 0 && (t["--nxpl-icon-text-gap"] = o(f)), n !== void 0 && (t["--nxpl-item-gap"] = o(n));
+  const u = d !== void 0 ? d : l === "horizontal" && n !== void 0 ? n : void 0;
+  u !== void 0 && (t["--nxpl-layout-gap"] = o(u));
+  const b = x || Object.keys(t).length ? { ...t, ...x } : void 0;
+  return /* @__PURE__ */ r(
     "ul",
     {
-      className: b,
-      style: j,
+      className: _,
+      style: b,
       role: "list",
-      children: i.map((e, w) => {
-        const L = typeof e == "string" ? e : e.text;
-        let r;
-        return typeof e == "object" && "icon" in e ? r = e.icon : c !== void 0 ? r = c : r = /* @__PURE__ */ s(N, { size: a }), /* @__PURE__ */ v("li", { className: "nxp-feature-list__item", children: [
-          r != null && /* @__PURE__ */ s("span", { className: "nxp-feature-list__icon", "aria-hidden": "true", children: r }),
-          /* @__PURE__ */ s("span", { className: h("nxp-feature-list__text", _), children: L })
-        ] }, w);
+      children: i.map((e, j) => {
+        const w = typeof e == "string" ? e : e.text;
+        let s;
+        return typeof e == "object" && "icon" in e ? s = e.icon : c !== void 0 ? s = c : s = /* @__PURE__ */ r(z, { size: a }), /* @__PURE__ */ v("li", { className: "nxp-feature-list__item", children: [
+          s != null && /* @__PURE__ */ r("span", { className: "nxp-feature-list__icon", "aria-hidden": "true", children: s }),
+          /* @__PURE__ */ r("span", { className: h("nxp-feature-list__text", L), children: w })
+        ] }, j);
       })
     }
   );
 }
+const M = N(C);
 export {
-  I as FeatureList,
-  I as default
+  M as FeatureList,
+  M as default
 };

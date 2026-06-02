@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { InfoIcon } from '../../lib/icons';
 
@@ -55,5 +55,6 @@ function Field({
   );
 }
 
-export { Field };
-export default Field;
+const FieldMemoized = memo(Field);
+export { FieldMemoized as Field };
+export default FieldMemoized;

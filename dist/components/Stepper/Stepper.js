@@ -1,57 +1,64 @@
-import { jsxs as M, jsx as i } from "react/jsx-runtime";
-import { useState as h, useCallback as m } from "react";
-function k({
-  value: u,
-  onChange: a,
+import { jsxs as N, jsx as u } from "react/jsx-runtime";
+import { useState as k, useCallback as p, useMemo as y } from "react";
+import { cn as S } from "../../lib/utils.js";
+function V({
+  value: d,
+  onChange: r,
   min: s = 0,
-  max: t,
-  step: r = 1,
-  disabled: p = !1,
+  max: e,
+  step: l = 1,
+  disabled: o = !1,
   className: b = ""
 }) {
-  const c = u !== void 0, [d, f] = h(0), n = c ? u : d, o = m(
-    (l) => {
-      const e = t !== void 0 ? Math.min(t, Math.max(s, l)) : Math.max(s, l);
-      c || f(e), a && a(e);
+  const i = d !== void 0, [f, m] = k(0), t = i ? d : f, n = p(
+    (c) => {
+      const a = e !== void 0 ? Math.min(e, Math.max(s, c)) : Math.max(s, c);
+      i || m(a), r && r(a);
     },
-    [c, a, s, t]
-  ), v = (l) => {
-    const e = parseInt(l.target.value, 10);
-    isNaN(e) || o(e);
-  }, N = n <= s, _ = t !== void 0 && n >= t;
-  return /* @__PURE__ */ M("div", { className: `nxp-stepper ${b}`, "aria-label": "Stepper", children: [
-    /* @__PURE__ */ i(
+    [i, r, s, e]
+  ), h = p(
+    (c) => {
+      const a = parseInt(c.target.value, 10);
+      isNaN(a) || n(a);
+    },
+    [n]
+  ), v = p(() => n(t - l), [n, t, l]), M = p(() => n(t + l), [n, t, l]), _ = t <= s, x = e !== void 0 && t >= e, I = y(
+    () => S("nxp-stepper", o && "nxp-stepper--disabled", b),
+    [o, b]
+  );
+  return /* @__PURE__ */ N("div", { className: I, "aria-label": "Stepper", children: [
+    /* @__PURE__ */ u(
       "button",
       {
         type: "button",
         className: "nxp-stepper__btn",
-        onClick: () => o(n - r),
-        disabled: p || N,
+        onClick: v,
+        disabled: o || _,
         "aria-label": "Decrease",
         children: "−"
       }
     ),
-    /* @__PURE__ */ i(
+    /* @__PURE__ */ u(
       "input",
       {
         type: "number",
         className: "nxp-stepper__input",
-        value: n,
-        onChange: v,
-        disabled: p,
+        value: t,
+        onChange: h,
+        disabled: o,
         min: s,
-        max: t,
-        step: r,
+        max: e,
+        step: l,
         "aria-label": "Value"
       }
     ),
-    /* @__PURE__ */ i(
+    /* @__PURE__ */ u(
       "button",
       {
         type: "button",
         className: "nxp-stepper__btn",
-        onClick: () => o(n + r),
-        disabled: p || _,
+        onClick: M,
+        disabled: o || x,
         "aria-label": "Increase",
         children: "+"
       }
@@ -59,6 +66,6 @@ function k({
   ] });
 }
 export {
-  k as Stepper,
-  k as default
+  V as Stepper,
+  V as default
 };

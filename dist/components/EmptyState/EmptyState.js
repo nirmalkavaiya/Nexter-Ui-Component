@@ -1,22 +1,22 @@
 import { jsx as t, jsxs as f } from "react/jsx-runtime";
-import u from "react";
-import { cn as l } from "../../lib/utils.js";
-function v({
-  icon: n,
-  title: m,
+import u, { memo as N } from "react";
+import { cn as s } from "../../lib/utils.js";
+function _({
+  icon: m,
+  title: n,
   description: a,
-  desc: r,
+  desc: i,
   action: e,
-  className: i,
+  className: r,
   iconClassName: d,
-  titleClassName: c,
-  descriptionClassName: o,
-  descClassName: x,
-  actionClassName: y
+  titleClassName: o,
+  descriptionClassName: c,
+  descClassName: y,
+  actionClassName: x
 }) {
-  const p = a || r, b = o || x;
-  let s = null;
-  return e && (u.isValidElement(e) ? s = e : e && typeof e == "object" && e.label && (s = /* @__PURE__ */ t(
+  const p = a || i, b = c || y;
+  let l = null;
+  return e && (u.isValidElement(e) ? l = e : e && typeof e == "object" && e.label && (l = /* @__PURE__ */ t(
     "button",
     {
       type: "button",
@@ -24,14 +24,15 @@ function v({
       onClick: e.onClick,
       children: e.label
     }
-  ))), /* @__PURE__ */ f("div", { className: l("nxp-empty", i), role: "status", children: [
-    n && /* @__PURE__ */ t("div", { className: l("nxp-empty__icon", d), "aria-hidden": "true", children: n }),
-    m && /* @__PURE__ */ t("div", { className: l("nxp-empty__title", c), children: m }),
-    p && /* @__PURE__ */ t("p", { className: l("nxp-empty__desc", b), children: p }),
-    s && /* @__PURE__ */ t("div", { className: l("nxp-empty__action", y), children: s })
+  ))), /* @__PURE__ */ f("div", { className: s("nxp-empty", r), role: "status", children: [
+    m && /* @__PURE__ */ t("div", { className: s("nxp-empty__icon", d), "aria-hidden": "true", children: m }),
+    n && /* @__PURE__ */ t("div", { className: s("nxp-empty__title", o), children: n }),
+    p && /* @__PURE__ */ t("p", { className: s("nxp-empty__desc", b), children: p }),
+    l && /* @__PURE__ */ t("div", { className: s("nxp-empty__action", x), children: l })
   ] });
 }
+const j = N(_);
 export {
-  v as EmptyState,
-  v as default
+  j as EmptyState,
+  j as default
 };

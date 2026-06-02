@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { sanitizeHtml } from '../../lib/sanitize';
 
 /**
@@ -89,5 +89,6 @@ function Tooltip({
   );
 }
 
-export { Tooltip };
-export default Tooltip;
+const TooltipMemoized = memo(Tooltip);
+export { TooltipMemoized as Tooltip };
+export default TooltipMemoized;

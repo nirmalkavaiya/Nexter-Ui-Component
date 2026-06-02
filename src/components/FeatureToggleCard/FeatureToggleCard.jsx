@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 import { Toggle } from '../Toggle/Toggle';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { sanitizeHtml } from '../../lib/sanitize';
@@ -68,28 +69,24 @@ function FeatureToggleCard({
   const isDescriptionHtml =
     typeof description === 'string' && /<[a-z][\s\S]*>/i.test(description);
 
-  function handleToggle(newValue) {
-    // Wrap boolean in a synthetic event so consumers using `e.target.checked`
-    // (the standard WP dashboard pattern) keep working without modification.
-    const syntheticEvent = { target: { checked: newValue } };
-    onChange?.(syntheticEvent);
-    onToggle?.(newValue);
-  }
+  /* Stable toggle handler — was a plain fn re-created every render */
+  const handleToggle = useCallback(
+    (newValue) => {
+      const syntheticEvent = { target: { checked: newValue } };
+      onChange?.(syntheticEvent);
+      onToggle?.(newValue);
+    },
+    [onChange, onToggle]
+  );
 
-  /* root classes */
-  const outerClass = [
-    'nxp-ftc-outer',
-  ].filter(Boolean).join(' ');
-
-  const cardClass = [
-    'nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md',
-    isLocked  ? 'nxp-ftc--locked'   : '',
-    disabled  ? 'nxp-ftc--disabled' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  /* Stable class strings */
+  const cardClass = useMemo(
+    () => cn('nxp-ftc nxp-bg-default nxp-p-20 nxp-rounded-md', isLocked && 'nxp-ftc--locked', disabled && 'nxp-ftc--disabled', className),
+    [isLocked, disabled, className]
+  );
 
   return (
-    <div className={outerClass}>
+    <div className="nxp-ftc-outer">
 
       {/* ── Plan badge — slightly overlaps card top edge ── */}
       {hasPlanBadge && (

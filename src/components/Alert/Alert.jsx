@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 /* ── SVG Icons ───────────────────────────────────────────────── */
 const InfoIcon = () => (
@@ -56,5 +56,6 @@ function Alert({ variant = 'info', icon, showIcon = true, children, className = 
   );
 }
 
-export { Alert };
-export default Alert;
+const AlertMemoized = memo(Alert);
+export { AlertMemoized as Alert };
+export default AlertMemoized;

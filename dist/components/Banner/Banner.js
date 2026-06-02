@@ -1,23 +1,24 @@
-import { jsxs as o, jsx as n } from "react/jsx-runtime";
-import "react";
-const x = {
+import { jsxs as l, jsx as n } from "react/jsx-runtime";
+import { memo as x } from "react";
+const _ = {
   default: "🚀",
   success: "✅",
   warning: "⚠️",
   error: "❌"
 };
-function u({ variant: e = "default", size: a = "md", icon: r, title: s, text: d, actions: c, className: l = "" }) {
-  const i = r !== void 0 ? r : x[e], t = a !== "md" ? ` nxp-banner--${a}` : "", p = e !== "default" ? ` nxp-banner--${e}` : "", m = `nxp-banner${t}${p}${l ? ` ${l}` : ""}`.trim();
-  return /* @__PURE__ */ o("div", { className: m, role: "region", children: [
+function b({ variant: e = "default", size: a = "md", icon: r, title: s, text: d, actions: o, className: c = "" }) {
+  const i = r !== void 0 ? r : _[e], t = a !== "md" ? ` nxp-banner--${a}` : "", m = e !== "default" ? ` nxp-banner--${e}` : "", p = `nxp-banner${t}${m}${c ? ` ${c}` : ""}`.trim();
+  return /* @__PURE__ */ l("div", { className: p, role: "region", children: [
     i && /* @__PURE__ */ n("span", { className: "nxp-banner__icon", "aria-hidden": "true", children: i }),
-    /* @__PURE__ */ o("div", { className: "nxp-banner__body", children: [
+    /* @__PURE__ */ l("div", { className: "nxp-banner__body", children: [
       s && /* @__PURE__ */ n("div", { className: "nxp-banner__title", children: s }),
       d && /* @__PURE__ */ n("p", { className: "nxp-banner__text", children: d }),
-      c && /* @__PURE__ */ n("div", { className: "nxp-banner__actions", children: c })
+      o && /* @__PURE__ */ n("div", { className: "nxp-banner__actions", children: o })
     ] })
   ] });
 }
+const h = x(b);
 export {
-  u as Banner,
-  u as default
+  h as Banner,
+  h as default
 };

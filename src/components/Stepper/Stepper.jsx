@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Stepper({
   value,
@@ -26,20 +27,33 @@ function Stepper({
     [isControlled, onChange, min, max]
   );
 
-  const handleInput = (e) => {
-    const v = parseInt(e.target.value, 10);
-    if (!isNaN(v)) update(v);
-  };
+  /* Stable input handler — was re-created every render */
+  const handleInput = useCallback(
+    (e) => {
+      const v = parseInt(e.target.value, 10);
+      if (!isNaN(v)) update(v);
+    },
+    [update]
+  );
+
+  /* Stable step handlers */
+  const handleDecrement = useCallback(() => update(current - step), [update, current, step]);
+  const handleIncrement = useCallback(() => update(current + step), [update, current, step]);
 
   const atMin = current <= min;
   const atMax = max !== undefined && current >= max;
 
+  const rootClass = useMemo(
+    () => cn('nxp-stepper', disabled && 'nxp-stepper--disabled', className),
+    [disabled, className]
+  );
+
   return (
-    <div className={`nxp-stepper ${className}`} aria-label="Stepper">
+    <div className={rootClass} aria-label="Stepper">
       <button
         type="button"
         className="nxp-stepper__btn"
-        onClick={() => update(current - step)}
+        onClick={handleDecrement}
         disabled={disabled || atMin}
         aria-label="Decrease"
       >
@@ -59,7 +73,7 @@ function Stepper({
       <button
         type="button"
         className="nxp-stepper__btn"
-        onClick={() => update(current + step)}
+        onClick={handleIncrement}
         disabled={disabled || atMax}
         aria-label="Increase"
       >

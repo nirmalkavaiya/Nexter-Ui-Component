@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -199,5 +199,6 @@ function FeatureList({
   );
 }
 
-export { FeatureList };
-export default FeatureList;
+const FeatureListMemoized = memo(FeatureList);
+export { FeatureListMemoized as FeatureList };
+export default FeatureListMemoized;

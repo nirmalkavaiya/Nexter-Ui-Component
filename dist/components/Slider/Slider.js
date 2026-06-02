@@ -1,64 +1,71 @@
 import { jsx as n, jsxs as _ } from "react/jsx-runtime";
-import { useState as M, useRef as z, useEffect as G, useCallback as x } from "react";
-function O({
+import { useState as h, useRef as H, useEffect as J, useCallback as x, useMemo as j } from "react";
+import { cn as K } from "../../lib/utils.js";
+function W({
   /* numeric value */
   min: e = 0,
   max: i = 100,
-  step: I = 1,
-  value: j,
+  step: y = 1,
+  value: I,
   // controlled
-  defaultValue: R = 50,
+  defaultValue: A = 50,
   // uncontrolled seed
   onChange: r,
   // (numericValue) => void
   /* label */
-  label: a,
+  label: s,
   /* static unit — string | false */
-  unit: d = "px",
+  unit: u = "px",
   /* dynamic units — string[] — triggers dropdown */
-  units: o,
+  units: p,
   // e.g. ['px', '%', 'rem', 'em']
-  onUnitChange: u,
+  onUnitChange: d,
   // controlled unit handler (unit: string) => void
-  disabled: p = !1,
-  className: U = ""
+  disabled: o = !1,
+  className: M = ""
 }) {
-  const t = j !== void 0, [h, f] = M(R), c = t ? j : h, v = Array.isArray(o) && o.length > 0, A = v ? o[0] : d || "", N = v && u !== void 0 && d !== void 0 && d !== !1, [$, b] = M(A), w = N ? d : $, y = z(null), S = Math.round((c - e) / (i - e) * 100);
-  G(() => {
-    y.current && y.current.style.setProperty("--val", String(S));
-  }, [S]);
-  const k = x((l) => {
-    const s = Number(l.target.value);
-    t || f(s), r == null || r(s);
-  }, [t, r]), D = x((l) => {
-    const s = l.target.value;
-    if (s === "") {
-      t || f("");
+  const l = I !== void 0, [B, f] = h(A), c = l ? I : B, v = Array.isArray(p) && p.length > 0, $ = v ? p[0] : u || "", N = v && d !== void 0 && u !== void 0 && u !== !1, [k, D] = h($), m = N ? u : k, w = H(null), R = Math.round((c - e) / (i - e) * 100);
+  J(() => {
+    w.current && w.current.style.setProperty("--val", String(R));
+  }, [R]);
+  const E = x((t) => {
+    const a = Number(t.target.value);
+    l || f(a), r == null || r(a);
+  }, [l, r]), F = x((t) => {
+    const a = t.target.value;
+    if (a === "") {
+      l || f("");
       return;
     }
-    const m = Math.min(i, Math.max(e, Number(s)));
-    isNaN(m) || (t || f(m), r == null || r(m));
-  }, [t, e, i, r]), E = x((l) => {
-    l.target.value === "" && (t || f(e), r == null || r(e));
-  }, [t, e, r]), F = x((l) => {
-    const s = l.target.value;
-    N || b(s), u == null || u(s);
-  }, [N, u]), L = !v && d !== !1 && w ? /* @__PURE__ */ n("span", { className: "nxp-slider__unit-suffix", children: w }) : null, P = v ? /* @__PURE__ */ n(
+    const S = Math.min(i, Math.max(e, Number(a)));
+    isNaN(S) || (l || f(S), r == null || r(S));
+  }, [l, e, i, r]), L = x((t) => {
+    t.target.value === "" && (l || f(e), r == null || r(e));
+  }, [l, e, r]), P = x((t) => {
+    const a = t.target.value;
+    N || D(a), d == null || d(a);
+  }, [N, d]), q = !v && u !== !1 && m ? /* @__PURE__ */ n("span", { className: "nxp-slider__unit-suffix", children: m }) : null, z = v ? /* @__PURE__ */ n(
     "select",
     {
       className: "nxp-slider__unit-select",
-      value: w,
-      onChange: F,
-      disabled: p,
+      value: m,
+      onChange: P,
+      disabled: o,
       "aria-label": "Unit",
-      children: o.map((l) => /* @__PURE__ */ n("option", { value: l, children: l }, l))
+      children: p.map((t) => /* @__PURE__ */ n("option", { value: t, children: t }, t))
     }
-  ) : null, q = ["nxp-slider", p ? "nxp-slider--disabled" : "", U].filter(Boolean).join(" "), B = a ? `nxp-slider-${a.replace(/\s+/g, "-").toLowerCase()}` : void 0;
-  return /* @__PURE__ */ _("div", { className: q, children: [
+  ) : null, G = j(
+    () => K("nxp-slider", o && "nxp-slider--disabled", M),
+    [o, M]
+  ), U = j(
+    () => s ? `nxp-slider-${s.replace(/\s+/g, "-").toLowerCase()}` : void 0,
+    [s]
+  );
+  return /* @__PURE__ */ _("div", { className: G, children: [
     /* @__PURE__ */ _("div", { className: "nxp-slider__header", children: [
-      a && /* @__PURE__ */ n("label", { className: "nxp-slider__label", htmlFor: B, children: a }),
+      s && /* @__PURE__ */ n("label", { className: "nxp-slider__label", htmlFor: U, children: s }),
       /* @__PURE__ */ _("div", { className: "nxp-slider__controls", children: [
-        P,
+        z,
         /* @__PURE__ */ _("div", { className: "nxp-slider__input-wrap", children: [
           /* @__PURE__ */ n(
             "input",
@@ -68,40 +75,39 @@ function O({
               value: c,
               min: e,
               max: i,
-              step: I,
-              disabled: p,
-              onChange: D,
-              onBlur: E,
-              "aria-label": a ? `${a} value` : "Slider value"
+              step: y,
+              disabled: o,
+              onChange: F,
+              onBlur: L,
+              "aria-label": s ? `${s} value` : "Slider value"
             }
           ),
-          L
+          q
         ] })
       ] })
     ] }),
     /* @__PURE__ */ n(
       "input",
       {
-        id: B,
-        ref: y,
+        id: U,
+        ref: w,
         type: "range",
         className: "nxp-slider__range",
         min: e,
         max: i,
-        step: I,
+        step: y,
         value: c === "" ? e : c,
-        onChange: k,
-        disabled: p,
-        style: { "--val": S },
+        onChange: E,
+        disabled: o,
         "aria-valuemin": e,
         "aria-valuemax": i,
         "aria-valuenow": c === "" ? e : c,
-        "aria-label": a ?? "Slider"
+        "aria-label": s ?? "Slider"
       }
     )
   ] });
 }
 export {
-  O as Slider,
-  O as default
+  W as Slider,
+  W as default
 };

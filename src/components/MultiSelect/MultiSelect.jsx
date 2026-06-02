@@ -6,6 +6,7 @@ import React, {
   useMemo,
 } from 'react';
 
+import { cn } from '../../lib/utils';
 import { ChevronDownIcon } from '../../lib/icons';
 
 /* ─── Chevron icon ──────────────────────────────────────────── */
@@ -202,13 +203,11 @@ function MultiSelect({
     el?.scrollIntoView({ block: 'nearest' });
   }, [focusedIdx]);
 
-  /* ── Root class ── */
-  const rootClass = [
-    'nxp-ms',
-    isOpen    ? 'nxp-ms--open'     : '',
-    disabled  ? 'nxp-ms--disabled' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  /* ── Root class — stable, not rebuilt every render ── */
+  const rootClass = useMemo(
+    () => cn('nxp-ms', isOpen && 'nxp-ms--open', disabled && 'nxp-ms--disabled', className),
+    [isOpen, disabled, className]
+  );
 
   /* ── Render ── */
   return (
@@ -334,12 +333,12 @@ function MultiSelect({
                       <div
                         key={opt.value}
                         data-idx={idx}
-                        className={[
+                        className={cn(
                           'nxp-ms__option',
-                          isSelected ? 'nxp-ms__option--selected' : '',
-                          isFocused  ? 'nxp-ms__option--focused'  : '',
-                          isDisabled ? 'nxp-ms__option--disabled'  : '',
-                        ].filter(Boolean).join(' ')}
+                          isSelected && 'nxp-ms__option--selected',
+                          isFocused  && 'nxp-ms__option--focused',
+                          isDisabled && 'nxp-ms__option--disabled',
+                        )}
                         role="option"
                         aria-selected={isSelected}
                         aria-disabled={isDisabled || undefined}

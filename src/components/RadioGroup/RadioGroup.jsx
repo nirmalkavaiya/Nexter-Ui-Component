@@ -1,22 +1,8 @@
-import React, { useId } from 'react';
+import React, { useId, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 import Radio from '../Radio/Radio';
 import Tooltip from '../Tooltip/Tooltip';
 
-/**
- * RadioGroup
- *
- * A horizontal bordered group of radio buttons with optional per-item tooltips.
- *
- * Props:
- *   options          { value, label, tooltip?, tooltipPosition?, disabled? }[]
- *                    — items to render; tooltipPosition on each item overrides the group default
- *   value            string                              — currently selected value
- *   onChange         (val) => void                       — called when selection changes
- *   name             string                              — shared radio name (auto-generated if omitted)
- *   disabled         boolean                             — disables all items (default false)
- *   tooltipPosition  'top'|'bottom'|'left'|'right'       — default tooltip position for all items (default 'top')
- *   className        string                              — extra classes on the wrapper
- */
 function RadioGroup({
   options          = [],
   value,
@@ -29,30 +15,35 @@ function RadioGroup({
   const autoId    = useId();
   const groupName = name || autoId;
 
+  /* Stable onChange wrapper — prevents Radio children re-rendering due to new fn ref */
+  const handleChange = useCallback((val) => onChange?.(val), [onChange]);
+
+  /* Stable root class */
+  const rootClass = useMemo(
+    () => cn('nxp-radio-group', className),
+    [className]
+  );
+
   return (
-    <div
-      className={['nxp-radio-group', className].filter(Boolean).join(' ')}
-      role="radiogroup"
-    >
+    <div className={rootClass} role="radiogroup">
       {options.map((opt) => {
         const isChecked  = value === opt.value;
         const isDisabled = disabled || !!opt.disabled;
         const tipPos     = opt.tooltipPosition ?? tooltipPosition;
 
+        const itemClass = cn(
+          'nxp-radio-group__item',
+          isChecked  && 'is-checked',
+          isDisabled && 'is-disabled',
+        );
+
         return (
-          <div
-            key={opt.value}
-            className={[
-              'nxp-radio-group__item',
-              isChecked  ? 'is-checked'  : '',
-              isDisabled ? 'is-disabled' : '',
-            ].filter(Boolean).join(' ')}
-          >
+          <div key={opt.value} className={itemClass}>
             <Radio
               name={groupName}
               value={opt.value}
               checked={isChecked}
-              onChange={onChange}
+              onChange={handleChange}
               disabled={isDisabled}
               label={opt.label}
             />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function Badge({ variant = 'default', children, className = '' }) {
   if (variant === 'gradient') {
@@ -10,5 +10,6 @@ function Badge({ variant = 'default', children, className = '' }) {
   return <span className={`nxp-badge ${className}`}>{children}</span>;
 }
 
-export { Badge };
-export default Badge;
+const BadgeMemoized = memo(Badge);
+export { BadgeMemoized as Badge };
+export default BadgeMemoized;
