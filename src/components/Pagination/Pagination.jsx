@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 function Pagination({ page, totalPages = 1, onChange, showPrevNext = true, className = '' }) {
   const isControlled = page !== undefined;
@@ -18,7 +18,15 @@ function Pagination({ page, totalPages = 1, onChange, showPrevNext = true, class
     [isControlled, onChange, totalPages]
   );
 
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  /* Avoid re-allocating a new array on every render */
+  const pages = useMemo(
+    () => Array.from({ length: totalPages }, (_, i) => i + 1),
+    [totalPages]
+  );
+
+  /* Stable prev/next handlers */
+  const handlePrev = useCallback(() => go(current - 1), [go, current]);
+  const handleNext = useCallback(() => go(current + 1), [go, current]);
 
   return (
     <nav className={`nxp-pagination ${className}`} aria-label="Pagination">
@@ -26,7 +34,7 @@ function Pagination({ page, totalPages = 1, onChange, showPrevNext = true, class
         <button
           type="button"
           className="nxp-pagination__item nxp-pagination__item--prev"
-          onClick={() => go(current - 1)}
+          onClick={handlePrev}
           disabled={current === 1}
           aria-label="Previous page"
         >
@@ -48,7 +56,7 @@ function Pagination({ page, totalPages = 1, onChange, showPrevNext = true, class
         <button
           type="button"
           className="nxp-pagination__item nxp-pagination__item--next"
-          onClick={() => go(current + 1)}
+          onClick={handleNext}
           disabled={current === totalPages}
           aria-label="Next page"
         >

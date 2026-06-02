@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 import { ToggleItem } from './ToggleItem';
 
 function ToggleGrid({
@@ -15,33 +16,32 @@ function ToggleGrid({
     Object.fromEntries(items.map((it) => [it.key, it.value ?? false]))
   );
 
-  function getValues() {
-    return isControlled ? valueMap : internal;
-  }
+  /* Stable reference — avoids re-rendering all ToggleItems when any sibling toggles */
+  const values = useMemo(
+    () => (isControlled ? valueMap : internal),
+    [isControlled, valueMap, internal]
+  );
 
-  function handleToggle(key, newValue) {
-    const values = getValues();
-    const updatedValues = { ...values, [key]: newValue };
-    const updatedItems = items.map((it) => ({
-      ...it,
-      value: updatedValues[it.key] ?? it.value ?? false,
-    }));
+  /* Stable callback — ToggleItem is memo'd; a new fn ref every render defeats that */
+  const handleToggle = useCallback(
+    (key, newValue) => {
+      const updatedValues = { ...values, [key]: newValue };
+      const updatedItems = items.map((it) => ({
+        ...it,
+        value: updatedValues[it.key] ?? it.value ?? false,
+      }));
+      if (!isControlled) setInternal(updatedValues);
+      onChange?.(key, newValue, updatedItems);
+    },
+    [values, items, isControlled, onChange]
+  );
 
-    if (!isControlled) {
-      setInternal(updatedValues);
-    }
+  const cols = useMemo(() => Math.min(Math.max(Number(columns) || 2, 1), 4), [columns]);
 
-    onChange?.(key, newValue, updatedItems);
-  }
-
-  const cols = Math.min(Math.max(Number(columns) || 2, 1), 4);
-  const values = getValues();
-
-  const gridClass = [
-    'nxp-tg',
-    `nxp-tg--cols-${cols}`,
-    className,
-  ].filter(Boolean).join(' ');
+  const gridClass = useMemo(
+    () => cn('nxp-tg', `nxp-tg--cols-${cols}`, className),
+    [cols, className]
+  );
 
   return (
     <div className={gridClass} role="group">

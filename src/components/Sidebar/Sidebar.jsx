@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { cn } from '../../lib/utils';
 import { ChevronDownIcon } from '../../lib/icons';
 
 const ChevronDown = () => <ChevronDownIcon size={12} />;
@@ -143,28 +144,31 @@ function Sidebar({
   const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed);
   const isCollapsed = isCollapseControlled ? collapsed : internalCollapsed;
 
-  function handleSelect(id, item) {
-    if (!isActiveControlled) setInternalActive(id);
-    onSelect?.(id, item);
-  }
+  /* Stable references — passed to every SidebarItem; new fns every render re-render all items */
+  const handleSelect = useCallback(
+    (id, item) => {
+      if (!isActiveControlled) setInternalActive(id);
+      onSelect?.(id, item);
+    },
+    [isActiveControlled, onSelect]
+  );
 
-  function handleToggle() {
+  const handleToggle = useCallback(() => {
     const next = !isCollapsed;
     if (!isCollapseControlled) setInternalCollapsed(next);
     onCollapse?.(next);
-  }
+  }, [isCollapsed, isCollapseControlled, onCollapse]);
 
-  const cls = [
-    'nxp-sb',
-    isCollapsed ? 'nxp-sb--collapsed' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  const cls = useMemo(
+    () => cn('nxp-sb', isCollapsed && 'nxp-sb--collapsed', className),
+    [isCollapsed, className]
+  );
 
-  const style = {
-    '--nxp-sb-width':   width,
+  const style = useMemo(() => ({
+    '--nxp-sb-width':     width,
     '--nxp-sb-col-width': collapsedWidth,
     width: isCollapsed ? collapsedWidth : width,
-  };
+  }), [width, collapsedWidth, isCollapsed]);
 
   return (
     <aside className={cls} style={style} aria-label="Sidebar navigation">

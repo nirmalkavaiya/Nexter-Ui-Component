@@ -1,45 +1,50 @@
-import { jsxs as p, jsx as i } from "react/jsx-runtime";
-import j, { useState as m, useCallback as k } from "react";
-function A({
+import { jsxs as p, jsx as n } from "react/jsx-runtime";
+import k, { useState as m, useCallback as u, useMemo as T } from "react";
+function F({
   variant: c = "pill",
-  tabs: l = [],
-  activeTab: r,
-  onTabChange: e,
-  defaultTab: _,
-  className: b = ""
+  tabs: i = [],
+  activeTab: o,
+  onTabChange: l,
+  defaultTab: b,
+  className: _ = ""
 }) {
-  const a = r !== void 0, [u, x] = m(_ || l[0] && l[0].id), t = a ? r : u, [v, f] = m({}), N = k(
+  const a = o !== void 0, [x, v] = m(b || i[0] && i[0].id), t = a ? o : x, [f, N] = m({}), $ = u(
     (s) => {
-      a || x(s), e && e(s);
+      a || v(s), l && l(s);
     },
-    [a, e]
-  ), $ = c !== "pill" ? ` nxp-tabs--${c}` : "", o = c === "vertical", d = l.find((s) => s.id === t);
-  return /* @__PURE__ */ p("div", { className: `nxp-tabs${$} ${b}`, role: "tablist", children: [
-    /* @__PURE__ */ i("div", { className: "nxp-tabs__list", children: l.map((s) => /* @__PURE__ */ p(j.Fragment, { children: [
-      /* @__PURE__ */ i(
+    [a, l]
+  ), h = u((s, e) => {
+    N((j) => ({ ...j, [s]: e }));
+  }, []), S = c !== "pill" ? ` nxp-tabs--${c}` : "", r = c === "vertical", d = T(
+    () => i.find((s) => s.id === t),
+    [i, t]
+  );
+  return /* @__PURE__ */ p("div", { className: `nxp-tabs${S} ${_}`, role: "tablist", children: [
+    /* @__PURE__ */ n("div", { className: "nxp-tabs__list", children: i.map((s) => /* @__PURE__ */ p(k.Fragment, { children: [
+      /* @__PURE__ */ n(
         "button",
         {
           className: `nxp-tabs__tab${t === s.id ? " is-active" : ""}`,
           role: "tab",
           "aria-selected": t === s.id,
-          onClick: () => N(s.id),
+          onClick: () => $(s.id),
           children: s.label
         }
       ),
-      o && s.subTabs && t === s.id && /* @__PURE__ */ i("div", { className: "nxp-tabs__sub-list", children: s.subTabs.map((n) => /* @__PURE__ */ i(
+      r && s.subTabs && t === s.id && /* @__PURE__ */ n("div", { className: "nxp-tabs__sub-list", children: s.subTabs.map((e) => /* @__PURE__ */ n(
         "button",
         {
-          className: `nxp-tabs__sub${v[s.id] === n.id ? " is-active" : ""}`,
-          onClick: () => f((h) => ({ ...h, [s.id]: n.id })),
-          children: n.label
+          className: `nxp-tabs__sub${f[s.id] === e.id ? " is-active" : ""}`,
+          onClick: () => h(s.id, e.id),
+          children: e.label
         },
-        n.id
+        e.id
       )) })
     ] }, s.id)) }),
-    d && d.content && /* @__PURE__ */ i("div", { className: `nxp-tabs__panel${o ? " nxp-tabs__content" : ""}`, role: "tabpanel", children: d.content })
+    d && d.content && /* @__PURE__ */ n("div", { className: `nxp-tabs__panel${r ? " nxp-tabs__content" : ""}`, role: "tabpanel", children: d.content })
   ] });
 }
 export {
-  A as Tabs,
-  A as default
+  F as Tabs,
+  F as default
 };

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 function Tabs({
   variant = 'pill',
@@ -26,10 +26,19 @@ function Tabs({
     [isControlled, onTabChange]
   );
 
+  /* Stable sub-tab handler — avoids a new object spread + fn ref per sub-tab per render */
+  const handleSubTab = useCallback((tabId, subId) => {
+    setActiveSubTab((prev) => ({ ...prev, [tabId]: subId }));
+  }, []);
+
   const variantClass = variant !== 'pill' ? ` nxp-tabs--${variant}` : '';
   const isVertical = variant === 'vertical';
 
-  const activeTabObj = tabs.find((t) => t.id === current);
+  /* Avoid .find() on every render when tabs/current haven't changed */
+  const activeTabObj = useMemo(
+    () => tabs.find((t) => t.id === current),
+    [tabs, current]
+  );
 
   return (
     <div className={`nxp-tabs${variantClass} ${className}`} role="tablist">
@@ -50,7 +59,7 @@ function Tabs({
                   <button
                     key={sub.id}
                     className={`nxp-tabs__sub${activeSubTab[tab.id] === sub.id ? ' is-active' : ''}`}
-                    onClick={() => setActiveSubTab((prev) => ({ ...prev, [tab.id]: sub.id }))}
+                    onClick={() => handleSubTab(tab.id, sub.id)}
                   >
                     {sub.label}
                   </button>
