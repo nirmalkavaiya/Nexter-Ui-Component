@@ -1,62 +1,64 @@
-import { jsxs as r, jsx as n } from "react/jsx-runtime";
-import { useState as N, useId as g, useCallback as p } from "react";
-import { ChevronDownIcon as y } from "../../lib/icons.js";
-const C = () => /* @__PURE__ */ n(y, { className: "nxp-collapsible__chevron-svg" });
-function D({
-  open: c,
-  defaultOpen: d = !1,
+import { jsxs as p, jsx as l } from "react/jsx-runtime";
+import { useState as y, useId as I, useCallback as m, useMemo as x } from "react";
+import { cn as d } from "../../lib/utils.js";
+import { ChevronDownIcon as k } from "../../lib/icons.js";
+const w = () => /* @__PURE__ */ l(k, { className: "nxp-collapsible__chevron-svg" });
+function E({
+  open: r,
+  defaultOpen: _ = !1,
   onOpenChange: s,
-  trigger: x,
-  showChevron: _ = !0,
+  trigger: f,
+  showChevron: h = !0,
   disabled: o = !1,
-  children: m,
-  className: b = ""
+  children: u,
+  className: a = ""
 }) {
-  const a = c !== void 0, [f, h] = N(d), e = a ? c : f, i = g(), t = p(() => {
+  const c = r !== void 0, [v, b] = y(_), n = c ? r : v, i = I(), t = m(() => {
     if (o) return;
-    const l = !e;
-    a || h(l), s && s(l);
-  }, [o, e, a, s]), u = p(
-    (l) => {
-      (l.key === "Enter" || l.key === " ") && (l.preventDefault(), t());
+    const e = !n;
+    c || b(e), s && s(e);
+  }, [o, n, c, s]), g = m(
+    (e) => {
+      (e.key === "Enter" || e.key === " ") && (e.preventDefault(), t());
     },
     [t]
-  ), v = [
-    "nxp-collapsible",
-    e ? "nxp-collapsible--open" : "",
-    o ? "nxp-collapsible--disabled" : "",
-    b
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ r("div", { className: v, children: [
-    /* @__PURE__ */ r(
+  ), C = x(
+    () => d("nxp-collapsible", n && "nxp-collapsible--open", o && "nxp-collapsible--disabled", a),
+    [n, o, a]
+  ), N = x(
+    () => d("nxp-collapsible__chevron", n && "nxp-collapsible__chevron--open"),
+    [n]
+  );
+  return /* @__PURE__ */ p("div", { className: C, children: [
+    /* @__PURE__ */ p(
       "button",
       {
         type: "button",
         className: "nxp-collapsible__trigger",
         onClick: t,
-        onKeyDown: u,
-        "aria-expanded": e,
+        onKeyDown: g,
+        "aria-expanded": n,
         "aria-controls": i,
         disabled: o,
         children: [
-          /* @__PURE__ */ n("span", { className: "nxp-collapsible__trigger-content", children: x ?? (e ? "Hide" : "Show") }),
-          _ && /* @__PURE__ */ n("span", { className: `nxp-collapsible__chevron${e ? " nxp-collapsible__chevron--open" : ""}`, children: /* @__PURE__ */ n(C, {}) })
+          /* @__PURE__ */ l("span", { className: "nxp-collapsible__trigger-content", children: f ?? (n ? "Hide" : "Show") }),
+          h && /* @__PURE__ */ l("span", { className: N, children: /* @__PURE__ */ l(w, {}) })
         ]
       }
     ),
-    /* @__PURE__ */ n(
+    /* @__PURE__ */ l(
       "div",
       {
         id: i,
         className: "nxp-collapsible__content",
-        "aria-hidden": !e,
+        "aria-hidden": !n,
         role: "region",
-        children: /* @__PURE__ */ n("div", { className: "nxp-collapsible__inner", children: m })
+        children: /* @__PURE__ */ l("div", { className: "nxp-collapsible__inner", children: u })
       }
     )
   ] });
 }
 export {
-  D as Collapsible,
-  D as default
+  E as Collapsible,
+  E as default
 };

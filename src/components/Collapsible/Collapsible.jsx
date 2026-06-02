@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useId } from 'react';
+import React, { useState, useCallback, useMemo, useId } from 'react';
+import { cn } from '../../lib/utils';
 import { ChevronDownIcon } from '../../lib/icons';
 
 const ChevronIcon = () => <ChevronDownIcon className="nxp-collapsible__chevron-svg" />;
@@ -52,12 +53,15 @@ function Collapsible({
     [toggle]
   );
 
-  const rootClass = [
-    'nxp-collapsible',
-    isOpen    ? 'nxp-collapsible--open'     : '',
-    disabled  ? 'nxp-collapsible--disabled' : '',
-    className,
-  ].filter(Boolean).join(' ');
+  const rootClass = useMemo(
+    () => cn('nxp-collapsible', isOpen && 'nxp-collapsible--open', disabled && 'nxp-collapsible--disabled', className),
+    [isOpen, disabled, className]
+  );
+
+  const chevronClass = useMemo(
+    () => cn('nxp-collapsible__chevron', isOpen && 'nxp-collapsible__chevron--open'),
+    [isOpen]
+  );
 
   return (
     <div className={rootClass}>
@@ -75,7 +79,7 @@ function Collapsible({
           {trigger ?? (isOpen ? 'Hide' : 'Show')}
         </span>
         {showChevron && (
-          <span className={`nxp-collapsible__chevron${isOpen ? ' nxp-collapsible__chevron--open' : ''}`}>
+          <span className={chevronClass}>
             <ChevronIcon />
           </span>
         )}

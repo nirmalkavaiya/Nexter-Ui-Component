@@ -1,26 +1,35 @@
-import { jsx as c } from "react/jsx-runtime";
-import { useState as m, useCallback as b } from "react";
-function v({ options: r = [], value: s, onChange: l, className: i = "" }) {
-  var n;
-  const t = s !== void 0, [d, u] = m((n = r[0]) == null ? void 0 : n.value), a = t ? s : d, o = b(
+import { jsx as d } from "react/jsx-runtime";
+import { memo as v, useState as S, useCallback as m, useMemo as b } from "react";
+import { cn as g } from "../../lib/utils.js";
+function x({ options: a = [], value: n, onChange: t, className: r = "" }) {
+  var c;
+  const l = n !== void 0, [i, u] = S((c = a[0]) == null ? void 0 : c.value), s = l ? n : i, o = m(
     (e) => {
-      t || u(e), l && l(e);
+      l || u(e), t && t(e);
     },
-    [t, l]
+    [l, t]
+  ), f = m(
+    (e) => o(e.currentTarget.dataset.value),
+    [o]
+  ), p = b(
+    () => g("nxp-segmented", r),
+    [r]
   );
-  return /* @__PURE__ */ c("div", { className: `nxp-segmented ${i}`, role: "group", "aria-label": "Segmented control", children: r.map((e) => /* @__PURE__ */ c(
+  return /* @__PURE__ */ d("div", { className: p, role: "group", "aria-label": "Segmented control", children: a.map((e) => /* @__PURE__ */ d(
     "button",
     {
       type: "button",
-      className: `nxp-segmented__option${a === e.value ? " is-selected" : ""}`,
-      onClick: () => o(e.value),
-      "aria-pressed": a === e.value,
+      "data-value": e.value,
+      className: `nxp-segmented__option${s === e.value ? " is-selected" : ""}`,
+      onClick: f,
+      "aria-pressed": s === e.value,
       children: e.label
     },
     e.value
   )) });
 }
+const j = v(x);
 export {
-  v as Segmented,
-  v as default
+  j as Segmented,
+  j as default
 };

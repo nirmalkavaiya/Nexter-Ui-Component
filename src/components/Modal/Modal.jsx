@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
 import { sanitizeHtml } from '../../lib/sanitize';
@@ -70,26 +70,39 @@ function Modal({
           : 'nxp-flex-start'
       : '';
 
+  /* ── Stable derived values — not recomputed on every render ── */
+  const modalClass = useMemo(
+    () => `nxp-modal${size !== 'md' ? ` nxp-modal--${size}` : ''}${align === 'center' ? ' nxp-modal--center' : ''} ${className}`.trim(),
+    [size, align, className]
+  );
+
+  const hasHead = useMemo(() => Boolean(title || byline), [title, byline]);
+
+  const isBylineHtml = useMemo(
+    () => typeof byline === 'string' && /<[a-z][\s\S]*>/i.test(byline),
+    [byline]
+  );
+
+  const docLabel     = doclinkText ?? 'Read How it Works';
+  const primaryLabel = buttonText  ?? 'Save';
+
+  /* Stable backdrop click handler — inline fn was recreated every render */
+  const handleBackdropMouseDown = useCallback(
+    (e) => { if (e.target === e.currentTarget && onClose) onClose(); },
+    [onClose]
+  );
+
   if (!open) return null;
-
-  const sizeClass   = size !== 'md' ? ` nxp-modal--${size}` : '';
-  const alignClass  = align === 'center' ? ' nxp-modal--center' : '';
-  const hasHead     = title || byline;
-
-  const docLabel = doclinkText ?? 'Read How it Works';
-  const primaryLabel = buttonText ?? 'Save';
-  const isBylineHtml =
-    typeof byline === 'string' && /<[a-z][\s\S]*>/i.test(byline);
 
   return createPortal(
     <div
       className="nxp-modal-backdrop"
-      onMouseDown={(e) => { if (e.target === e.currentTarget && onClose) onClose(); }}
+      onMouseDown={handleBackdropMouseDown}
       role="dialog"
       aria-modal="true"
       aria-label={typeof title === 'string' ? title : undefined}
     >
-      <div className={`nxp-modal${sizeClass}${alignClass} ${className}`.trim()}>
+      <div className={modalClass}>
 
         {onClose && (
           <button

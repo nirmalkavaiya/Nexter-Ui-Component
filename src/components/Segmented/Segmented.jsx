@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo, memo } from 'react';
+import { cn } from '../../lib/utils';
 
 function Segmented({ options = [], value, onChange, className = '' }) {
   const isControlled = value !== undefined;
@@ -17,14 +18,27 @@ function Segmented({ options = [], value, onChange, className = '' }) {
     [isControlled, onChange]
   );
 
+  /* Single stable handler for all options — reads value from data attribute.
+     Eliminates one new arrow fn per option per render. */
+  const handleClick = useCallback(
+    (e) => handleSelect(e.currentTarget.dataset.value),
+    [handleSelect]
+  );
+
+  const rootClass = useMemo(
+    () => cn('nxp-segmented', className),
+    [className]
+  );
+
   return (
-    <div className={`nxp-segmented ${className}`} role="group" aria-label="Segmented control">
+    <div className={rootClass} role="group" aria-label="Segmented control">
       {options.map((opt) => (
         <button
           key={opt.value}
           type="button"
+          data-value={opt.value}
           className={`nxp-segmented__option${current === opt.value ? ' is-selected' : ''}`}
-          onClick={() => handleSelect(opt.value)}
+          onClick={handleClick}
           aria-pressed={current === opt.value}
         >
           {opt.label}
@@ -34,5 +48,6 @@ function Segmented({ options = [], value, onChange, className = '' }) {
   );
 }
 
-export { Segmented };
-export default Segmented;
+const SegmentedMemoized = memo(Segmented);
+export { SegmentedMemoized as Segmented };
+export default SegmentedMemoized;

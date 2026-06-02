@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
+import { cn } from '../../lib/utils';
 
 const ChevronIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -23,7 +24,8 @@ function Breadcrumb({
   showHome   = false, // prepend a home icon on first item
   className  = '',
 }) {
-  const rootClass = ['nxp-bc', className].filter(Boolean).join(' ');
+  /* Stable class — avoids new array + filter + join on every render */
+  const rootClass = useMemo(() => cn('nxp-bc', className), [className]);
 
   return (
     <nav className={rootClass} aria-label="Breadcrumb">
@@ -77,5 +79,6 @@ function Breadcrumb({
   );
 }
 
-export { Breadcrumb };
-export default Breadcrumb;
+const BreadcrumbMemoized = memo(Breadcrumb);
+export { BreadcrumbMemoized as Breadcrumb };
+export default BreadcrumbMemoized;
