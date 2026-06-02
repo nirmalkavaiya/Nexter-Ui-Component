@@ -35,10 +35,7 @@ function buildCalendar(year, month) {
 }
 
 /* ─── Icons ─────────────────────────────────────────────────── */
-const ChevLeft  = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L5 7l4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
-const ChevRight = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l4 5-4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
-const CalIcon   = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><path d="M1.5 5.5h11M4.5 1v3M9.5 1v3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>;
-const ClearIcon = () => <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M1 1l9 9M10 1L1 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>;
+import { ChevronLeftIcon as ChevLeft, ChevronRightIcon as ChevRight, CalendarIcon as CalIcon, DateClearIcon as ClearIcon } from '../../lib/icons';
 
 /* ─── Component ─────────────────────────────────────────────── */
 function DatePicker({

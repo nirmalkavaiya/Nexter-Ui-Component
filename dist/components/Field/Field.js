@@ -1,43 +1,39 @@
-import { jsxs as r, jsx as e } from "react/jsx-runtime";
+import { jsxs as s, jsx as e } from "react/jsx-runtime";
 import "react";
-import { Tooltip as p } from "../Tooltip/Tooltip.js";
-const f = () => /* @__PURE__ */ r("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
-  /* @__PURE__ */ e("circle", { cx: "7", cy: "7", r: "6.25", stroke: "currentColor", strokeWidth: "1.5" }),
-  /* @__PURE__ */ e("path", { d: "M7 6.5v3.5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" }),
-  /* @__PURE__ */ e("circle", { cx: "7", cy: "4.25", r: "0.875", fill: "currentColor" })
-] });
+import { Tooltip as m } from "../Tooltip/Tooltip.js";
+import { InfoIcon as _ } from "../../lib/icons.js";
 function u({
   label: i,
   tooltip: n,
-  hint: a,
+  hint: d,
   error: l,
-  required: c = !1,
-  htmlFor: d,
-  children: s,
-  extraContent: o,
-  className: t = ""
+  required: r = !1,
+  htmlFor: o,
+  children: c,
+  extraContent: a,
+  className: p = ""
 }) {
-  const h = !!(i || n || o);
-  return /* @__PURE__ */ r("div", { className: `nxp-field${l ? " nxp-field--error" : ""} ${t}`, children: [
-    h && /* @__PURE__ */ r("div", { className: "nxp-field__label-row", children: [
-      i && /* @__PURE__ */ r("label", { className: "nxp-field__label", htmlFor: d, children: [
+  const f = !!(i || n || a);
+  return /* @__PURE__ */ s("div", { className: `nxp-field${l ? " nxp-field--error" : ""} ${p}`, children: [
+    f && /* @__PURE__ */ s("div", { className: "nxp-field__label-row", children: [
+      i && /* @__PURE__ */ s("label", { className: "nxp-field__label", htmlFor: o, children: [
         i,
-        c && /* @__PURE__ */ e("span", { className: "nxp-field__required", "aria-hidden": "true", children: " *" })
+        r && /* @__PURE__ */ e("span", { className: "nxp-field__required", "aria-hidden": "true", children: " *" })
       ] }),
-      n && /* @__PURE__ */ e(p, { content: n, children: /* @__PURE__ */ e(
+      n && /* @__PURE__ */ e(m, { content: n, children: /* @__PURE__ */ e(
         "span",
         {
           className: "nxp-field__tooltip-icon",
           tabIndex: 0,
           role: "button",
           "aria-label": "More information",
-          children: /* @__PURE__ */ e(f, {})
+          children: /* @__PURE__ */ e(_, {})
         }
       ) }),
-      o && o
+      a && a
     ] }),
-    s,
-    a && !l && /* @__PURE__ */ e("span", { className: "nxp-field__hint", children: a }),
+    c,
+    d && !l && /* @__PURE__ */ e("span", { className: "nxp-field__hint", children: d }),
     l && /* @__PURE__ */ e("span", { className: "nxp-field__error", role: "alert", children: l })
   ] });
 }

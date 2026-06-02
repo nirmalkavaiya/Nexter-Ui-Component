@@ -1,150 +1,147 @@
-import { jsxs as p, jsx as n } from "react/jsx-runtime";
-import { useState as D, useRef as Z, useMemo as b, useEffect as ee, useCallback as O } from "react";
-function E(t) {
+import { jsxs as m, jsx as a } from "react/jsx-runtime";
+import { useState as b, useRef as Z, useMemo as w, useEffect as ee, useCallback as $ } from "react";
+import { CalendarIcon as te, DateClearIcon as ne, ChevronLeftIcon as ae, ChevronRightIcon as re } from "../../lib/icons.js";
+function J(t) {
   return String(t).padStart(2, "0");
 }
 function M(t) {
-  return t ? `${t.getFullYear()}-${E(t.getMonth() + 1)}-${E(t.getDate())}` : "";
+  return t ? `${t.getFullYear()}-${J(t.getMonth() + 1)}-${J(t.getDate())}` : "";
 }
 function u(t) {
   if (!t) return null;
-  const [r, o, d] = t.split("-").map(Number);
-  if (!r || !o || !d) return null;
-  const l = new Date(r, o - 1, d);
-  return isNaN(l) ? null : l;
+  const [n, o, l] = t.split("-").map(Number);
+  if (!n || !o || !l) return null;
+  const d = new Date(n, o - 1, l);
+  return isNaN(d) ? null : d;
 }
-function T(t, r) {
-  return t && r && t.getFullYear() === r.getFullYear() && t.getMonth() === r.getMonth() && t.getDate() === r.getDate();
+function L(t, n) {
+  return t && n && t.getFullYear() === n.getFullYear() && t.getMonth() === n.getMonth() && t.getDate() === n.getDate();
 }
-function N(t) {
+function k(t) {
   return new Date(t.getFullYear(), t.getMonth(), t.getDate());
 }
-function te(t, r) {
-  const o = new Date(t, r, 1).getDay(), d = new Date(t, r + 1, 0).getDate(), l = new Date(t, r, 0).getDate(), i = [];
-  for (let a = o - 1; a >= 0; a--)
-    i.push({ d: l - a, month: r - 1, year: r === 0 ? t - 1 : t, outside: !0 });
-  for (let a = 1; a <= d; a++)
-    i.push({ d: a, month: r, year: t, outside: !1 });
-  const w = 42 - i.length;
-  for (let a = 1; a <= w; a++)
-    i.push({ d: a, month: r + 1, year: r === 11 ? t + 1 : t, outside: !0 });
-  return i;
+function oe(t, n) {
+  const o = new Date(t, n, 1).getDay(), l = new Date(t, n + 1, 0).getDate(), d = new Date(t, n, 0).getDate(), s = [];
+  for (let r = o - 1; r >= 0; r--)
+    s.push({ d: d - r, month: n - 1, year: n === 0 ? t - 1 : t, outside: !0 });
+  for (let r = 1; r <= l; r++)
+    s.push({ d: r, month: n, year: t, outside: !1 });
+  const v = 42 - s.length;
+  for (let r = 1; r <= v; r++)
+    s.push({ d: r, month: n + 1, year: n === 11 ? t + 1 : t, outside: !0 });
+  return s;
 }
-const ne = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ n("path", { d: "M9 2L5 7l4 5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) }), re = () => /* @__PURE__ */ n("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ n("path", { d: "M5 2l4 5-4 5", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) }), ae = () => /* @__PURE__ */ p("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
-  /* @__PURE__ */ n("rect", { x: "1.5", y: "2.5", width: "11", height: "10", rx: "1.5", stroke: "currentColor", strokeWidth: "1.3" }),
-  /* @__PURE__ */ n("path", { d: "M1.5 5.5h11M4.5 1v3M9.5 1v3", stroke: "currentColor", strokeWidth: "1.3", strokeLinecap: "round" })
-] }), oe = () => /* @__PURE__ */ n("svg", { width: "11", height: "11", viewBox: "0 0 11 11", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ n("path", { d: "M1 1l9 9M10 1L1 10", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round" }) });
 function de({
   value: t,
   // ISO string 'YYYY-MM-DD' (controlled)
-  defaultValue: r,
+  defaultValue: n,
   // ISO string (uncontrolled)
   onChange: o,
   // (isoString | null) => void
-  minDate: d,
+  minDate: l,
   // ISO string
-  maxDate: l,
+  maxDate: d,
   // ISO string
-  disabled: i = !1,
-  clearable: w = !0,
+  disabled: s = !1,
+  clearable: v = !0,
   /* translatable */
-  placeholder: a = "Select date",
-  todayText: $ = "Today",
-  clearText: J = "Clear",
-  monthNames: P = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  dayNames: R = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-  prevMonthLabel: A = "Previous month",
-  nextMonthLabel: K = "Next month",
-  className: V = ""
+  placeholder: r = "Select date",
+  todayText: P = "Today",
+  clearText: R = "Clear",
+  monthNames: A = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  dayNames: B = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+  prevMonthLabel: K = "Previous month",
+  nextMonthLabel: V = "Next month",
+  className: W = ""
 }) {
-  const h = t !== void 0, [q, L] = D(() => u(r)), [f, x] = D(!1), [y, S] = D(() => (u(t ?? r) ?? /* @__PURE__ */ new Date()).getFullYear()), [_, m] = D(() => (u(t ?? r) ?? /* @__PURE__ */ new Date()).getMonth()), C = Z(null), v = h ? u(t) : q, F = b(() => u(d), [d]), Y = b(() => u(l), [l]);
+  const p = t !== void 0, [q, S] = b(() => u(n)), [f, x] = b(!1), [g, F] = b(() => (u(t ?? n) ?? /* @__PURE__ */ new Date()).getFullYear()), [_, D] = b(() => (u(t ?? n) ?? /* @__PURE__ */ new Date()).getMonth()), I = Z(null), h = p ? u(t) : q, Y = w(() => u(l), [l]), C = w(() => u(d), [d]);
   ee(() => {
     if (!f) return;
-    const e = (s) => {
+    const e = (i) => {
       var c;
-      (c = C.current) != null && c.contains(s.target) || x(!1);
+      (c = I.current) != null && c.contains(i.target) || x(!1);
     };
     return document.addEventListener("pointerdown", e), () => document.removeEventListener("pointerdown", e);
   }, [f]);
-  const j = O((e) => {
-    const s = new Date(e.year, e.month, e.d);
-    h || L(s), o == null || o(M(s)), x(!1);
-  }, [h, o]), z = O((e) => {
-    e.stopPropagation(), h || L(null), o == null || o(null);
-  }, [h, o]);
+  const O = $((e) => {
+    const i = new Date(e.year, e.month, e.d);
+    p || S(i), o == null || o(M(i)), x(!1);
+  }, [p, o]), z = $((e) => {
+    e.stopPropagation(), p || S(null), o == null || o(null);
+  }, [p, o]);
   function G() {
-    _ === 0 ? (m(11), S((e) => e - 1)) : m((e) => e - 1);
+    _ === 0 ? (D(11), F((e) => e - 1)) : D((e) => e - 1);
   }
   function H() {
-    _ === 11 ? (m(0), S((e) => e + 1)) : m((e) => e + 1);
+    _ === 11 ? (D(0), F((e) => e + 1)) : D((e) => e + 1);
   }
-  const Q = b(() => te(y, _), [y, _]), g = N(/* @__PURE__ */ new Date());
+  const Q = w(() => oe(g, _), [g, _]), y = k(/* @__PURE__ */ new Date());
   function U(e) {
-    const s = new Date(e.year, e.month, e.d);
-    return !!(F && s < N(F) || Y && s > N(Y));
+    const i = new Date(e.year, e.month, e.d);
+    return !!(Y && i < k(Y) || C && i > k(C));
   }
-  const B = v ? M(v) : "", X = ["nxp-date", i ? "nxp-date--disabled" : "", f ? "nxp-date--open" : "", V].filter(Boolean).join(" ");
-  return /* @__PURE__ */ p("div", { ref: C, className: X, children: [
-    /* @__PURE__ */ p(
+  const j = h ? M(h) : "", X = ["nxp-date", s ? "nxp-date--disabled" : "", f ? "nxp-date--open" : "", W].filter(Boolean).join(" ");
+  return /* @__PURE__ */ m("div", { ref: I, className: X, children: [
+    /* @__PURE__ */ m(
       "div",
       {
         className: "nxp-date__trigger",
-        onClick: () => !i && x((e) => !e),
+        onClick: () => !s && x((e) => !e),
         role: "button",
-        "aria-label": a,
+        "aria-label": r,
         "aria-expanded": f,
-        tabIndex: i ? -1 : 0,
+        tabIndex: s ? -1 : 0,
         onKeyDown: (e) => {
-          (e.key === "Enter" || e.key === " ") && (e.preventDefault(), !i && x((s) => !s));
+          (e.key === "Enter" || e.key === " ") && (e.preventDefault(), !s && x((i) => !i));
         },
         children: [
-          /* @__PURE__ */ n("span", { className: "nxp-date__icon", children: /* @__PURE__ */ n(ae, {}) }),
-          /* @__PURE__ */ n("span", { className: `nxp-date__value${B ? "" : " nxp-date__value--placeholder"}`, children: B || a }),
-          w && v && !i && /* @__PURE__ */ n("button", { type: "button", className: "nxp-date__clear", onClick: z, "aria-label": J, children: /* @__PURE__ */ n(oe, {}) })
+          /* @__PURE__ */ a("span", { className: "nxp-date__icon", children: /* @__PURE__ */ a(te, {}) }),
+          /* @__PURE__ */ a("span", { className: `nxp-date__value${j ? "" : " nxp-date__value--placeholder"}`, children: j || r }),
+          v && h && !s && /* @__PURE__ */ a("button", { type: "button", className: "nxp-date__clear", onClick: z, "aria-label": R, children: /* @__PURE__ */ a(ne, {}) })
         ]
       }
     ),
-    f && /* @__PURE__ */ p("div", { className: "nxp-date__popover", role: "dialog", "aria-label": "Date picker", children: [
-      /* @__PURE__ */ p("div", { className: "nxp-date__header", children: [
-        /* @__PURE__ */ n("button", { type: "button", className: "nxp-date__nav", onClick: G, "aria-label": A, children: /* @__PURE__ */ n(ne, {}) }),
-        /* @__PURE__ */ p("span", { className: "nxp-date__month-label", children: [
-          P[_],
+    f && /* @__PURE__ */ m("div", { className: "nxp-date__popover", role: "dialog", "aria-label": "Date picker", children: [
+      /* @__PURE__ */ m("div", { className: "nxp-date__header", children: [
+        /* @__PURE__ */ a("button", { type: "button", className: "nxp-date__nav", onClick: G, "aria-label": K, children: /* @__PURE__ */ a(ae, {}) }),
+        /* @__PURE__ */ m("span", { className: "nxp-date__month-label", children: [
+          A[_],
           " ",
-          y
+          g
         ] }),
-        /* @__PURE__ */ n("button", { type: "button", className: "nxp-date__nav", onClick: H, "aria-label": K, children: /* @__PURE__ */ n(re, {}) })
+        /* @__PURE__ */ a("button", { type: "button", className: "nxp-date__nav", onClick: H, "aria-label": V, children: /* @__PURE__ */ a(re, {}) })
       ] }),
-      /* @__PURE__ */ n("div", { className: "nxp-date__grid nxp-date__grid--head", children: R.map((e) => /* @__PURE__ */ n("span", { className: "nxp-date__dow", children: e }, e)) }),
-      /* @__PURE__ */ n("div", { className: "nxp-date__grid", children: Q.map((e, s) => {
-        const c = new Date(e.year, e.month, e.d), I = T(c, v), W = T(c, g), k = U(e);
-        return /* @__PURE__ */ n(
+      /* @__PURE__ */ a("div", { className: "nxp-date__grid nxp-date__grid--head", children: B.map((e) => /* @__PURE__ */ a("span", { className: "nxp-date__dow", children: e }, e)) }),
+      /* @__PURE__ */ a("div", { className: "nxp-date__grid", children: Q.map((e, i) => {
+        const c = new Date(e.year, e.month, e.d), E = L(c, h), T = L(c, y), N = U(e);
+        return /* @__PURE__ */ a(
           "button",
           {
             type: "button",
             className: [
               "nxp-date__day",
               e.outside ? "nxp-date__day--outside" : "",
-              I ? "nxp-date__day--selected" : "",
-              W ? "nxp-date__day--today" : "",
-              k ? "nxp-date__day--disabled" : ""
+              E ? "nxp-date__day--selected" : "",
+              T ? "nxp-date__day--today" : "",
+              N ? "nxp-date__day--disabled" : ""
             ].filter(Boolean).join(" "),
-            onClick: () => !k && j(e),
-            disabled: k,
+            onClick: () => !N && O(e),
+            disabled: N,
             "aria-label": M(c),
-            "aria-selected": I,
-            "aria-current": W ? "date" : void 0,
+            "aria-selected": E,
+            "aria-current": T ? "date" : void 0,
             children: e.d
           },
-          s
+          i
         );
       }) }),
-      /* @__PURE__ */ n("div", { className: "nxp-date__footer", children: /* @__PURE__ */ n(
+      /* @__PURE__ */ a("div", { className: "nxp-date__footer", children: /* @__PURE__ */ a(
         "button",
         {
           type: "button",
           className: "nxp-date__today-btn",
-          onClick: () => j({ d: g.getDate(), month: g.getMonth(), year: g.getFullYear() }),
-          children: $
+          onClick: () => O({ d: y.getDate(), month: y.getMonth(), year: y.getFullYear() }),
+          children: P
         }
       ) })
     ] })

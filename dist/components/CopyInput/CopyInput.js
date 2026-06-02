@@ -1,25 +1,26 @@
 import { jsxs as r, jsx as e } from "react/jsx-runtime";
-import { useState as x, useRef as C, useEffect as f, useCallback as k } from "react";
-const _ = () => /* @__PURE__ */ r("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
+import { useState as x, useRef as f, useEffect as C, useCallback as _ } from "react";
+import { CheckIcon as k } from "../../lib/icons.js";
+const b = () => /* @__PURE__ */ r("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: [
   /* @__PURE__ */ e("rect", { x: "4.5", y: "1.5", width: "8", height: "9", rx: "1.5", stroke: "currentColor", strokeWidth: "1.4" }),
   /* @__PURE__ */ e("path", { d: "M1.5 4.5H3v7A1.5 1.5 0 0 0 4.5 13H10", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round" })
-] }), w = () => /* @__PURE__ */ e("svg", { width: "14", height: "14", viewBox: "0 0 14 14", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 7l4 4 6-6", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
+] });
 function g({
   value: o = "",
   label: c,
-  hint: s,
+  hint: p,
   disabled: n = !1,
   /* translatable */
   copyText: d = "Copy",
   copiedText: u = "Copied!",
-  copyLabel: p = "Copy to clipboard",
-  className: h = ""
+  copyLabel: s = "Copy to clipboard",
+  className: y = ""
 }) {
-  const [i, l] = x(!1), a = C(null);
-  f(() => () => {
+  const [i, l] = x(!1), a = f(null);
+  C(() => () => {
     a.current && clearTimeout(a.current);
   }, []);
-  const y = k(async () => {
+  const m = _(async () => {
     if (!(n || !o)) {
       try {
         await navigator.clipboard.writeText(o);
@@ -29,12 +30,12 @@ function g({
       }
       l(!0), a.current = setTimeout(() => l(!1), 2e3);
     }
-  }, [n, o]), m = [
+  }, [n, o]), h = [
     "nxp-copy",
     n ? "nxp-copy--disabled" : "",
-    h
+    y
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ r("div", { className: m, children: [
+  return /* @__PURE__ */ r("div", { className: h, children: [
     c && /* @__PURE__ */ e("label", { className: "nxp-copy__label", children: c }),
     /* @__PURE__ */ r("div", { className: "nxp-copy__wrap", children: [
       /* @__PURE__ */ e(
@@ -53,18 +54,18 @@ function g({
         {
           type: "button",
           className: `nxp-copy__btn${i ? " nxp-copy__btn--copied" : ""}`,
-          onClick: y,
+          onClick: m,
           disabled: n,
-          "aria-label": p,
-          title: p,
+          "aria-label": s,
+          title: s,
           children: [
-            i ? /* @__PURE__ */ e(w, {}) : /* @__PURE__ */ e(_, {}),
+            i ? /* @__PURE__ */ e(k, {}) : /* @__PURE__ */ e(b, {}),
             /* @__PURE__ */ e("span", { children: i ? u : d })
           ]
         }
       )
     ] }),
-    s && /* @__PURE__ */ e("span", { className: "nxp-copy__hint", children: s })
+    p && /* @__PURE__ */ e("span", { className: "nxp-copy__hint", children: p })
   ] });
 }
 export {

@@ -1,15 +1,7 @@
 import { jsxs as a, jsx as r } from "react/jsx-runtime";
-import { useState as I, useRef as E, useMemo as w, useCallback as d, useEffect as R } from "react";
-const H = () => /* @__PURE__ */ r("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ r(
-  "path",
-  {
-    d: "M2 4l4 4 4-4",
-    stroke: "currentColor",
-    strokeWidth: "1.5",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }
-) }), J = () => /* @__PURE__ */ r("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ r(
+import { useState as g, useRef as E, useMemo as w, useCallback as d, useEffect as R } from "react";
+import { ChevronDownIcon as H } from "../../lib/icons.js";
+const J = () => /* @__PURE__ */ r(H, { size: 12 }), Q = () => /* @__PURE__ */ r("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ r(
   "path",
   {
     d: "M2 6l3 3 5-5",
@@ -19,26 +11,26 @@ const H = () => /* @__PURE__ */ r("svg", { width: "12", height: "12", viewBox: "
     strokeLinejoin: "round"
   }
 ) });
-function Q(p) {
+function X(p) {
   return p.length ? "options" in p[0] ? p : [{ label: null, options: p }] : [];
 }
-function Z({
+function ee({
   /* data */
   options: p = [],
   value: o = [],
   onChange: s,
   /* behaviour */
-  searchable: B = !0,
+  searchable: $ = !0,
   disabled: i = !1,
   /* translatable UI strings */
-  placeholder: $ = "Select options",
-  searchPlaceholder: L = "Search…",
-  noResultsText: q = "No results found",
+  placeholder: q = "Select options",
+  searchPlaceholder: M = "Search…",
+  noResultsText: B = "No results found",
   clearAllLabel: F = "Clear all",
   removeLabel: K = "Remove",
   className: U = ""
 }) {
-  const [l, M] = I(!1), [v, S] = I(""), [c, u] = I(-1), _ = E(null), A = E(null), N = E(null), m = w(() => Q(p), [p]), j = w(
+  const [l, S] = g(!1), [v, A] = g(""), [c, u] = g(-1), _ = E(null), L = E(null), N = E(null), m = w(() => X(p), [p]), O = w(
     () => m.flatMap((e) => e.options ?? []),
     [m]
   ), x = w(() => {
@@ -49,16 +41,16 @@ function Z({
         (t) => t.label.toLowerCase().includes(e)
       )
     })).filter((n) => n.options.length > 0) : m;
-  }, [m, v]), h = w(
+  }, [m, v]), b = w(
     () => x.flatMap((e) => e.options ?? []),
     [x]
-  ), k = d(() => {
-    i || (M(!0), u(-1), requestAnimationFrame(() => {
+  ), D = d(() => {
+    i || (S(!0), u(-1), requestAnimationFrame(() => {
       var e;
-      return (e = A.current) == null ? void 0 : e.focus();
+      return (e = L.current) == null ? void 0 : e.focus();
     }));
   }, [i]), f = d(() => {
-    M(!1), S(""), u(-1);
+    S(!1), A(""), u(-1);
   }, []);
   R(() => {
     if (!l) return;
@@ -67,14 +59,14 @@ function Z({
     }
     return document.addEventListener("pointerdown", e), () => document.removeEventListener("pointerdown", e);
   }, [l, f]);
-  const D = d(
+  const k = d(
     (e) => {
       if (i) return;
       const n = o.includes(e) ? o.filter((t) => t !== e) : [...o, e];
       s == null || s(n);
     },
     [i, o, s]
-  ), W = d(
+  ), z = d(
     (e, n) => {
       n.stopPropagation(), s == null || s(o.filter((t) => t !== e));
     },
@@ -84,17 +76,17 @@ function Z({
       e.stopPropagation(), s == null || s([]);
     },
     [s]
-  ), O = d(
+  ), j = d(
     (e) => {
       var n;
-      return ((n = j.find((t) => t.value === e)) == null ? void 0 : n.label) ?? String(e);
+      return ((n = O.find((t) => t.value === e)) == null ? void 0 : n.label) ?? String(e);
     },
-    [j]
+    [O]
   ), P = d(
     (e) => {
       var n;
       if (!l) {
-        ["Enter", " ", "ArrowDown"].includes(e.key) && (e.preventDefault(), k());
+        ["Enter", " ", "ArrowDown"].includes(e.key) && (e.preventDefault(), D());
         return;
       }
       switch (e.key) {
@@ -102,17 +94,17 @@ function Z({
           e.preventDefault(), f(), (n = _.current) == null || n.focus();
           break;
         case "ArrowDown":
-          e.preventDefault(), u((t) => Math.min(t + 1, h.length - 1));
+          e.preventDefault(), u((t) => Math.min(t + 1, b.length - 1));
           break;
         case "ArrowUp":
           e.preventDefault(), u((t) => Math.max(t - 1, 0));
           break;
         case "Enter":
-          e.preventDefault(), c >= 0 && h[c] && D(h[c].value);
+          e.preventDefault(), c >= 0 && b[c] && k(b[c].value);
           break;
       }
     },
-    [l, k, f, h, c, D]
+    [l, D, f, b, c, k]
   );
   R(() => {
     if (c < 0 || !N.current) return;
@@ -141,20 +133,20 @@ function Z({
           "div",
           {
             className: "nxp-ms__trigger",
-            onClick: l ? f : k,
+            onClick: l ? f : D,
             "aria-label": "Open select",
             children: [
               /* @__PURE__ */ a("div", { className: "nxp-ms__tags-wrap", children: [
-                o.length === 0 && /* @__PURE__ */ r("span", { className: "nxp-ms__placeholder", children: $ }),
+                o.length === 0 && /* @__PURE__ */ r("span", { className: "nxp-ms__placeholder", children: q }),
                 o.map((e) => /* @__PURE__ */ a("span", { className: "nxp-ms__tag", children: [
-                  /* @__PURE__ */ r("span", { className: "nxp-ms__tag-label", children: O(e) }),
+                  /* @__PURE__ */ r("span", { className: "nxp-ms__tag-label", children: j(e) }),
                   /* @__PURE__ */ r(
                     "button",
                     {
                       type: "button",
                       className: "nxp-ms__tag-remove",
-                      onPointerDown: (n) => W(e, n),
-                      "aria-label": `${K} ${O(e)}`,
+                      onPointerDown: (n) => z(e, n),
+                      "aria-label": `${K} ${j(e)}`,
                       tabIndex: -1,
                       children: "×"
                     }
@@ -177,7 +169,7 @@ function Z({
                   "span",
                   {
                     className: `nxp-ms__chevron${l ? " nxp-ms__chevron--up" : ""}`,
-                    children: /* @__PURE__ */ r(H, {})
+                    children: /* @__PURE__ */ r(J, {})
                   }
                 )
               ] })
@@ -185,17 +177,17 @@ function Z({
           }
         ),
         l && /* @__PURE__ */ a("div", { className: "nxp-ms__dropdown", children: [
-          B && /* @__PURE__ */ r("div", { className: "nxp-ms__search-wrap", children: /* @__PURE__ */ r(
+          $ && /* @__PURE__ */ r("div", { className: "nxp-ms__search-wrap", children: /* @__PURE__ */ r(
             "input",
             {
-              ref: A,
+              ref: L,
               type: "text",
               className: "nxp-ms__search",
               value: v,
-              placeholder: L,
-              "aria-label": L,
+              placeholder: M,
+              "aria-label": M,
               onChange: (e) => {
-                S(e.target.value), u(-1);
+                A(e.target.value), u(-1);
               },
               onKeyDown: (e) => {
                 ["ArrowDown", "ArrowUp", "Enter", "Escape"].includes(e.key) && (e.preventDefault(), P(e));
@@ -210,7 +202,7 @@ function Z({
               role: "listbox",
               "aria-multiselectable": "true",
               children: [
-                x.length === 0 && /* @__PURE__ */ r("div", { className: "nxp-ms__empty", role: "status", children: q }),
+                x.length === 0 && /* @__PURE__ */ r("div", { className: "nxp-ms__empty", role: "status", children: B }),
                 (() => {
                   let e = 0;
                   return x.map((n) => /* @__PURE__ */ a(
@@ -220,27 +212,27 @@ function Z({
                       children: [
                         n.label && /* @__PURE__ */ r("div", { className: "nxp-ms__group-label", "aria-label": n.label, children: n.label }),
                         (n.options ?? []).map((t) => {
-                          const g = e++, y = o.includes(t.value), V = c === g, b = t.disabled ?? !1;
+                          const y = e++, I = o.includes(t.value), V = c === y, h = t.disabled ?? !1;
                           return /* @__PURE__ */ a(
                             "div",
                             {
-                              "data-idx": g,
+                              "data-idx": y,
                               className: [
                                 "nxp-ms__option",
-                                y ? "nxp-ms__option--selected" : "",
+                                I ? "nxp-ms__option--selected" : "",
                                 V ? "nxp-ms__option--focused" : "",
-                                b ? "nxp-ms__option--disabled" : ""
+                                h ? "nxp-ms__option--disabled" : ""
                               ].filter(Boolean).join(" "),
                               role: "option",
-                              "aria-selected": y,
-                              "aria-disabled": b || void 0,
-                              onPointerDown: (z) => {
-                                z.preventDefault(), b || D(t.value);
+                              "aria-selected": I,
+                              "aria-disabled": h || void 0,
+                              onPointerDown: (W) => {
+                                W.preventDefault(), h || k(t.value);
                               },
-                              onMouseEnter: () => !b && u(g),
+                              onMouseEnter: () => !h && u(y),
                               children: [
                                 /* @__PURE__ */ r("span", { className: "nxp-ms__option-label", children: t.label }),
-                                y && /* @__PURE__ */ r("span", { className: "nxp-ms__option-check", children: /* @__PURE__ */ r(J, {}) })
+                                I && /* @__PURE__ */ r("span", { className: "nxp-ms__option-check", children: /* @__PURE__ */ r(Q, {}) })
                               ]
                             },
                             t.value
@@ -260,6 +252,6 @@ function Z({
   );
 }
 export {
-  Z as MultiSelect,
-  Z as default
+  ee as MultiSelect,
+  ee as default
 };

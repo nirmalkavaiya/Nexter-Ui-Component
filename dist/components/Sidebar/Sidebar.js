@@ -1,6 +1,7 @@
 import { jsxs as v, jsx as e } from "react/jsx-runtime";
 import { useState as f, useEffect as B } from "react";
-const $ = () => /* @__PURE__ */ e("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", "aria-hidden": "true", children: /* @__PURE__ */ e("path", { d: "M2 4l4 4 4-4", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) });
+import { ChevronDownIcon as D } from "../../lib/icons.js";
+const E = () => /* @__PURE__ */ e(D, { size: 12 });
 function N({
   item: n,
   active: d,
@@ -8,18 +9,18 @@ function N({
   collapsed: a,
   depth: c = 0
 }) {
-  const o = Array.isArray(n.children) && n.children.length > 0, i = o && n.children.some((r) => r.id === d), [p, b] = f(i);
+  const o = Array.isArray(n.children) && n.children.length > 0, i = o && n.children.some((r) => r.id === d), [h, b] = f(i);
   B(() => {
     i && b(!0);
   }, [i]);
-  const h = n.id === d;
+  const p = n.id === d;
   function _(r) {
     r.preventDefault(), o && !a ? b((u) => !u) : t == null || t(n.id, n);
   }
   const x = [
     "nxp-sb__item",
     c > 0 ? "nxp-sb__item--child" : "",
-    h ? "nxp-sb__item--active" : "",
+    p ? "nxp-sb__item--active" : "",
     i ? "nxp-sb__item--active-parent" : "",
     n.disabled ? "nxp-sb__item--disabled" : ""
   ].filter(Boolean).join(" ");
@@ -30,7 +31,7 @@ function N({
         href: n.href ?? "#",
         className: x,
         onClick: _,
-        "aria-current": h ? "page" : void 0,
+        "aria-current": p ? "page" : void 0,
         "aria-disabled": n.disabled || void 0,
         tabIndex: n.disabled ? -1 : 0,
         title: a && typeof n.label == "string" ? n.label : void 0,
@@ -38,11 +39,11 @@ function N({
           n.icon && /* @__PURE__ */ e("span", { className: "nxp-sb__icon", "aria-hidden": "true", children: n.icon }),
           !a && /* @__PURE__ */ e("span", { className: "nxp-sb__label", children: n.label }),
           !a && n.badge != null && /* @__PURE__ */ e("span", { className: `nxp-sb__badge${n.badgeVariant ? ` nxp-sb__badge--${n.badgeVariant}` : ""}`, children: n.badge }),
-          !a && o && /* @__PURE__ */ e("span", { className: `nxp-sb__chevron${p ? " nxp-sb__chevron--open" : ""}`, children: /* @__PURE__ */ e($, {}) })
+          !a && o && /* @__PURE__ */ e("span", { className: `nxp-sb__chevron${h ? " nxp-sb__chevron--open" : ""}`, children: /* @__PURE__ */ e(E, {}) })
         ]
       }
     ),
-    o && !a && p && /* @__PURE__ */ e("ul", { className: "nxp-sb__sub", role: "list", children: n.children.map((r) => /* @__PURE__ */ e(
+    o && !a && h && /* @__PURE__ */ e("ul", { className: "nxp-sb__sub", role: "list", children: n.children.map((r) => /* @__PURE__ */ e(
       N,
       {
         item: r,
@@ -55,7 +56,7 @@ function N({
     )) })
   ] });
 }
-function V({
+function P({
   items: n = [],
   active: d,
   defaultActive: t,
@@ -63,27 +64,27 @@ function V({
   collapsed: c,
   defaultCollapsed: o = !1,
   onCollapse: i,
-  collapsible: p = !0,
+  collapsible: h = !0,
   header: b,
-  footer: h,
+  footer: p,
   width: _ = "220px",
   collapsedWidth: x = "56px",
   className: r = ""
 }) {
-  const u = d !== void 0, [k, C] = f(t ?? null), w = u ? d : k, g = c !== void 0, [y, A] = f(o), l = g ? c : y;
-  function j(s, L) {
-    u || C(s), a == null || a(s, L);
+  const u = d !== void 0, [C, k] = f(t ?? null), m = u ? d : C, g = c !== void 0, [y, A] = f(o), l = g ? c : y;
+  function w(s, $) {
+    u || k(s), a == null || a(s, $);
   }
-  function m() {
+  function I() {
     const s = !l;
     g || A(s), i == null || i(s);
   }
-  const I = [
+  const j = [
     "nxp-sb",
     l ? "nxp-sb--collapsed" : "",
     r
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ v("aside", { className: I, style: {
+  return /* @__PURE__ */ v("aside", { className: j, style: {
     "--nxp-sb-width": _,
     "--nxp-sb-col-width": x,
     width: l ? x : _
@@ -93,19 +94,19 @@ function V({
       N,
       {
         item: s,
-        active: w,
-        onSelect: j,
+        active: m,
+        onSelect: w,
         collapsed: l
       },
       s.id
     )) }) }),
-    h && /* @__PURE__ */ e("div", { className: "nxp-sb__footer", children: h }),
-    p && /* @__PURE__ */ e(
+    p && /* @__PURE__ */ e("div", { className: "nxp-sb__footer", children: p }),
+    h && /* @__PURE__ */ e(
       "button",
       {
         type: "button",
         className: "nxp-sb__toggle",
-        onClick: m,
+        onClick: I,
         "aria-label": l ? "Expand sidebar" : "Collapse sidebar",
         children: /* @__PURE__ */ e(
           "svg",
@@ -124,6 +125,6 @@ function V({
   ] });
 }
 export {
-  V as Sidebar,
-  V as default
+  P as Sidebar,
+  P as default
 };

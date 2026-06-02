@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { ChevronDownIcon, CheckIcon } from '../../lib/icons';
 
 function Dropdown({
   options = [],
@@ -101,9 +102,7 @@ function Dropdown({
         <span className={selected ? 'text-nxp-text' : 'text-nxp-text-faint'}>
           {selectedLabel || placeholder}
         </span>
-        <svg className="nxp-dropdown__chevron" viewBox="0 0 14 14" fill="none">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ChevronDownIcon className="nxp-dropdown__chevron" />
       </button>
 
       {open && (
@@ -133,9 +132,7 @@ function Dropdown({
                 <span className="nxp-flex-1">{opt.label}</span>
                 {opt.sub && <span className="nxp-dropdown__sub">{opt.sub}</span>}
                 {isSelected && (
-                  <svg className="nxp-dropdown__check" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7l4 4 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <CheckIcon className="nxp-dropdown__check" />
                 )}
               </div>
             );

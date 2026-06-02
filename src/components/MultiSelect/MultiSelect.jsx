@@ -6,18 +6,10 @@ import React, {
   useMemo,
 } from 'react';
 
+import { ChevronDownIcon } from '../../lib/icons';
+
 /* ─── Chevron icon ──────────────────────────────────────────── */
-const ChevronIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-    <path
-      d="M2 4l4 4 4-4"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+const ChevronIcon = () => <ChevronDownIcon size={12} />;
 
 /* ─── Checkmark icon ────────────────────────────────────────── */
 const CheckIcon = () => (

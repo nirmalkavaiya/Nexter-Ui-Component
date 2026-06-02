@@ -1,23 +1,7 @@
 import React, { useState, useCallback, useId } from 'react';
+import { ChevronDownIcon } from '../../lib/icons';
 
-/* ─── Chevron icon ───────────────────────────────────────────── */
-const ChevronIcon = () => (
-  <svg
-    width="14" height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    aria-hidden="true"
-    className="nxp-collapsible__chevron-svg"
-  >
-    <path
-      d="M3 5l4 4 4-4"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+const ChevronIcon = () => <ChevronDownIcon className="nxp-collapsible__chevron-svg" />;
 
 /**
  * Collapsible
