@@ -1,6 +1,6 @@
 {
   "name": "nexter-ui-component",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "Nexter Design System — React component library. 64 accessible, RTL-ready, token-driven components with Figma-compatible design tokens, built-in ThemeProvider, and Flex Utility System.",
   "author": "Nirmal Kavaiya <nirmalkavaiya@users.noreply.github.com>",
   "license": "MIT",
@@ -48,12 +48,14 @@
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
+  "style": "dist/index.css",
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
     },
+    "./index.css": "./dist/index.css",
     "./Accordion": {
       "import": "./dist/components/Accordion/index.js",
       "types": "./dist/index.d.ts"
