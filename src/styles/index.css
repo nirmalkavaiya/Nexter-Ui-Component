@@ -544,10 +544,14 @@ input.nxp-input--invalid:focus {
   height: 16px;
   border-radius: 50%;
   background: #fff;
-  transition: transform var(--nxp-dur-hover) var(--nxp-ease);
+  transition: all .3s linear;
 }
 .nxp-toggle.is-checked .nxp-toggle__thumb {
-  transform: translateX(23px);
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+.nxp-toggle:active span.nxp-toggle__thumb {
+  width: 20px;
 }
 .nxp-pro-lock {
   position: absolute;
