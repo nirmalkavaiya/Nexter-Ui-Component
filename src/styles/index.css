@@ -3365,7 +3365,8 @@ input.nxp-search__input:focus {
   left: 4px;
 }
 .nxp-tg__item .nxp-toggle.is-checked .nxp-toggle__thumb {
-  transform: translate(19px);
+  left: calc(100% - 5px);
+  transform: translate(-100%);
 }
 
 .nxp-tg__item-info:hover,
