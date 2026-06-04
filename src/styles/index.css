@@ -1547,7 +1547,7 @@ input.nxp-input--invalid:focus {
 
 /* ── Header — LEFT align (default) ─────────────────────────── */
 .nxp-modal__head {
-  padding: var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-20);
+  padding: var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-40) var(--nxp-space-40);
   text-align: center;
 }
 .nxp-modal__title {
