@@ -516,6 +516,7 @@ export declare const FeatureToggleCard: React.FC<FeatureToggleCardProps>;
 export interface FieldProps {
   label?: ReactNode;
   tooltip?: string;
+  tooltipPosition?: NxpTooltipPosition;
   hint?: ReactNode;
   error?: ReactNode;
   required?: boolean;

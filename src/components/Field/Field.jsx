@@ -5,6 +5,7 @@ import { InfoIcon } from '../../lib/icons';
 function Field({
   label,
   tooltip,
+  tooltipPosition = 'top',
   hint,
   error,
   required = false,
@@ -28,7 +29,7 @@ function Field({
             </label>
           )}
           {tooltip && (
-            <Tooltip content={tooltip}>
+            <Tooltip content={tooltip} position={tooltipPosition}>
               <span
                 className="nxp-field__tooltip-icon"
                 tabIndex={0}

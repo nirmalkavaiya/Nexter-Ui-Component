@@ -1,44 +1,45 @@
 import { jsxs as o, jsx as e } from "react/jsx-runtime";
-import { memo as f } from "react";
-import { Tooltip as t } from "../Tooltip/Tooltip.js";
-import { InfoIcon as _ } from "../../lib/icons.js";
-function h({
-  label: i,
-  tooltip: a,
-  hint: d,
-  error: l,
-  required: s = !1,
-  htmlFor: r,
-  children: c,
-  extraContent: n,
-  className: m = ""
+import { memo as t } from "react";
+import { Tooltip as _ } from "../Tooltip/Tooltip.js";
+import { InfoIcon as h } from "../../lib/icons.js";
+function x({
+  label: l,
+  tooltip: n,
+  tooltipPosition: d = "top",
+  hint: s,
+  error: i,
+  required: r = !1,
+  htmlFor: c,
+  children: m,
+  extraContent: a,
+  className: p = ""
 }) {
-  const p = !!(i || a || n);
-  return /* @__PURE__ */ o("div", { className: `nxp-field${l ? " nxp-field--error" : ""} ${m}`, children: [
-    p && /* @__PURE__ */ o("div", { className: "nxp-field__label-row", children: [
-      i && /* @__PURE__ */ o("label", { className: "nxp-field__label", htmlFor: r, children: [
-        i,
-        s && /* @__PURE__ */ e("span", { className: "nxp-field__required", "aria-hidden": "true", children: " *" })
+  const f = !!(l || n || a);
+  return /* @__PURE__ */ o("div", { className: `nxp-field${i ? " nxp-field--error" : ""} ${p}`, children: [
+    f && /* @__PURE__ */ o("div", { className: "nxp-field__label-row", children: [
+      l && /* @__PURE__ */ o("label", { className: "nxp-field__label", htmlFor: c, children: [
+        l,
+        r && /* @__PURE__ */ e("span", { className: "nxp-field__required", "aria-hidden": "true", children: " *" })
       ] }),
-      a && /* @__PURE__ */ e(t, { content: a, children: /* @__PURE__ */ e(
+      n && /* @__PURE__ */ e(_, { content: n, position: d, children: /* @__PURE__ */ e(
         "span",
         {
           className: "nxp-field__tooltip-icon",
           tabIndex: 0,
           role: "button",
           "aria-label": "More information",
-          children: /* @__PURE__ */ e(_, {})
+          children: /* @__PURE__ */ e(h, {})
         }
       ) }),
-      n && n
+      a && a
     ] }),
-    c,
-    d && !l && /* @__PURE__ */ e("span", { className: "nxp-field__hint", children: d }),
-    l && /* @__PURE__ */ e("span", { className: "nxp-field__error", role: "alert", children: l })
+    m,
+    s && !i && /* @__PURE__ */ e("span", { className: "nxp-field__hint", children: s }),
+    i && /* @__PURE__ */ e("span", { className: "nxp-field__error", role: "alert", children: i })
   ] });
 }
-const w = f(h);
+const F = t(x);
 export {
-  w as Field,
-  w as default
+  F as Field,
+  F as default
 };
