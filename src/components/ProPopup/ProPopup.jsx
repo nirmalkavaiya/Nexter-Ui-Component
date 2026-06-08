@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
 import { sanitizeHtml } from '../../lib/sanitize';
@@ -42,8 +42,9 @@ const CrownIcon = () => (
  *   onButtonClick   {() => void}         — JS callback on CTA click (use instead of or alongside buttonLink)
  *   buttonIcon      {ReactNode}          — icon inside CTA (default Crown SVG)
  *   bottomText      {string|ReactNode}   — small italic note below button (HTML-aware)
- *   onClose         {() => void}         — called when X or backdrop is clicked
+ *   onClose         {() => void}         — called when X, backdrop, or Escape is pressed
  *   closeOnOverlay  {boolean}            — click backdrop to close (default true)
+ *   closeOnEscape   {boolean}            — press Escape to close (default true)
  *   portal          {boolean}            — portal to document.body (default true); false = inline render
  *   container       {Element}            — custom portal mount (default document.body)
  *   lockScroll      {boolean}            — lock body scroll when open (default: same as portal)
@@ -64,8 +65,15 @@ function ProPopup({
   bottomText,
   onClose,
   closeOnOverlay,
+  closeOnEscape,
   className      = '',
 }) {
+  const backdropRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
   const resolvedTitle = title ?? details?.title;
   const resolvedList = list ?? details?.list ?? [];
   const resolvedButtonText = buttonText ?? details?.buttonText ?? 'Upgrade Now';
@@ -74,6 +82,7 @@ function ProPopup({
   const resolvedButtonIcon = buttonIcon !== undefined ? buttonIcon : details?.buttonIcon;
   const resolvedBottomText = bottomText ?? details?.bottomText;
   const resolvedCloseOnOverlay = closeOnOverlay ?? details?.closeOnOverlay ?? true;
+  const resolvedCloseOnEscape = closeOnEscape ?? details?.closeOnEscape ?? true;
   const resolvedPortal = portal ?? details?.portal ?? true;
   const resolvedContainer = container ?? details?.container;
   const resolvedLockScroll = lockScroll ?? details?.lockScroll ?? resolvedPortal;
@@ -87,17 +96,28 @@ function ProPopup({
     }
   }, [open, resolvedLockScroll]);
 
-  /* ── Esc to close ── */
-  const handleKey = useCallback(
-    (e) => { if (e.key === 'Escape' && onClose) onClose(); },
-    [onClose]
-  );
+  /* ── Esc to close (capture phase beats WP admin / nested handlers) ── */
+  const handleKey = useCallback((e) => {
+    if (e.key !== 'Escape' || !resolvedCloseOnEscape) return;
+    const close = onCloseRef.current;
+    if (typeof close !== 'function') return;
+    e.preventDefault();
+    e.stopPropagation();
+    close();
+  }, [resolvedCloseOnEscape]);
+
   useEffect(() => {
-    if (open) {
-      document.addEventListener('keydown', handleKey);
-      return () => document.removeEventListener('keydown', handleKey);
-    }
+    if (!open) return;
+    document.addEventListener('keydown', handleKey, true);
+    return () => document.removeEventListener('keydown', handleKey, true);
   }, [open, handleKey]);
+
+  /* ── Focus backdrop so keyboard events reach the dialog ── */
+  useEffect(() => {
+    if (!open) return;
+    const id = requestAnimationFrame(() => backdropRef.current?.focus());
+    return () => cancelAnimationFrame(id);
+  }, [open]);
 
   if (!open) return null;
 
@@ -117,9 +137,11 @@ function ProPopup({
 
   const popup = (
     <div
+      ref={backdropRef}
+      tabIndex={-1}
       className={cn('nxp-pp-backdrop', !resolvedPortal && 'nxp-pp-backdrop--inline')}
       onMouseDown={(e) => {
-        if (resolvedCloseOnOverlay && e.target === e.currentTarget && onClose) onClose();
+        if (resolvedCloseOnOverlay && e.target === e.currentTarget && typeof onClose === 'function') onClose();
       }}
       role="dialog"
       aria-modal="true"

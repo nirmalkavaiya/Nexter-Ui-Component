@@ -1291,6 +1291,8 @@ export interface ProPopupDetails {
   buttonIcon?: ReactNode;
   bottomText?: ReactNode;
   closeOnOverlay?: boolean;
+  /** Press Escape to close (default true). */
+  closeOnEscape?: boolean;
   /** Portal to document.body (default true). */
   portal?: boolean;
   /** Custom portal mount node (default document.body). */
@@ -1318,10 +1320,12 @@ export interface ProPopupProps {
   buttonIcon?: ReactNode;
   /** Small italic note rendered below the CTA button. HTML strings are auto-detected and rendered safely. */
   bottomText?: ReactNode;
-  /** Called when the X button or backdrop is clicked. */
+  /** Called when the X button, backdrop, or Escape is pressed. */
   onClose?: () => void;
   /** Click backdrop to close (default true). */
   closeOnOverlay?: boolean;
+  /** Press Escape to close (default true). */
+  closeOnEscape?: boolean;
   /** Portal to document.body (default true). Set false for inline render in the React tree. */
   portal?: boolean;
   /** Custom portal mount node (default document.body). */
