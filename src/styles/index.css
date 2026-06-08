@@ -2790,17 +2790,8 @@ input.nxp-search__input:focus {
   line-height: var(--nxp-font-lineHeight-snug);
 }
 .nxp-iconbox__cta {
-  font-size: var(--nxp-text-md);
-  font-weight: var(--nxp-font-medium);
-  color: var(--nxp-brand);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--nxp-space-4);
   margin-top: auto;
-}
-.nxp-iconbox__cta:hover {
-  text-decoration: underline;
+  align-self: flex-start;
 }
 
 /* ============================================================
@@ -5150,7 +5141,8 @@ input.nxp-border-hover:hover, input.nxp-border-hover:focus, div.nxp-border-hover
 .nxp-text-faint   { color: var(--nxp-color-text-faint); }
 .nxp-text-white   { color: #fff; }
 .nxp-text-hover-white:hover,
-.nxp-text-hover-white:active {
+.nxp-text-hover-white:active,
+.nxp-text-hover-white:focus {
     color: #fff;
 }
 .nxp-text-primary { color: var(--nxp-color-primary); }
