@@ -539,12 +539,13 @@ input.nxp-input--invalid:focus {
 .nxp-toggle__thumb {
   position: absolute;
   top: 5px;
-  left: 5px;
+  left: calc(100% - 28px);
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background: #fff;
   transition: all .3s linear;
+  transform: translate(-100%);
 }
 .nxp-toggle.is-checked .nxp-toggle__thumb {
   left: calc(100% - 5px);
@@ -3362,7 +3363,7 @@ input.nxp-search__input:focus {
   width: 13px;
   height: 13px;
   top: 4px;
-  left: 4px;
+  left: calc(100% - 23px);
 }
 .nxp-tg__item .nxp-toggle.is-checked .nxp-toggle__thumb {
   left: calc(100% - 5px);
