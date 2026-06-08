@@ -307,14 +307,15 @@
 
 /* ── Children container ────────────────────────────────────── */
 .nxp-nav__children {
-  display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows var(--nxp-dur-active) var(--nxp-ease);
   overflow: hidden;
+  display: none;
 }
 
 .nxp-nav__children--open {
   grid-template-rows: 1fr;
+  display: grid;
 }
 
 .nxp-nav__children-inner {
