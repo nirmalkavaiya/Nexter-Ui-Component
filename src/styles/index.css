@@ -3126,7 +3126,6 @@ input.nxp-search__input:focus {
   border-color: var(--nxp-brand);
 }
 .nxp-ftc__settings-btn:disabled {
-  opacity: 0.45;
   cursor: not-allowed;
 }
 /* Lock button — amber/purple accent */
