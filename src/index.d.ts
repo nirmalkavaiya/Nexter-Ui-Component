@@ -550,8 +550,27 @@ export interface IconBoxProps {
   icon?: ReactNode;
   title?: ReactNode;
   description?: ReactNode;
-  cta?: string;
+  /** CTA label/content — rendered with Button */
+  cta?: ReactNode;
+  /** Renders CTA as an anchor when set */
   href?: string;
+  /** CTA click handler when href is not set */
+  onClick?: ButtonProps['onClick'];
+  /** Button visual variant (default 'link') */
+  variant?: ButtonProps['variant'];
+  /** Button size */
+  size?: ButtonProps['size'];
+  target?: ButtonProps['target'];
+  rel?: ButtonProps['rel'];
+  download?: ButtonProps['download'];
+  as?: ButtonProps['as'];
+  disabled?: boolean;
+  loading?: boolean;
+  type?: ButtonProps['type'];
+  /** Append → after cta text (default true) */
+  showArrow?: boolean;
+  /** Extra classes on the CTA Button */
+  ctaClassName?: string;
   /** Step number — shows a numeric step badge instead of icon */
   step?: number;
   className?: string;
