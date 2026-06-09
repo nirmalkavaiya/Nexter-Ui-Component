@@ -397,7 +397,7 @@
 
 .nxp-nav--dashboard .nxp-nav__link {
   font-size: var(--nxp-text-lg);
-  line-height: var(--nxp-font-lineHeight-tight);
+  line-height: var(--nxp-font-lineHeight-normal);
   font-weight: var(--nxp-font-medium);
   padding: var(--nxp-space-12);
   border-radius: var(--nxp-radius-sm);
