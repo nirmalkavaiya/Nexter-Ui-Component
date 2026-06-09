@@ -54,6 +54,8 @@
   align-items: center;
   gap: var(--nxp-space-12);
   margin-left: auto;
+  margin-top: 1.5px;
+  margin-bottom: 1.5px;
 }
 
 /* ── Header badge ──────────────────────────────────────────── */
