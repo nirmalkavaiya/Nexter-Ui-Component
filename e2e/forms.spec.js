@@ -52,17 +52,17 @@ test.describe('Checkbox', () => {
 test.describe('Radio', () => {
   test.beforeEach(async ({ page }) => { await gotoDemo(page); });
 
-  test('radio group renders multiple options with role="radio"', async ({ page }) => {
-    const radios = page.locator('.nxp-radio [role="radio"]');
+  test('radio group renders multiple native radio inputs', async ({ page }) => {
+    const radios = page.locator('.nxp-radio input[type="radio"]');
     await radios.first().scrollIntoViewIfNeeded();
     expect(await radios.count()).toBeGreaterThan(1);
   });
 
-  test('clicking a radio sets aria-checked=true', async ({ page }) => {
-    const radio = page.locator('.nxp-radio:not(.is-disabled) [role="radio"]').nth(1);
+  test('clicking a radio checks the native input', async ({ page }) => {
+    const radio = page.locator('.nxp-radio:not(.is-disabled) input[type="radio"]').nth(1);
     await radio.scrollIntoViewIfNeeded();
-    await radio.click();
-    await expect(radio).toHaveAttribute('aria-checked', 'true');
+    await radio.click({ force: true });
+    await expect(radio).toBeChecked();
   });
 });
 

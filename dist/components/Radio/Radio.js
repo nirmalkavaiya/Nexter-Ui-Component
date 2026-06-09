@@ -1,64 +1,40 @@
-import { jsxs as u, jsx as e } from "react/jsx-runtime";
-import { useId as h, useMemo as y, useCallback as i } from "react";
-import { cn as D } from "../../lib/utils.js";
-function I({
-  checked: o = !1,
-  onChange: s,
-  disabled: n = !1,
-  name: d,
-  value: t,
-  label: l,
-  className: c = ""
+import { jsxs as l, jsx as n } from "react/jsx-runtime";
+import { useId as d, useMemo as f, useCallback as x } from "react";
+import { cn as u } from "../../lib/utils.js";
+function j({
+  checked: r = !1,
+  onChange: o,
+  disabled: s = !1,
+  name: p,
+  value: a,
+  label: i,
+  className: t = ""
 }) {
-  const p = h(), f = y(
-    () => D("nxp-radio", o && "is-checked", n && "is-disabled", c),
-    [o, n, c]
-  ), a = i(() => {
-    n || s && s(t);
-  }, [n, s, t]), m = i(
-    (r) => {
-      r.key === " " && (r.preventDefault(), a());
-    },
-    [a]
-  ), x = i(
-    (r) => {
-      r.preventDefault(), a();
-    },
-    [a]
-  );
-  return /* @__PURE__ */ u("label", { className: f, htmlFor: p, children: [
-    /* @__PURE__ */ e(
+  const e = d(), c = f(
+    () => u("nxp-radio", r && "is-checked", s && "is-disabled", t),
+    [r, s, t]
+  ), m = x(() => {
+    s || o && o(a);
+  }, [s, o, a]);
+  return /* @__PURE__ */ l("label", { className: c, htmlFor: e, children: [
+    /* @__PURE__ */ n(
       "input",
       {
-        id: p,
+        id: e,
         type: "radio",
-        name: d,
-        value: t,
-        checked: o,
-        onChange: a,
-        disabled: n,
-        className: "nxp-sr-only",
-        "aria-hidden": "true",
-        tabIndex: -1
+        name: p,
+        value: a,
+        checked: r,
+        onChange: m,
+        disabled: s,
+        className: "nxp-sr-only"
       }
     ),
-    /* @__PURE__ */ e(
-      "div",
-      {
-        className: "nxp-radio__dot",
-        role: "radio",
-        "aria-checked": o,
-        "aria-disabled": n,
-        tabIndex: n ? -1 : 0,
-        onKeyDown: m,
-        onClick: x,
-        children: /* @__PURE__ */ e("span", { className: "nxp-radio__inner" })
-      }
-    ),
-    l && /* @__PURE__ */ e("span", { children: l })
+    /* @__PURE__ */ n("div", { className: "nxp-radio__dot", "aria-hidden": "true", children: /* @__PURE__ */ n("span", { className: "nxp-radio__inner" }) }),
+    i && /* @__PURE__ */ n("span", { children: i })
   ] });
 }
 export {
-  I as Radio,
-  I as default
+  j as Radio,
+  j as default
 };
