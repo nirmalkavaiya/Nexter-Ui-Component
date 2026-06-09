@@ -14,6 +14,9 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+.theme-browser .theme-id-container * {
+  box-sizing: initial;
+}
 
 /* ============================================================
    UTILITY CLASSES  (replace all Tailwind one-offs)
