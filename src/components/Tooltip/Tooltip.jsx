@@ -10,6 +10,8 @@ import { sanitizeHtml } from '../../lib/sanitize';
  * position  'top'|'bottom'|'left'|'right'  (default 'top')
  * className string  — extra classes on the wrapper span
  * style     object  — inline styles on the wrapper span
+ * width     string | number  — tooltip panel width (applied to .nxp-tooltip)
+ * tooltipStyle object  — extra inline styles on the tooltip panel
  * children  ReactNode  — trigger element; falls back to ⓘ SVG icon
  *
  * Behaviour
@@ -46,11 +48,18 @@ function Tooltip({
   position = 'top',
   className = '',
   style,
+  width,
+  tooltipStyle,
 }) {
   if (!content) return children ?? null;
 
   /* Detect HTML string so we can use dangerouslySetInnerHTML */
   const isHtml = typeof content === 'string' && /<[a-z][\s\S]*>/i.test(content);
+
+  const panelStyle = {
+    ...(width != null && width !== '' ? { width } : {}),
+    ...tooltipStyle,
+  };
 
   /* Default trigger — SVG info icon */
   const trigger = (children != null && children !== '')
@@ -78,10 +87,11 @@ function Tooltip({
         <div
           className="nxp-tooltip"
           role="tooltip"
+          style={panelStyle}
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
         />
       ) : (
-        <div className="nxp-tooltip" role="tooltip">
+        <div className="nxp-tooltip" role="tooltip" style={panelStyle}>
           {content}
         </div>
       )}

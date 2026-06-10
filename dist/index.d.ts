@@ -1116,6 +1116,10 @@ export interface TooltipProps {
   position?: 'top' | 'bottom' | 'left' | 'right';
   className?: string;
   style?: CSSProperties;
+  /** Width of the tooltip panel (e.g. '200px', 240). */
+  width?: string | number;
+  /** Extra inline styles applied directly to the tooltip panel. */
+  tooltipStyle?: CSSProperties;
 }
 
 export declare const Tooltip: React.FC<TooltipProps>;
