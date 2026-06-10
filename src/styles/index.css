@@ -4865,6 +4865,7 @@ input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); h
 .nxp-overflow-x-auto   { overflow-x: auto; }
 .nxp-overflow-y-auto   { overflow-y: auto; }
 .nxp-overflow-x-hidden { overflow-x: hidden; }
+.nxp-overflow-visible  { overflow: visible; }
 
 /* ── Common Dashboard Shorthand Helpers ──────────────────────── */
 
