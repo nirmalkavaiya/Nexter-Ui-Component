@@ -1966,7 +1966,7 @@ input.nxp-slider__input::-webkit-inner-spin-button {
   color: var(--nxp-text-strong);
   cursor: pointer;
   border: 1px solid var(--nxp-border);
-  background: transparent;
+  background: var(--nxp-bg);
   transition: background var(--nxp-dur-hover) var(--nxp-ease),
               color var(--nxp-dur-hover) var(--nxp-ease),
               box-shadow var(--nxp-dur-hover) var(--nxp-ease),
@@ -4866,6 +4866,7 @@ input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); h
 .nxp-overflow-y-auto   { overflow-y: auto; }
 .nxp-overflow-x-hidden { overflow-x: hidden; }
 .nxp-overflow-visible  { overflow: visible; }
+.nxp-top-0             { top: 0; }
 
 /* ── Common Dashboard Shorthand Helpers ──────────────────────── */
 
