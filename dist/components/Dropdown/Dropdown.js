@@ -1,97 +1,106 @@
-import { jsxs as _, jsx as r } from "react/jsx-runtime";
-import { useState as h, useRef as b, useMemo as N, useCallback as u, useEffect as O } from "react";
-import { ChevronDownIcon as R, CheckIcon as S } from "../../lib/icons.js";
-function U({
+import { jsxs as k, jsx as r } from "react/jsx-runtime";
+import { useState as y, useRef as I, useMemo as D, useCallback as f, useEffect as j } from "react";
+import { ChevronDownIcon as K, CheckIcon as P } from "../../lib/icons.js";
+function B({
   options: c = [],
-  value: k,
+  value: h,
   onChange: a,
-  placeholder: E = "Select…",
-  size: g = "md",
+  placeholder: $ = "Select…",
+  size: M = "md",
   // 'sm' | 'md' | 'lg'
-  disabled: f = !1,
-  className: I = ""
+  disabled: p = !1,
+  className: A = "",
+  maxHeight: i,
+  menuStyle: b
 }) {
-  const p = k !== void 0, [$, M] = h(""), i = p ? k : $, [t, m] = h(!1), [d, s] = h(-1), v = b(null), A = b(null), D = N(() => c.filter((e) => !e.divider), [c]), C = N(
+  const m = h !== void 0, [C, F] = y(""), d = m ? h : C, [s, v] = y(!1), [u, t] = y(-1), x = I(null), L = I(null), N = D(() => c.filter((e) => !e.divider), [c]), O = D(
     () => {
       var e;
-      return (e = c.find((n) => n.value === i)) == null ? void 0 : e.label;
+      return (e = c.find((n) => n.value === d)) == null ? void 0 : e.label;
     },
-    [c, i]
-  ), l = u(() => {
-    m(!1), s(-1);
-  }, []), x = u(
+    [c, d]
+  ), l = f(() => {
+    v(!1), t(-1);
+  }, []), w = f(
     (e) => {
-      p || M(e.value), a && a(e.value), l();
+      m || F(e.value), a && a(e.value), l();
     },
-    [p, a, l]
+    [m, a, l]
   );
-  O(() => {
-    if (!t) return;
+  j(() => {
+    if (!s) return;
     const e = (n) => {
-      v.current && !v.current.contains(n.target) && l();
+      x.current && !x.current.contains(n.target) && l();
     };
     return document.addEventListener("mousedown", e), () => document.removeEventListener("mousedown", e);
-  }, [t, l]);
-  const F = u(
+  }, [s, l]);
+  const R = f(
     (e) => {
-      if (!t) {
-        (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") && (e.preventDefault(), m(!0), s(0));
+      if (!s) {
+        (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") && (e.preventDefault(), v(!0), t(0));
         return;
       }
-      const n = D;
-      e.key === "ArrowDown" ? (e.preventDefault(), s((o) => Math.min(o + 1, n.length - 1))) : e.key === "ArrowUp" ? (e.preventDefault(), s((o) => Math.max(o - 1, 0))) : e.key === "Home" ? (e.preventDefault(), s(0)) : e.key === "End" ? (e.preventDefault(), s(n.length - 1)) : e.key === "Enter" && d >= 0 ? (e.preventDefault(), x(n[d])) : e.key === "Escape" && (e.preventDefault(), l());
+      const n = N;
+      e.key === "ArrowDown" ? (e.preventDefault(), t((o) => Math.min(o + 1, n.length - 1))) : e.key === "ArrowUp" ? (e.preventDefault(), t((o) => Math.max(o - 1, 0))) : e.key === "Home" ? (e.preventDefault(), t(0)) : e.key === "End" ? (e.preventDefault(), t(n.length - 1)) : e.key === "Enter" && u >= 0 ? (e.preventDefault(), w(n[u])) : e.key === "Escape" && (e.preventDefault(), l());
     },
-    [t, D, d, x, l]
-  ), L = u(() => {
-    f || m((e) => !e);
-  }, [f]);
-  let y = -1;
-  return /* @__PURE__ */ _(
+    [s, N, u, w, l]
+  ), S = f(() => {
+    p || v((e) => !e);
+  }, [p]), g = D(
+    () => ({
+      ...i != null && i !== "" ? { maxHeight: i } : {},
+      ...b
+    }),
+    [i, b]
+  );
+  let E = -1;
+  return /* @__PURE__ */ k(
     "div",
     {
-      className: `nxp-dropdown${t ? " is-open" : ""} ${I}`,
-      ref: v,
+      className: `nxp-dropdown${s ? " is-open" : ""} ${A}`,
+      ref: x,
       children: [
-        /* @__PURE__ */ _(
+        /* @__PURE__ */ k(
           "button",
           {
             type: "button",
-            className: `nxp-dropdown__trigger nxp-dropdown__trigger--${g}`,
-            disabled: f,
+            className: `nxp-dropdown__trigger nxp-dropdown__trigger--${M}`,
+            disabled: p,
             "aria-haspopup": "listbox",
-            "aria-expanded": t,
-            onClick: L,
-            onKeyDown: F,
+            "aria-expanded": s,
+            onClick: S,
+            onKeyDown: R,
             children: [
-              /* @__PURE__ */ r("span", { className: i ? "text-nxp-text" : "text-nxp-text-faint", children: C || E }),
-              /* @__PURE__ */ r(R, { className: "nxp-dropdown__chevron" })
+              /* @__PURE__ */ r("span", { className: d ? "text-nxp-text" : "text-nxp-text-faint", children: O || $ }),
+              /* @__PURE__ */ r(K, { className: "nxp-dropdown__chevron" })
             ]
           }
         ),
-        t && /* @__PURE__ */ r(
+        s && /* @__PURE__ */ r(
           "div",
           {
             className: "nxp-dropdown__menu",
             role: "listbox",
-            ref: A,
+            ref: L,
             "aria-label": "Options",
+            style: g,
             children: c.map((e, n) => {
               if (e.divider)
                 return /* @__PURE__ */ r("div", { className: "nxp-dropdown__divider" }, n);
-              y++;
-              const o = y, w = e.value === i;
-              return /* @__PURE__ */ _(
+              E++;
+              const o = E, _ = e.value === d;
+              return /* @__PURE__ */ k(
                 "div",
                 {
-                  className: `nxp-dropdown__item${w ? " is-selected" : ""}${d === o ? " is-focused" : ""}`,
+                  className: `nxp-dropdown__item${_ ? " is-selected" : ""}${u === o ? " is-focused" : ""}`,
                   role: "option",
-                  "aria-selected": w,
-                  onClick: () => x(e),
-                  onMouseEnter: () => s(o),
+                  "aria-selected": _,
+                  onClick: () => w(e),
+                  onMouseEnter: () => t(o),
                   children: [
                     /* @__PURE__ */ r("span", { className: "nxp-flex-1", children: e.label }),
                     e.sub && /* @__PURE__ */ r("span", { className: "nxp-dropdown__sub", children: e.sub }),
-                    w && /* @__PURE__ */ r(S, { className: "nxp-dropdown__check" })
+                    _ && /* @__PURE__ */ r(P, { className: "nxp-dropdown__check" })
                   ]
                 },
                 e.value
@@ -104,6 +113,6 @@ function U({
   );
 }
 export {
-  U as Dropdown,
-  U as default
+  B as Dropdown,
+  B as default
 };

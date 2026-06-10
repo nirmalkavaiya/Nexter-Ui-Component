@@ -437,6 +437,10 @@ export interface DropdownProps {
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   className?: string;
+  /** Max height of the dropdown menu panel (e.g. '200px', 240). */
+  maxHeight?: string | number;
+  /** Extra inline styles applied to the dropdown menu panel. */
+  menuStyle?: CSSProperties;
 }
 
 export declare const Dropdown: React.FC<DropdownProps>;

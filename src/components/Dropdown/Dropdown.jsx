@@ -9,6 +9,8 @@ function Dropdown({
   size      = 'md',   // 'sm' | 'md' | 'lg'
   disabled  = false,
   className = '',
+  maxHeight,
+  menuStyle,
 }) {
   const isControlled = value !== undefined;
   const [internal, setInternal] = useState('');
@@ -97,6 +99,14 @@ function Dropdown({
     if (!disabled) setOpen((o) => !o);
   }, [disabled]);
 
+  const menuPanelStyle = useMemo(
+    () => ({
+      ...(maxHeight != null && maxHeight !== '' ? { maxHeight } : {}),
+      ...menuStyle,
+    }),
+    [maxHeight, menuStyle]
+  );
+
   let visIdx = -1;
 
   return (
@@ -125,6 +135,7 @@ function Dropdown({
           role="listbox"
           ref={menuRef}
           aria-label="Options"
+          style={menuPanelStyle}
         >
           {options.map((opt, idx) => {
             if (opt.divider) {
