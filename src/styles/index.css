@@ -112,9 +112,13 @@ a.nxp-btn:active {
   color: var(--nxp-color-bg);
   border-color: transparent;
 }
-.nxp-btn--primary:hover {
+.nxp-btn--primary:hover,
+.nxp-btn--primary:focus {
   background: var(--nxp-color-primary-dark);
   color: var(--nxp-color-bg);
+  box-shadow: none;
+  outline: none;
+  border-radius: var(--nxp-radius-sm);
 }
 .nxp-btn--primary:active {
   background: var(--nxp-color-primary-dark);
