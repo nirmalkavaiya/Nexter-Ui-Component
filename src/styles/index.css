@@ -118,7 +118,6 @@ a.nxp-btn:active {
   color: var(--nxp-color-bg);
   box-shadow: none;
   outline: none;
-  border-radius: var(--nxp-radius-sm);
 }
 .nxp-btn--primary:active {
   background: var(--nxp-color-primary-dark);
