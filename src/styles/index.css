@@ -1304,7 +1304,7 @@ input.nxp-input--invalid:focus {
 }
 .nxp-banner--sm .nxp-banner__title {
   font-size: var(--nxp-text-sm);
-  margin-bottom: var(--nxp-space-2);
+  margin-bottom: 0;
 }
 .nxp-banner--sm .nxp-banner__text {
   font-size: var(--nxp-text-sm);
