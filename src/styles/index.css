@@ -17,6 +17,12 @@
 .theme-browser .theme-id-container * {
   box-sizing: initial;
 }
+#adminmenu *,
+#adminmenu *:before,
+#adminmenu *:after,
+.she-part-wid-mng-box * {
+  box-sizing: initial;
+}
 
 /* ============================================================
    UTILITY CLASSES  (replace all Tailwind one-offs)
