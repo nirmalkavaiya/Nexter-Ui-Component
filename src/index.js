@@ -49,6 +49,7 @@ export { default as Breadcrumb }       from './components/Breadcrumb';
 export { default as ConfirmButton }    from './components/ConfirmButton';
 export { default as NumberInput }      from './components/NumberInput';
 export { default as FileUpload }       from './components/FileUpload';
+export { default as DragDropImageField } from './components/DragDropImageField';
 export { default as ColorPicker }      from './components/ColorPicker';
 export { default as DatePicker }       from './components/DatePicker';
 export { default as DateRangePicker }  from './components/DateRangePicker';

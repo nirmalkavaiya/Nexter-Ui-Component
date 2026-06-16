@@ -911,6 +911,46 @@ import { FileUpload } from 'nexter-ui-component';
 
 ---
 
+## DragDropImageField
+
+Single-image picker built on `Field` (label + tooltip + hint). Drag-and-drop or click to open the WordPress Media Library, with a selected-file row and a fixed-ratio preview. Value is a `{ url, filename, filesize }` object.
+
+```jsx
+import { DragDropImageField } from 'nexter-ui-component';
+
+<DragDropImageField
+  id="default_social_image"
+  name="default_social_image"
+  label="Default Image"
+  tooltip="Used when sharing on social networks if no specific image is set."
+  mediaTitle="Choose default social image"
+  dropTitle="Upload Your File"
+  dropHint="Recommended size: 1200 x 630 px. JPG or PNG supported"
+  value={image}                 // { url, filename, filesize }
+  onChange={setImage}
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `{ url, filename, filesize }` | `{}` | Controlled image value |
+| `onChange` | `function` | — | `(value) => void` |
+| `id` / `name` | `string` | — | Input id / name |
+| `label` | `ReactNode` | — | Field label |
+| `tooltip` | `ReactNode` | — | Tooltip content |
+| `tooltipPosition` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Tooltip placement |
+| `help` | `ReactNode` | — | Help text under the drop zone |
+| `mediaTitle` | `string` | — | WP media modal title |
+| `removeLabel` | `string` | `'Remove Image'` | Remove button label |
+| `previewLabel` | `string` | `'Preview'` | Preview section label |
+| `dropTitle` | `string` | `'Upload Your File'` | Drop-zone title |
+| `dropHint` | `string` | `'Recommended size: 1200 x 630 px…'` | Drop-zone hint |
+| `showPreview` | `boolean` | `true` | Show the large preview box |
+| `accept` | `string` | `'image/*'` | Accepted MIME types |
+| `className` | `string` | `''` | Extra root class |
+
+---
+
 ## IconBox
 
 Feature/benefit card with icon, step number, title, and CTA.

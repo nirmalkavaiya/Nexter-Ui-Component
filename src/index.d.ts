@@ -547,6 +547,35 @@ export interface FileUploadProps {
 
 export declare const FileUpload: React.FC<FileUploadProps>;
 
+// ─── DragDropImageField ──────────────────────────────────────────────────────
+
+export interface DragDropImageValue {
+  url?: string;
+  filename?: string;
+  filesize?: string;
+}
+
+export interface DragDropImageFieldProps {
+  id?: string;
+  name?: string;
+  label?: ReactNode;
+  tooltip?: ReactNode;
+  tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
+  help?: ReactNode;
+  value?: DragDropImageValue;
+  onChange?: (value: DragDropImageValue) => void;
+  mediaTitle?: string;
+  removeLabel?: string;
+  previewLabel?: string;
+  dropTitle?: string;
+  dropHint?: string;
+  showPreview?: boolean;
+  accept?: string;
+  className?: string;
+}
+
+export declare const DragDropImageField: React.FC<DragDropImageFieldProps>;
+
 // ─── IconBox ─────────────────────────────────────────────────────────────────
 
 export interface IconBoxProps {
