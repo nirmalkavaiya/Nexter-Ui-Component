@@ -10,14 +10,14 @@ const j = () => /* @__PURE__ */ t("svg", { className: "nxp-ddimg__drop-icon", xm
     ] })
   ] }),
   /* @__PURE__ */ i("defs", { children: /* @__PURE__ */ i("clipPath", { id: "nxp-ddimg-a", children: /* @__PURE__ */ i("path", { fill: "#fff", d: "M0 0h50v50H0z" }) }) })
-] }), T = () => /* @__PURE__ */ t("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [
+] }), T = () => /* @__PURE__ */ t("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [
   /* @__PURE__ */ i("polyline", { points: "3 6 5 6 21 6" }),
   /* @__PURE__ */ i("path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }),
   /* @__PURE__ */ i("line", { x1: "10", y1: "11", x2: "10", y2: "17" }),
   /* @__PURE__ */ i("line", { x1: "14", y1: "11", x2: "14", y2: "17" })
 ] }), q = () => /* @__PURE__ */ i("svg", { className: "nxp-ddimg__placeholder-icon", xmlns: "http://www.w3.org/2000/svg", width: "42", height: "42", fill: "none", viewBox: "0 0 42 42", "aria-hidden": "true", children: /* @__PURE__ */ i("path", { fill: "currentColor", fillRule: "evenodd", d: "M11.699 0h18.269c1.764 0 3.172 0 4.31.093 1.166.095 2.17.295 3.091.765a7.87 7.87 0 0 1 3.44 3.44c.47.921.67 1.924.765 3.091.093 1.138.093 2.546.093 4.31v18.269c0 1.764 0 3.172-.093 4.31-.096 1.166-.295 2.17-.765 3.091a7.87 7.87 0 0 1-3.44 3.44c-.921.47-1.925.67-3.091.765-1.138.093-2.546.093-4.31.093H9.823c-.603 0-1.146 0-1.573-.038l-.066-.006a21 21 0 0 1-.795-.05c-1.167-.095-2.17-.294-3.092-.764a7.87 7.87 0 0 1-3.44-3.44c-.469-.921-.669-1.925-.764-3.091C0 33.14 0 31.732 0 29.968v-18.27C0 9.936 0 8.528.093 7.39c.095-1.167.295-2.17.765-3.092a7.87 7.87 0 0 1 3.44-3.44C5.218.389 6.221.189 7.388.094 8.527 0 9.935 0 11.7 0m.06 38.889h18.148c1.838 0 3.133-.001 4.144-.084.995-.081 1.593-.234 2.057-.471a5.1 5.1 0 0 0 2.226-2.226c.237-.464.39-1.062.471-2.057.083-1.01.084-2.306.084-4.144V27.89l-7.952-7.951c-.444-.444-.718-.717-.94-.906-.207-.175-.278-.197-.283-.199a.77.77 0 0 0-.477 0c-.005.002-.077.024-.283.199-.222.189-.497.462-.94.906L9.642 38.309c-.225.225-.408.409-.56.564.747.016 1.622.016 2.676.016m27.13-14.927-6.023-6.023c-.397-.397-.752-.753-1.072-1.024-.341-.29-.731-.564-1.222-.723a3.55 3.55 0 0 0-2.193 0c-.491.16-.881.434-1.223.723-.319.271-.674.627-1.071 1.024L7.636 36.387c-.426.427-.81.81-1.086 1.14-.186.223-.444.554-.589.978a3 3 0 0 1-.403-.171 5.1 5.1 0 0 1-2.225-2.226c-.237-.464-.39-1.062-.472-2.057-.082-1.01-.083-2.306-.083-4.144V11.76c0-1.838 0-3.133.083-4.144.082-.995.235-1.592.472-2.057a5.1 5.1 0 0 1 2.225-2.225c.465-.237 1.062-.39 2.057-.472 1.011-.082 2.306-.083 4.144-.083h18.148c1.838 0 3.133 0 4.144.083.995.082 1.593.235 2.057.472a5.1 5.1 0 0 1 2.226 2.225c.237.465.39 1.062.471 2.057.083 1.011.084 2.306.084 4.144zM13.272 10.34a2.932 2.932 0 1 0 0 5.864 2.932 2.932 0 0 0 0-5.865m-5.71 2.932a5.71 5.71 0 1 1 11.42 0 5.71 5.71 0 0 1-11.42 0", clipRule: "evenodd" }) });
-function G(d) {
-  const l = Number(d);
+function G(o) {
+  const l = Number(o);
   if (!Number.isFinite(l) || l <= 0) return "";
   const r = ["B", "KB", "MB", "GB"];
   let a = l, s = 0;
@@ -25,14 +25,14 @@ function G(d) {
     a /= 1024, s++;
   return `${a >= 10 || s === 0 ? a.toFixed(0) : a.toFixed(1)} ${r[s]}`;
 }
-function S(d) {
+function S(o) {
   return new Promise((l, r) => {
     const a = new FileReader();
-    a.onload = () => l(String(a.result || "")), a.onerror = () => r(new Error("Could not read image file.")), a.readAsDataURL(d);
+    a.onload = () => l(String(a.result || "")), a.onerror = () => r(new Error("Could not read image file.")), a.readAsDataURL(o);
   });
 }
 function W({
-  id: d,
+  id: o,
   name: l,
   label: r,
   tooltip: a,
@@ -49,7 +49,7 @@ function W({
   accept: I = "image/*",
   className: k = ""
 }) {
-  const x = d || l || "nxp-ddimg", m = y(null), [A, p] = V(!1), { url: o = "", filename: P = "", filesize: w = "" } = z || {}, f = (e) => {
+  const x = o || l || "nxp-ddimg", m = y(null), [A, p] = V(!1), { url: d = "", filename: P = "", filesize: w = "" } = z || {}, f = (e) => {
     h == null || h({
       url: (e == null ? void 0 : e.url) || "",
       filename: (e == null ? void 0 : e.filename) || "",
@@ -139,8 +139,8 @@ function W({
           }
         ),
         g && /* @__PURE__ */ i("span", { className: "nxp-field__hint", children: g }),
-        o && /* @__PURE__ */ t("div", { className: "nxp-ddimg__file-row", children: [
-          /* @__PURE__ */ i("div", { className: "nxp-ddimg__file-thumb", children: /* @__PURE__ */ i("img", { src: o, alt: "" }) }),
+        d && /* @__PURE__ */ t("div", { className: "nxp-ddimg__file-row", children: [
+          /* @__PURE__ */ i("div", { className: "nxp-ddimg__file-thumb", children: /* @__PURE__ */ i("img", { src: d, alt: "" }) }),
           /* @__PURE__ */ t("div", { className: "nxp-ddimg__file-info", children: [
             /* @__PURE__ */ i("span", { className: "nxp-ddimg__file-name", children: P || "Image" }),
             w ? /* @__PURE__ */ i("span", { className: "nxp-ddimg__file-size", children: w }) : null
@@ -158,8 +158,8 @@ function W({
           )
         ] }),
         F && /* @__PURE__ */ t("div", { className: "nxp-ddimg__preview-wrap", children: [
-          /* @__PURE__ */ i("span", { className: "nxp-ddimg__preview-label", children: M }),
-          /* @__PURE__ */ i("div", { className: `nxp-ddimg__preview${o ? "" : " nxp-ddimg__preview--empty"}`, children: o ? /* @__PURE__ */ i("img", { src: o, alt: "" }) : /* @__PURE__ */ i(q, {}) })
+          /* @__PURE__ */ i("span", { className: "nxp-mt-10 nxp-mt-12 nxp-title-label", children: M }),
+          /* @__PURE__ */ i("div", { className: `nxp-ddimg__preview${d ? "" : " nxp-ddimg__preview--empty"}`, children: d ? /* @__PURE__ */ i("img", { src: d, alt: "" }) : /* @__PURE__ */ i(q, {}) })
         ] })
       ]
     }
