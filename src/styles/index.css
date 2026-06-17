@@ -826,6 +826,19 @@ input.nxp-input--invalid:focus {
   color: var(--nxp-text-muted);
   margin-left: auto;
 }
+.nxp-dropdown__header {
+  padding: var(--nxp-space-4) var(--nxp-space-10);
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-xs);
+  font-weight: var(--nxp-font-semibold);
+  color: var(--nxp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
 .nxp-dropdown__divider {
   height: 1px;
   background: var(--nxp-border);
@@ -2483,6 +2496,15 @@ input.nxp-search__input:focus {
   font-family: var(--nxp-font);
   font-size: var(--nxp-text-md);
   color: var(--nxp-text);
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius);
+  border-spacing: 0px;
+}
+.nxp-table thead th:last-child {
+  border-top-right-radius: var(--nxp-radius);
+}
+.nxp-table thead th:first-child {
+  border-top-left-radius: var(--nxp-radius);
 }
 .nxp-table thead th {
   padding: var(--nxp-space-10) var(--nxp-space-15);
