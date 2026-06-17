@@ -21,7 +21,7 @@ function Dropdown({
   const containerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const visibleOptions = useMemo(() => options.filter((o) => !o.divider), [options]);
+  const visibleOptions = useMemo(() => options.filter((o) => !o.divider && !o.header), [options]);
 
   /* Avoid .find() on every render */
   const selectedLabel = useMemo(
@@ -140,6 +140,13 @@ function Dropdown({
           {options.map((opt, idx) => {
             if (opt.divider) {
               return <div key={idx} className="nxp-dropdown__divider" />;
+            }
+            if (opt.header) {
+              return (
+                <div key={idx} className="nxp-dropdown__header" role="presentation">
+                  {opt.header}
+                </div>
+              );
             }
             visIdx++;
             const vIdx = visIdx;

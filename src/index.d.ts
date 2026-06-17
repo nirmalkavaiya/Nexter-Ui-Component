@@ -427,10 +427,18 @@ export interface DropdownDivider {
   divider: true;
   label?: never;
   value?: never;
+  header?: never;
+}
+
+export interface DropdownHeader {
+  header: string;
+  divider?: never;
+  label?: never;
+  value?: never;
 }
 
 export interface DropdownProps {
-  options?: (DropdownOption | DropdownDivider)[];
+  options?: (DropdownOption | DropdownDivider | DropdownHeader)[];
   value?: string | number;
   onChange?: (value: string | number) => void;
   placeholder?: string;
