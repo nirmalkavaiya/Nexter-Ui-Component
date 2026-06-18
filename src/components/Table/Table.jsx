@@ -10,8 +10,7 @@ function Table({
   className = '',
 }) {
   return (
-    <div className="nxp-overflow-x-auto">
-      <table className={`nxp-table${striped ? ' nxp-table--striped' : ''} ${className}`}>
+    <table className={`nxp-table${striped ? ' nxp-table--striped' : ''} ${className}`}>
         <thead>
           <tr>
             {columns.map((col) => (
@@ -46,7 +45,6 @@ function Table({
           ))}
         </tbody>
       </table>
-    </div>
   );
 }
 

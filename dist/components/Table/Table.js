@@ -1,31 +1,31 @@
-import { jsx as e, jsxs as r } from "react/jsx-runtime";
+import { jsxs as a, jsx as e } from "react/jsx-runtime";
 import "react";
 function s({
   columns: i = [],
   rows: d = [],
   striped: p = !1,
-  actions: t,
+  actions: n,
   actionsLabel: c = "Actions",
-  thClassName: n = "",
+  thClassName: l = "",
   className: x = ""
 }) {
-  return /* @__PURE__ */ e("div", { className: "nxp-overflow-x-auto", children: /* @__PURE__ */ r("table", { className: `nxp-table${p ? " nxp-table--striped" : ""} ${x}`, children: [
-    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ r("tr", { children: [
-      i.map((l) => /* @__PURE__ */ e(
+  return /* @__PURE__ */ a("table", { className: `nxp-table${p ? " nxp-table--striped" : ""} ${x}`, children: [
+    /* @__PURE__ */ e("thead", { children: /* @__PURE__ */ a("tr", { children: [
+      i.map((t) => /* @__PURE__ */ e(
         "th",
         {
-          className: `nxp-title-label${l.numeric ? " nxp-table__num" : ""}${n ? " " + n : ""}`,
-          children: l.label
+          className: `nxp-title-label${t.numeric ? " nxp-table__num" : ""}${l ? " " + l : ""}`,
+          children: t.label
         },
-        l.key
+        t.key
       )),
-      t && /* @__PURE__ */ e("th", { className: `nxp-title-label nxp-text-right${n ? " " + n : ""}`, children: c })
+      n && /* @__PURE__ */ e("th", { className: `nxp-title-label nxp-text-right${l ? " " + l : ""}`, children: c })
     ] }) }),
-    /* @__PURE__ */ e("tbody", { children: d.map((l, h) => /* @__PURE__ */ r("tr", { children: [
-      i.map((a) => /* @__PURE__ */ e("td", { className: a.numeric ? "nxp-table__num" : "", children: l[a.key] }, a.key)),
-      t && /* @__PURE__ */ e("td", { children: /* @__PURE__ */ e("div", { className: "nxp-table__actions", children: t(l) }) })
-    ] }, h)) })
-  ] }) });
+    /* @__PURE__ */ e("tbody", { children: d.map((t, b) => /* @__PURE__ */ a("tr", { children: [
+      i.map((r) => /* @__PURE__ */ e("td", { className: r.numeric ? "nxp-table__num" : "", children: t[r.key] }, r.key)),
+      n && /* @__PURE__ */ e("td", { children: /* @__PURE__ */ e("div", { className: "nxp-table__actions", children: n(t) }) })
+    ] }, b)) })
+  ] });
 }
 export {
   s as Table,
