@@ -2389,6 +2389,94 @@ input.nxp-search__input:focus {
 }
 
 /* ============================================================
+   NXP ACCORDION (card variant — drawer style)
+   Each item is a self-contained bordered card; body animates
+   open via a grid-rows transition. Children use single-dash
+   names so they never collide with the BEM Accordion above.
+   ============================================================ */
+.nxp-accordion--cards {
+  /* neutralize the shared .nxp-accordion box so items render as separate cards */
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  gap: var(--nxp-space-20);
+}
+.nxp-accordion-item {
+  border: 1px solid var(--nxp-border);
+  border-radius: var(--nxp-radius-md);
+  background: var(--nxp-bg);
+  overflow: hidden;
+}
+.nxp-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nxp-space-12);
+  padding: var(--nxp-space-16);
+  border: none;
+  background: var(--nxp-bg);
+  cursor: pointer;
+  text-align: start;
+  font-family: var(--nxp-font);
+  font-size: var(--nxp-text-md);
+  line-height: 17px;
+  font-weight: var(--nxp-font-medium);
+  color: var(--nxp-text);
+  transition: background var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-accordion-header:hover {
+  background: var(--nxp-wash-hover);
+}
+.nxp-accordion-header:focus-visible {
+  outline: 2px solid var(--nxp-brand);
+  outline-offset: -2px;
+}
+.nxp-accordion-title {
+  flex: 1;
+  min-width: 0;
+}
+/* Toggle icon (arrow / plus) */
+.nxp-accordion-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--nxp-text-faint);
+  transition: transform var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-accordion-toggle--arrow.is-open {
+  transform: rotate(180deg);
+}
+.nxp-accordion-toggle--plus.is-open {
+  transform: rotate(45deg);
+}
+/* Body — animated via grid-template-rows (0fr → 1fr) */
+.nxp-accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--nxp-dur-hover) var(--nxp-ease);
+}
+.nxp-accordion-item.is-open .nxp-accordion-content {
+  grid-template-rows: 1fr;
+}
+.nxp-accordion-content__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.nxp-accordion-body {
+  padding: 14px;
+  border-top: 1px solid var(--nxp-border);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nxp-accordion-content,
+  .nxp-accordion-toggle {
+    transition: none;
+  }
+}
+
+/* ============================================================
    COMBOBOX
    ============================================================ */
 .nxp-combobox {

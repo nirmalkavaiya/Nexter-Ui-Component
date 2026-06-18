@@ -15,6 +15,7 @@ function Checkbox({
   className = '',
   lock = false,
   onLockClick,
+  ...rest
 }) {
   const isControlled = checked !== undefined;
   const [internal, setInternal] = useState(false);
@@ -91,6 +92,7 @@ function Checkbox({
         tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => { if (e.key === ' ') { e.preventDefault(); handleChange(); } }}
         onClick={(e) => { e.preventDefault(); handleChange(); }}
+        {...rest}
       >
         {isChecked && (
           <svg className="nxp-checkbox__check" viewBox="0 0 9 7" fill="none">

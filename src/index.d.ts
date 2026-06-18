@@ -37,6 +37,32 @@ export interface AccordionProps {
 
 export declare const Accordion: React.FC<AccordionProps>;
 
+// ─── NxpAccordion ──────────────────────────────────────────────────────────────
+
+export interface NxpAccordionItem {
+  id: string | number;
+  title: ReactNode;
+  /** String, JSX, or any ReactNode. */
+  content: ReactNode;
+}
+
+export interface NxpAccordionProps {
+  items?: NxpAccordionItem[];
+  /** Initially open item(s). Number = index, string = id; array for multi. */
+  defaultActive?: number | string | (number | string)[];
+  /** Controlled open item(s). When set, the component is controlled. */
+  active?: number | string | (number | string)[];
+  /** Fires on toggle: an id (single) or array of ids (allowMultiple). */
+  onChange?: (active: string | number | null | (string | number)[]) => void;
+  /** Right-side toggle icon. Default 'arrow'. */
+  toggleType?: 'arrow' | 'plus' | 'none';
+  /** Allow multiple panels open simultaneously. Default false. */
+  allowMultiple?: boolean;
+  className?: string;
+}
+
+export declare const NxpAccordion: React.FC<NxpAccordionProps>;
+
 // ─── Alert ───────────────────────────────────────────────────────────────────
 
 export interface AlertProps {

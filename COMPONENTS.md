@@ -112,6 +112,46 @@ import { Accordion } from 'nexter-ui-component';
 
 ---
 
+## NxpAccordion
+
+Card-style accordion (drawer design) — each panel is a self-contained bordered card and the body expands with a smooth `grid-rows` animation. Supports an arrow or plus toggle icon, single/multi open, and controlled or uncontrolled state. Content can be a string, JSX, or any `ReactNode`.
+
+```jsx
+import { NxpAccordion } from 'nexter-ui-component';
+
+const items = [
+  { id: 'post-types', title: 'Included Post Types', content: 'Choose post types…' },
+  { id: 'taxonomies', title: 'Included Taxonomies', content: <CustomPanel /> },
+  { id: 'pages',      title: 'Important Pages',      content: 'Pick pages…' },
+];
+
+// Uncontrolled — first panel open, arrow toggle
+<NxpAccordion items={items} defaultActive={0} toggleType="arrow" />
+
+// Multi-open with plus toggle
+<NxpAccordion items={items} allowMultiple toggleType="plus" defaultActive={['post-types', 'pages']} />
+
+// Controlled
+const [active, setActive] = useState('post-types');
+<NxpAccordion items={items} active={active} onChange={setActive} />
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `Array<{id, title, content}>` | `[]` | Accordion items. `content` may be string / JSX / ReactNode |
+| `defaultActive` | `number \| string \| Array` | `0` | Initially open item — number = index, string = id (array for multi) |
+| `active` | `number \| string \| Array` | — | Controlled open item(s); when set the component is controlled |
+| `onChange` | `function` | — | Fires on toggle — `(id)` in single mode, `(ids[])` when `allowMultiple` |
+| `toggleType` | `'arrow' \| 'plus' \| 'none'` | `'arrow'` | Right-side toggle icon (arrow rotates 180°, plus rotates to ×) |
+| `allowMultiple` | `boolean` | `false` | Allow multiple panels open simultaneously |
+| `className` | `string` | `''` | Extra wrapper classes |
+
+**Accessibility:** header is a real `<button>` with `aria-expanded` + `aria-controls`; the body is a `role="region"` labelled by its header. Keyboard (Tab/Enter/Space) and `:focus-visible` are supported, and the open animation honors `prefers-reduced-motion`.
+
+**Styling:** `nxp-accordion` (+ `nxp-accordion--cards`), `nxp-accordion-item`, `nxp-accordion-header`, `nxp-accordion-title`, `nxp-accordion-toggle` (`--arrow` / `--plus`), `nxp-accordion-content`, `nxp-accordion-body` — all driven by `--nxp-*` tokens (border, radius, spacing, typography, easing).
+
+---
+
 ## Alert
 
 Inline status alert with severity variants.

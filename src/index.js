@@ -69,6 +69,7 @@ export { ThemeProvider, useTheme }     from './components/ThemeProvider';
 
 // v1.9.23 additions
 export { default as Container }        from './components/Container';
+export { default as NxpAccordion }     from './components/NxpAccordion';
 
 // v2.1.6 additions
 export { default as FeatureList } from './components/FeatureList';
