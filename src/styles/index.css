@@ -3537,7 +3537,7 @@ input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); h
 .nxp-num__step--dec { border-right: 1.5px solid var(--nxp-border); }
 .nxp-num__step--inc { border-left: 1.5px solid var(--nxp-border); }
 .nxp-num__field { display: flex; align-items: center; }
-.nxp-num__input { width: 72px; height: 36px; border: none; background: transparent; font-family: var(--nxp-font); font-size: var(--nxp-text-md); font-weight: var(--nxp-font-medium); color: var(--nxp-text); text-align: center; outline: none; -moz-appearance: textfield; }
+.nxp-num__input { width: 72px; height: 36px; min-height: 36px; border: none; background: transparent; font-family: var(--nxp-font); font-size: var(--nxp-text-md); font-weight: var(--nxp-font-medium); color: var(--nxp-text); text-align: center; outline: none; -moz-appearance: textfield; }
 .nxp-num__input::-webkit-outer-spin-button,
 .nxp-num__input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .nxp-num__prefix, .nxp-num__suffix { padding: 0 var(--nxp-space-6); font-size: var(--nxp-text-sm); color: var(--nxp-text-muted); }
