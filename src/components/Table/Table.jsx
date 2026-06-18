@@ -1,17 +1,32 @@
 import React from 'react';
 
-function Table({ columns = [], rows = [], striped = false, actions, className = '' }) {
+function Table({
+  columns = [],
+  rows = [],
+  striped = false,
+  actions,
+  actionsLabel = 'Actions',
+  thClassName = '',
+  className = '',
+}) {
   return (
     <div className="nxp-overflow-x-auto">
       <table className={`nxp-table${striped ? ' nxp-table--striped' : ''} ${className}`}>
         <thead>
           <tr>
             {columns.map((col) => (
-              <th key={col.key} className={col.numeric ? 'nxp-table__num' : ''}>
+              <th
+                key={col.key}
+                className={`nxp-title-label${col.numeric ? ' nxp-table__num' : ''}${thClassName ? ' ' + thClassName : ''}`}
+              >
                 {col.label}
               </th>
             ))}
-            {actions && <th className="nxp-text-right">Actions</th>}
+            {actions && (
+              <th className={`nxp-title-label nxp-text-right${thClassName ? ' ' + thClassName : ''}`}>
+                {actionsLabel}
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>

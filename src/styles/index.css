@@ -2599,9 +2599,6 @@ input.nxp-search__input:focus {
   background: var(--nxp-color-border-subtle);
   border-bottom: 1px solid var(--nxp-border);
   text-align: left;
-  font-size: var(--nxp-text-sm);
-  font-weight: var(--nxp-font-semibold);
-  color: var(--nxp-text-muted);
   white-space: nowrap;
 }
 .nxp-table thead th.nxp-text-right {

@@ -1061,6 +1061,10 @@ export interface TableProps<T = Record<string, unknown>> {
   rows?: T[];
   striped?: boolean;
   actions?: (row: T) => ReactNode;
+  /** Label for the actions column header (default 'Actions'). */
+  actionsLabel?: string;
+  /** Extra class applied to every <th> in the header row. */
+  thClassName?: string;
   className?: string;
 }
 
