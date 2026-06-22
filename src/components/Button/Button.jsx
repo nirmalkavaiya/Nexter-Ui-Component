@@ -119,7 +119,7 @@ function Button({
   const classes = cn(
     'nxp-btn',
     `nxp-btn--${variant}`,
-    size && size !== 'md' ? `nxp-btn--${size}` : '',
+    size ? `nxp-btn--${size}` : '',
     icon     ? 'nxp-btn--icon'     : '',
     loading  ? 'nxp-btn--loading'  : '',
     isDisabled && isAnchor ? 'nxp-btn--disabled' : '',

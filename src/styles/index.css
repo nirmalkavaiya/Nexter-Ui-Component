@@ -285,6 +285,11 @@ a.nxp-btn:active {
 }
 
 /* Sizes */
+.nxp-btn--md {
+  height: var(--nxp-h-md);
+  padding: 0 var(--nxp-space-12);
+  font-size: var(--nxp-text-md);
+}
 .nxp-btn--sm {
   height: var(--nxp-h-sm);
   padding: 0 var(--nxp-space-10);

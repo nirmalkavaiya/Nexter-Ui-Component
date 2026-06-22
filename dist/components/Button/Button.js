@@ -4,17 +4,17 @@ import { cn as w } from "../../lib/utils.js";
 function I({
   /* ── visual ── */
   variant: f = "secondary",
-  size: o,
+  size: p,
   icon: x = !1,
   loading: e = !1,
-  disabled: m = !1,
+  disabled: u = !1,
   /* ── content ── */
-  children: u,
+  children: m,
   className: v = "",
   /* ── link / anchor ── */
-  href: a,
-  target: d,
-  rel: l,
+  href: o,
+  target: l,
+  rel: d,
   download: b,
   /* ── element override ── */
   as: h,
@@ -25,38 +25,38 @@ function I({
   /* ── anything else (data-*, aria-*, etc.) ── */
   ...P
 }) {
-  const n = m || e, r = h || (a ? "a" : "button"), c = r === "a" || typeof r != "string" && a, _ = l !== void 0 ? l : d === "_blank" ? "nofollow noopener noreferrer" : void 0, t = {}, i = {};
-  c ? (t.href = n ? void 0 : a, t.target = d, t.rel = _, b !== void 0 && (t.download = b), n && (t.tabIndex = -1)) : (i.type = y, i.disabled = n);
+  const n = u || e, a = h || (o ? "a" : "button"), c = a === "a" || typeof a != "string" && o, _ = d !== void 0 ? d : l === "_blank" ? "nofollow noopener noreferrer" : void 0, t = {}, r = {};
+  c ? (t.href = n ? void 0 : o, t.target = l, t.rel = _, b !== void 0 && (t.download = b), n && (t.tabIndex = -1)) : (r.type = y, r.disabled = n);
   const j = w(
     "nxp-btn",
     `nxp-btn--${f}`,
-    o && o !== "md" ? `nxp-btn--${o}` : "",
+    p ? `nxp-btn--${p}` : "",
     x ? "nxp-btn--icon" : "",
     e ? "nxp-btn--loading" : "",
     n && c ? "nxp-btn--disabled" : "",
     v
   ), D = g(
-    (p) => {
+    (i) => {
       if (n) {
-        p.preventDefault(), p.stopPropagation();
+        i.preventDefault(), i.stopPropagation();
         return;
       }
-      s == null || s(p);
+      s == null || s(i);
     },
     [n, s]
   );
   return /* @__PURE__ */ N(
-    r,
+    a,
     {
       className: j,
       "aria-disabled": n || void 0,
       onClick: D,
       ...t,
-      ...i,
+      ...r,
       ...P,
       children: [
         e && /* @__PURE__ */ $("span", { className: "nxp-btn__spinner", "aria-hidden": "true" }),
-        u
+        m
       ]
     }
   );
