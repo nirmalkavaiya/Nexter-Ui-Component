@@ -342,6 +342,7 @@ export interface ConfirmButtonProps {
   variant?: ButtonProps['variant'];
   disabled?: boolean;
   className?: string;
+  btnClassName?: string;
 }
 
 export declare const ConfirmButton: React.FC<ConfirmButtonProps>;

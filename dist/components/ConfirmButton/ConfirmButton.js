@@ -1,35 +1,36 @@
 import { jsxs as m, jsx as a } from "react/jsx-runtime";
-import { useState as j, useRef as _, useCallback as f, useEffect as d } from "react";
-function B({
-  children: v,
-  label: h,
+import { useState as R, useRef as v, useCallback as f, useEffect as d } from "react";
+function D({
+  children: h,
+  label: k,
   // fallback trigger label when no children
   onConfirm: r,
   /* text — all translatable */
   message: p = "",
   // optional message above actions; empty = hidden
   confirmText: b = "Remove",
-  cancelText: k = "Cancel",
+  cancelText: y = "Cancel",
   /* styling */
   variant: x = "error",
   // 'error' | 'warning' | 'primary'
-  confirmVariant: y,
+  confirmVariant: w,
   // defaults to variant
-  size: N = "md",
+  size: E = "md",
   // 'sm' | 'md'
   disabled: i = !1,
   /* behaviour */
   autoResetMs: s = 0,
   // auto-dismiss confirmation after N ms (0 = never)
-  placement: w = "bottom-end",
+  placement: N = "bottom-end",
   // 'bottom-end' | 'bottom-start' | 'bottom'
-  className: C = ""
+  className: g = "",
+  btnClassName: _ = ""
 }) {
-  const [e, o] = j(!1), c = _(null), l = _(null), n = f(() => {
+  const [e, o] = R(!1), c = v(null), l = v(null), n = f(() => {
     clearTimeout(c.current), o(!1);
-  }, []), E = f(() => {
+  }, []), C = f(() => {
     clearTimeout(c.current), o(!1), r == null || r();
-  }, [r]), g = f(() => {
+  }, [r]), $ = f(() => {
     i || (o(!0), s > 0 && (c.current = setTimeout(() => o(!1), s)));
   }, [i, s]);
   d(() => {
@@ -45,30 +46,30 @@ function B({
     }
     return document.addEventListener("keydown", t), () => document.removeEventListener("keydown", t);
   }, [e, n]), d(() => () => clearTimeout(c.current), []);
-  const L = y ?? x, T = N === "sm" ? " nxp-confirm--sm" : "", $ = v ?? h;
+  const L = w ?? x, T = E === "sm" ? " nxp-confirm--sm" : "", j = h ?? k;
   return /* @__PURE__ */ m(
     "div",
     {
       ref: l,
-      className: `nxp-confirm${T} ${C}`.trim(),
+      className: `nxp-confirm${T} ${g}`.trim(),
       children: [
         /* @__PURE__ */ a(
           "button",
           {
             type: "button",
-            className: `nxp-btn nxp-btn--${x}`,
-            onClick: g,
+            className: `nxp-btn nxp-btn--${x}${_ ? " " + _ : ""}`,
+            onClick: $,
             disabled: i,
             "aria-expanded": e,
             "aria-haspopup": "dialog",
-            children: $
+            children: j
           }
         ),
         e && /* @__PURE__ */ m(
           "div",
           {
             className: "nxp-confirm__popover",
-            "data-placement": w,
+            "data-placement": N,
             role: "dialog",
             "aria-label": "Confirm action",
             "aria-modal": "false",
@@ -81,7 +82,7 @@ function B({
                     type: "button",
                     className: "nxp-confirm__cancel",
                     onClick: n,
-                    children: k
+                    children: y
                   }
                 ),
                 /* @__PURE__ */ a(
@@ -89,7 +90,7 @@ function B({
                   {
                     type: "button",
                     className: `nxp-confirm__ok nxp-confirm__ok--${L}`,
-                    onClick: E,
+                    onClick: C,
                     autoFocus: !0,
                     children: b
                   }
@@ -103,6 +104,6 @@ function B({
   );
 }
 export {
-  B as ConfirmButton,
-  B as default
+  D as ConfirmButton,
+  D as default
 };

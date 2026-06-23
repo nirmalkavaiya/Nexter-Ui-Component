@@ -21,6 +21,7 @@ function ConfirmButton({
   placement     = 'bottom-end',   // 'bottom-end' | 'bottom-start' | 'bottom'
 
   className     = '',
+  btnClassName  = '',
 }) {
   const [open, setOpen] = useState(false);
   const timerRef        = useRef(null);
@@ -79,7 +80,7 @@ function ConfirmButton({
       {/* ── Trigger button ── */}
       <button
         type="button"
-        className={`nxp-btn nxp-btn--${variant}`}
+        className={`nxp-btn nxp-btn--${variant}${btnClassName ? ' ' + btnClassName : ''}`}
         onClick={openConfirm}
         disabled={disabled}
         aria-expanded={open}
