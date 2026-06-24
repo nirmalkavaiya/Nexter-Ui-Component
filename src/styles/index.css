@@ -5326,6 +5326,7 @@ input.nxp-border-hover:hover, input.nxp-border-hover:focus, div.nxp-border-hover
 .nxp-bg-grad { background: linear-gradient(93.13deg, var(--nxp-color-primary) 0.37%, var(--nxp-color-primary-active) 116.12%); }
 .nxp-bg-tran { background: transparent !important;}
 .nxp-bg-brand-soft:hover { background: var(--nxp-brand-soft); color: var(--nxp-brand); }
+.nxp-bg-hover-default:hover { background: var(--nxp-color-bg); }
 .nxp-bg-color-error {background: var(--nxp-color-error);}
 .nxp-bg-warning-light { background: var(--nxp-color-warning-light); }
 .nxp-bg-color-success {  background: var(--nxp-color-success); }
