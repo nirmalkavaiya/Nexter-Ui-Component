@@ -43,11 +43,11 @@ function FeatureToggleCard({
 
   /* feature-level badge (backward compat) */
   showBadge    = false,
-  badgeText    = 'BETA',
+  badgeText    = '',
   badgeVariant = 'beta',
 
   /* docs */
-  docsLabel = 'Read Docs',
+  docsLabel = '',
   docsHref,
   onDocsClick,
 
