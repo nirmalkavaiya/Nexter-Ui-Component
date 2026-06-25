@@ -10,6 +10,7 @@ function Toggle({
   className = '',
   isPro = false,
   onProClick,
+  ...rest
 }) {
   // Back-compat: older callers passed the click handler as `isPro`.
   const proClick = typeof isPro === 'function' ? isPro : onProClick;
@@ -75,6 +76,8 @@ function Toggle({
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
+      aria-label={rest['aria-label'] ?? (typeof label === 'string' ? label : undefined)}
+      {...rest}
     >
       <span className="nxp-toggle__track">
         <span className="nxp-toggle__thumb" />

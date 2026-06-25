@@ -11,6 +11,7 @@ function Dropdown({
   className = '',
   maxHeight,
   menuStyle,
+  ...rest
 }) {
   const isControlled = value !== undefined;
   const [internal, setInternal] = useState('');
@@ -122,6 +123,7 @@ function Dropdown({
         aria-expanded={open}
         onClick={handleTriggerClick}
         onKeyDown={handleKeyDown}
+        {...rest}
       >
         <span className={selected ? 'text-nxp-text' : 'text-nxp-text-faint'}>
           {selectedLabel || placeholder}

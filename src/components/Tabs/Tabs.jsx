@@ -46,9 +46,11 @@ function Tabs({
         {tabs.map((tab) => (
           <React.Fragment key={tab.id}>
             <button
+              id={`nxp-tab-${tab.id}`}
               className={`nxp-tabs__tab${current === tab.id ? ' is-active' : ''}`}
               role="tab"
               aria-selected={current === tab.id}
+              aria-controls={`nxp-panel-${tab.id}`}
               onClick={() => handleTab(tab.id)}
             >
               {tab.label}
@@ -70,7 +72,12 @@ function Tabs({
         ))}
       </div>
       {activeTabObj && activeTabObj.content && (
-        <div className={`nxp-tabs__panel${isVertical ? ' nxp-tabs__content' : ''}`} role="tabpanel">
+        <div
+          id={`nxp-panel-${current}`}
+          className={`nxp-tabs__panel${isVertical ? ' nxp-tabs__content' : ''}`}
+          role="tabpanel"
+          aria-labelledby={`nxp-tab-${current}`}
+        >
           {activeTabObj.content}
         </div>
       )}

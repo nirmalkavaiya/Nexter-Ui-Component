@@ -16,13 +16,15 @@ function Table({
             {columns.map((col) => (
               <th
                 key={col.key}
+                scope="col"
                 className={`nxp-title-label${col.numeric ? ' nxp-table__num' : ''}${thClassName ? ' ' + thClassName : ''}`}
+                aria-sort={col.sortDir === 'asc' ? 'ascending' : col.sortDir === 'desc' ? 'descending' : col.sortDir === 'none' ? 'none' : undefined}
               >
                 {col.label}
               </th>
             ))}
             {actions && (
-              <th className={`nxp-title-label nxp-text-right${thClassName ? ' ' + thClassName : ''}`}>
+              <th scope="col" className={`nxp-title-label nxp-text-right${thClassName ? ' ' + thClassName : ''}`}>
                 {actionsLabel}
               </th>
             )}
