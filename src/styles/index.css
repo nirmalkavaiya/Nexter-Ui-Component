@@ -2055,6 +2055,14 @@ input.nxp-search__input:focus {
   border-color: var(--nxp-brand);
   box-shadow: var(--nxp-ring);
 }
+input[type="search"].nxp-search__input::-webkit-search-decoration,
+input[type="search"].nxp-search__input::-webkit-search-cancel-button,
+input[type="search"].nxp-search__input::-webkit-search-results-button,
+input[type="search"].nxp-search__input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
 .nxp-search__clear {
   position: absolute;
   right: 8px;
