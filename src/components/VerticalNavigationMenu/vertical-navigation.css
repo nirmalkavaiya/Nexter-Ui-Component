@@ -432,6 +432,9 @@
 .nxp-nav--dashboard .nxp-nav__child-wrap {
   margin: 0 0 var(--nxp-space-10) var(--nxp-space-12);
 }
+.nxp-nav--dashboard .nxp-nav__children-inner .nxp-nav__child-wrap:last-child {
+  margin-bottom: 0;
+}
 
 .nxp-nav--dashboard .nxp-nav__link--child.nxp-nav__link--active::after {
   content: '';
