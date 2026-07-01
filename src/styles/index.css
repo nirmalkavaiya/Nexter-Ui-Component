@@ -2597,6 +2597,7 @@ input[type="search"].nxp-search__input::-webkit-search-results-decoration {
     overflow-x: auto;
   }
 }
+.nxp-table-wrap { width: 100%; }
 .nxp-table {
   width: 100%;
   border-collapse: unset;
