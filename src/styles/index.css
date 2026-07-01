@@ -5024,6 +5024,12 @@ input.nxp-num__input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .nxp-overflow-visible  { overflow: visible; }
 .nxp-top-0             { top: 0; }
 
+@media (max-width: 475px) {
+  .nxp-overflow-visible .nxp-modal__body {
+    overflow: visible;
+  }
+}
+
 /* ── Common Dashboard Shorthand Helpers ──────────────────────── */
 
 /* Centered content (both axes) */

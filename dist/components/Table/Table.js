@@ -1,4 +1,4 @@
-import { jsxs as a, jsx as n } from "react/jsx-runtime";
+import { jsx as n, jsxs as a } from "react/jsx-runtime";
 import "react";
 function m({
   columns: l = [],
@@ -9,7 +9,7 @@ function m({
   thClassName: r = "",
   className: p = ""
 }) {
-  return /* @__PURE__ */ a("table", { className: `nxp-table${s ? " nxp-table--striped" : ""} ${p}`, children: [
+  return /* @__PURE__ */ n("div", { className: "nxp-table-wrap", children: /* @__PURE__ */ a("table", { className: `nxp-table${s ? " nxp-table--striped" : ""} ${p}`, children: [
     /* @__PURE__ */ n("thead", { children: /* @__PURE__ */ a("tr", { children: [
       l.map((e) => /* @__PURE__ */ n(
         "th",
@@ -27,7 +27,7 @@ function m({
       l.map((i) => /* @__PURE__ */ n("td", { className: i.numeric ? "nxp-table__num" : "", children: e[i.key] }, i.key)),
       t && /* @__PURE__ */ n("td", { children: /* @__PURE__ */ n("div", { className: "nxp-table__actions", children: t(e) }) })
     ] }, x)) })
-  ] });
+  ] }) });
 }
 export {
   m as Table,
