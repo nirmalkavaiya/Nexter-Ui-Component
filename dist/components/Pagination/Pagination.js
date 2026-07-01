@@ -1,18 +1,18 @@
-import { jsxs as f, jsx as l } from "react/jsx-runtime";
-import { useState as v, useCallback as s, useMemo as g } from "react";
-function k({ page: c, totalPages: i = 1, onChange: a, showPrevNext: p = !0, className: m = "" }) {
-  const r = c !== void 0, [u, d] = v(1), n = r ? c : u, e = s(
+import { jsxs as b, jsx as i } from "react/jsx-runtime";
+import { useState as k, useCallback as l, useMemo as v } from "react";
+function f({ page: c, totalPages: e = 1, onChange: o, showPrevNext: p = !0, className: d = "" }) {
+  const s = c !== void 0, [u, m] = k(1), n = s ? c : u, r = l(
     (t) => {
-      const o = Math.min(i, Math.max(1, t));
-      r || d(o), a && a(o);
+      const a = Math.min(e, Math.max(1, t));
+      s || m(a), o && o(a);
     },
-    [r, a, i]
-  ), b = g(
-    () => Array.from({ length: i }, (t, o) => o + 1),
-    [i]
-  ), x = s(() => e(n - 1), [e, n]), _ = s(() => e(n + 1), [e, n]);
-  return /* @__PURE__ */ f("nav", { className: `nxp-pagination ${m}`, "aria-label": "Pagination", children: [
-    p && /* @__PURE__ */ l(
+    [s, o, e]
+  ), h = v(
+    () => Array.from({ length: e }, (t, a) => a + 1),
+    [e]
+  ), x = l(() => r(n - 1), [r, n]), g = l(() => r(n + 1), [r, n]);
+  return /* @__PURE__ */ b("nav", { className: `nxp-pagination nxp-sm-flex-wrap ${d}`, "aria-label": "Pagination", children: [
+    p && /* @__PURE__ */ i(
       "button",
       {
         type: "button",
@@ -20,34 +20,34 @@ function k({ page: c, totalPages: i = 1, onChange: a, showPrevNext: p = !0, clas
         onClick: x,
         disabled: n === 1,
         "aria-label": "Previous page",
-        children: "‹"
+        children: /* @__PURE__ */ i("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: /* @__PURE__ */ i("polyline", { points: "15 18 9 12 15 6" }) })
       }
     ),
-    b.map((t) => /* @__PURE__ */ l(
+    h.map((t) => /* @__PURE__ */ i(
       "button",
       {
         type: "button",
         className: `nxp-pagination__item${n === t ? " is-active" : ""}`,
-        onClick: () => e(t),
+        onClick: () => r(t),
         "aria-current": n === t ? "page" : void 0,
         children: t
       },
       t
     )),
-    p && /* @__PURE__ */ l(
+    p && /* @__PURE__ */ i(
       "button",
       {
         type: "button",
         className: "nxp-pagination__item nxp-pagination__item--next",
-        onClick: _,
-        disabled: n === i,
+        onClick: g,
+        disabled: n === e,
         "aria-label": "Next page",
-        children: "›"
+        children: /* @__PURE__ */ i("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: /* @__PURE__ */ i("polyline", { points: "9 18 15 12 9 6" }) })
       }
     )
   ] });
 }
 export {
-  k as Pagination,
-  k as default
+  f as Pagination,
+  f as default
 };
