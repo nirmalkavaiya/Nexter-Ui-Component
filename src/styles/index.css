@@ -2591,6 +2591,12 @@ input[type="search"].nxp-search__input::-webkit-search-results-decoration {
 /* ============================================================
    TABLE
    ============================================================ */
+@media (max-width: 680px) {
+  .nxp-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
 .nxp-table {
   width: 100%;
   border-collapse: unset;
