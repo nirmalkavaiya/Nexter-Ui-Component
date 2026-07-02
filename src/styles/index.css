@@ -3634,7 +3634,7 @@ input.nxp-copy__input { flex: 1; min-width: 0; padding: 0 var(--nxp-space-12); h
 .nxp-num--disabled { opacity: .55; pointer-events: none; }
 .nxp-num--error .nxp-num__wrap { border-color: var(--nxp-error); }
 .nxp-num__label { font-size: var(--nxp-text-md); font-weight: var(--nxp-font-medium); color: var(--nxp-text); }
-.nxp-num__wrap { display: inline-flex; align-items: stretch; border: 1.5px solid var(--nxp-border); border-radius: var(--nxp-radius); overflow: hidden; background: var(--nxp-bg); width: fit-content; transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease); }
+.nxp-num__wrap { display: inline-flex; align-items: stretch; border: 1px solid var(--nxp-border); border-radius: var(--nxp-radius); overflow: hidden; background: var(--nxp-bg); width: -moz-fit-content; width: fit-content; transition: border-color var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease); }
 .nxp-num__wrap:focus-within { border-color: var(--nxp-brand); box-shadow: 0 0 0 3px var(--nxp-brand-soft); }
 .nxp-num__step { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 36px; border: none; background: var(--nxp-bg-alt); color: var(--nxp-text-muted); cursor: pointer; transition: background var(--nxp-dur-hover) var(--nxp-ease), color var(--nxp-dur-hover) var(--nxp-ease); flex-shrink: 0; }
 .nxp-num__step:hover:not(:disabled) { background: var(--nxp-wash-hover); color: var(--nxp-text); }
