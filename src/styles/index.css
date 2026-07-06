@@ -2440,7 +2440,7 @@ input[type="search"].nxp-search__input::-webkit-search-results-decoration {
   transition: background var(--nxp-dur-hover) var(--nxp-ease);
 }
 .nxp-accordion-header:hover {
-  background: var(--nxp-wash-hover);
+  background: var(--nxp-brand-soft);
 }
 .nxp-accordion-header:focus-visible {
   outline: 2px solid var(--nxp-brand);
