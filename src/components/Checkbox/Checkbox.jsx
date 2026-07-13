@@ -21,6 +21,7 @@ function Checkbox({
   const [internal, setInternal] = useState(false);
   const isChecked = isControlled ? checked : internal;
   const id = useId();
+  const labelId = `${id}-label`;
 
   const handleChange = useCallback(() => {
     if (disabled || lock) return;
@@ -89,6 +90,7 @@ function Checkbox({
         role="checkbox"
         aria-checked={isChecked}
         aria-disabled={disabled}
+        aria-labelledby={label ? labelId : undefined}
         tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => { if (e.key === ' ') { e.preventDefault(); handleChange(); } }}
         onClick={(e) => { e.preventDefault(); handleChange(); }}
@@ -100,7 +102,7 @@ function Checkbox({
           </svg>
         )}
       </div>
-      {label && <span>{label}</span>}
+      {label && <span id={labelId}>{label}</span>}
     </label>
   );
 }
