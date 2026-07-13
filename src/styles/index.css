@@ -1219,14 +1219,16 @@ input.nxp-input--invalid:focus {
   border: 1px solid rgba(255,255,255,0.07);
 }
 .nxp-toast--success {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-  color: #fff;
+  background: #fff;
+  color: var(--nxp-color-text);
+  border: 1px solid #C6F1DD;
+  box-shadow: 0px 16px 20px -8px #110C221A;
 }
 .nxp-toast--success .nxp-toast__desc {
   color: rgba(255,255,255,0.75);
 }
 .nxp-toast--error {
-  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  background: #fff;
   color: #fff;
 }
 .nxp-toast__icon {
