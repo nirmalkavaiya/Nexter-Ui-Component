@@ -1,4 +1,4 @@
-import { jsxs as x, jsx as e, Fragment as W } from "react/jsx-runtime";
+import { jsxs as x, jsx as e, Fragment as m } from "react/jsx-runtime";
 import { useState as D, useCallback as b, useEffect as F } from "react";
 /* empty css                        */
 const G = () => /* @__PURE__ */ e(
@@ -56,7 +56,7 @@ function z(n, r, l) {
   return typeof l == "function" ? l(n, r) : r === n.key;
 }
 function A({ item: n, hasChildren: r, isOpen: l }) {
-  return /* @__PURE__ */ x(W, { children: [
+  return /* @__PURE__ */ x(m, { children: [
     n.icon && /* @__PURE__ */ e("span", { className: "nxp-nav__icon", "aria-hidden": "true", children: n.icon }),
     /* @__PURE__ */ e("span", { className: "nxp-nav__label", children: n.label }),
     n.badge && /* @__PURE__ */ e("span", { className: "nxp-nav__badge", children: n.badge }),
@@ -109,8 +109,7 @@ function H({
     n.disabled ? "nxp-nav__link--disabled" : ""
   ].filter(Boolean).join(" "), _ = {
     "aria-current": y ? "page" : void 0,
-    "aria-expanded": i ? N : void 0,
-    "aria-haspopup": i ? "true" : void 0
+    "aria-expanded": i ? N : void 0
   };
   let f;
   return i ? f = /* @__PURE__ */ e(
@@ -214,7 +213,7 @@ function T({
       p ? p(o) : f(o);
     },
     [L, p]
-  ), m = b(
+  ), B = b(
     (a) => {
       const o = typeof a == "function" ? a(w) : a;
       c ? c(o) : E(o);
@@ -226,12 +225,12 @@ function T({
       const o = new Set(a);
       return j.forEach((d) => {
         d.defaultOpen && o.add(d.key), Array.isArray(d.children) && d.children.some(
-          (V) => S(V, O, C)
+          (W) => S(W, O, C)
         ) && o.add(d.key);
       }), o;
     });
   }, [O]);
-  const B = b(
+  const P = b(
     (a) => {
       M((o) => {
         const d = new Set(o);
@@ -239,12 +238,12 @@ function T({
       });
     },
     [M]
-  ), P = [
+  ), V = [
     "nxp-nav",
     I === "dark" ? "nxp-nav--dark" : "",
     u
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ x("nav", { className: P, "aria-label": "Sidebar navigation", children: [
+  return /* @__PURE__ */ x("nav", { className: V, "aria-label": "Sidebar navigation", children: [
     (h || i) && /* @__PURE__ */ x("div", { className: "nxp-nav__logo-strip", children: [
       h && /* @__PURE__ */ e("div", { className: "nxp-nav__logo-wrap", children: h }),
       /* @__PURE__ */ x("div", { className: "nxp-nav__mobile-menu", children: [
@@ -257,7 +256,7 @@ function T({
             "aria-label": w ? "Close menu" : "Open menu",
             "aria-expanded": w,
             "aria-controls": "nxp-nav-cover",
-            onClick: () => m((a) => !a),
+            onClick: () => B((a) => !a),
             children: /* @__PURE__ */ e(q, {})
           }
         )
@@ -269,7 +268,7 @@ function T({
         id: "nxp-nav-cover",
         className: `nxp-nav__cover${w ? " nxp-nav__cover--open" : ""}`,
         children: [
-          /* @__PURE__ */ e("div", { className: "nxp-nav__inner", role: "list", children: j.map((a) => a.type === "divider" ? /* @__PURE__ */ e("div", { className: "nxp-nav__divider", role: "separator" }, a.key) : a.type === "section" ? /* @__PURE__ */ e("div", { className: "nxp-nav__section-label", "aria-hidden": "true", children: a.label }, a.key) : /* @__PURE__ */ e("div", { role: "listitem", children: /* @__PURE__ */ e(
+          /* @__PURE__ */ e("div", { className: "nxp-nav__inner", children: j.map((a) => a.type === "divider" ? /* @__PURE__ */ e("div", { className: "nxp-nav__divider", role: "separator" }, a.key) : a.type === "section" ? /* @__PURE__ */ e("div", { className: "nxp-nav__section-label", "aria-hidden": "true", children: a.label }, a.key) : /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
             H,
             {
               item: a,
@@ -277,7 +276,7 @@ function T({
               onChange: t,
               depth: 0,
               openGroups: L,
-              toggleGroup: B,
+              toggleGroup: P,
               linkComponent: N,
               isActive: C
             }

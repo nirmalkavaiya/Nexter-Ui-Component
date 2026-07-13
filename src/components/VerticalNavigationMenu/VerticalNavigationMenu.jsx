@@ -178,7 +178,6 @@ function NavItem({
   const ariaProps = {
     'aria-current': isActiveItem ? 'page' : undefined,
     'aria-expanded': hasChildren ? isOpen : undefined,
-    'aria-haspopup': hasChildren ? 'true' : undefined,
   };
 
   let linkNode;
@@ -389,7 +388,7 @@ function VerticalNavigationMenu({
         id="nxp-nav-cover"
         className={`nxp-nav__cover${mobileOpen ? ' nxp-nav__cover--open' : ''}`}
       >
-        <div className="nxp-nav__inner" role="list">
+        <div className="nxp-nav__inner">
           {visibleItems.map((item) => {
             if (item.type === 'divider') {
               return (
@@ -404,7 +403,7 @@ function VerticalNavigationMenu({
               );
             }
             return (
-              <div key={item.key} role="listitem">
+              <div key={item.key}>
                 <NavItem
                   item={item}
                   activeKey={resolvedActiveKey}
