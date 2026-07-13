@@ -189,7 +189,7 @@ const css = `/* ============================================================
   /* Text */
   --nxp-color-text:         #1a1a1a;
   --nxp-color-text-muted:   #666666;
-  --nxp-color-text-faint:   #b3b3b3;
+  --nxp-color-text-faint:   #767676;
   --nxp-color-text-inverse: #ffffff;
 
   /* Background */
