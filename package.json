@@ -346,6 +346,7 @@
     "setup-theme": "node scripts/setup-theme.js",
     "build:tokens": "node style-dictionary.config.mjs",
     "preview": "vite preview",
+    "ship": "node scripts/ship.mjs",
     "release": "gh release create v$(node -p \"require('./package.json').version\") --generate-notes --title \"v$(node -p \\\"require('./package.json').version\\\")\" || echo 'Release already exists or gh CLI not configured'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

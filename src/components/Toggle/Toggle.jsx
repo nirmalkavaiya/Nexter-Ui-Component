@@ -7,9 +7,11 @@ function Toggle({
   disabled = false,
   variant,
   label,
+  ariaLabel,
   className = '',
   isPro = false,
   onProClick,
+  'aria-label': ariaLabelAttr,
   ...rest
 }) {
   // Back-compat: older callers passed the click handler as `isPro`.
@@ -76,7 +78,7 @@ function Toggle({
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      aria-label={rest['aria-label'] ?? (typeof label === 'string' ? label : undefined)}
+      aria-label={ariaLabel ?? ariaLabelAttr ?? (typeof label === 'string' ? label : undefined)}
       {...rest}
     >
       <span className="nxp-toggle__track">
