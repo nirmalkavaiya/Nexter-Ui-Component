@@ -21,9 +21,7 @@ if (dirty) {
 // 3. Bump patch version (creates a version commit + tag automatically)
 run('npm version patch');
 
-const version = JSON.parse(
-  execSync('node -e "process.stdout.write(require(\'./package.json\').version)"').toString(),
-);
+const version = execSync('node -e "process.stdout.write(require(\'./package.json\').version)"').toString().trim();
 console.log(`\n✔ Version bumped to ${version}`);
 
 // 4. Push commits + tag → GitHub Actions creates the release
