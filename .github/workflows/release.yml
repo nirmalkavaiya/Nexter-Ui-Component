@@ -10,66 +10,56 @@ permissions:
 
 jobs:
   release:
-    name: Create GitHub Release
+    name: Bump Version & Create Release
     runs-on: ubuntu-latest
+    # Skip when the bot's own version-bump commit triggers this workflow
+    if: "!startsWith(github.event.head_commit.message, 'chore: release v')"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0          # full history needed for release notes
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Read package version
-        id: pkg
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Configure git
         run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump patch version
+        id: bump
+        run: |
+          npm version patch --no-git-tag-version
           VERSION=$(node -e "process.stdout.write(require('./package.json').version)")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Detected version: $VERSION"
+          echo "Bumped to v$VERSION"
 
-      - name: Check if GitHub Release already exists
-        id: release_check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit & tag version bump
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/tags/v${{ steps.pkg.outputs.version }}")
-          echo "API status code: $STATUS"
-          if [ "$STATUS" = "200" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-            echo "Release v${{ steps.pkg.outputs.version }} already exists — skipping."
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "Release v${{ steps.pkg.outputs.version }} not found — will create."
-          fi
+          git add package.json
+          git commit -m "chore: release v${{ steps.bump.outputs.version }}"
+          git tag "v${{ steps.bump.outputs.version }}"
+          git push --follow-tags
 
-      - name: Ensure git tag exists
-        if: steps.release_check.outputs.exists == 'false'
-        run: |
-          VERSION="v${{ steps.pkg.outputs.version }}"
-          if git ls-remote --tags origin | grep -q "refs/tags/$VERSION$"; then
-            echo "Tag $VERSION already on remote — skipping tag creation."
-          else
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git tag "$VERSION"
-            git push origin "$VERSION"
-            echo "Tag $VERSION created and pushed."
-          fi
-
-      - name: Publish GitHub Release
-        if: steps.release_check.outputs.exists == 'false'
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.pkg.outputs.version }}
-          name: v${{ steps.pkg.outputs.version }}
+          tag_name: v${{ steps.bump.outputs.version }}
+          name: v${{ steps.bump.outputs.version }}
           generate_release_notes: true
           body: |
-            ## nexter-ui-component v${{ steps.pkg.outputs.version }}
+            ## nexter-ui-component v${{ steps.bump.outputs.version }}
 
             **Install / upgrade:**
             ```bash
-            npm install nexter-ui-component@${{ steps.pkg.outputs.version }}
+            npm install nexter-ui-component@${{ steps.bump.outputs.version }}
             ```
 
             > Commit-by-commit change list is auto-generated below.

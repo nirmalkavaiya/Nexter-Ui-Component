@@ -6,10 +6,8 @@ function run(cmd) {
   execSync(cmd, { stdio: 'inherit' });
 }
 
-// 1. Stage all changes
 run('git add -A');
 
-// 2. Commit only if there are staged changes
 const dirty = execSync('git status --porcelain').toString().trim();
 if (dirty) {
   run(`git commit -m "${commitMsg}"`);
@@ -18,13 +16,6 @@ if (dirty) {
   console.log('\n✔ Nothing to commit — working tree clean');
 }
 
-// 3. Bump patch version (creates a version commit + tag automatically)
-run('npm version patch');
+run('git push');
 
-const version = execSync('node -e "process.stdout.write(require(\'./package.json\').version)"').toString().trim();
-console.log(`\n✔ Version bumped to ${version}`);
-
-// 4. Push commits + tag → GitHub Actions creates the release
-run('git push --follow-tags');
-
-console.log(`\n✔ Pushed. GitHub Actions will create release v${version} automatically.\n`);
+console.log('\n✔ Pushed. GitHub Actions will bump the version and create the release automatically.\n');
