@@ -8,10 +8,12 @@ function Toggle({
   variant,
   label,
   ariaLabel,
+  id,
   className = '',
   isPro = false,
   onProClick,
   'aria-label': ariaLabelAttr,
+  'aria-labelledby': ariaLabelledByAttr,
   ...rest
 }) {
   // Back-compat: older callers passed the click handler as `isPro`.
@@ -22,6 +24,18 @@ function Toggle({
   const isControlled = checked !== undefined;
   const [internal, setInternal] = useState(false);
   const isChecked = isControlled ? checked : internal;
+
+  // When id + label are provided with no explicit aria-label, auto-associate the
+  // rendered label span via aria-labelledby so screen readers announce the text.
+  const explicitAriaLabel = ariaLabel ?? ariaLabelAttr;
+  const autoLabelId = id && label && !explicitAriaLabel && !ariaLabelledByAttr
+    ? `${id}-label`
+    : undefined;
+  const resolvedAriaLabelledBy = ariaLabelledByAttr ?? autoLabelId;
+  // For a string label with no id, fall back to aria-label directly on the element.
+  const resolvedAriaLabel = resolvedAriaLabelledBy
+    ? undefined
+    : (explicitAriaLabel ?? (typeof label === 'string' ? label : undefined));
 
   const handleToggle = useCallback(() => {
     if (disabled || isLocked) return;
@@ -71,6 +85,7 @@ function Toggle({
 
   return (
     <div
+      id={id}
       className={classes}
       role="switch"
       aria-checked={isChecked}
@@ -78,7 +93,8 @@ function Toggle({
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      aria-label={ariaLabel ?? ariaLabelAttr ?? (typeof label === 'string' ? label : undefined)}
+      aria-label={resolvedAriaLabel}
+      aria-labelledby={resolvedAriaLabelledBy}
       {...rest}
     >
       <span className="nxp-toggle__track">
@@ -89,7 +105,7 @@ function Toggle({
           </span>
         )}
       </span>
-      {label && <span>{label}</span>}
+      {label && <span id={autoLabelId}>{label}</span>}
     </div>
   );
 }
