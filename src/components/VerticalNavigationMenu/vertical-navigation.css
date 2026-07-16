@@ -297,6 +297,7 @@
     transform var(--nxp-dur-active) var(--nxp-ease),
     color var(--nxp-dur-hover) var(--nxp-ease);
   transform: rotate(0deg);
+  will-change: transform;
 }
 
 .nxp-nav__toggle-icon--open {
