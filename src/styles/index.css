@@ -535,13 +535,19 @@ input.nxp-input--invalid:focus {
   opacity: 0.55;
   cursor: not-allowed;
 }
+.nxp-toggle:focus-visible {
+  outline: none;
+}
+.nxp-toggle:focus-visible .nxp-toggle__track {
+  box-shadow: var(--nxp-ring);
+}
 .nxp-toggle__track {
   position: relative;
   width: 49px;
   height: 26px;
   border-radius: var(--nxp-radius-pill);
   background: var(--nxp-border-strong);
-  transition: background var(--nxp-dur-hover) var(--nxp-ease);
+  transition: background var(--nxp-dur-hover) var(--nxp-ease), box-shadow var(--nxp-dur-hover) var(--nxp-ease);
   flex-shrink: 0;
 }
 .nxp-toggle.is-checked .nxp-toggle__track {
