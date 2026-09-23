@@ -131,6 +131,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--primary:focus-visible {
   outline: none;
+  box-shadow: var(--nxp-ring);
 }
 
 /* Secondary */
@@ -148,6 +149,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--secondary:focus-visible {
   outline: none;
+  box-shadow: var(--nxp-ring);
 }
 
 /* Outline */
@@ -164,6 +166,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--outline:focus-visible {
   outline: none;
+  box-shadow: var(--nxp-ring);
 }
 
 /* Ghost */
@@ -181,6 +184,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--ghost:focus-visible {
   outline: none;
+  box-shadow: var(--nxp-ring);
 }
 
 /* Destructive */
@@ -197,6 +201,7 @@ a.nxp-btn:active {
 }
 .nxp-btn--destructive:focus-visible {
   outline: none;
+  box-shadow: var(--nxp-ring);
 }
 
 /* Link */
