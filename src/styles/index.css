@@ -4654,6 +4654,15 @@ input.nxp-num__input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .nxp-scroll-area:focus-visible {
   box-shadow: var(--nxp-ring);
 }
+/* When .nxp-scroll-area is combined with a flex column (nxp-flex nxp-flex-col),
+   default flex-shrink:1 lets children get squeezed to fit the fixed height
+   instead of overflowing — the scrollbar then never appears and content that
+   should be reachable by scrolling is rendered compressed to near-nothing.
+   Children of a non-flex scroll area are unaffected (flex-shrink is a no-op
+   outside a flex formatting context). */
+.nxp-scroll-area > * {
+  flex-shrink: 0;
+}
 
 /* Custom scrollbar — webkit */
 .nxp-scroll-area::-webkit-scrollbar {
